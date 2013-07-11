@@ -38,7 +38,6 @@ class PagesController extends AppController {
  *
  */
 	public $name = 'Pages';
-    public $theme = 'Bootstrap';
 
 /**
  * This controller does not use a model
@@ -74,9 +73,6 @@ class PagesController extends AppController {
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->render(implode('/', $path));
 	}
-
-    public function index() {
-    }
 
 
 }
