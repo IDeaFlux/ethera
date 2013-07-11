@@ -21,7 +21,6 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::uses('Controller', 'Controller');
-App::uses('FASAuthenticate', 'Controller/Component/Auth');
 
 /**
  * Application Controller
@@ -33,26 +32,7 @@ App::uses('FASAuthenticate', 'Controller/Component/Auth');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    public $components = array('Acl','DebugKit.Toolbar','Session','Auth'=>array(
-        'loginRedirect'=>array('controller'=>'backend','action'=>'home'),
-        'logoutRedirect'=>array('controller'=>'pages','action'=>'index'),
-        'authError'=>'You cannot access that page',
-        'authorize'=> array('Controller')
-    ));
+    public $components = array('Acl','DebugKit.Toolbar','Session');
 
-    public function isAuthorized($user){
-        return true;
-    }
-
-    public function beforeFilter(){
-        parent::beforeFilter();
-        $this->Auth->authenticate = array(
-            AuthComponent::ALL => array('userModel' => 'User'),
-            'FAS'
-        );
-        $this->Auth->allow('index');
-        $this->set('logged_in', $this->Auth->loggedIn());
-        $this->set('current_user', $this->Auth->user());
-    }
 }
 
