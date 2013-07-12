@@ -47,8 +47,8 @@ class CourseUnit extends AppModel {
 
 
 	public $hasMany = array(
-		'Follow' => array(
-			'className' => 'Follow',
+		'Enrollment' => array(
+			'className' => 'Enrollment',
 			'foreignKey' => 'course_unit_id',
 			'dependent' => false,
 			'conditions' => '',
