@@ -58,7 +58,7 @@ class DATABASE_CONFIG {
     public $default = array(
         'datasource' => 'Database/Mysql',
         'persistent' => false,
-        'host' => '127.0.0.1',
+        'host' => '127.13.6.2',
         'login' => 'adminkyv6N7s',
         'password' => 'UGaTaqbG3zM9',
         'database' => 'ethera',
