@@ -3,6 +3,11 @@ App::uses('AppController', 'Controller');
 
 class SubjectsController extends AppController {
 
+    public $helpers = array(
+        'Html' => array('className' => 'BootstrapHtml'),
+        'Form' => array('className' => 'BootstrapForm'),
+        'Paginator' => array('className' => 'BootstrapPaginator'),
+    );
 
 	public function index() {
 		$this->Subject->recursive = 0;
