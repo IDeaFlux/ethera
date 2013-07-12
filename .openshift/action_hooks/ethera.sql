@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 11, 2013 at 12:16 PM
+-- Generation Time: Jul 12, 2013 at 07:35 PM
 -- Server version: 5.5.31
 -- PHP Version: 5.4.16
 
@@ -42,11 +42,11 @@ CREATE TABLE IF NOT EXISTS `articles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `assignment`
+-- Table structure for table `assignments`
 --
 
-DROP TABLE IF EXISTS `assignment`;
-CREATE TABLE IF NOT EXISTS `assignment` (
+DROP TABLE IF EXISTS `assignments`;
+CREATE TABLE IF NOT EXISTS `assignments` (
   `interested_area_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
@@ -122,6 +122,20 @@ CREATE TABLE IF NOT EXISTS `cvs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `enrollments`
+--
+
+DROP TABLE IF EXISTS `enrollments`;
+CREATE TABLE IF NOT EXISTS `enrollments` (
+  `course_unit_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `grade` varchar(2) NOT NULL,
+  PRIMARY KEY (`course_unit_id`,`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `extra_activities`
 --
 
@@ -149,20 +163,6 @@ CREATE TABLE IF NOT EXISTS `feedbacks` (
   `organization_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `follow`
---
-
-DROP TABLE IF EXISTS `follow`;
-CREATE TABLE IF NOT EXISTS `follow` (
-  `course_unit_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `grade` varchar(2) NOT NULL,
-  PRIMARY KEY (`course_unit_id`,`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -217,11 +217,11 @@ CREATE TABLE IF NOT EXISTS `notices` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `opportunity`
+-- Table structure for table `opportunies`
 --
 
-DROP TABLE IF EXISTS `opportunity`;
-CREATE TABLE IF NOT EXISTS `opportunity` (
+DROP TABLE IF EXISTS `opportunies`;
+CREATE TABLE IF NOT EXISTS `opportunies` (
   `interested_area_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
   `batch_id` int(11) NOT NULL,
@@ -233,11 +233,11 @@ CREATE TABLE IF NOT EXISTS `opportunity` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `organization`
+-- Table structure for table `organizations`
 --
 
-DROP TABLE IF EXISTS `organization`;
-CREATE TABLE IF NOT EXISTS `organization` (
+DROP TABLE IF EXISTS `organizations`;
+CREATE TABLE IF NOT EXISTS `organizations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -350,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `description` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
