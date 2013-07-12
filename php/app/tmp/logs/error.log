@@ -1,0 +1,1086 @@
+2013-05-23 11:10:46 Error: [MissingPluginException] Plugin DebugKit could not be found.
+Exception Attributes: array (
+  'plugin' => 'DebugKit',
+)
+Request URL: /gsoc/ffs/
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(366): CakePlugin::path('DebugKit')
+#1 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(227): App::pluginPath('DebugKit')
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(544): App::path('Controller/Comp...', 'DebugKit')
+#3 [internal function]: App::load('ToolbarComponen...')
+#4 [internal function]: spl_autoload_call('ToolbarComponen...')
+#5 /var/www/html/gsoc/ffs/lib/Cake/Controller/ComponentCollection.php(100): class_exists('ToolbarComponen...')
+#6 /var/www/html/gsoc/ffs/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('DebugKit.Toolba...', Array)
+#7 /var/www/html/gsoc/ffs/lib/Cake/Controller/Controller.php(635): ComponentCollection->init(Object(PagesController))
+#8 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(183): Controller->constructClasses()
+#9 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest), Object(CakeResponse))
+#10 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2013-05-23 12:17:46 Error: [MissingActionException] Action UsersController::login() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'login',
+)
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-23 12:18:06 Error: [MissingActionException] Action UsersController::login() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'login',
+)
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-23 12:18:07 Error: [MissingActionException] Action UsersController::login() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'login',
+)
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-23 12:18:07 Error: [MissingActionException] Action UsersController::login() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'login',
+)
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-23 12:18:15 Error: [MissingActionException] Action UsersController::login() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'login',
+)
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-23 12:18:16 Error: [MissingActionException] Action UsersController::login() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'login',
+)
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-23 12:18:19 Error: [MissingActionException] Action UsersController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'index',
+)
+Request URL: /gsoc/ffs/users
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-23 12:31:04 Error: [MissingActionException] Action UsersController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'index',
+)
+Request URL: /gsoc/ffs/users
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-23 12:31:08 Error: [MissingActionException] Action UsersController::login() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'login',
+)
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-23 12:31:10 Error: [MissingActionException] Action UsersController::login() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'login',
+)
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-23 12:31:52 Error: Fatal Error (1): Call to a member function is() on a non-object in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 5]
+2013-05-23 12:31:52 Error: [FatalErrorException] Call to a member function is() on a non-object
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 5)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 5, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 5, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 12:32:39 Error: Fatal Error (1): Call to a member function is() on a non-object in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 6]
+2013-05-23 12:32:39 Error: [FatalErrorException] Call to a member function is() on a non-object
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 6)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 6, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 6, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 12:32:41 Error: Fatal Error (1): Call to a member function is() on a non-object in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 6]
+2013-05-23 12:32:41 Error: [FatalErrorException] Call to a member function is() on a non-object
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 6)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 6, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 6, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 12:34:23 Error: Fatal Error (1): Call to a member function is() on a non-object in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 6]
+2013-05-23 12:34:23 Error: [FatalErrorException] Call to a member function is() on a non-object
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 6)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 6, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 6, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 15:02:14 Error: [CakeException] Authentication adapter "FAS" was not found.
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Controller/Component/AuthComponent.php(692): AuthComponent->constructAuthenticate()
+#1 /var/www/html/gsoc/ffs/lib/Cake/Controller/Component/AuthComponent.php(547): AuthComponent->identify(Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/Controller/UsersController.php(8): AuthComponent->login()
+#3 [internal function]: UsersController->login()
+#4 /var/www/html/gsoc/ffs/lib/Cake/Controller/Controller.php(486): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#5 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#6 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#7 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2013-05-23 15:08:06 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User.username' in 'where clause'
+Request URL: /gsoc/ffs/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Model/Datasource/DboSource.php(460): PDOStatement->execute(Array)
+#1 /var/www/html/gsoc/ffs/lib/Cake/Model/Datasource/DboSource.php(426): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Model/Datasource/DboSource.php(670): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Model/Datasource/DboSource.php(1081): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /var/www/html/gsoc/ffs/lib/Cake/Model/Model.php(2694): DboSource->read(Object(User), Array)
+#5 /var/www/html/gsoc/ffs/lib/Cake/Controller/Component/Auth/BaseAuthenticate.php(99): Model->find('first', Array)
+#6 /var/www/html/gsoc/ffs/lib/Cake/Controller/Component/Auth/FormAuthenticate.php(81): BaseAuthenticate->_findUser('udinnet', 'Ud3249370?')
+#7 /var/www/html/gsoc/ffs/lib/Cake/Controller/Component/AuthComponent.php(695): FormAuthenticate->authenticate(Object(CakeRequest), Object(CakeResponse))
+#8 /var/www/html/gsoc/ffs/lib/Cake/Controller/Component/AuthComponent.php(547): AuthComponent->identify(Object(CakeRequest), Object(CakeResponse))
+#9 /var/www/html/gsoc/ffs/app/Controller/UsersController.php(8): AuthComponent->login()
+#10 [internal function]: UsersController->login()
+#11 /var/www/html/gsoc/ffs/lib/Cake/Controller/Controller.php(486): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#12 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#13 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#14 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2013-05-23 15:53:22 Error: Fatal Error (4): syntax error, unexpected 'else' (T_ELSE) in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 10]
+2013-05-23 15:53:22 Error: [FatalErrorException] syntax error, unexpected 'else' (T_ELSE)
+Request URL: /gsoc/ffs/users/logout
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 10)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 15:53:24 Error: Fatal Error (4): syntax error, unexpected 'else' (T_ELSE) in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 10]
+2013-05-23 15:53:24 Error: [FatalErrorException] syntax error, unexpected 'else' (T_ELSE)
+Request URL: /gsoc/ffs/users/logout
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 10)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 15:53:29 Error: Fatal Error (4): syntax error, unexpected 'else' (T_ELSE) in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 10]
+2013-05-23 15:53:29 Error: [FatalErrorException] syntax error, unexpected 'else' (T_ELSE)
+Request URL: /gsoc/ffs/users/logout
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 10)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 15:53:38 Error: Fatal Error (4): syntax error, unexpected 'else' (T_ELSE) in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 10]
+2013-05-23 15:53:38 Error: [FatalErrorException] syntax error, unexpected 'else' (T_ELSE)
+Request URL: /gsoc/ffs/users/logout
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 10)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 15:53:39 Error: Fatal Error (4): syntax error, unexpected 'else' (T_ELSE) in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 10]
+2013-05-23 15:53:39 Error: [FatalErrorException] syntax error, unexpected 'else' (T_ELSE)
+Request URL: /gsoc/ffs/users/logout
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 10)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 15:53:40 Error: Fatal Error (4): syntax error, unexpected 'else' (T_ELSE) in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 10]
+2013-05-23 15:53:40 Error: [FatalErrorException] syntax error, unexpected 'else' (T_ELSE)
+Request URL: /gsoc/ffs/users/logout
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 10)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 15:53:40 Error: Fatal Error (4): syntax error, unexpected 'else' (T_ELSE) in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 10]
+2013-05-23 15:53:40 Error: [FatalErrorException] syntax error, unexpected 'else' (T_ELSE)
+Request URL: /gsoc/ffs/users/logout
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 10)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 15:53:41 Error: Fatal Error (4): syntax error, unexpected 'else' (T_ELSE) in [/var/www/html/gsoc/ffs/app/Controller/UsersController.php, line 10]
+2013-05-23 15:53:41 Error: [FatalErrorException] syntax error, unexpected 'else' (T_ELSE)
+Request URL: /gsoc/ffs/users/logout
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 10)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 10, Array)
+#3 /var/www/html/gsoc/ffs/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-23 16:22:59 Error: [MissingControllerException] Controller class BackendpagesController could not be found.
+Exception Attributes: array (
+  'class' => 'BackendpagesController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs/backendpages/home
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-23 16:24:26 Error: [MissingViewException] View file "/var/www/html/gsoc/ffs/app/View/BackendPages/home.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/var/www/html/gsoc/ffs/app/View/BackendPages/home.ctp',
+)
+Request URL: /gsoc/ffs/backendpages/home
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/View/View.php(468): View->_getViewFileName(NULL)
+#1 /var/www/html/gsoc/ffs/lib/Cake/Controller/Controller.php(948): View->render(NULL, NULL)
+#2 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(194): Controller->render()
+#3 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(BackendPagesController), Object(CakeRequest), Object(CakeResponse))
+#4 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2013-05-24 09:13:34 Error: [MissingActionException] Action BackendController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'BackendController',
+  'action' => 'index',
+)
+Request URL: /gsoc/ffs/backend
+Stack Trace:
+#0 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(BackendController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-24 20:40:29 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+Request URL: /gsoc/ffs_openshift/php/users/login
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(460): PDOStatement->execute(Array)
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/Database/Mysql.php(193): DboSource->_execute('SHOW TABLES FRO...')
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(1113): Mysql->listSources()
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(3237): Model->setSource('users')
+#4 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(1319): Model->getDataSource()
+#5 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/View/Helper/FormHelper.php(198): Model->schema()
+#6 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/View/Helper/FormHelper.php(448): FormHelper->_introspectModel('User', 'fields')
+#7 /var/www/html/gsoc/ffs_openshift/php/app/View/Users/login.ctp(3): FormHelper->create(Array)
+#8 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/View/View.php(947): include('/var/www/html/g...')
+#9 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/View/View.php(909): View->_evaluate('/var/www/html/g...', Array)
+#10 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/View/View.php(471): View->_render('/var/www/html/g...')
+#11 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Controller/Controller.php(948): View->render(NULL, NULL)
+#12 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(194): Controller->render()
+#13 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#14 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2013-05-25 22:20:37 Error: [MissingControllerException] Controller class TicketController could not be found.
+Exception Attributes: array (
+  'class' => 'TicketController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/ticket
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-25 22:22:49 Error: [MissingActionException] Action UsersController::add() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'add',
+)
+Request URL: /gsoc/ffs_openshift/php/users/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-25 22:22:56 Error: [MissingActionException] Action UsersController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'index',
+)
+Request URL: /gsoc/ffs_openshift/php/users
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-05-26 05:52:32 Error: Fatal Error (4): syntax error, unexpected '$ffsDescription' (T_VARIABLE) in [/var/www/html/gsoc/ffs_openshift/php/app/View/Layouts/default.ctp, line 43]
+2013-05-26 05:52:32 Error: [FatalErrorException] syntax error, unexpected '$ffsDescription' (T_VARIABLE)
+Request URL: /gsoc/ffs_openshift/php/
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 43)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 43, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 43, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-26 05:52:33 Error: Fatal Error (4): syntax error, unexpected '$ffsDescription' (T_VARIABLE) in [/var/www/html/gsoc/ffs_openshift/php/app/View/Layouts/default.ctp, line 43]
+2013-05-26 05:52:33 Error: [FatalErrorException] syntax error, unexpected '$ffsDescription' (T_VARIABLE)
+Request URL: /gsoc/ffs_openshift/php/
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 43)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 43, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 43, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-26 05:52:33 Error: Fatal Error (4): syntax error, unexpected '$ffsDescription' (T_VARIABLE) in [/var/www/html/gsoc/ffs_openshift/php/app/View/Layouts/default.ctp, line 43]
+2013-05-26 05:52:33 Error: [FatalErrorException] syntax error, unexpected '$ffsDescription' (T_VARIABLE)
+Request URL: /gsoc/ffs_openshift/php/
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 43)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 43, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 43, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-26 05:52:34 Error: Fatal Error (4): syntax error, unexpected '$ffsDescription' (T_VARIABLE) in [/var/www/html/gsoc/ffs_openshift/php/app/View/Layouts/default.ctp, line 43]
+2013-05-26 05:52:34 Error: [FatalErrorException] syntax error, unexpected '$ffsDescription' (T_VARIABLE)
+Request URL: /gsoc/ffs_openshift/php/
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 43)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 43, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 43, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-26 05:52:34 Error: Fatal Error (4): syntax error, unexpected '$ffsDescription' (T_VARIABLE) in [/var/www/html/gsoc/ffs_openshift/php/app/View/Layouts/default.ctp, line 43]
+2013-05-26 05:52:34 Error: [FatalErrorException] syntax error, unexpected '$ffsDescription' (T_VARIABLE)
+Request URL: /gsoc/ffs_openshift/php/
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 43)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 43, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 43, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-25 20:56:15 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Ticket.reporter' in 'on clause'
+Request URL: /gsoc/ffs_openshift/php/tickets
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(460): PDOStatement->execute(Array)
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(426): DboSource->_execute('SELECT `Ticket`...', Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(670): DboSource->execute('SELECT `Ticket`...', Array, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(1081): DboSource->fetchAll('SELECT `Ticket`...', false)
+#4 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2694): DboSource->read(Object(Ticket), Array)
+#5 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Controller/Component/PaginatorComponent.php(196): Model->find('all', Array)
+#6 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Controller/Controller.php(1074): PaginatorComponent->paginate(NULL, Array, Array)
+#7 /var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php(17): Controller->paginate()
+#8 [internal function]: TicketsController->index()
+#9 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Controller/Controller.php(486): ReflectionMethod->invokeArgs(Object(TicketsController), Array)
+#10 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#11 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(TicketsController), Object(CakeRequest), Object(CakeResponse))
+#12 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2013-06-26 18:08:26 Error: [MissingControllerException] Controller class RulesController could not be found.
+Exception Attributes: array (
+  'class' => 'RulesController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/rules/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-06-26 18:08:37 Error: [MissingControllerException] Controller class RulesController could not be found.
+Exception Attributes: array (
+  'class' => 'RulesController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/rules
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-06-26 18:09:21 Error: [MissingControllerException] Controller class RulesController could not be found.
+Exception Attributes: array (
+  'class' => 'RulesController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/rules
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-06-26 18:10:29 Error: [MissingControllerException] Controller class RulesController could not be found.
+Exception Attributes: array (
+  'class' => 'RulesController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/rules
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-06-26 18:12:43 Error: [MissingActionException] Action UsersController::view() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'view',
+)
+Request URL: /gsoc/ffs_openshift/php/users/view/4
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-06-27 06:57:24 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 35]
+2013-06-27 06:57:24 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 35)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 35, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 35, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 06:59:54 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 37]
+2013-06-27 06:59:54 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 37)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 37, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 37, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 07:00:35 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 38]
+2013-06-27 07:00:35 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 38)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 38, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 38, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 07:01:06 Error: [MissingTableException] Table fields for model Field was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'fields',
+  'class' => 'Field',
+  'ds' => 'default',
+)
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(3237): Model->setSource('fields')
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(1319): Model->getDataSource()
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(1402): Model->schema()
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(1390): Model->hasField('title', false)
+#4 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(879): Model->hasField(Array)
+#5 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2836): Model->__get('displayField')
+#6 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2730): Model->_findList('before', Array)
+#7 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2689): Model->buildQuery('list', Array)
+#8 /var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php(38): Model->find('list')
+#9 [internal function]: TicketsController->add()
+#10 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Controller/Controller.php(486): ReflectionMethod->invokeArgs(Object(TicketsController), Array)
+#11 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#12 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(TicketsController), Object(CakeRequest), Object(CakeResponse))
+#13 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2013-06-27 07:05:03 Error: [MissingTableException] Table tickets_ticket_fields for model TicketsTicketField was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'tickets_ticket_fields',
+  'class' => 'TicketsTicketField',
+  'ds' => 'default',
+)
+Request URL: /gsoc/ffs_openshift/php/ticket_fields/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(3237): Model->setSource('tickets_ticket_...')
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(1319): Model->getDataSource()
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(863): Model->schema()
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(888): Model->__isset('TicketsTicketFi...')
+#4 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(3306): Model->__get('TicketsTicketFi...')
+#5 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/ModelValidator.php(428): Model->joinModel('TicketsTicketFi...')
+#6 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/ModelValidator.php(102): ModelValidator->_validateWithModels(Array)
+#7 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(3068): ModelValidator->validates(Array)
+#8 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(1659): Model->validates(Array)
+#9 /var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketFieldsController.php(25): Model->save(Array)
+#10 [internal function]: TicketFieldsController->add()
+#11 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Controller/Controller.php(486): ReflectionMethod->invokeArgs(Object(TicketFieldsController), Array)
+#12 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#13 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(TicketFieldsController), Object(CakeRequest), Object(CakeResponse))
+#14 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2013-06-27 07:07:34 Error: [MissingTableException] Table tickets_ticket_fields for model TicketsTicketField was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'tickets_ticket_fields',
+  'class' => 'TicketsTicketField',
+  'ds' => 'default',
+)
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(3237): Model->setSource('tickets_ticket_...')
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(1319): Model->getDataSource()
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(863): Model->schema()
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(888): Model->__isset('TicketsTicketFi...')
+#4 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(3306): Model->__get('TicketsTicketFi...')
+#5 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(1598): Model->joinModel('TicketsTicketFi...', Array)
+#6 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(1072): DboSource->generateAssociationQuery(Object(TicketField), Object(Ticket), 'hasAndBelongsTo...', 'Ticket', Array, Array, false, NULL)
+#7 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2694): DboSource->read(Object(TicketField), Array)
+#8 /var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php(38): Model->find('all')
+#9 [internal function]: TicketsController->add()
+#10 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Controller/Controller.php(486): ReflectionMethod->invokeArgs(Object(TicketsController), Array)
+#11 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#12 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(TicketsController), Object(CakeRequest), Object(CakeResponse))
+#13 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2013-06-27 08:28:33 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'FieldAmount.ticket_field' in 'field list'
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(460): PDOStatement->execute(Array)
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(426): DboSource->_execute('SELECT `FieldAm...', Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(670): DboSource->execute('SELECT `FieldAm...', Array, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(1081): DboSource->fetchAll('SELECT `FieldAm...', false)
+#4 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2694): DboSource->read(Object(FieldAmount), Array)
+#5 /var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php(58): Model->find('list', Array)
+#6 [internal function]: TicketsController->add()
+#7 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Controller/Controller.php(486): ReflectionMethod->invokeArgs(Object(TicketsController), Array)
+#8 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#9 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(TicketsController), Object(CakeRequest), Object(CakeResponse))
+#10 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2013-06-27 10:08:45 Error: Fatal Error (4): syntax error, unexpected '/' in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 58]
+2013-06-27 10:08:45 Error: [FatalErrorException] syntax error, unexpected '/'
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/g...', 58)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/g...', 58, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/g...', 58, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 11:13:20 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 59]
+2013-06-27 11:13:20 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 59)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 59, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 59, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 11:36:04 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 54]
+2013-06-27 11:36:04 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 54)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 11:36:07 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 54]
+2013-06-27 11:36:07 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 54)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 11:36:25 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 54]
+2013-06-27 11:36:25 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 54)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 11:36:28 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 54]
+2013-06-27 11:36:28 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 54)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 11:37:27 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 54]
+2013-06-27 11:37:27 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 54)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 11:37:30 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 54]
+2013-06-27 11:37:30 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 54)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 11:39:52 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 54]
+2013-06-27 11:39:52 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 54)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 54, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 11:45:02 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 60]
+2013-06-27 11:45:02 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 60)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 60, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 60, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 11:45:39 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 60]
+2013-06-27 11:45:39 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 60)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 60, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 60, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 12:28:15 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 61]
+2013-06-27 12:28:15 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 61)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 61, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 61, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 12:28:18 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php, line 61]
+2013-06-27 12:28:18 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/g...', 61)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/g...', 61, Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/g...', 61, Array)
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-06-27 13:07:42 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'amount' cannot be null
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(460): PDOStatement->execute(Array)
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(426): DboSource->_execute('INSERT INTO `ff...', Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(1008): DboSource->execute('INSERT INTO `ff...')
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(1742): DboSource->create(Object(FieldAmount), Array, Array)
+#4 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2110): Model->save(Array, Array)
+#5 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2291): Model->saveMany(Array, Array)
+#6 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2052): Model->saveAssociated(Array, Array)
+#7 /var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php(45): Model->saveAll(Array)
+#8 [internal function]: TicketsController->add()
+#9 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Controller/Controller.php(486): ReflectionMethod->invokeArgs(Object(TicketsController), Array)
+#10 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#11 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(TicketsController), Object(CakeRequest), Object(CakeResponse))
+#12 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2013-06-27 13:30:18 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'amount' cannot be null
+Request URL: /gsoc/ffs_openshift/php/tickets/add
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(460): PDOStatement->execute(Array)
+#1 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(426): DboSource->_execute('INSERT INTO `ff...', Array)
+#2 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Datasource/DboSource.php(1008): DboSource->execute('INSERT INTO `ff...')
+#3 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(1742): DboSource->create(Object(FieldAmount), Array, Array)
+#4 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2110): Model->save(Array, Array)
+#5 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2291): Model->saveMany(Array, Array)
+#6 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Model/Model.php(2052): Model->saveAssociated(Array, Array)
+#7 /var/www/html/gsoc/ffs_openshift/php/app/Controller/TicketsController.php(45): Model->saveAll(Array)
+#8 [internal function]: TicketsController->add()
+#9 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Controller/Controller.php(486): ReflectionMethod->invokeArgs(Object(TicketsController), Array)
+#10 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#11 /var/www/html/gsoc/ffs_openshift/php/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(TicketsController), Object(CakeRequest), Object(CakeResponse))
+#12 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2013-06-27 14:28:30 Error: [MissingControllerException] Controller class RulesController could not be found.
+Exception Attributes: array (
+  'class' => 'RulesController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/rules
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-06-27 14:30:00 Error: [MissingControllerException] Controller class FieldAmountsController could not be found.
+Exception Attributes: array (
+  'class' => 'FieldAmountsController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/field_amounts/view/7
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-06-27 14:31:15 Error: [MissingControllerException] Controller class FieldAmountsController could not be found.
+Exception Attributes: array (
+  'class' => 'FieldAmountsController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/field_amounts/view/7
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-06-27 14:44:09 Error: [MissingControllerException] Controller class TicketsfieldsController could not be found.
+Exception Attributes: array (
+  'class' => 'TicketsfieldsController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/ticketsfields
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-06-27 14:44:12 Error: [MissingControllerException] Controller class TicketsfieldController could not be found.
+Exception Attributes: array (
+  'class' => 'TicketsfieldController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/ticketsfield
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-06-27 14:44:16 Error: [MissingControllerException] Controller class TicketfieldController could not be found.
+Exception Attributes: array (
+  'class' => 'TicketfieldController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/ticketfield
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-06-27 14:44:18 Error: [MissingControllerException] Controller class TicketfieldsController could not be found.
+Exception Attributes: array (
+  'class' => 'TicketfieldsController',
+  'plugin' => NULL,
+)
+Request URL: /gsoc/ffs_openshift/php/ticketfields
+Stack Trace:
+#0 /var/www/html/gsoc/ffs_openshift/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:08:43 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:11:42 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:11:43 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:12:04 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:34:32 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:34:32 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [/var/www/html/ethera/uditha/php/app/Controller/AppController.php, line 36]
+2013-07-11 20:34:32 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/e...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#2 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#3 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-07-11 20:34:33 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:34:33 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [/var/www/html/ethera/uditha/php/app/Controller/AppController.php, line 36]
+2013-07-11 20:34:33 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/e...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#2 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#3 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-07-11 20:34:34 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:34:34 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [/var/www/html/ethera/uditha/php/app/Controller/AppController.php, line 36]
+2013-07-11 20:34:34 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/e...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#2 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#3 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-07-11 20:34:34 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:34:34 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [/var/www/html/ethera/uditha/php/app/Controller/AppController.php, line 36]
+2013-07-11 20:34:34 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/e...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#2 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#3 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-07-11 20:34:34 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:34:34 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [/var/www/html/ethera/uditha/php/app/Controller/AppController.php, line 36]
+2013-07-11 20:34:34 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/e...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#2 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#3 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-07-11 20:34:34 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:34:34 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [/var/www/html/ethera/uditha/php/app/Controller/AppController.php, line 36]
+2013-07-11 20:34:34 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/e...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#2 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#3 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-07-11 20:34:35 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:34:35 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [/var/www/html/ethera/uditha/php/app/Controller/AppController.php, line 36]
+2013-07-11 20:34:35 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/e...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#2 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#3 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-07-11 20:34:35 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:34:35 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [/var/www/html/ethera/uditha/php/app/Controller/AppController.php, line 36]
+2013-07-11 20:34:35 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/e...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#2 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/e...', 36, Array)
+#3 /var/www/html/ethera/uditha/php/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-07-11 20:34:56 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:34:57 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:35:52 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:35:54 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:35:54 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:35:55 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:35:56 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:35:56 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-07-11 20:35:57 Error: [MissingControllerException] Controller class UsersController could not be found.
+Exception Attributes: array (
+  'class' => 'UsersController',
+  'plugin' => NULL,
+)
+Request URL: /ethera/uditha/php/users/login
+Stack Trace:
+#0 /var/www/html/ethera/uditha/php/app/webroot/index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
