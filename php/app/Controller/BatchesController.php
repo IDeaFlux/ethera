@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 class BatchesController extends AppController {
 
 
-	public function index() {
+    public function index() {
 		$this->Batch->recursive = 0;
 		$this->set('batches', $this->paginate());
 	}

@@ -1,24 +1,45 @@
-<div class="batches form">
-<?php echo $this->Form->create('Batch'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Batch'); ?></legend>
-	<?php
-		echo $this->Form->input('academic_year');
-		echo $this->Form->input('registration_state');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<?php $this->layout = 'bootstrap2'; ?>
+<?php $this->set('title', 'Add Batch'); ?>
 
-		<li><?php echo $this->Html->link(__('List Batches'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Opportunies'), array('controller' => 'opportunies', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Opportuny'), array('controller' => 'opportunies', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Students'), array('controller' => 'students', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Student'), array('controller' => 'students', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Batches Study Programs'), array('controller' => 'batches_study_programs', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Batches Study Program'), array('controller' => 'batches_study_programs', 'action' => 'add')); ?> </li>
-	</ul>
+<div class="row">
+    <div class="span3">
+        <ul class="nav nav-tabs nav-stacked affix">
+            <li><?php echo $this->Html->link(__('List Batches'), array('action' => 'index')); ?></li>
+        </ul>
+    </div>
+
+    <div class="span9">
+    <?php echo $this->Form->create('Batch',array(
+        'inputDefaults' => array(
+            'div' => 'control-group',
+            'label' => array(
+                'class' => 'control-label'
+            ),
+            'wrapInput' => 'controls'
+        ),
+        'class' => 'well form-horizontal'
+    )); ?>
+        <legend><?php echo __('Add Batch'); ?></legend>
+        <?php
+            echo $this->Form->input('academic_year',array(
+            'class' => 'span6'
+        ));
+            echo $this->Form->input('registration_state', array(
+            'type' => 'radio',
+            'before' => '<label class="control-label">Registration on/off</label>',
+            'legend' => false,
+            'options' => array(
+                1 => 'On',
+                0 => 'Off'
+            )
+        ));
+        ?>
+        <div class="form-actions">
+            <?php echo $this->Form->submit('Save', array(
+                'div' => false,
+                'class' => 'btn btn-primary'
+            )); ?>
+        </div>
+    <?php echo $this->Form->end(); ?>
+    </div>
 </div>
