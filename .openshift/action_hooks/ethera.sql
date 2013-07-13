@@ -1,32 +1,13 @@
--- phpMyAdmin SQL Dump
--- version 4.0.4
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Jul 12, 2013 at 07:35 PM
--- Server version: 5.5.31
--- PHP Version: 5.4.16
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Database: `ethera`
---
 CREATE DATABASE IF NOT EXISTS `ethera` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `ethera`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `articles`
---
 
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
@@ -39,27 +20,16 @@ CREATE TABLE IF NOT EXISTS `articles` (
   KEY `title` (`title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `assignments`
---
-
 DROP TABLE IF EXISTS `assignments`;
 CREATE TABLE IF NOT EXISTS `assignments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `interested_area_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `priority` int(1) NOT NULL,
   `state` varchar(5) NOT NULL,
-  PRIMARY KEY (`interested_area_id`,`organization_id`,`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `batches`
---
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `batches`;
 CREATE TABLE IF NOT EXISTS `batches` (
@@ -70,27 +40,16 @@ CREATE TABLE IF NOT EXISTS `batches` (
   KEY `academic_year` (`academic_year`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `batches_study_programs`
---
-
 DROP TABLE IF EXISTS `batches_study_programs`;
 CREATE TABLE IF NOT EXISTS `batches_study_programs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `batch_id` int(11) NOT NULL,
   `study_program_id` int(11) NOT NULL,
   `freez_state` int(1) NOT NULL,
   `industry_ready` int(1) NOT NULL,
   `approval_phase` int(1) NOT NULL,
-  PRIMARY KEY (`batch_id`,`study_program_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `course_units`
---
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `course_units`;
 CREATE TABLE IF NOT EXISTS `course_units` (
@@ -104,12 +63,6 @@ CREATE TABLE IF NOT EXISTS `course_units` (
   KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `cvs`
---
-
 DROP TABLE IF EXISTS `cvs`;
 CREATE TABLE IF NOT EXISTS `cvs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -119,25 +72,14 @@ CREATE TABLE IF NOT EXISTS `cvs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `enrollments`
---
-
 DROP TABLE IF EXISTS `enrollments`;
 CREATE TABLE IF NOT EXISTS `enrollments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `course_unit_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `grade` varchar(2) NOT NULL,
-  PRIMARY KEY (`course_unit_id`,`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `extra_activities`
---
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `extra_activities`;
 CREATE TABLE IF NOT EXISTS `extra_activities` (
@@ -147,12 +89,6 @@ CREATE TABLE IF NOT EXISTS `extra_activities` (
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `feedbacks`
---
 
 DROP TABLE IF EXISTS `feedbacks`;
 CREATE TABLE IF NOT EXISTS `feedbacks` (
@@ -164,12 +100,6 @@ CREATE TABLE IF NOT EXISTS `feedbacks` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `groups`
---
-
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE IF NOT EXISTS `groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -180,12 +110,6 @@ CREATE TABLE IF NOT EXISTS `groups` (
   KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `interested_areas`
---
-
 DROP TABLE IF EXISTS `interested_areas`;
 CREATE TABLE IF NOT EXISTS `interested_areas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -193,12 +117,6 @@ CREATE TABLE IF NOT EXISTS `interested_areas` (
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `notices`
---
 
 DROP TABLE IF EXISTS `notices`;
 CREATE TABLE IF NOT EXISTS `notices` (
@@ -214,27 +132,16 @@ CREATE TABLE IF NOT EXISTS `notices` (
   KEY `title` (`title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `opportunies`
---
-
 DROP TABLE IF EXISTS `opportunies`;
 CREATE TABLE IF NOT EXISTS `opportunies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `interested_area_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
   `batch_id` int(11) NOT NULL,
   `slots` int(3) NOT NULL,
   `special_request` text NOT NULL,
-  PRIMARY KEY (`interested_area_id`,`organization_id`,`batch_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `organizations`
---
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `organizations`;
 CREATE TABLE IF NOT EXISTS `organizations` (
@@ -247,12 +154,6 @@ CREATE TABLE IF NOT EXISTS `organizations` (
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `students`
---
 
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
@@ -282,25 +183,14 @@ CREATE TABLE IF NOT EXISTS `students` (
   KEY `first_name` (`first_name`,`last_name`,`reg_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `students_extra_activities`
---
-
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `extra_activity_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `mark` int(3) NOT NULL,
-  PRIMARY KEY (`extra_activity_id`,`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `study_programs`
---
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `study_programs`;
 CREATE TABLE IF NOT EXISTS `study_programs` (
@@ -308,12 +198,6 @@ CREATE TABLE IF NOT EXISTS `study_programs` (
   `program_code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `study_programs_course_units`
---
 
 DROP TABLE IF EXISTS `study_programs_course_units`;
 CREATE TABLE IF NOT EXISTS `study_programs_course_units` (
@@ -323,25 +207,13 @@ CREATE TABLE IF NOT EXISTS `study_programs_course_units` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `study_programs_interested_areas`
---
-
 DROP TABLE IF EXISTS `study_programs_interested_areas`;
 CREATE TABLE IF NOT EXISTS `study_programs_interested_areas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `study_program_id` int(11) NOT NULL,
-  `interested_area` int(11) NOT NULL,
+  `interested_area_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `subjects`
---
 
 DROP TABLE IF EXISTS `subjects`;
 CREATE TABLE IF NOT EXISTS `subjects` (
@@ -350,13 +222,20 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `description` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `system_users`
---
+INSERT INTO `subjects` (`id`, `name`, `description`) VALUES
+(3, 'test', 'test'),
+(4, 'Uditha', 'Uditha'),
+(5, 'just test', 'We''ve sent an email to ishanigunawardhana@gmail.com.\r\n\r\nIn the email you''ll find a link that when clicked on will bring you back to the site and start using Gravatar.\r\n\r\nIf for some reason you do not receive the activation email, contact us and we''ll do our best to get you back on track.\r\n'),
+(6, 'ghgh', 'fhfhf\r\n'),
+(7, 'ghghgj', 'djjjfjf\r\n'),
+(8, 'ghtjhhj', 'dkdkd'),
+(9, 'gjgjyykyo', 'hgghfjfj'),
+(10, 'jhhjyiyi', 'fjfjfjfj'),
+(11, 'hlyyokkssj', 'fjjfjjf'),
+(12, 'hjhjyyii', 'ffd'),
+(13, 'gjgjgj', 'sasa');
 
 DROP TABLE IF EXISTS `system_users`;
 CREATE TABLE IF NOT EXISTS `system_users` (
