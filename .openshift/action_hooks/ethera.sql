@@ -38,7 +38,10 @@ CREATE TABLE IF NOT EXISTS `batches` (
   `registration_state` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `academic_year` (`academic_year`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `batches` (`id`, `academic_year`, `registration_state`) VALUES
+(1, '2008/2009', 1);
 
 DROP TABLE IF EXISTS `batches_study_programs`;
 CREATE TABLE IF NOT EXISTS `batches_study_programs` (
@@ -54,14 +57,19 @@ CREATE TABLE IF NOT EXISTS `batches_study_programs` (
 DROP TABLE IF EXISTS `course_units`;
 CREATE TABLE IF NOT EXISTS `course_units` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `credits` int(2) NOT NULL,
   `level` int(2) NOT NULL,
   `syllabus` text NOT NULL,
   `subject_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `name` (`name`),
+  KEY `code` (`code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `course_units` (`id`, `code`, `name`, `credits`, `level`, `syllabus`, `subject_id`) VALUES
+(1, 'ICT1402', 'Introduction to Programming', 4, 1, 'Techniques of Problem solving: Algorithm, Flowchart and Pseudo codes. Introduction of C++\r\nProgramming, Fundamentals of C++ Programming, Structure of a C++ Program, Input / out put \r\nStreams, Variable declaration, Arithmetic Operations, Relational Operations, Logical \r\nOperations, Control Structures: If / Else, While repetition, For repetition, Switch multiple \r\nselection, Do / while, Break and Continue, Functions, scope of variable and Parameters, \r\nRecursion, Arrays, Records. Object Oriented Concepts: Classes and Objects, Inheritance, \r\nEncapsulation, Polymorphism, Linked list Class, String class etc. ', 14);
 
 DROP TABLE IF EXISTS `cvs`;
 CREATE TABLE IF NOT EXISTS `cvs` (
@@ -197,7 +205,10 @@ CREATE TABLE IF NOT EXISTS `study_programs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `program_code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `study_programs` (`id`, `program_code`) VALUES
+(1, 'Information & Communication Technology');
 
 DROP TABLE IF EXISTS `study_programs_course_units`;
 CREATE TABLE IF NOT EXISTS `study_programs_course_units` (
@@ -205,7 +216,10 @@ CREATE TABLE IF NOT EXISTS `study_programs_course_units` (
   `study_program_id` int(11) NOT NULL,
   `course_unit_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `study_programs_course_units` (`id`, `study_program_id`, `course_unit_id`) VALUES
+(1, 1, 1);
 
 DROP TABLE IF EXISTS `study_programs_interested_areas`;
 CREATE TABLE IF NOT EXISTS `study_programs_interested_areas` (
@@ -222,20 +236,11 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `description` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 INSERT INTO `subjects` (`id`, `name`, `description`) VALUES
-(3, 'test', 'test'),
-(4, 'Uditha', 'Uditha'),
-(5, 'just test', 'We''ve sent an email to ishanigunawardhana@gmail.com.\r\n\r\nIn the email you''ll find a link that when clicked on will bring you back to the site and start using Gravatar.\r\n\r\nIf for some reason you do not receive the activation email, contact us and we''ll do our best to get you back on track.\r\n'),
-(6, 'ghgh', 'fhfhf\r\n'),
-(7, 'ghghgj', 'djjjfjf\r\n'),
-(8, 'ghtjhhj', 'dkdkd'),
-(9, 'gjgjyykyo', 'hgghfjfj'),
-(10, 'jhhjyiyi', 'fjfjfjfj'),
-(11, 'hlyyokkssj', 'fjjfjjf'),
-(12, 'hjhjyyii', 'ffd'),
-(13, 'gjgjgj', 'sasa');
+(14, 'ICT', 'Information & Communication Technology'),
+(15, 'MAA', 'Mathematics Applied');
 
 DROP TABLE IF EXISTS `system_users`;
 CREATE TABLE IF NOT EXISTS `system_users` (
