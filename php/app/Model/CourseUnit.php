@@ -8,6 +8,12 @@ class CourseUnit extends AppModel {
 
 
 	public $validate = array(
+        'code' => array(
+            'notempty' => array(
+                'rule' => array('notempty'),
+
+            ),
+        ),
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
