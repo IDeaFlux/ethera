@@ -9,6 +9,10 @@ class SubjectsController extends AppController {
         'Paginator' => array('className' => 'BootstrapPaginator'),
     );
 
+    public $paginate = array(
+        'limit' => 10,
+    );
+
 	public function index() {
 		$this->Subject->recursive = 0;
 		$this->set('subjects', $this->paginate());
