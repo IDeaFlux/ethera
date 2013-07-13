@@ -8,8 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
-	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+	<?php echo $this->Html->css('bootstrap-combined.min'); ?>
 	<style>
 	body {
 		padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -45,9 +44,11 @@
 
 
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-	<script src="//google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+	<?php
+		echo $this->Html->script('jquery.min');
+		echo $this->Html->script('bootstrap.min');
+		echo $this->Html->script('run_prettify');
+	 ?>
 	<?php echo $this->fetch('script'); ?>
 
 </body>
