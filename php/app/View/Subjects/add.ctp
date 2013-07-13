@@ -4,7 +4,6 @@
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked affix">
-
             <li><?php echo $this->Html->link(__('List Subjects'), array('action' => 'index')); ?></li>
             <li><?php echo $this->Html->link(__('List Course Units'), array('controller' => 'course_units', 'action' => 'index')); ?> </li>
             <li><?php echo $this->Html->link(__('New Course Unit'), array('controller' => 'course_units', 'action' => 'add')); ?> </li>
@@ -31,7 +30,7 @@
                 ));
             ?>
             <div class="form-actions">
-                <?php echo $this->Form->submit('Save changes', array(
+                <?php echo $this->Form->submit('Save', array(
                     'div' => false,
                     'class' => 'btn btn-primary'
                 )); ?>
