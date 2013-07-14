@@ -50,6 +50,7 @@ class SystemUsersController extends AppController {
 			$options = array('conditions' => array('SystemUser.' . $this->SystemUser->primaryKey => $id));
 			$this->request->data = $this->SystemUser->find('first', $options);
 		}
+
 		$groups = $this->SystemUser->Group->find('list');
 		$this->set(compact('groups'));
 	}

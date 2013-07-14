@@ -11,6 +11,7 @@
 
     <div class="span9">
     <?php echo $this->Form->create('SystemUser',array(
+        'type'=>'file',
         'inputDefaults' => array(
             'div' => 'control-group',
             'label' => array(
@@ -45,9 +46,9 @@
             echo $this->Form->input('email',array(
                 'class' => 'span4'
             ));
-            echo $this->Form->input('password',array(
+            /*echo $this->Form->input('password',array(
                 'class' => 'span4'
-            ));
+            ));*/
             echo $this->Form->input('photo',array(
                 'type' => 'file'
             ));
@@ -65,4 +66,5 @@
 
     <?php echo $this->Form->end(); ?>
     </div>
+    <?php //echo debug($this->request->data['SystemUser']);?>
 </div>
