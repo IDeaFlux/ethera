@@ -14,7 +14,12 @@
     <div class="span9">
     <h2><?php  echo __('System User'); ?></h2>
 
-        <?php echo $this->Html->image('../uploads/system_users/'.$systemUser['SystemUser']['photo']) ?>
+        <ul class="thumbnails">
+            <li class="thumbnail">
+                <?php echo $this->Html->image('../uploads/system_users/'.$systemUser['SystemUser']['photo'],array('width'=>100)) ?>
+            </li>
+        </ul>
+
 
         <dl class="dl-horizontal">
             <dt><?php echo __('Id'); ?></dt>
