@@ -4,16 +4,15 @@
 <div class="row">
     <div class="span12">
             <?php foreach ($articles as $article): ?>
-                    <h1><?php echo h($article['Article']['title']); ?></h1>
+                <?php if($article['Article']['published_state']!="0"): ?>
+                    <div class="container">
+                        <h2><?php echo h($article['Article']['title']); ?><span style="font-size: 16px; font-style: italic; margin-left: 20px; margin-right: 10px">
+                                &nbsp;by&nbsp;</span><span style="font-size: 20px;"><?php echo $article['SystemUser']['first_name']; ?>&nbsp;<?php echo $article['SystemUser']['last_name']; ?></span></h2>
+                    </div>
                     <p><?php echo $article['Article']['content']; ?></p>
-                    <?php echo $article['SystemUser']['first_name']; ?>
+                    <?php endif ?>
             <?php endforeach; ?>
-        <p>
-            <?php
-            echo $this->Paginator->counter(array(
-                'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-            ));
-            ?>	</p>
+
         <div class="paging">
             <?php echo $this->Paginator->pagination(array(
                 'div' => 'pagination pagination-centered'
