@@ -9,7 +9,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<?php echo $this->Html->css('bootstrap-combined.min'); ?>
+	<?php
+    echo $this->Html->css('bootstrap-combined.min');
+    echo $this->Html->css('font-awesome.min.css');
+    ?>
     <link href='http://fonts.googleapis.com/css?family=Lato|Josefin+Sans|Molengo' rel='stylesheet' type='text/css'>
 	<style>
         html {height: 100%;}

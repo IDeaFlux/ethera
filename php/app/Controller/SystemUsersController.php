@@ -72,15 +72,17 @@ class SystemUsersController extends AppController {
     public function login() {
         if($this->request->is('post')){
             if($this->Auth->login()){
-                $this->redirect($this->Auth->redirect());
+                //$this->redirect($this->Auth->redirect());
+                $this->redirect(array('controller'=>'homes','action'=>'admin'));
             }
             else{
-                $this->Session->setFlash('Your username password combination is incorrect');
+                $this->Session->setFlash('Your email & password combination is incorrect','error_flash');
             }
         }
     }
 
     public function logout() {
+        $this->Session->setFlash('Logged out successfully','success_flash');
         $this->redirect($this->Auth->logout());
     }
 
