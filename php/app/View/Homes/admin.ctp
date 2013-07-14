@@ -49,11 +49,53 @@
         </li>
         <li class="span2">
             <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-book icon-4x\"></i></p>
-                <p class=\"text-center\">Course Units</p>";
+            $i = "<p class=\"text-center\"><i class=\"icon-beaker icon-4x\"></i></p>
+                <p class=\"text-center\">Subjects</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'course_units', 'action' => 'index'),
+                array('controller' => 'subjects', 'action' => 'index'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-suitcase icon-4x\"></i></p>
+                <p class=\"text-center\">Study Programs</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'study_programs', 'action' => 'index'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-file icon-4x\"></i></p>
+                <p class=\"text-center\">Articles</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'articles', 'action' => 'index'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-suitcase icon-4x\"></i></p>
+                <p class=\"text-center\">Study Programs</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'study_programs', 'action' => 'index'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
