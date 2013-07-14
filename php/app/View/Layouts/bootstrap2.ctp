@@ -61,6 +61,9 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-th-list"></span>
+                    </a>
                     <div class="brand">
                         <?php echo $this->Html->image('logo_small.png', array(
                             'alt' => 'ETHERA',
@@ -69,13 +72,35 @@
                     </div>
                     <div class="brand" style="font-family: 'Molengo', sans-serif; font-size: 38px">ETHERA</div>
                     <div class="brand" style="font-family: 'Josefin Sans', sans-serif; font-size: 13px">Multifaceted Student Industrial Placement System</div>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li><a href="#">Blog</a></li>
+                            <li class="divider-vertical"></li>
+                            <li><a href="#">About ETHERA</a></li>
+                            <li class="divider-vertical"></li>
+                            <li>
+                                <?php if($logged_in): ?>
+                                    <?php echo $this->Html->link('Logout', array('controller'=>'system_users','action'=>'logout'));?>
+                                <?php else: ?>
+                                    <?php echo $this->Html->link('Login', array('controller'=>'system_users','action'=>'login'));?>
+                                <?php endif; ?>
+                            </li>
+                            <li>
+                                <p class="navbar-text" style="font-weight: bold">
+                                    <?php if($logged_in): ?>
+                                        Welcome <?php echo $current_user['first_name']; ?>
+                                    <?php endif; ?>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
         <div id="push80"></div>
         <div class="container">
-
-            <?php echo $this->fetch('content'); ?>
+            <?php echo $this->Session->flash();
+             echo $this->fetch('content'); ?>
 
         </div><!-- /container -->
 
