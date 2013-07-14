@@ -77,7 +77,7 @@
                     <div class="brand" style="font-family: 'Josefin Sans', sans-serif; font-size: 13px">Multifaceted Student Industrial Placement System</div>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
-                            <li><a href="#">Blog</a></li>
+                            <li><?php echo $this->Html->link('Blog', array('controller'=>'articles','action'=>'blog'));?></li>
                             <li class="divider-vertical"></li>
                             <li><a href="#">About ETHERA</a></li>
                             <li class="divider-vertical"></li>

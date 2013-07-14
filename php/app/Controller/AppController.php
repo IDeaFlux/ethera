@@ -34,7 +34,7 @@ class AppController extends Controller {
             'controller' => 'system_users',
             'action' => 'login'
         );
-        $this->Auth->allow('index','view');
+        //$this->Auth->allow('index','view');
         $this->set('logged_in', $this->Auth->loggedIn());
         $this->set('current_user', $this->Auth->user());
     }

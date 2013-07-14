@@ -12,6 +12,10 @@ class ArticlesController extends AppController {
 		$this->set('articles', $this->paginate());
 	}
 
+    public function blog() {
+        $this->Article->recursive = 0;
+        $this->set('articles', $this->paginate());
+    }
 
 	public function view($id = null) {
 		if (!$this->Article->exists($id)) {
@@ -70,4 +74,9 @@ class ArticlesController extends AppController {
 		$this->Session->setFlash(__('Article was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('blog');
+    }
 }
