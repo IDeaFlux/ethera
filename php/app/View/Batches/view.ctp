@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="span3">
-        <ul class="nav nav-tabs nav-stacked affix">
+        <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('Edit Batch'), array('action' => 'edit', $batch['Batch']['id'])); ?> </li>
             <li><?php echo $this->Html->link(__('List Batches'), array('action' => 'index')); ?> </li>
             <li><?php echo $this->Html->link(__('New Batch'), array('action' => 'add')); ?> </li>
