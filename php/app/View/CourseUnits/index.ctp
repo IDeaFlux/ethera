@@ -16,7 +16,6 @@
                 <th><?php echo $this->Paginator->sort('name'); ?></th>
                 <th><?php echo $this->Paginator->sort('credits'); ?></th>
                 <th><?php echo $this->Paginator->sort('level'); ?></th>
-                <th><?php echo $this->Paginator->sort('syllabus'); ?></th>
                 <th><?php echo $this->Paginator->sort('subject_id'); ?></th>
                 <th class="actions"><?php echo __('Actions'); ?></th>
         </tr>
@@ -27,7 +26,6 @@
             <td><?php echo h($courseUnit['CourseUnit']['name']); ?>&nbsp;</td>
             <td><?php echo h($courseUnit['CourseUnit']['credits']); ?>&nbsp;</td>
             <td><?php echo h($courseUnit['CourseUnit']['level']); ?>&nbsp;</td>
-            <td><?php echo h($courseUnit['CourseUnit']['syllabus']); ?>&nbsp;</td>
             <td>
                 <?php echo $this->Html->link($courseUnit['Subject']['name'], array('controller' => 'subjects', 'action' => 'view', $courseUnit['Subject']['id'])); ?>
             </td>

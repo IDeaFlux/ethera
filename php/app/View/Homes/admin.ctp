@@ -91,8 +91,22 @@
         </li>
         <li class="span2">
             <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-suitcase icon-4x\"></i></p>
-                <p class=\"text-center\">Study Programs</p>";
+            $i = "<p class=\"text-center\"><i class=\"icon-mobile-phone icon-4x\"></i></p>
+                <p class=\"text-center\">Send SMS</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'study_programs', 'action' => 'index'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-envelope icon-4x\"></i></p>
+                <p class=\"text-center\">Send Email</p>";
             echo $this->Html->link(
                 $i,
                 array('controller' => 'study_programs', 'action' => 'index'),
