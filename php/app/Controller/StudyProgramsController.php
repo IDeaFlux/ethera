@@ -1,29 +1,15 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * StudyPrograms Controller
- *
- * @property StudyProgram $StudyProgram
- */
+
 class StudyProgramsController extends AppController {
 
-/**
- * index method
- *
- * @return void
- */
+
 	public function index() {
 		$this->StudyProgram->recursive = 0;
 		$this->set('studyPrograms', $this->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function view($id = null) {
 		if (!$this->StudyProgram->exists($id)) {
 			throw new NotFoundException(__('Invalid study program'));
@@ -32,11 +18,7 @@ class StudyProgramsController extends AppController {
 		$this->set('studyProgram', $this->StudyProgram->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->StudyProgram->create();
@@ -52,13 +34,7 @@ class StudyProgramsController extends AppController {
 		$this->set(compact('courseUnits', 'interestedAreas'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function edit($id = null) {
 		if (!$this->StudyProgram->exists($id)) {
 			throw new NotFoundException(__('Invalid study program'));
@@ -79,13 +55,7 @@ class StudyProgramsController extends AppController {
 		$this->set(compact('courseUnits', 'interestedAreas'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function delete($id = null) {
 		$this->StudyProgram->id = $id;
 		if (!$this->StudyProgram->exists()) {
