@@ -73,7 +73,16 @@
                             'style' => 'margin: 0px; padding 0px;'
                         ));?>
                     </div>
-                    <div class="brand" style="font-family: 'Molengo', sans-serif; font-size: 38px">ETHERA</div>
+                    <?php
+                    $i = "<div class=\"brand\" style=\"font-family: 'Molengo', sans-serif; font-size: 38px\">ETHERA</div>";
+                    echo $this->Html->link(
+                        $i,
+                        array('controller' => 'homes', 'action' => 'main'),
+                        array(
+                            'escape' => false
+                        )
+                    );
+                    ?>
                     <?php if(!$logged_in): ?>
                     <div class="brand" style="font-family: 'Josefin Sans', sans-serif; font-size: 13px">Multifaceted Student Industrial Placement System</div>
                     <?php endif; ?>
