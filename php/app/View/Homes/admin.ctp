@@ -95,7 +95,7 @@
                 <p class=\"text-center\">Send SMS</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'study_programs', 'action' => 'index'),
+                array('controller' => 'messages', 'action' => 'sms'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
@@ -109,7 +109,7 @@
                 <p class=\"text-center\">Send Email</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'study_programs', 'action' => 'index'),
+                array('controller' => 'messages', 'action' => 'email'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false

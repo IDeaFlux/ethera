@@ -3,12 +3,15 @@
 class EmailConfig {
 
     public $gmail = array(
-    'host' => 'smtp.gmail.com',
+    'host' => 'ssl://smtp.gmail.com',
     'port' => 465,
-    'username' => 'ethera.rjt@gmail.com',
-    'password' => 'Ethera123?',
-    'transport' => 'Smtp',
-    'tls' => true
+    'username' => 'postmaster.fnp@gmail.com',
+    //'username' => 'udithabnd@linuxmail.org',
+    //'password' => 'Ethera123?',
+        'timeout' => 30,
+    'passowrd' => 'flick&post',
+    'transport' => 'Mail',
+        'client' => null
     );
 }
 

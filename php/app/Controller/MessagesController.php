@@ -17,9 +17,9 @@ class MessagesController extends AppController {
             if($this->request->data)
             {
                 $data = $this->request->data;
-                $Email = new CakeEmail();
-                $Email->config('gmail');
-                $Email->from(array('ethera.rjt@gmail.com' => 'ETHERA Postmaster'));
+                $Email = new CakeEmail('gmail');
+                //$Email->config('gmail');
+                $Email->from(array('postmaster.fnp@gmail.com' => "Postmaster"));
                 $Email->to($data['to']);
                 $Email->subject($data['subject']);
                 $Email->send($data['body']);

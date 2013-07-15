@@ -37,7 +37,7 @@
             'class' => 'span6'
         ));?>
         <div class="form-actions">
-            <?php echo $this->Form->submit('Send', array(
+            <?php echo $this->Form->submit('Send Email', array(
                 'div' => false,
                 'class' => 'btn btn-primary'
             )); ?>
