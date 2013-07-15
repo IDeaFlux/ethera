@@ -26,10 +26,10 @@ class SubjectsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Subject->create();
 			if ($this->Subject->save($this->request->data)) {
-				$this->Session->setFlash(__('The subject has been saved'));
+				$this->Session->setFlash(__('The subject has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The subject could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The subject could not be saved. Please, try again.'),'error_flash');
 			}
 		}
 	}
@@ -41,10 +41,10 @@ class SubjectsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Subject->save($this->request->data)) {
-				$this->Session->setFlash(__('The subject has been saved'));
+				$this->Session->setFlash(__('The subject has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The subject could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The subject could not be saved. Please, try again.'),'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('Subject.' . $this->Subject->primaryKey => $id));
@@ -56,14 +56,14 @@ class SubjectsController extends AppController {
 	public function delete($id = null) {
 		$this->Subject->id = $id;
 		if (!$this->Subject->exists()) {
-			throw new NotFoundException(__('Invalid subject'));
+			throw new NotFoundException(__('Invalid subject'),'error_flash');
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Subject->delete()) {
-			$this->Session->setFlash(__('Subject deleted'));
+			$this->Session->setFlash(__('Subject deleted'),'success_flash');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Subject was not deleted'));
+		$this->Session->setFlash(__('Subject was not deleted'),'info_flash');
 		$this->redirect(array('action' => 'index'));
 	}
 }

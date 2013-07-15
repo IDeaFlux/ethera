@@ -12,7 +12,7 @@ class SystemUsersController extends AppController {
 
 	public function view($id = null) {
 		if (!$this->SystemUser->exists($id)) {
-			throw new NotFoundException(__('Invalid system user'));
+			throw new NotFoundException(__('Invalid system user'),'error_flash');
 		}
 		$options = array('conditions' => array('SystemUser.' . $this->SystemUser->primaryKey => $id));
 		$this->set('systemUser', $this->SystemUser->find('first', $options));
@@ -23,11 +23,11 @@ class SystemUsersController extends AppController {
 		if ($this->request->is('post')) {
 
             if ($this->SystemUser->sendData($this->request->data)) {
-                $this->Session->setFlash(__('The system user has been saved'));
+                $this->Session->setFlash(__('The system user has been saved'),'success_flash');
                 //echo debug($this->request->data,true,true);
                 $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The system user could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The system user could not be saved. Please, try again.'),'error_flash');
             }
 		}
 		$groups = $this->SystemUser->Group->find('list');
@@ -37,14 +37,14 @@ class SystemUsersController extends AppController {
 
 	public function edit($id = null) {
 		if (!$this->SystemUser->exists($id)) {
-			throw new NotFoundException(__('Invalid system user'));
+			throw new NotFoundException(__('Invalid system user'),'error_flash');
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->SystemUser->save($this->request->data)) {
-				$this->Session->setFlash(__('The system user has been saved'));
+				$this->Session->setFlash(__('The system user has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The system user could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The system user could not be saved. Please, try again.'),'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('SystemUser.' . $this->SystemUser->primaryKey => $id));
@@ -59,14 +59,14 @@ class SystemUsersController extends AppController {
 	public function delete($id = null) {
 		$this->SystemUser->id = $id;
 		if (!$this->SystemUser->exists()) {
-			throw new NotFoundException(__('Invalid system user'));
+			throw new NotFoundException(__('Invalid system user'),'error_flash');
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->SystemUser->delete()) {
 			$this->Session->setFlash(__('System user deleted'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('System user was not deleted'));
+		$this->Session->setFlash(__('System user was not deleted'),'info_flash');
 		$this->redirect(array('action' => 'index'));
 	}
 

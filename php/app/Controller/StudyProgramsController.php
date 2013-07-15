@@ -12,7 +12,7 @@ class StudyProgramsController extends AppController {
 
 	public function view($id = null) {
 		if (!$this->StudyProgram->exists($id)) {
-			throw new NotFoundException(__('Invalid study program'));
+			throw new NotFoundException(__('Invalid study program'),'error_flash');
 		}
 		$options = array('conditions' => array('StudyProgram.' . $this->StudyProgram->primaryKey => $id));
 		$this->set('studyProgram', $this->StudyProgram->find('first', $options));
@@ -23,10 +23,10 @@ class StudyProgramsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->StudyProgram->create();
 			if ($this->StudyProgram->save($this->request->data)) {
-				$this->Session->setFlash(__('The study program has been saved'));
+				$this->Session->setFlash(__('The study program has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The study program could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The study program could not be saved. Please, try again.'),'error_flash');
 			}
 		}
 		$courseUnits = $this->StudyProgram->CourseUnit->find('list');
@@ -37,14 +37,14 @@ class StudyProgramsController extends AppController {
 
 	public function edit($id = null) {
 		if (!$this->StudyProgram->exists($id)) {
-			throw new NotFoundException(__('Invalid study program'));
+			throw new NotFoundException(__('Invalid study program'),'error_flash');
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->StudyProgram->save($this->request->data)) {
-				$this->Session->setFlash(__('The study program has been saved'));
+				$this->Session->setFlash(__('The study program has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The study program could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The study program could not be saved. Please, try again.'),'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('StudyProgram.' . $this->StudyProgram->primaryKey => $id));
@@ -59,14 +59,14 @@ class StudyProgramsController extends AppController {
 	public function delete($id = null) {
 		$this->StudyProgram->id = $id;
 		if (!$this->StudyProgram->exists()) {
-			throw new NotFoundException(__('Invalid study program'));
+			throw new NotFoundException(__('Invalid study program'),'error_flash');
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->StudyProgram->delete()) {
-			$this->Session->setFlash(__('Study program deleted'));
+			$this->Session->setFlash(__('Study program deleted'),'success_flash');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Study program was not deleted'));
+		$this->Session->setFlash(__('Study program was not deleted'),'info_flash');
 		$this->redirect(array('action' => 'index'));
 	}
 }

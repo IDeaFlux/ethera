@@ -12,7 +12,7 @@ class BatchesController extends AppController {
 
 	public function view($id = null) {
 		if (!$this->Batch->exists($id)) {
-			throw new NotFoundException(__('Invalid batch'));
+			throw new NotFoundException(__('Invalid batch'),'error_flash');
 		}
 		$options = array('conditions' => array('Batch.' . $this->Batch->primaryKey => $id));
 		$this->set('batch', $this->Batch->find('first', $options));
@@ -23,10 +23,10 @@ class BatchesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Batch->create();
 			if ($this->Batch->save($this->request->data)) {
-				$this->Session->setFlash(__('The batch has been saved'));
+				$this->Session->setFlash(__('The batch has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The batch could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The batch could not be saved. Please, try again.'),'error_flash');
 			}
 		}
 	}
@@ -38,10 +38,10 @@ class BatchesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Batch->save($this->request->data)) {
-				$this->Session->setFlash(__('The batch has been saved'));
+				$this->Session->setFlash(__('The batch has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The batch could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The batch could not be saved. Please, try again.'),'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('Batch.' . $this->Batch->primaryKey => $id));

@@ -19,7 +19,7 @@ class ArticlesController extends AppController {
 
 	public function view($id = null) {
 		if (!$this->Article->exists($id)) {
-			throw new NotFoundException(__('Invalid article'));
+			throw new NotFoundException(__('Invalid article'),'error_flash');
 		}
 		$options = array('conditions' => array('Article.' . $this->Article->primaryKey => $id));
 		$this->set('article', $this->Article->find('first', $options));
@@ -30,10 +30,10 @@ class ArticlesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Article->create();
 			if ($this->Article->save($this->request->data)) {
-				$this->Session->setFlash(__('The article has been saved'));
+				$this->Session->setFlash(__('The article has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The article could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The article could not be saved. Please, try again.'),'error_flash');
 			}
 		}
 		$systemUsers = $this->Article->SystemUser->find('list');
@@ -43,14 +43,14 @@ class ArticlesController extends AppController {
 
 	public function edit($id = null) {
 		if (!$this->Article->exists($id)) {
-			throw new NotFoundException(__('Invalid article'));
+			throw new NotFoundException(__('Invalid article'),'error_flash');
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Article->save($this->request->data)) {
-				$this->Session->setFlash(__('The article has been saved'));
+				$this->Session->setFlash(__('The article has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The article could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The article could not be saved. Please, try again.'),'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('Article.' . $this->Article->primaryKey => $id));
@@ -64,14 +64,14 @@ class ArticlesController extends AppController {
 	public function delete($id = null) {
 		$this->Article->id = $id;
 		if (!$this->Article->exists()) {
-			throw new NotFoundException(__('Invalid article'));
+			throw new NotFoundException(__('Invalid article'),'error_flash');
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Article->delete()) {
-			$this->Session->setFlash(__('Article deleted'));
+			$this->Session->setFlash(__('Article deleted'),'success_flash');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Article was not deleted'));
+		$this->Session->setFlash(__('Article was not deleted'),'info_flash');
 		$this->redirect(array('action' => 'index'));
 	}
 

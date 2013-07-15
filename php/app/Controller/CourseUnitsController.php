@@ -12,7 +12,7 @@ class CourseUnitsController extends AppController {
 
 	public function view($id = null) {
 		if (!$this->CourseUnit->exists($id)) {
-			throw new NotFoundException(__('Invalid course unit'));
+			throw new NotFoundException(__('Invalid course unit'),'error_flash');
 		}
 		$options = array('conditions' => array('CourseUnit.' . $this->CourseUnit->primaryKey => $id));
 		$this->set('courseUnit', $this->CourseUnit->find('first', $options));
@@ -23,10 +23,10 @@ class CourseUnitsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->CourseUnit->create();
 			if ($this->CourseUnit->save($this->request->data)) {
-				$this->Session->setFlash(__('The course unit has been saved'));
+				$this->Session->setFlash(__('The course unit has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The course unit could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The course unit could not be saved. Please, try again.'),'error_flash');
 			}
 		}
 		$subjects = $this->CourseUnit->Subject->find('list');
@@ -37,14 +37,14 @@ class CourseUnitsController extends AppController {
 
 	public function edit($id = null) {
 		if (!$this->CourseUnit->exists($id)) {
-			throw new NotFoundException(__('Invalid course unit'));
+			throw new NotFoundException(__('Invalid course unit'),'error_flash');
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->CourseUnit->save($this->request->data)) {
-				$this->Session->setFlash(__('The course unit has been saved'));
+				$this->Session->setFlash(__('The course unit has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The course unit could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The course unit could not be saved. Please, try again.'),'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('CourseUnit.' . $this->CourseUnit->primaryKey => $id));
@@ -59,14 +59,14 @@ class CourseUnitsController extends AppController {
 	public function delete($id = null) {
 		$this->CourseUnit->id = $id;
 		if (!$this->CourseUnit->exists()) {
-			throw new NotFoundException(__('Invalid course unit'));
+			throw new NotFoundException(__('Invalid course unit'),'error_flash');
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->CourseUnit->delete()) {
-			$this->Session->setFlash(__('Course unit deleted'));
+			$this->Session->setFlash(__('Course unit deleted'),'success_flash');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Course unit was not deleted'));
+		$this->Session->setFlash(__('Course unit was not deleted'),'info_flash');
 		$this->redirect(array('action' => 'index'));
 	}
 }
