@@ -11,6 +11,7 @@ class Subject extends AppModel {
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
+                'message' => 'Please enter a name',
 
 			),
 		),

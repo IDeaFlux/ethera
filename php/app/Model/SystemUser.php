@@ -24,7 +24,7 @@ class SystemUser extends AppModel {
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-                'message' => 'Enter an valid email address',
+                'message' => 'Enter a valid email address',
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),

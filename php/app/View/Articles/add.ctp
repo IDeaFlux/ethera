@@ -14,6 +14,7 @@
     </div>
     <div class="span9">
     <?php echo $this->Form->create('Article',array(
+        'novalidate' => true,
         'inputDefaults' => array(
             'div' => 'control-group',
             'label' => array(

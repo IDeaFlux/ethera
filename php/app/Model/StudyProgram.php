@@ -11,6 +11,7 @@ class StudyProgram extends AppModel {
 		'program_code' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
+                'message' => 'Please enter a program code',
 			),
 		),
 	);

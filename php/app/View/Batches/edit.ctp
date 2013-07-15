@@ -9,6 +9,7 @@
     </div>
     <div class="span9">
     <?php echo $this->Form->create('Batch',array(
+        'novalidate' => true,
         'inputDefaults' => array(
             'div' => 'control-group',
             'label' => array(

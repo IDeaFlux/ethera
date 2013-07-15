@@ -11,6 +11,7 @@
 
     <div class="span9">
     <?php echo $this->Form->create('StudyProgram',array(
+        'novalidate' => true,
         'inputDefaults' => array(
             'div' => 'control-group',
             'label' => array(

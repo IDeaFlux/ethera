@@ -11,11 +11,13 @@ class Batch extends AppModel {
 		'academic_year' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
+                'message' => 'Please enter an academic year',
 			),
 		),
 		'registration_state' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
+                'message' => 'Please set the registration state',
 			),
 		),
 	);

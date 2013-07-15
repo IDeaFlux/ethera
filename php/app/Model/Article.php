@@ -11,11 +11,13 @@ class Article extends AppModel {
 		'title' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
+                'message' => 'Please set the title',
 			),
 		),
 		'published_state' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
+                'message' => 'Please select published state',
 			),
 		),
 	);

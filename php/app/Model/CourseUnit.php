@@ -11,30 +11,33 @@ class CourseUnit extends AppModel {
         'code' => array(
             'notempty' => array(
                 'rule' => array('notempty'),
-
+                'message' => 'Please enter a code',
             ),
         ),
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-	
+                'message' => 'Please enter a name',
 			),
 		),
 		'credits' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
+                'message' => 'Please enter number of credits',
 
 			),
 		),
 		'level' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
+                'message' => 'Please enter the level',
 
 			),
 		),
 		'subject_id' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
+                'message' => 'Please select the subject',
 
 			),
 		),
