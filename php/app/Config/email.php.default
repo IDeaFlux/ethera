@@ -89,4 +89,5 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 
+
 }

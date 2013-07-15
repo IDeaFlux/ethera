@@ -4,7 +4,7 @@ App::uses('Controller', 'Controller');
 
 
 class AppController extends Controller {
-    public $components = array('Acl','DebugKit.Toolbar','Session','Auth'=>array(
+    public $components = array('DebugKit.Toolbar','Session','Auth'=>array(
         'authenticate' => array(
             'Form' => array(
                 'userModel' => 'SystemUser',
