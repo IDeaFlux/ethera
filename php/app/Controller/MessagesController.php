@@ -11,7 +11,7 @@ class MessagesController extends AppController {
 
     }
 
-    public function email() {
+    public function email($data = null) {
 
         if($this->request->is('post')){
             if($this->request->data)
@@ -27,6 +27,18 @@ class MessagesController extends AppController {
             }
 
             $this->redirect(array('controller'=>'messages','action'=>'email'));
+        }
+
+        if(!empty($data)){
+            $Email = new CakeEmail('gmail');
+            //$Email->config('gmail');
+            $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
+            $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
+            $Email->to($data['to']);
+            $Email->subject($data['subject']);
+            $Email->send($data['body']);
+
+            return true;
         }
 
     }
