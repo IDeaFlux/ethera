@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('MessagesController','Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 class SystemUsersController extends AppController {
 
@@ -100,7 +102,7 @@ class SystemUsersController extends AppController {
                 }
                 else{
                     $system_user = $this->_generate_password_token($system_user);
-                    if($this->User->save($system_user) && $this->_send_forgot_password_email($system_user['SystemUser']['id'])){
+                    if($this->SystemUser->save($system_user) && $this->_send_forgot_password_email($system_user['SystemUser']['id'])){
                         $this->Session->setFlash('Password reset instructions have been sent to your email address.
 You have 24 hours to complete the request.','success_flash');
                         $this->redirect(array('controller'=>'system_users','action'=>'forgot_password'));
@@ -113,7 +115,8 @@ You have 24 hours to complete the request.','success_flash');
     public function reset_password_token($reset_password_token = null){
         if(empty($this->request->data)){
             $system_user = $this->SystemUser->findByResetPasswordToken($reset_password_token);
-            if(!empty($system_user['User']['reset_password_token']) && !empty($system_user['User']['token_created_at']) && $this->_valid_token($system_user['User']['token_created_at'])){
+            if(!empty($system_user['SystemUser']['reset_password_token']) && !empty($system_user['SystemUser']['token_created_at']) && $this->_valid_token($system_user['SystemUser']['token_created_at'])){
+                $this->set('token',$reset_password_token);
                 $_SESSION['token'] = $reset_password_token;
             }
             else{
@@ -122,17 +125,21 @@ You have 24 hours to complete the request.','success_flash');
             }
         }
         else{
-            if ($this->request->data['User']['reset_password_token'] != $_SESSION['token']) {
+            if ($this->request->data['SystemUser']['reset_password_token'] != $_SESSION['token']) {
                 $this->Session->setflash('The password reset request has either expired or is invalid.','error_flash');
                 $this->redirect(array('controller'=>'system_users','action'=>'login'));
             }
 
-            $system_user = $this->User->findByResetPasswordToken($this->request->data['User']['reset_password_token']);
-            $this->SystemUser->id = $system_user['User']['id'];
+            $system_user = $this->SystemUser->findByResetPasswordToken($this->request->data['SystemUser']['reset_password_token']);
+            $this->SystemUser->id = $system_user['SystemUser']['id'];
+            $this->request->data['SystemUser']['id'] = $system_user['SystemUser']['id'];
 
-            if ($this->User->save($this->request->data, array('validate' => 'only'))) {
-                $this->request->data['User']['reset_password_token'] = $this->request->data['User']['token_created_at'] = null;
-                if ($this->User->save($this->request->data) && $this->_send_password_update_success_email($system_user['User']['id'])) {
+            //debug($this->request->data);
+            $this->SystemUser->set($this->request->data);
+
+            if ($this->SystemUser->validates()) {
+                $this->request->data['SystemUser']['reset_password_token'] = $this->request->data['SystemUser']['token_created_at'] = null;
+                if($this->SystemUser->save($this->request->data) && $this->_send_password_update_success_email($system_user['SystemUser']['id'])){
                     unset($_SESSION['token']);
                     $this->Session->setflash('Your password was changed successfully. Please login to continue.','success_flash');
                     $this->redirect(array('controller'=>'system_users','action'=>'login'));
@@ -161,8 +168,8 @@ You have 24 hours to complete the request.','success_flash');
             $hash = Security::hash($hash, 'sha256', true);
         }
 
-        $user['User']['reset_password_token'] = $hash;
-        $user['User']['token_created_at'] = date('Y-m-d H:i:s');
+        $user['SystemUser']['reset_password_token'] = $hash;
+        $user['SystemUser']['token_created_at'] = date('Y-m-d H:i:s');
 
         return $user;
     }
@@ -177,15 +184,42 @@ You have 24 hours to complete the request.','success_flash');
     }
 
     protected function _send_forgot_password_email($id = null){
+        if (!empty($id)) {
+            $this->SystemUser->id = $id;
+            $SystemUser = $this->SystemUser->read();
+            $url = 'http://' . env('SERVER_NAME') .Router::url('/'). 'system_users/reset_password_token/' . $SystemUser['SystemUser']['reset_password_token'];
 
+            $Email = new CakeEmail('gmail');
+            $Email->to($SystemUser['SystemUser']['email']);
+            $Email->subject('Password Reset Request - DO NOT REPLY');
+            $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
+            $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
+            $Email->send($url);
+
+            return true;
+        }
+        return false;
     }
 
     protected function _send_password_update_success_email($id = null){
+        if (!empty($id)) {
+            $this->SystemUser->id = $id;
+            $SystemUser = $this->SystemUser->read();
 
+            $Email = new CakeEmail('gmail');
+            $Email->to($SystemUser['SystemUser']['email']);
+            $Email->subject('Password Update - DO NOT REPLY');
+            $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
+            $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
+            $Email->send('Password Successfully Updated');
+
+            return true;
+        }
+        return false;
     }
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('forgot_password');
+        $this->Auth->allow(array('forgot_password','reset_password_token'));
     }
 }
