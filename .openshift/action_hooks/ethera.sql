@@ -18,11 +18,12 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `system_user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `title` (`title`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 INSERT INTO `articles` (`id`, `title`, `content`, `published_state`, `system_user_id`) VALUES
-(1, 'Career Guidance and Counseling', '<div><img style="display: block; margin-left: auto; margin-right: auto;" src="http://contextualfeed.com/wp-content/uploads/2013/06/CareerGuidance.jpg" alt="" width="369" height="262" /></div>\r\n<ul>\r\n<li>In the traditional way of thinking, Vocational Education and Training (VET) programmes tended to be downgraded and considered as a default option for &ldquo;dropouts&rdquo; from and &ldquo;failures&rdquo; of the academically oriented formal educational system. There is the need to bring VET programmes into &ldquo;preferred options&rdquo; available for the youth. This requires proper and effective career guidance programmes, focused on attributes, abilities and aptitudes of the youth, identified at early stages, even before they appear for formal examinations like the GCE O-level. Proper &ldquo;branding&rdquo; and correct &ldquo;positioning&rdquo; of VET programmes are essential to attract and divert youth to acquire employable skills and competencies leading to gainful and productive occupations in the VET sector. Competent well trained Career Guidance Counsellors, supported by a centralised computerised database of all Tertiary and Vocational Education and Training opportunities available throughout the island are required.</li>\r\n<li>The following comments are in order regarding Career Guidance services that are available today:&nbsp;\r\n<ul>\r\n<li>Career guidance services at Secondary Schools provided by the Ministry of Education through Career Guidance Units have over 600 teachers trained in career guidance providing services. These numbers are insufficient to serve the needs of over 3 million students at secondary schools. It is also observed that the school career guidance teachers lack contact and understanding of the world of work to be successful in guidance. As a result career guidance is not available to the bulk of the students during their school careers. They follow mostly the advice of parents who promote their offspring to follow academic courses leading to university.</li>\r\n<li>The emphasis of career guidance services at universities is on placement at employment, generally relevant to the area of study and the specific skills acquired. The students in the general degree programs in Arts, Sciences requires to be exposed to further study / training in specific fields or common career options. The Units headed by internal academic staff may lack understanding of industry / world of work.</li>\r\n<li>Independent career guidance centers established by the Ministry of Labour &amp; Labour Relations, Provincial Councils etc. are independent of specific career focus and are providing services of a general nature. The skills and abilities of the career guidance officers are to create awareness of those coming for their advice. Without exposure to or experience of the world of work, they are usually unable to provide guidance in regard to specific career paths.</li>\r\n<li>Career Guidance Units in various training institutions like NYSC, NAITA, VTA and so on focus on specific careers associated with these Institutes in contrast to an overall guidance based on the attributes of the guidance seekers.</li>\r\n</ul>\r\n</li>\r\n<li>The above brief analysis provides a general picture of the status of Career Guidance at present. The basic weaknesses are the compartmentalization of the services, inconsistency in approach, poor communications leading to failure to reach the target audience, lack of knowledge of options even at Counselor level and total unavailability of reliable data on future job demands.</li>\r\n</ul>', 0, 7),
-(2, 'Test', '<p>this is just a test</p>', 0, 7);
+(1, 'Career Guidance and Counseling', '<div><img style="display: block; margin-left: auto; margin-right: auto;" src="http://contextualfeed.com/wp-content/uploads/2013/06/CareerGuidance.jpg" alt="" width="369" height="262" /></div>\r\n<ul>\r\n<li>In the traditional way of thinking, Vocational Education and Training (VET) programmes tended to be downgraded and considered as a default option for &ldquo;dropouts&rdquo; from and &ldquo;failures&rdquo; of the academically oriented formal educational system. There is the need to bring VET programmes into &ldquo;preferred options&rdquo; available for the youth. This requires proper and effective career guidance programmes, focused on attributes, abilities and aptitudes of the youth, identified at early stages, even before they appear for formal examinations like the GCE O-level. Proper &ldquo;branding&rdquo; and correct &ldquo;positioning&rdquo; of VET programmes are essential to attract and divert youth to acquire employable skills and competencies leading to gainful and productive occupations in the VET sector. Competent well trained Career Guidance Counsellors, supported by a centralised computerised database of all Tertiary and Vocational Education and Training opportunities available throughout the island are required.</li>\r\n<li>The following comments are in order regarding Career Guidance services that are available today:&nbsp;        \r\n<ul>\r\n<li>Career guidance services at Secondary Schools provided by the Ministry of Education through Career Guidance Units have over 600 teachers trained in career guidance providing services. These numbers are insufficient to serve the needs of over 3 million students at secondary schools. It is also observed that the school career guidance teachers lack contact and understanding of the world of work to be successful in guidance. As a result career guidance is not available to the bulk of the students during their school careers. They follow mostly the advice of parents who promote their offspring to follow academic courses leading to university.</li>\r\n<li>The emphasis of career guidance services at universities is on placement at employment, generally relevant to the area of study and the specific skills acquired. The students in the general degree programs in Arts, Sciences requires to be exposed to further study / training in specific fields or common career options. The Units headed by internal academic staff may lack understanding of industry / world of work.</li>\r\n<li>Independent career guidance centers established by the Ministry of Labour &amp; Labour Relations, Provincial Councils etc. are independent of specific career focus and are providing services of a general nature. The skills and abilities of the career guidance officers are to create awareness of those coming for their advice. Without exposure to or experience of the world of work, they are usually unable to provide guidance in regard to specific career paths.</li>\r\n<li>Career Guidance Units in various training institutions like NYSC, NAITA, VTA and so on focus on specific careers associated with these Institutes in contrast to an overall guidance based on the attributes of the guidance seekers.</li>\r\n</ul>\r\n</li>\r\n<li>T<strong>he above brief analysis provides a general picture of the status of Career Guidance at present. The basic weaknesses are the compartmentalization of the services, inconsistency in approach, poor communications leading to failure to reach the target audience, lack of knowledge of options even at Counselor level and total unavailability of reliable data on future job demands.</strong></li>\r\n</ul>', 1, 7),
+(2, 'Test', '<p>this is just a test</p>', 0, 7),
+(3, 'Finding the Right Career', '<div><img style="display: block; margin-left: auto; margin-right: auto;" src="http://www.helpguide.org/images/work_career/right_career_225.jpg" alt="" width="225" height="169" /></div>\r\n<ul>\r\n<li>Whether you&rsquo;re just leaving school, finding opportunities limited in your current position or, like many in this economy, facing unemployment, it may be time to consider your career path. Regardless of your reasons, the right career is out there for everyone. By learning how to research options, realize your strengths, and acquire new skills, as well as muster the courage to make a change, you can discover the career that&rsquo;s right for you. You may have fallen into the trap of thinking the sole point of work is to bring home enough money to live comfortably. While adequate compensation is important in any job, it&rsquo;s not the whole story. If you are unsatisfied with what you do every day, it takes a toll on your physical and mental health. You may feel burned out and frustrated, anxious, depressed, or unable to enjoy time at home knowing another workday is ahead. What&rsquo;s more, if you don&rsquo;t find your work meaningful and rewarding, it&rsquo;s hard to keep the momentum going to advance in your career. You are more likely to be successful in a career that you feel passionate about. Whether you&rsquo;re looking to enter the work force for the first time or contemplating a career change, the first step to choosing a fulfilling career is to uncover the activities that get you excited and bring you joy.</li>\r\n</ul>', 0, 8);
 
 DROP TABLE IF EXISTS `assignments`;
 CREATE TABLE IF NOT EXISTS `assignments` (
@@ -42,10 +43,11 @@ CREATE TABLE IF NOT EXISTS `batches` (
   `registration_state` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `academic_year` (`academic_year`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 INSERT INTO `batches` (`id`, `academic_year`, `registration_state`) VALUES
-(1, '2008/2009', 1);
+(1, '2008/2009', 0),
+(2, '2009/2010', 1);
 
 DROP TABLE IF EXISTS `batches_study_programs`;
 CREATE TABLE IF NOT EXISTS `batches_study_programs` (
@@ -247,11 +249,12 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `description` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 INSERT INTO `subjects` (`id`, `name`, `description`) VALUES
 (14, 'ICT', 'Information & Communication Technology'),
-(15, 'MAA', 'Mathematics Applied');
+(15, 'MAA', 'Mathematics Applied'),
+(17, 'ssss', 'jhjgytfu');
 
 DROP TABLE IF EXISTS `system_users`;
 CREATE TABLE IF NOT EXISTS `system_users` (
@@ -263,6 +266,8 @@ CREATE TABLE IF NOT EXISTS `system_users` (
   `phone_mobile` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(50) NOT NULL,
+  `reset_password_token` varchar(255) NOT NULL,
+  `token_created_at` datetime NOT NULL,
   `photo` varchar(255) NOT NULL,
   `group_id` int(11) NOT NULL,
   `biography` text NOT NULL,
@@ -270,10 +275,11 @@ CREATE TABLE IF NOT EXISTS `system_users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `first_name` (`first_name`,`last_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
-INSERT INTO `system_users` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mobile`, `email`, `password`, `photo`, `group_id`, `biography`, `designation`) VALUES
-(7, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'udithabnd@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '51e1f7a0-b408-4404-8b95-08ac740d37dd', 1, 'Hii', 'Student');
+INSERT INTO `system_users` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mobile`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `biography`, `designation`) VALUES
+(7, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'udithabnd@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '51e1f7a0-b408-4404-8b95-08ac740d37dd', 1, 'Hii', 'Students'),
+(8, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'yohani.ysr@gmail.com', '5c4c6b7e3ccd612e84576cbc4f68a3ffe5e16ab9', '', '0000-00-00 00:00:00', '51e44a48-5060-470d-b5e8-0e66740d37dd', 1, 'This is yohani', 'Student');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
