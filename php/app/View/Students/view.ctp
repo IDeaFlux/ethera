@@ -1,3 +1,6 @@
+<?php //$this->layout = 'bootstrap2'; ?>
+<?php //$this->set('title', 'View Student :: '.h($student['Student']['name'])); ?>
+
 <div class="students view">
 <h2><?php  echo __('Student'); ?></h2>
 	<dl>
