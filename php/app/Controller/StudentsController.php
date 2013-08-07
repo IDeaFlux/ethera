@@ -66,7 +66,7 @@ class StudentsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Student->save($this->request->data)) {
-				$this->Session->setFlash(__('The student has been saved'));
+				$this->Session->setFlash(__('The student data has been updated'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The student could not be saved. Please, try again.'));
