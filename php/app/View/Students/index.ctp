@@ -1,4 +1,16 @@
 <?php //$this->layout = 'bootstrap2'; ?>
+<?php //$this->set('title', 'Student List'); ?>
+
+<!--<div class="row">-->
+<!--    <div class="span3">-->
+<!--        <ul class="nav nav-tabs nav-stacked">-->
+<!--            <li>--><?php //echo $this->Html->link(__('New Subject'), array('action' => 'add')); ?><!--</li>-->
+<!--            <li>--><?php //echo $this->Html->link(__('List Course Units'), array('controller' => 'course_units', 'action' => 'index')); ?><!-- </li>-->
+<!--            <li>--><?php //echo $this->Html->link(__('New Course Unit'), array('controller' => 'course_units', 'action' => 'add')); ?><!-- </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
 <div class="students index">
 	<h2><?php echo __('Students'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
