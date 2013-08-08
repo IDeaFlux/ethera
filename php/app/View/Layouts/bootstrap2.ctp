@@ -12,6 +12,8 @@
 	<?php
     echo $this->Html->css('bootstrap-combined.min');
     echo $this->Html->css('font-awesome.min.css');
+    echo $this->Html->css('smoothness/jquery-ui.min');
+    echo $this->Html->script('jquery.min');
     ?>
     <link href='http://fonts.googleapis.com/css?family=Lato|Josefin+Sans|Molengo' rel='stylesheet' type='text/css'>
 	<style>
@@ -126,6 +128,7 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <?php
             echo $this->Html->script('jquery.min');
+            echo $this->Html->script('jquery-ui.min');
             echo $this->Html->script('bootstrap.min');
             echo $this->Html->script('run_prettify');
          ?>
