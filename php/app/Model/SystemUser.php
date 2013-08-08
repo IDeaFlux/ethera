@@ -86,13 +86,21 @@ class SystemUser extends AppModel {
 		)
 	);
 
-    public function uploadFile() {
+    public function uploadFile($id=null) {
         $file = $this->data['SystemUser']['photo'];
 
         if($file['error'] === UPLOAD_ERR_OK) {
-            $id = String::uuid();
             $folderName = APP.'webroot'.DS.'uploads'.DS.'system_users';
             $folder = new Folder($folderName, true, 0777);
+
+            if($id!=null){
+                if((file_exists($folderName.DS.$id))){
+                    chmod($folderName.DS.$id,0755);
+                    unlink($folderName.DS.$id);
+                }
+            }
+
+            $id = String::uuid();
 
             if(move_uploaded_file($file['tmp_name'], $folderName.DS.$id)) {
                 $this->data['SystemUser']['photo'] = $id;
@@ -111,6 +119,35 @@ class SystemUser extends AppModel {
         $this->uploadFile();
         //echo debug($this->data,true,true);
         //echo debug($data,true,true);
+        return $this->saveAll($this->data);
+    }
+
+    public function deleteData($id=null) {
+        if($id!=null){
+            $this->id = $id;
+            $system_user = $this->findAllById($id);
+            $file = $system_user[0]['SystemUser']['photo'];
+
+            $folderName = APP.'webroot'.DS.'uploads'.DS.'system_users';
+            $folder = new Folder($folderName, true, 0777);
+
+            if((file_exists($folderName.DS.$file))){
+                chmod($folderName.DS.$file,0755);
+                unlink($folderName.DS.$file);
+            }
+
+            return $this->delete();
+
+        }
+    }
+
+    public function updateData($data) {
+        $this->data = $data;
+
+        $system_user = $this->data['SystemUser']['id'];
+        $system_user = $this->findAllById($system_user);
+
+        $this->uploadFile($system_user[0]['SystemUser']['photo']);
         return $this->saveAll($this->data);
     }
 
