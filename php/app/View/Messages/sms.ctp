@@ -1,5 +1,5 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Send an Email'); ?>
+<?php $this->set('title', 'Send an SMS'); ?>
 
 
 <div class="row">
@@ -17,9 +17,10 @@
                 'wrapInput' => 'controls'
             ),
             'class' => 'well form-horizontal'
-        ));
+        ));?>
 
-        echo $this->Form->input("number",array(
+
+        <?php echo $this->Form->input("number",array(
             'name'  => 'data[to]',
             'type' => 'text',
             'class' => 'span6'
@@ -30,12 +31,14 @@
             'type' => 'textarea',
             'class' => 'span6'
         ));?>
+
         <div class="form-actions">
             <?php echo $this->Form->submit('Send SMS', array(
                 'div' => false,
                 'class' => 'btn btn-primary'
             )); ?>
         </div>
+
 
 
         <?php echo $this->Form->end(); ?>
