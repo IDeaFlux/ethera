@@ -1,10 +1,11 @@
-<?php $this->layout = 'bootstrap2'; ?>
+<?php //$this->layout = 'bootstrap2'; ?>
 <?php $this->set('title', 'Send an Email'); ?>
 
-
-<div class="row">
-    <div class="span3"></div>
-    <div class="span9">
+<div class="students index">
+    <h2><?php echo __('Email'); ?></h2>
+<!--<div class="row">-->
+<!--    <div class="span3"></div>-->
+<!--    <div class="span9">-->
 
         <?php
         echo $this->Form->create(null, array(
@@ -46,6 +47,14 @@
 
          <?php echo $this->Form->end(); ?>
 
-
-    </div>
 </div>
+
+<div class="actions">
+<?php echo __('Actions'); ?>
+    <ul>
+        <li><?php echo $this->Html->link(__('Send mail to students'), array('action' => 'studentMail')); ?></li>
+        <li><?php echo $this->Html->link(__('Send mail to organizations'), array('action' => 'industryMail')); ?></li>
+        <li><?php echo $this->Html->link(__('Send mail to staff'), array('action' => 'staffMail')); ?></li>
+    </ul>
+</div>
+
