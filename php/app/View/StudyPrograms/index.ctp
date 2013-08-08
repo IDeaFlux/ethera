@@ -22,9 +22,9 @@
             <td><?php echo h($studyProgram['StudyProgram']['program_code']); ?>&nbsp;</td>
             <td class="actions">
                 <div class="btn-group">
-                    <button class="btn"><?php echo $this->Html->link(__('View'), array('action' => 'view', $studyProgram['StudyProgram']['id'])); ?></button>
-                    <button class="btn"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $studyProgram['StudyProgram']['id'])); ?></button>
-                    <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $studyProgram['StudyProgram']['id']), null, __('Are you sure you want to delete # %s?', $studyProgram['StudyProgram']['id'])); ?></button>
+                    <?php echo $this->Html->link(__('View'), array('action' => 'view', $studyProgram['StudyProgram']['id']),array('class' => 'btn')); ?>
+                    <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $studyProgram['StudyProgram']['id']),array('class' => 'btn')); ?>
+                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $studyProgram['StudyProgram']['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $studyProgram['StudyProgram']['id'])); ?>
                 </div>
             </td>
         </tr>

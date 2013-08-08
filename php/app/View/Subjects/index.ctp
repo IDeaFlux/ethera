@@ -25,9 +25,9 @@
             <td><?php echo h($subject['Subject']['description']); ?>&nbsp;</td>
             <td class="actions">
                 <div class="btn-group">
-                    <button class="btn"><?php echo $this->Html->link(__('View'), array('action' => 'view', $subject['Subject']['id'])); ?></button>
-                    <button class="btn"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $subject['Subject']['id'])); ?></button>
-                    <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $subject['Subject']['id']), null, __('Are you sure you want to delete # %s?', $subject['Subject']['id'])); ?></button>
+                    <?php echo $this->Html->link(__('View'), array('action' => 'view', $subject['Subject']['id'])); ?>
+                    <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $subject['Subject']['id'])); ?>
+                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $subject['Subject']['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $subject['Subject']['id'])); ?>
                 </div>
             </td>
         </tr>

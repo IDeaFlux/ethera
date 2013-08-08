@@ -33,9 +33,9 @@
             </td>
             <td class="actions">
                 <div class="btn-group">
-                <button class="btn"><?php echo $this->Html->link(__('View'), array('action' => 'view', $systemUser['SystemUser']['id'])); ?></button>
-                <button class="btn"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $systemUser['SystemUser']['id'])); ?></button>
-                <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $systemUser['SystemUser']['id']), null, __('Are you sure you want to delete # %s?', $systemUser['SystemUser']['id'])); ?></button>
+                <?php echo $this->Html->link(__('View'), array('action' => 'view', $systemUser['SystemUser']['id']),array('class' => 'btn')); ?>
+                <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $systemUser['SystemUser']['id']),array('class' => 'btn')); ?>
+                <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $systemUser['SystemUser']['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $systemUser['SystemUser']['id'])); ?>
                 </div>
             </td>
         </tr>

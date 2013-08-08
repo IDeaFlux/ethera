@@ -28,8 +28,8 @@
             </td>
             <td class="actions">
                 <div class="btn-group">
-                    <button class="btn"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $article['Article']['id'])); ?></button>
-                    <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $article['Article']['id']), null, __('Are you sure you want to delete # %s?', $article['Article']['id'])); ?></button>
+                    <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $article['Article']['id']),array('class' => 'btn')); ?>
+                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $article['Article']['id']),array('class' => 'btn'), __('Are you sure you want to delete # %s?', $article['Article']['id'])); ?></button>
                 </div>
             </td>
         </tr>

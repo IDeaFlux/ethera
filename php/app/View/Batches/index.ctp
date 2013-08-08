@@ -23,8 +23,8 @@
             <td><?php echo h($batch['Batch']['registration_state']); ?>&nbsp;</td>
             <td class="actions">
                 <div class="btn-group">
-                    <button class="btn"><?php echo $this->Html->link(__('View'), array('action' => 'view', $batch['Batch']['id'])); ?></button>
-                    <button class="btn"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $batch['Batch']['id'])); ?></button>
+                    <?php echo $this->Html->link(__('View'), array('action' => 'view', $batch['Batch']['id']),array('class' => 'btn')); ?>
+                    <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $batch['Batch']['id']),array('class' => 'btn')); ?>
                 </div>
             </td>
         </tr>

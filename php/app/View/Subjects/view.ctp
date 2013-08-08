@@ -64,9 +64,9 @@
                 <td><?php echo $courseUnit['subject_id']; ?></td>
                 <td class="actions">
                     <div class="btn-group">
-                        <button class="btn"><?php echo $this->Html->link(__('View'), array('controller' => 'course_units', 'action' => 'view', $courseUnit['id'])); ?></button>
-                        <button class="btn"><?php echo $this->Html->link(__('Edit'), array('controller' => 'course_units', 'action' => 'edit', $courseUnit['id'])); ?></button>
-                        <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('controller' => 'course_units', 'action' => 'delete', $courseUnit['id']), null, __('Are you sure you want to delete # %s?', $courseUnit['id'])); ?></button>
+                        <?php echo $this->Html->link(__('View'), array('controller' => 'course_units', 'action' => 'view', $courseUnit['id']),array('class' => 'btn')); ?>
+                        <?php echo $this->Html->link(__('Edit'), array('controller' => 'course_units', 'action' => 'edit', $courseUnit['id']),array('class' => 'btn')); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'course_units', 'action' => 'delete', $courseUnit['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $courseUnit['id'])); ?>
                     </div>
                 </td>
             </tr>

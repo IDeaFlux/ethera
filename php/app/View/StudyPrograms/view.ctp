@@ -99,9 +99,9 @@
                 <td><?php echo $interestedArea['description']; ?></td>
                 <td class="actions">
                     <div class="btn-group">
-                        <button class="btn"><?php echo $this->Html->link(__('View'), array('controller' => 'interested_areas', 'action' => 'view', $interestedArea['id'])); ?></button>
-                        <button class="btn"><?php echo $this->Html->link(__('Edit'), array('controller' => 'interested_areas', 'action' => 'edit', $interestedArea['id'])); ?></button>
-                        <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('controller' => 'interested_areas', 'action' => 'delete', $interestedArea['id']), null, __('Are you sure you want to delete # %s?', $interestedArea['id'])); ?></button>
+                        <?php echo $this->Html->link(__('View'), array('controller' => 'interested_areas', 'action' => 'view', $interestedArea['id']),array('class' => 'btn')); ?>
+                        <?php echo $this->Html->link(__('Edit'), array('controller' => 'interested_areas', 'action' => 'edit', $interestedArea['id']),array('class' => 'btn')); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'interested_areas', 'action' => 'delete', $interestedArea['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $interestedArea['id'])); ?>
                     </div>
                 </td>
             </tr>

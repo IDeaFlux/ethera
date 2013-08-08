@@ -104,9 +104,9 @@
                 <td><?php echo $article['system_user_id']; ?></td>
                 <td class="actions">
                     <div class="btn-group">
-                        <button class="btn"><?php echo $this->Html->link(__('View'), array('controller' => 'articles', 'action' => 'view', $article['id'])); ?></button>
-                        <button class="btn"><?php echo $this->Html->link(__('Edit'), array('controller' => 'articles', 'action' => 'edit', $article['id'])); ?></button>
-                        <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('controller' => 'articles', 'action' => 'delete', $article['id']), null, __('Are you sure you want to delete # %s?', $article['id'])); ?></button>
+                        <?php echo $this->Html->link(__('View'), array('controller' => 'articles', 'action' => 'view', $article['id']),array('class' => 'btn')); ?>
+                        <?php echo $this->Html->link(__('Edit'), array('controller' => 'articles', 'action' => 'edit', $article['id']),array('class' => 'btn')); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'articles', 'action' => 'delete', $article['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $article['id'])); ?>
                     </div>
                 </td>
             </tr>
@@ -152,9 +152,9 @@
                 <td><?php echo $notice['article_id']; ?></td>
                 <td class="actions">
                     <div class="btn-group">
-                    <button class="btn"><?php echo $this->Html->link(__('View'), array('controller' => 'notices', 'action' => 'view', $notice['id'])); ?></button>
-                    <button class="btn"><?php echo $this->Html->link(__('Edit'), array('controller' => 'notices', 'action' => 'edit', $notice['id'])); ?></button>
-                    <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('controller' => 'notices', 'action' => 'delete', $notice['id']), null, __('Are you sure you want to delete # %s?', $notice['id'])); ?></button>
+                    <?php echo $this->Html->link(__('View'), array('controller' => 'notices', 'action' => 'view', $notice['id']),array('class' => 'btn')); ?></button>
+                    <?php echo $this->Html->link(__('Edit'), array('controller' => 'notices', 'action' => 'edit', $notice['id']),array('class' => 'btn')); ?></button>
+                    <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'notices', 'action' => 'delete', $notice['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $notice['id'])); ?>
                     </div>
                 </td>
             </tr>

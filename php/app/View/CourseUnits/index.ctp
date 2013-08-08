@@ -31,9 +31,9 @@
             </td>
             <td class="actions">
                 <div class="btn-group">
-                    <button class="btn"><?php echo $this->Html->link(__('View'), array('action' => 'view', $courseUnit['CourseUnit']['id'])); ?></button>
-                    <button class="btn"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $courseUnit['CourseUnit']['id'])); ?></button>
-                    <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $courseUnit['CourseUnit']['id']), null, __('Are you sure you want to delete # %s?', $courseUnit['CourseUnit']['id'])); ?></button>
+                    <?php echo $this->Html->link(__('View'), array('action' => 'view', $courseUnit['CourseUnit']['id']),array('class' => 'btn')); ?>
+                    <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $courseUnit['CourseUnit']['id']),array('class' => 'btn')); ?>
+                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $courseUnit['CourseUnit']['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $courseUnit['CourseUnit']['id'])); ?>
                 </div>
             </td>
         </tr>

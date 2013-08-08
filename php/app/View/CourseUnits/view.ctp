@@ -76,9 +76,9 @@
                 <td><?php echo $studyProgram['program_code']; ?></td>
                 <td class="actions">
                     <div class="btn-group">
-                        <button class="btn"><?php echo $this->Html->link(__('View'), array('controller' => 'study_programs', 'action' => 'view', $studyProgram['id'])); ?></button>
-                        <button class="btn"><?php echo $this->Html->link(__('Edit'), array('controller' => 'study_programs', 'action' => 'edit', $studyProgram['id'])); ?></button>
-                        <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('controller' => 'study_programs', 'action' => 'delete', $studyProgram['id']), null, __('Are you sure you want to delete # %s?', $studyProgram['id'])); ?></button>
+                        <?php echo $this->Html->link(__('View'), array('controller' => 'study_programs', 'action' => 'view', $studyProgram['id']),array('class' => 'btn')); ?>
+                        <?php echo $this->Html->link(__('Edit'), array('controller' => 'study_programs', 'action' => 'edit', $studyProgram['id']),array('class' => 'btn')); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'study_programs', 'action' => 'delete', $studyProgram['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $studyProgram['id'])); ?>
                     </div>
                 </td>
             </tr>
