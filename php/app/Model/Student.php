@@ -1,81 +1,50 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Student Model
- *
- * @property Group $Group
- * @property StudyProgram $StudyProgram
- * @property Batch $Batch
- * @property Assignment $Assignment
- * @property Cv $Cv
- * @property Enrollment $Enrollment
- * @property Feedback $Feedback
- */
+App::uses('Folder','Utility');
+
 class Student extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
+
 	public $displayField = 'reg_number';
 
-/**
- * Validation rules
- *
- * @var array
- */
+
 	public $validate = array(
 		'first_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				//'message' => '',
 				//'allowEmpty' => false,
 				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				//'last' => false,
+				//'on' => 'create',
 			),
 		),
 		'middle_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				//'message' => '',
 				//'allowEmpty' => false,
 				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				//'last' => false,
+				//'on' => 'create',
 			),
 		),
 		'last_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				//'message' => '',
 				//'allowEmpty' => false,
 				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				//'last' => false,
+				//'on' => 'create',
 			),
 		),
-//		'phone_home' => array(
-//			'phone' => array(
-//				'rule' => array('phone'),
-//				//'message' => 'Your custom message here',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//		),
-//		'phone_mob' => array(
-//			'phone' => array(
-//				'rule' => array('phone'),
-//				//'message' => 'Your custom message here',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//		),
+        'gender' => array(
+            'notempty' => array(
+                'rule' => array('notempty'),
+                'message' => 'Please select a gender',
+            ),
+        ),
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
@@ -301,5 +270,77 @@ class Student extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+
+    public function uploadFile($id=null) {
+        $file = $this->data['Student']['photo'];
+
+        if($file['error'] === UPLOAD_ERR_OK) {
+            $folderName = APP.'webroot'.DS.'uploads'.DS.'students';
+            $folder = new Folder($folderName, true, 0777);
+
+            if($id!=null){
+                if((file_exists($folderName.DS.$id))){
+                    chmod($folderName.DS.$id,0755);
+                    unlink($folderName.DS.$id);
+                }
+            }
+
+            $id = String::uuid();
+
+            if(move_uploaded_file($file['tmp_name'], $folderName.DS.$id)) {
+                $this->data['Student']['photo'] = $id;
+
+                return true;
+            }
+        }
+
+        $this->invalidate('photo','Failed to upload photo');
+
+        return false;
+    }
+
+    public function sendData($data) {
+        $this->create($data);
+        $this->uploadFile();
+        //echo debug($this->data,true,true);
+        //echo debug($data,true,true);
+        return $this->saveAll($this->data);
+    }
+
+    public function deleteData($id=null) {
+        if($id!=null){
+            $this->id = $id;
+            $system_user = $this->findAllById($id);
+            $file = $system_user[0]['Student']['photo'];
+
+            $folderName = APP.'webroot'.DS.'uploads'.DS.'students';
+            $folder = new Folder($folderName, true, 0777);
+
+            if((file_exists($folderName.DS.$file))){
+                chmod($folderName.DS.$file,0755);
+                unlink($folderName.DS.$file);
+            }
+
+            return $this->delete();
+
+        }
+    }
+
+    public function updateData($data) {
+        $this->data = $data;
+
+        $system_user = $this->data['Student']['id'];
+        $system_user = $this->findAllById($system_user);
+
+        $this->uploadFile($system_user[0]['Student']['photo']);
+        return $this->saveAll($this->data);
+    }
+
+    public function beforeSave($options=array()) {
+        if (isset($this->data['Student']['password'])) {
+            $this->data['Student']['password'] = AuthComponent::password($this->data['Student']['password']);
+        }
+        return true;
+    }
 
 }

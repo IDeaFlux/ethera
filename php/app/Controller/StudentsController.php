@@ -1,29 +1,15 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Students Controller
- *
- * @property Student $Student
- */
+
 class StudentsController extends AppController {
 
-/**
- * index method
- *
- * @return void
- */
+
 	public function index() {
 		$this->Student->recursive = 0;
 		$this->set('students', $this->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function view($id = null) {
 		if (!$this->Student->exists($id)) {
 			throw new NotFoundException(__('Invalid student'));
@@ -32,15 +18,11 @@ class StudentsController extends AppController {
 		$this->set('student', $this->Student->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Student->create();
-			if ($this->Student->save($this->request->data)) {
+			if ($this->Student->sendData($this->request->data)) {
 				$this->Session->setFlash(__('The student has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -48,24 +30,36 @@ class StudentsController extends AppController {
 			}
 		}
 		$groups = $this->Student->Group->find('list');
+        $registrationNumHeaders = $this->Student->RegistrationNumHeader->find('list');
 		$studyPrograms = $this->Student->StudyProgram->find('list');
 		$batches = $this->Student->Batch->find('list');
-		$this->set(compact('groups', 'studyPrograms', 'batches'));
+		$this->set(compact('groups', 'studyPrograms', 'batches','registrationNumHeaders'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+    public function register() {
+        if ($this->request->is('post')) {
+            $this->Student->create();
+            if ($this->Student->sendData($this->request->data)) {
+                $this->Session->setFlash(__('You have been registered successfully'),'success_flash');
+                $this->redirect(array('controller'=>'homes','action' => 'main'));
+            } else {
+                $this->Session->setFlash(__('The student could not be saved. Please, try again.'));
+            }
+        }
+        $groups = $this->Student->Group->find('list');
+        $registrationNumHeaders = $this->Student->RegistrationNumHeader->find('list');
+        $studyPrograms = $this->Student->StudyProgram->find('list');
+        $batches = $this->Student->Batch->find('list');
+        $this->set(compact('groups', 'studyPrograms', 'batches','registrationNumHeaders'));
+    }
+
+
 	public function edit($id = null) {
 		if (!$this->Student->exists($id)) {
 			throw new NotFoundException(__('Invalid student'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Student->save($this->request->data)) {
+			if ($this->Student->updateData($this->request->data)) {
 				$this->Session->setFlash(__('The student data has been updated'));
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -81,20 +75,14 @@ class StudentsController extends AppController {
 		$this->set(compact('groups', 'studyPrograms', 'batches'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function delete($id = null) {
 		$this->Student->id = $id;
 		if (!$this->Student->exists()) {
 			throw new NotFoundException(__('Invalid student'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Student->delete()) {
+		if ($this->Student->deleteData($id)) {
 			$this->Session->setFlash(__('Student deleted'));
 			$this->redirect(array('action' => 'index'));
 		}
