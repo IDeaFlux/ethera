@@ -42,4 +42,17 @@ class MessagesController extends AppController {
         }
 
     }
+
+    public function studentMail(){
+
+
+    }
+
+    public function industryMail(){
+
+    }
+
+    public function staffMail(){
+
+    }
 }

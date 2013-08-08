@@ -1,3 +1,6 @@
+<?php //$this->layout = 'bootstrap2'; ?>
+<?php //$this->set('title', 'Edit Student'); ?>
+
 <div class="students form">
 <?php echo $this->Form->create('Student'); ?>
 	<fieldset>

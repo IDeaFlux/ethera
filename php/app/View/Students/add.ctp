@@ -1,3 +1,6 @@
+<?php //$this->layout = 'bootstrap2'; ?>
+<?php //$this->set('title', 'Add Student'); ?>
+
 <div class="students form">
 <?php echo $this->Form->create('Student'); ?>
 	<fieldset>
@@ -9,8 +12,8 @@
 		echo $this->Form->input('phone_home');
 		echo $this->Form->input('phone_mob');
 		echo $this->Form->input('email');
-		echo $this->Form->input('password');
-		echo $this->Form->input('photo');
+		echo $this->Form->input('password',array('class'=>'span4'));
+		echo $this->Form->input('photo',array('type'=>'file'));
 		echo $this->Form->input('group_id');
 		echo $this->Form->input('reg_number');
 		echo $this->Form->input('gender');
@@ -24,6 +27,15 @@
 		echo $this->Form->input('linkedin_ref');
 		echo $this->Form->input('study_program_id');
 		echo $this->Form->input('batch_id');
+    echo $this->form->input('Gender', array(
+        'before' => '--before--',
+        'after' => '--after--',
+        'between' => '--between---',
+        'separator' => '--separator--',
+        'options' => array('Male', 'Female'),
+        'type' => 'radio'
+    ));
+
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

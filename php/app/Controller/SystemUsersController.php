@@ -42,9 +42,9 @@ class SystemUsersController extends AppController {
 			throw new NotFoundException(__('Invalid system user'),'error_flash');
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->SystemUser->save($this->request->data)) {
+			if ($this->SystemUser->updateData($this->request->data)) {
 				$this->Session->setFlash(__('The system user has been saved'),'success_flash');
-				$this->redirect(array('action' => 'index'));
+				//$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The system user could not be saved. Please, try again.'),'error_flash');
 			}
@@ -64,8 +64,8 @@ class SystemUsersController extends AppController {
 			throw new NotFoundException(__('Invalid system user'),'error_flash');
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->SystemUser->delete()) {
-			$this->Session->setFlash(__('System user deleted'));
+		if ($this->SystemUser->deleteData($id)) {
+			$this->Session->setFlash(__('System user deleted','success_flash'));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->Session->setFlash(__('System user was not deleted'),'info_flash');

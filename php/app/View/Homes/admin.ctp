@@ -119,7 +119,7 @@
         </li>
         <li class="span2">
             <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-github-sign icon-4x\"></i></p>
+            $i = "<p class=\"text-center\"><i class=\"icon-male icon-4x\"></i></p>
                 <p class=\"text-center\">Student</p>";
             echo $this->Html->link(
                 $i,
