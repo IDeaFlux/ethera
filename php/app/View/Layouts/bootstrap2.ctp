@@ -133,6 +133,10 @@
             echo $this->Html->script('run_prettify');
          ?>
         <?php echo $this->fetch('script'); ?>
+        <?php
+        if (class_exists('JsHelper') && method_exists($this->Js, 'writeBuffer')) echo $this->Js->writeBuffer();
+        // Writes cached scripts
+        ?>
         <div id="push"></div>
     </div>
 

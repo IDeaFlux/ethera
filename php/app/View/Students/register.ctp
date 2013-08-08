@@ -10,6 +10,23 @@
                 });
             });
         </script>
+        <?php
+        $this->Js->get('#StudentRegistrationNumHeaderId')->event('change',
+            $this->Js->request(array(
+                'controller'=>'study_programs',
+                'action'=>'get_by_reg_num_header'
+            ), array(
+                'update'=>'#StudentStudyProgramId',
+                'async' => true,
+                'method' => 'post',
+                'dataExpression'=>true,
+                'data'=> $this->Js->serializeForm(array(
+                    'isForm' => true,
+                    'inline' => true
+                ))
+            ))
+        );
+        ?>
         <style>
             div.ui-datepicker{
                 font-size:10px;

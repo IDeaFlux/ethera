@@ -69,4 +69,15 @@ class StudyProgramsController extends AppController {
 		$this->Session->setFlash(__('Study program was not deleted'),'info_flash');
 		$this->redirect(array('action' => 'index'));
 	}
+
+    public function get_by_reg_num_header(){
+        $reg_num_header_id = $this->request->data['Student']['registration_num_header_id'];
+        $study_programs = $this->StudyProgram->find('list', array(
+            'conditions' => array('registration_num_header_id' => $reg_num_header_id),
+            'recursive' => -1
+        ));
+
+        $this->set('study_programs',$study_programs);
+        $this->layout = 'ajax';
+    }
 }

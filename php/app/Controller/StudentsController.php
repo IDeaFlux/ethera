@@ -3,6 +3,8 @@ App::uses('AppController', 'Controller');
 
 class StudentsController extends AppController {
 
+    public $helpers = array('Js');
+
 
 	public function index() {
 		$this->Student->recursive = 0;
@@ -48,7 +50,12 @@ class StudentsController extends AppController {
         }
         $groups = $this->Student->Group->find('list');
         $registrationNumHeaders = $this->Student->RegistrationNumHeader->find('list');
-        $studyPrograms = $this->Student->StudyProgram->find('list');
+        $initHeader = $this->Student->RegistrationNumHeader->find('first');
+        $initHeader = $initHeader['RegistrationNumHeader']['id'];
+        $studyPrograms = $this->Student->StudyProgram->find('list',array(
+            'conditions' => array('registration_num_header_id' => $initHeader),
+            'recursive' => -1
+        ));
         $batches = $this->Student->Batch->find('list');
         $this->set(compact('groups', 'studyPrograms', 'batches','registrationNumHeaders'));
     }
