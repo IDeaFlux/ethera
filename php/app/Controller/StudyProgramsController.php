@@ -80,4 +80,9 @@ class StudyProgramsController extends AppController {
         $this->set('study_programs',$study_programs);
         $this->layout = 'ajax';
     }
+
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('get_by_reg_num_header');
+    }
 }

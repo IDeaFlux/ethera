@@ -96,4 +96,9 @@ class StudentsController extends AppController {
 		$this->Session->setFlash(__('Student was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('register');
+    }
 }
