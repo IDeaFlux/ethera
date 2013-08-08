@@ -7,6 +7,20 @@
     <ul class="thumbnails">
         <li class="span2">
             <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-male icon-4x\"></i></p>
+                <p class=\"text-center\">Student</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'homes', 'action' => 'student_processing'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
+        <li class="span2">
+            <?php
             $i = "<p class=\"text-center\"><i class=\"icon-user icon-4x\"></i></p>
                 <p class=\"text-center\">System Users</p>";
             echo $this->Html->link(
@@ -110,20 +124,6 @@
             echo $this->Html->link(
                 $i,
                 array('controller' => 'messages', 'action' => 'email'),
-                array(
-                    'class' => 'thumbnail',
-                    'escape' => false
-                )
-            );
-            ?>
-        </li>
-        <li class="span2">
-            <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-male icon-4x\"></i></p>
-                <p class=\"text-center\">Student</p>";
-            echo $this->Html->link(
-                $i,
-                array('controller' => 'students', 'action' => 'index'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false

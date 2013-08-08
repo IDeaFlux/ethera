@@ -10,6 +10,10 @@ class HomesController extends AppController {
 
     }
 
+    public function student_processing() {
+
+    }
+
     public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->allow('main');
