@@ -180,7 +180,12 @@ CREATE TABLE IF NOT EXISTS `registration_num_headers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+INSERT INTO `registration_num_headers` (`id`, `name`) VALUES
+(1, 'ICT'),
+(2, 'AS'),
+(3, 'HPT');
 
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
@@ -209,7 +214,10 @@ CREATE TABLE IF NOT EXISTS `students` (
   `registration_num_header_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `first_name` (`first_name`,`last_name`,`reg_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `email`, `password`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freez_state`, `industry_ready`, `approved_state`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`) VALUES
+(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'udithabnd@gmail.com', '8463bd09bf1a6867ae282a101f52aab0ef650a47', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 0, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 0, 0, '', 1, 1, 1);
 
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
@@ -226,10 +234,13 @@ CREATE TABLE IF NOT EXISTS `study_programs` (
   `program_code` varchar(255) NOT NULL,
   `registration_num_header_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 INSERT INTO `study_programs` (`id`, `program_code`, `registration_num_header_id`) VALUES
-(1, 'Information & Communication Technology', 0);
+(1, 'Information & Communication Technology', 1),
+(2, 'Biological Science', 2),
+(3, 'Physical Science', 2),
+(4, 'Health Promotion', 3);
 
 DROP TABLE IF EXISTS `study_programs_course_units`;
 CREATE TABLE IF NOT EXISTS `study_programs_course_units` (
