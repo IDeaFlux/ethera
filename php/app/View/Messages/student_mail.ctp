@@ -53,7 +53,7 @@
     <h3><?php echo __('Actions'); ?></h3>
     <ul>
 
-        <li><?php echo $this->Html->link(__('Emails'), array('action' => 'email')); ?></li>
+        <li><?php echo $this->Html->link(__('Email'), array('action' => 'email')); ?></li>
         <li><?php echo $this->Html->link(__('Send mail to organizations'), array('action' => 'industryMail')); ?> </li>
         <li><?php echo $this->Html->link(__('Send mail to staff'), array('action' => 'staffMail')); ?> </li>
 </div>

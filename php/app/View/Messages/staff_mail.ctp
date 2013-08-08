@@ -56,9 +56,5 @@
         <li><?php echo $this->Html->link(__('Email'), array('action' => 'email')); ?></li>
         <li><?php echo $this->Html->link(__('Send mail to students'), array('action' => 'studentMail')); ?> </li>
         <li><?php echo $this->Html->link(__('Send mail to organizations'), array('action' => 'industryMail')); ?> </li>
-        <!--        <li>--><?php //echo $this->Html->link(__('List Feedbacks'), array('controller' => 'feedbacks', 'action' => 'index')); ?><!-- </li>-->
-        <!--        <li>--><?php //echo $this->Html->link(__('New Feedback'), array('controller' => 'feedbacks', 'action' => 'add')); ?><!-- </li>-->
-        <!--        <li>--><?php //echo $this->Html->link(__('List Opportunies'), array('controller' => 'opportunies', 'action' => 'index')); ?><!-- </li>-->
-        <!--        <li>--><?php //echo $this->Html->link(__('New Opportuny'), array('controller' => 'opportunies', 'action' => 'add')); ?><!-- </li>-->
-        <!--    </ul>-->
+
 </div>

@@ -1,6 +1,7 @@
 <?php //$this->layout = 'bootstrap2'; ?>
 <?php $this->set('title', 'Send an Email'); ?>
 
+
 <div class="students index">
     <h2><?php echo __('Email'); ?></h2>
     <!--<div class="row">-->
