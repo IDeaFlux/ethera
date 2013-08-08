@@ -175,6 +175,13 @@ CREATE TABLE IF NOT EXISTS `organizations` (
   KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+DROP TABLE IF EXISTS `registration_num_headers`;
+CREATE TABLE IF NOT EXISTS `registration_num_headers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -199,6 +206,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `linkedin_ref` varchar(255) NOT NULL,
   `study_program_id` int(11) NOT NULL,
   `batch_id` int(11) NOT NULL,
+  `registration_num_header_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `first_name` (`first_name`,`last_name`,`reg_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -216,11 +224,12 @@ DROP TABLE IF EXISTS `study_programs`;
 CREATE TABLE IF NOT EXISTS `study_programs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `program_code` varchar(255) NOT NULL,
+  `registration_num_header_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
-INSERT INTO `study_programs` (`id`, `program_code`) VALUES
-(1, 'Information & Communication Technology');
+INSERT INTO `study_programs` (`id`, `program_code`, `registration_num_header_id`) VALUES
+(1, 'Information & Communication Technology', 0);
 
 DROP TABLE IF EXISTS `study_programs_course_units`;
 CREATE TABLE IF NOT EXISTS `study_programs_course_units` (
@@ -275,11 +284,11 @@ CREATE TABLE IF NOT EXISTS `system_users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `first_name` (`first_name`,`last_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 INSERT INTO `system_users` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mobile`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `biography`, `designation`) VALUES
-(7, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'udithabnd@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '51e1f7a0-b408-4404-8b95-08ac740d37dd', 1, 'Hii', 'Students'),
-(8, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'yohani.ysr@gmail.com', '5c4c6b7e3ccd612e84576cbc4f68a3ffe5e16ab9', '', '0000-00-00 00:00:00', '51e44a48-5060-470d-b5e8-0e66740d37dd', 1, 'This is yohani', 'Student');
+(7, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'udithabnd@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5203508f-dc5c-4d78-9cd3-245e740d37dd', 1, 'Hii', 'Students'),
+(8, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'yohani.ysr@gmail.com', '5c4c6b7e3ccd612e84576cbc4f68a3ffe5e16ab9', '', '0000-00-00 00:00:00', '52035055-5c04-47b9-b283-0689740d37dd', 1, 'This is yohani', 'Student');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

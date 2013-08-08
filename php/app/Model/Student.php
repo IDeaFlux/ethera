@@ -232,7 +232,14 @@ class Student extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+        'RegistrationNumHeader' => array(
+            'className' => 'RegistrationNumHeader',
+            'foreignKey' => 'registration_num_header_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
 	);
 
 /**

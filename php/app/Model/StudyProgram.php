@@ -46,7 +46,15 @@ class StudyProgram extends AppModel {
         )
 	);
 
-
+    public $belongsTo = array(
+        'RegistrationNumHeader' => array(
+            'className' => 'RegistrationNumHeader',
+            'foreignKey' => 'registration_num_header_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
 
 	public $hasAndBelongsToMany = array(
 		'CourseUnit' => array(
