@@ -38,6 +38,7 @@ class NoticesController extends AppController {
  * @return void
  */
 	public function add() {
+
 		if ($this->request->is('post')) {
 			$this->Notice->create();
 			if ($this->Notice->save($this->request->data)) {
@@ -49,6 +50,9 @@ class NoticesController extends AppController {
 		}
 		$systemUsers = $this->Notice->SystemUser->find('list');
 		$this->set(compact('systemUsers'));
+
+        $articles=$this->Notice->Article->find('list');
+        $this->set('articles',$articles);
 	}
 
 /**
