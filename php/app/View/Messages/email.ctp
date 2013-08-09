@@ -1,60 +1,55 @@
-<?php //$this->layout = 'bootstrap2'; ?>
+<?php $this->layout = 'bootstrap2'; ?>
 <?php $this->set('title', 'Send an Email'); ?>
 
-<div class="students index">
-    <h2><?php echo __('Email'); ?></h2>
-<!--<div class="row">-->
-<!--    <div class="span3"></div>-->
-<!--    <div class="span9">-->
+<h1 align ='center'>Welcome to ETHERA E-mail wizard</h1>
 
-        <?php
-        echo $this->Form->create(null, array(
-            'url' => array('controller' => 'messages', 'action' => 'email'),
-            'inputDefaults' => array(
-                'div' => 'control-group',
-                'label' => array(
-                    'class' => 'control-label'
-                ),
-                'wrapInput' => 'controls'
-            ),
-            'class' => 'well form-horizontal'
-        ));
+<div class="container">
+    <legend><?php echo __('Actions'); ?></legend>
+    <ul class="thumbnails">
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-female icon-4x\"></i></p>
+                <p class=\"text-center\">Send email to students</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'Messages', 'action' => 'studentMail'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
 
-        echo $this->Form->input("to",array(
-            'name'  => 'data[to]',
-            'type' => 'text',
-            'class' => 'span6'
-        ));
-
-        echo $this->Form->input("subject",array(
-            'name'  => 'data[subject]',
-            'type' => 'text',
-            'class' => 'span6'
-        ));
-
-        echo $this->Form->input("message",array(
-            'name'  => 'data[body]',
-            'type' => 'textarea',
-            'class' => 'span6'
-        ));?>
-        <div class="form-actions">
-            <?php echo $this->Form->submit('Send Email', array(
-                'div' => false,
-                'class' => 'btn btn-primary'
-            )); ?>
-        </div>
-
-
-         <?php echo $this->Form->end(); ?>
-
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-male icon-4x\"></i></p>
+                <p class=\"text-center\">Send email to staff</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'Messages', 'action' => 'staffMail'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-building icon-4x\"></i></p>
+                <p class=\"text-center\">Send email to industry</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'Messages', 'action' => 'industryMail'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
+     </ul>
 </div>
 
-<div class="actions">
-<?php echo __('Actions'); ?>
-    <ul>
-        <li><?php echo $this->Html->link(__('Send mail to students'), array('action' => 'studentMail')); ?></li>
-        <li><?php echo $this->Html->link(__('Send mail to organizations'), array('action' => 'industryMail')); ?></li>
-        <li><?php echo $this->Html->link(__('Send mail to staff'), array('action' => 'staffMail')); ?></li>
-    </ul>
-</div>
 
