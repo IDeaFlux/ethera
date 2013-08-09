@@ -87,9 +87,9 @@ class Notice extends AppModel {
  * @var array
  */
 	public $hasOne = array(
-		'article' => array(
-			'className' => 'article',
-			'foreignKey' => 'id',
+		'Article' => array(
+			'className' => 'Article',
+			'foreignKey' => '',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
