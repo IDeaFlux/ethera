@@ -43,6 +43,10 @@ class SystemUser extends AppModel {
 				'message' => 'Enter your designation',
 			),
 		),
+        'photo' => array(
+            'rule'    => 'uploadError',
+            'message' => 'Something went wrong with the upload.'
+        ),
 	);
 
 
