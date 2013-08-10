@@ -1,26 +1,10 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Organization Model
- *
- * @property Assignment $Assignment
- * @property Feedback $Feedback
- * @property Opportuny $Opportuny
- */
+
 class Organization extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'name';
+    public $displayField = 'name';
 
-/**
- * Validation rules
- *
- * @var array
- */
 	public $validate = array(
 		'name' => array(
 			'notempty' => array(
