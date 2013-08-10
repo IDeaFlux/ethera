@@ -171,10 +171,6 @@ class Student extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-        'photo' => array(
-            'rule'    => 'uploadError',
-            'message' => 'Something went wrong with the upload.'
-        ),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -297,18 +293,19 @@ class Student extends AppModel {
                 return true;
             }
         }
-
-        $this->invalidate('photo','Failed to upload photo');
-
+        $this->invalidate('photo','Photo upload error');
         return false;
     }
 
     public function sendData($data) {
         $this->create($data);
-        $this->uploadFile();
-        //echo debug($this->data,true,true);
-        //echo debug($data,true,true);
-        return $this->saveAll($this->data);
+        if($this->uploadFile())
+        {
+            return $this->saveAll($this->data);
+        }
+        else{
+            return false;
+        }
     }
 
     public function deleteData($id=null) {
@@ -326,7 +323,6 @@ class Student extends AppModel {
             }
 
             return $this->delete();
-
         }
     }
 
@@ -336,8 +332,12 @@ class Student extends AppModel {
         $system_user = $this->data['Student']['id'];
         $system_user = $this->findAllById($system_user);
 
-        $this->uploadFile($system_user[0]['Student']['photo']);
-        return $this->saveAll($this->data);
+        if($this->uploadFile($system_user[0]['Student']['photo'])){
+            return $this->saveAll($this->data);
+        }
+        else{
+            return false;
+        }
     }
 
     public function beforeSave($options=array()) {

@@ -43,10 +43,6 @@ class SystemUser extends AppModel {
 				'message' => 'Enter your designation',
 			),
 		),
-        'photo' => array(
-            'rule'    => 'uploadError',
-            'message' => 'Something went wrong with the upload.'
-        ),
 	);
 
 
@@ -108,7 +104,6 @@ class SystemUser extends AppModel {
 
             if(move_uploaded_file($file['tmp_name'], $folderName.DS.$id)) {
                 $this->data['SystemUser']['photo'] = $id;
-
                 return true;
             }
         }
@@ -120,10 +115,13 @@ class SystemUser extends AppModel {
 
     public function sendData($data) {
         $this->create($data);
-        $this->uploadFile();
-        //echo debug($this->data,true,true);
-        //echo debug($data,true,true);
-        return $this->saveAll($this->data);
+        if($this->uploadFile())
+        {
+            return $this->saveAll($this->data);
+        }
+        else{
+            return false;
+        }
     }
 
     public function deleteData($id=null) {
@@ -151,8 +149,13 @@ class SystemUser extends AppModel {
         $system_user = $this->data['SystemUser']['id'];
         $system_user = $this->findAllById($system_user);
 
-        $this->uploadFile($system_user[0]['SystemUser']['photo']);
-        return $this->saveAll($this->data);
+        if($this->uploadFile($system_user[0]['SystemUser']['photo']))
+        {
+            return $this->saveAll($this->data);
+        }
+        else{
+            return false;
+        }
     }
 
     public function beforeSave($options=array()) {
