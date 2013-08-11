@@ -81,11 +81,15 @@ class NoticesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+
 		if (!$this->Notice->exists($id)) {
-			throw new NotFoundException(__('Invalid notice'));
+			throw new NotFoundException(__('Invalid notice'),'error_flash');
 		}
+
+        $authUser=$this->Auth->user('id');
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Notice->save($this->request->data)) {
+                $this->Notice->saveField('system_user_id',$authUser);
 				$this->Session->setFlash(__('The notice has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -95,9 +99,18 @@ class NoticesController extends AppController {
 			$options = array('conditions' => array('Notice.' . $this->Notice->primaryKey => $id));
 			$this->request->data = $this->Notice->find('first', $options);
 		}
-		$systemUsers = $this->Notice->SystemUser->find('list');
-		$this->set(compact('systemUsers'));
-	}
+//		$systemUsers = $this->Notice->SystemUser->find('list');
+//		$this->set(compact('systemUsers'));
+
+
+        $this->loadModel('Article');
+        $articles=$this->Article->find('list',array('conditions'=>array(
+            'Article.system_user_id'=>$authUser,
+        )));
+        $this->set('articles',$articles);
+
+
+    }
 
 /**
  * delete method
