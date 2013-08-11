@@ -123,7 +123,7 @@ class StudentsController extends AppController {
     }
 
     public function get_students_by_batch_and_study_prg(){
-        debug($this->request->data);
+        //debug($this->request->data);
         $reg_num_header_id = $this->request->data['Student']['registration_num_header_id'];
         $batch_id = $this->request->data['Student']['batch_id'];
         $students = $this->Student->find('list', array(
@@ -134,6 +134,40 @@ class StudentsController extends AppController {
         ));
 
         $this->set('students',$students);
+        $this->layout = 'ajax';
+    }
+
+    public function get_student_profile(){
+        //debug($this->request->data);
+        $reg_number = $this->request->data['Student']['reg_number'];
+        $student = $this->Student->find('first', array(
+            'conditions' => array(
+                'Student.id' => $reg_number
+            ),
+        ));
+        $this->set('student',$student);
+        $this->layout = 'ajax';
+    }
+
+    public function get_courses(){
+        //debug($this->request->data);
+        $student_id = $this->request->data['Student']['reg_number'];
+        $student = $this->Student->find('first', array(
+            'conditions' => array(
+                'Student.id' => $student_id
+            ),
+        ));
+        $study_program_id = $student['Student']['study_program_id'];
+        $this->loadModel('StudyProgramsCourseUnit');
+        $courses = $students = $this->StudyProgramsCourseUnit->find('all', array(
+            'conditions' => array(
+                'study_program_id' => $study_program_id
+            ),
+            'recursive' => 0
+        ));
+
+        $this->set('courses',$courses);
+        debug($courses);
         $this->layout = 'ajax';
     }
 }
