@@ -23,15 +23,15 @@ class Article extends AppModel {
 	);
 
 
-	public $hasOne = array(
-		'Notice' => array(
-			'className' => 'Notice',
-			'foreignKey' => 'article_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
+//	public $hasOne = array(
+//		'Notice' => array(
+//			'className' => 'Notice',
+//			'foreignKey' => 'article_id',
+//			'conditions' => '',
+//			'fields' => '',
+//			'order' => ''
+//		)
+//	);
 
 
 	public $belongsTo = array(
