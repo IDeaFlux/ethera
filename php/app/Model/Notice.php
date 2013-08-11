@@ -24,7 +24,7 @@ class Notice extends AppModel {
 		'title' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter the title',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -34,7 +34,7 @@ class Notice extends AppModel {
 		'date_start' => array(
 			'date' => array(
 				'rule' => array('date'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter a valid date ',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -42,7 +42,7 @@ class Notice extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter the starting date',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -52,7 +52,7 @@ class Notice extends AppModel {
 		'date_end' => array(
 			'date' => array(
 				'rule' => array('date'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter a valid date',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -60,7 +60,7 @@ class Notice extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter the ending date',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -70,7 +70,7 @@ class Notice extends AppModel {
 		'published_state' => array(
 			'boolean' => array(
 				'rule' => array('boolean'),
-				//'message' => 'Your custom message here',
+				'message' => 'Enter your preference to publish /un-publish the notice',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
