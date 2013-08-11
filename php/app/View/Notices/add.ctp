@@ -65,7 +65,7 @@
             echo $this->Form->input('description',array(
                 'class'=>'span6'
             ));
-            echo $this->Form->input('publish_state', array(
+            echo $this->Form->input('published_state', array(
                 'type' => 'radio',
                 'before' => '<label class="control-label">Publish Notice on/off</label>',
                 'legend' => false,
