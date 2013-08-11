@@ -101,4 +101,39 @@ class StudentsController extends AppController {
         parent::beforeFilter();
         $this->Auth->allow('register');
     }
+
+    public function enroll(){
+        if ($this->request->is('post')) {
+            if ($this->Student->sendData($this->request->data)) {
+                $this->Session->setFlash(__('You have been registered successfully'),'success_flash');
+                $this->redirect(array('controller'=>'homes','action' => 'main'));
+            } else {
+                $this->Session->setFlash(__('The student could not be saved. Please, try again.'));
+            }
+        }
+        $registrationNumHeaders = $this->Student->RegistrationNumHeader->find('list');
+        $initHeader = $this->Student->RegistrationNumHeader->find('first');
+        $initHeader = $initHeader['RegistrationNumHeader']['id'];
+        $studyPrograms = $this->Student->StudyProgram->find('list',array(
+            'conditions' => array('registration_num_header_id' => $initHeader),
+            'recursive' => -1
+        ));
+        $batches = $this->Student->Batch->find('list');
+        $this->set(compact('groups', 'studyPrograms', 'batches','registrationNumHeaders'));
+    }
+
+    public function get_students_by_batch_and_study_prg(){
+        debug($this->request->data);
+        $reg_num_header_id = $this->request->data['Student']['registration_num_header_id'];
+        $batch_id = $this->request->data['Student']['batch_id'];
+        $students = $this->Student->find('list', array(
+            'conditions' => array('registration_num_header_id' => $reg_num_header_id,
+                'batch_id' => $batch_id
+            ),
+            'recursive' => -1
+        ));
+
+        $this->set('students',$students);
+        $this->layout = 'ajax';
+    }
 }
