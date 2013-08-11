@@ -86,15 +86,15 @@ class Notice extends AppModel {
  *
  * @var array
  */
-	public $hasOne = array(
-		'Article' => array(
-			'className' => 'Article',
-			'foreignKey' => '',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
+//	public $hasOne = array(
+//		'Article' => array(
+//			'className' => 'Article',
+//			'foreignKey' => '',
+//			'conditions' => '',
+//			'fields' => '',
+//			'order' => ''
+//		)
+//	);
 
 /**
  * belongsTo associations
