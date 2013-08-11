@@ -145,5 +145,19 @@
             );
             ?>
         </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-file-text icon-4x\"></i></p>
+                <p class=\"text-center\">Notices</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'notices', 'action' => 'index'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
     </ul>
 </div>
