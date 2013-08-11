@@ -56,10 +56,21 @@ class NoticesController extends AppController {
 
         //$this->set('authUser',$this->Auth->user('id'));  //to set variable to get in view
 
-        $articles=$this->Notice->Article->find('list',array('conditions'=>array(
-            'Article.system_user_id'=>$authUser,
-        )));
+
+        //removed due to recursive obj creation
+//        $articles=$this->Notice->Article->find('list',array('conditions'=>array(
+//            'Article.system_user_id'=>$authUser,
+//        )));
+//        $this->set('articles',$articles);
+
+        $this->loadModel('Article');
+        $articles=$this->Article->find('list',array('conditions'=>array(
+          'Article.system_user_id'=>$authUser,
+       )));
         $this->set('articles',$articles);
+
+
+
 	}
 
 /**
