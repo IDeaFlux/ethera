@@ -36,6 +36,41 @@
         </li>
     </ul>
 </div>
+
+<div class="container">
+    <legend><?php echo __('Evaluations'); ?></legend>
+    <ul class="thumbnails">
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-check icon-4x\"></i></p>
+                <p class=\"text-center\">Enroll Student</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'students', 'action' => 'enroll'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-tasks icon-4x\"></i></p>
+                <p class=\"text-center\">Add Marks</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'students', 'action' => 'add_marks'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
+    </ul>
+</div>
+
 <legend><?php echo __('Approvals'); ?></legend>
 <div class="container">
     <ul class="thumbnails">
