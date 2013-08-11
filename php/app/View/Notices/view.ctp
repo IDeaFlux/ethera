@@ -1,62 +1,81 @@
-<div class="notices view">
-<h2><?php  echo __('Notice'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($notice['Notice']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Title'); ?></dt>
-		<dd>
-			<?php echo h($notice['Notice']['title']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Date Start'); ?></dt>
-		<dd>
-			<?php echo h($notice['Notice']['date_start']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Date End'); ?></dt>
-		<dd>
-			<?php echo h($notice['Notice']['date_end']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Description'); ?></dt>
-		<dd>
-			<?php echo h($notice['Notice']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Published State'); ?></dt>
-		<dd>
-			<?php echo h($notice['Notice']['published_state']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('System User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($notice['SystemUser']['email'], array('controller' => 'system_users', 'action' => 'view', $notice['SystemUser']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Article Id'); ?></dt>
-		<dd>
-			<?php echo h($notice['Notice']['article_id']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<?php $this->layout = 'bootstrap2'; ?>
+
+<div class="row">
+    <div class="span3">
+        <ul class="nav nav-tabs nav-stacked">
+            <li><?php echo $this->Html->link(__('Edit Notice'), array('action' => 'edit', $notice['Notice']['id'])); ?> </li>
+            <li><?php echo $this->Form->postLink(__('Delete Notice'), array('action' => 'delete', $notice['Notice']['id']), null, __('Are you sure you want to delete # %s?', $notice['Notice']['id'])); ?> </li>
+            <li><?php echo $this->Html->link(__('List Notice'), array('action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('New Notice'), array('action' => 'add')); ?> </li>
+        </ul>
+    </div>
+    <div class="span9">
+    <h2><?php  echo __('Notice'); ?></h2>
+        <dl class="dl-horizontal">
+            <dt><?php echo __('Id'); ?></dt>
+            <dd>
+                <?php echo h($notice['Notice']['id']); ?>
+                &nbsp;
+            </dd>
+            <dt><?php echo __('Title'); ?></dt>
+            <dd>
+                <?php echo h($notice['Notice']['title']); ?>
+                &nbsp;
+            </dd>
+            <dt><?php echo __('Date Start'); ?></dt>
+            <dd>
+                <?php echo h($notice['Notice']['date_start']); ?>
+                &nbsp;
+            </dd>
+            <dt><?php echo __('Date End'); ?></dt>
+            <dd>
+                <?php echo h($notice['Notice']['date_end']); ?>
+                &nbsp;
+            </dd>
+            <dt><?php echo __('Description'); ?></dt>
+            <dd>
+                <?php echo h($notice['Notice']['description']); ?>
+                &nbsp;
+            </dd>
+            <dt><?php echo __('Published State'); ?></dt>
+            <dd>
+                <?php echo h($notice['Notice']['published_state']); ?>
+                &nbsp;
+            </dd>
+            <dt><?php echo __('System User'); ?></dt>
+            <dd>
+                <?php echo $this->Html->link($notice['SystemUser']['email'], array('controller' => 'system_users', 'action' => 'view', $notice['SystemUser']['id'])); ?>
+                &nbsp;
+            </dd>
+            <dt><?php echo __('Article Id'); ?></dt>
+            <dd>
+                <?php echo h($notice['Notice']['article_id']); ?>
+                &nbsp;
+            </dd>
+        </dl>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Notice'), array('action' => 'edit', $notice['Notice']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Notice'), array('action' => 'delete', $notice['Notice']['id']), null, __('Are you sure you want to delete # %s?', $notice['Notice']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Notices'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Notice'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List System Users'), array('controller' => 'system_users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New System User'), array('controller' => 'system_users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Articles'), array('controller' => 'articles', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Article'), array('controller' => 'articles', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-	<div class="related">
+<!--<div class="actions">-->
+<!--	<h3>--><?php //echo __('Actions'); ?><!--</h3>-->
+<!--	<ul>-->
+<!--		<li>--><?php //echo $this->Html->link(__('Edit Notice'), array('action' => 'edit', $notice['Notice']['id'])); ?><!-- </li>-->
+<!--		<li>--><?php //echo $this->Form->postLink(__('Delete Notice'), array('action' => 'delete', $notice['Notice']['id']), null, __('Are you sure you want to delete # %s?', $notice['Notice']['id'])); ?><!-- </li>-->
+<!--		<li>--><?php //echo $this->Html->link(__('List Notices'), array('action' => 'index')); ?><!-- </li>-->
+<!--		<li>--><?php //echo $this->Html->link(__('New Notice'), array('action' => 'add')); ?><!-- </li>-->
+<!--		<li>--><?php //echo $this->Html->link(__('List System Users'), array('controller' => 'system_users', 'action' => 'index')); ?><!-- </li>-->
+<!--		<li>--><?php //echo $this->Html->link(__('New System User'), array('controller' => 'system_users', 'action' => 'add')); ?><!-- </li>-->
+<!--		<li>--><?php //echo $this->Html->link(__('List Articles'), array('controller' => 'articles', 'action' => 'index')); ?><!-- </li>-->
+<!--		<li>--><?php //echo $this->Html->link(__('New Article'), array('controller' => 'articles', 'action' => 'add')); ?><!-- </li>-->
+<!--	</ul>-->
+<!--</div>-->
+<hr/>
+<div class="row">
+    <div class="span3">
+        <ul class="nav nav-tabs nav-stacked">
+            <li><?php echo $this->Html->link(__('New Articles'), array('controller' => 'articles', 'action' => 'add')); ?> </li>
+        </ul>
+    </div>
+	<div class="span9">
 		<h3><?php echo __('Related Articles'); ?></h3>
 	<?php if (!empty($notice['article'])): ?>
 		<dl>
@@ -88,4 +107,3 @@
 			</ul>
 		</div>
 	</div>
-	
