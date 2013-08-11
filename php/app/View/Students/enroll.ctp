@@ -21,10 +21,8 @@
                 'data'=>'$(\'#StudentRegistrationNumHeaderId,#StudentBatchId\').serializeArray()'),false
             )
         );
-        ?>
 
-        <?php
-        $this->Js->get('#StudentBatchId')->event('click',
+        $this->Js->get('#StudentBatchId')->event('change',
             $this->Js->request(array(
                     'controller'=>'students',
                     'action'=>'get_students_by_batch_and_study_prg'
@@ -36,7 +34,34 @@
                     'data'=>'$(\'#StudentRegistrationNumHeaderId,#StudentBatchId\').serializeArray()'),false
             )
         );
+
+        $this->Js->get('#load_student')->event('click',
+            $this->Js->request(array(
+                    'controller'=>'students',
+                    'action'=>'get_student_profile'
+                ), array(
+                    'update'=>'#profile',
+                    'async' => true,
+                    'method' => 'post',
+                    'dataExpression'=>true,
+                    'data'=>'$(\'#StudentRegistrationNumHeaderId,#StudentBatchId,#StudentRegNumber\').serializeArray()'),false
+            )
+        );
+
+        $this->Js->get('#load_enrollments')->event('click',
+            $this->Js->request(array(
+                    'controller'=>'students',
+                    'action'=>'get_courses'
+                ), array(
+                    'update'=>'#tabs',
+                    'async' => true,
+                    'method' => 'post',
+                    'dataExpression'=>true,
+                    'data'=>'$(\'#StudentRegNumber\').serializeArray()'),false
+            )
+        );
         ?>
+
         <?php echo $this->Form->create('Student',array(
             'novalidate' => true,
             'type'=>'file',
@@ -50,6 +75,7 @@
             'class' => 'well form-horizontal'
         )); ?>
         <legend><?php echo __('Enroll Students To Courses'); ?></legend>
+        <div id="profile" class="span4 pull-right" style="position: absolute; margin-left: 450px"></div>
         <?php
         echo $this->Form->input('registration_num_header_id',array(
             'label' => array(
@@ -66,6 +92,8 @@
         ));
 
         ?>
+        <button class="btn btn-mini" id="load_student">Load Student</button>
+        <button class="btn btn-mini" id="load_enrollments">Load Enrollments</button>
         <div id='tabs'></div>
         <div class="form-actions">
             <?php echo $this->Form->submit('Save Enrollments', array(
