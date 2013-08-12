@@ -167,7 +167,7 @@ class StudentsController extends AppController {
         ));
 
         $this->set('courses',$courses);
-        debug($courses);
+        $this->set('student_id',$student_id);
         $this->layout = 'ajax';
     }
 }
