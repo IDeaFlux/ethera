@@ -110,7 +110,7 @@ class StudentsController extends AppController {
                     $count++;
                 }
                 unset($this->request->data['Student']);
-                debug($this->request->data);
+                //debug($this->request->data);
             }
             $this->loadModel('Enrollment');
             $this->Enrollment->create();
@@ -134,6 +134,26 @@ class StudentsController extends AppController {
     }
 
     public function add_marks(){
+        if ($this->request->is('post')) {
+            $this->loadModel('Enrollment');
+            $this->Enrollment->create();
+            $data = $this->request->data['Enrollment'];
+            if ($this->Enrollment->saveAll($data)) {
+                $this->Session->setFlash(__('The student has been enrolled in to selected subjects'),'success_flash');
+                //$this->redirect(array('controller'=>'students','action' => 'enroll'));
+            } else {
+                $this->Session->setFlash(__('The Enrollments could not be saved. Please, try again.'),'error_flash');
+            }
+        }
+        $registrationNumHeaders = $this->Student->RegistrationNumHeader->find('list');
+        $initHeader = $this->Student->RegistrationNumHeader->find('first');
+        $initHeader = $initHeader['RegistrationNumHeader']['id'];
+        $studyPrograms = $this->Student->StudyProgram->find('list',array(
+            'conditions' => array('registration_num_header_id' => $initHeader),
+            'recursive' => -1
+        ));
+        $batches = $this->Student->Batch->find('list');
+        $this->set(compact('groups', 'studyPrograms', 'batches','registrationNumHeaders'));
     }
 
     public function get_students_by_batch_and_study_prg(){
@@ -190,6 +210,21 @@ class StudentsController extends AppController {
         $this->set('courses',$courses);
         $this->set('enrollments',$enrollments);
         $this->set('student_id',$student_id);
+        $this->layout = 'ajax';
+    }
+
+    public function get_marking(){
+        $student_id = $this->request->data['Student']['reg_number'];
+        $this->loadModel('Enrollment');
+        $enrollments = $this->Enrollment->find('all', array(
+            'conditions' => array(
+                'student_id' => $student_id
+            ),
+            'recursive' => 1
+        ));
+        $this->set('enrollments',$enrollments);
+        $this->set('student_id',$student_id);
+
         $this->layout = 'ajax';
     }
 

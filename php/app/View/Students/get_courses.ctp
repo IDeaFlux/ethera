@@ -1,4 +1,7 @@
-<?php //debug($courses); ?>
+<?php
+//debug($courses);
+//debug($enrollments);
+?>
 
 <?php $count = 0;?>
 <?php foreach($courses as $course): ?>
