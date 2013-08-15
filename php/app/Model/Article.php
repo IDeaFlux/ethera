@@ -14,12 +14,12 @@ class Article extends AppModel {
                 'message' => 'Please set the title',
 			),
 		),
-		'published_state' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-                'message' => 'Please select published state',
-			),
-		),
+//		'published_state' => array(
+//			'notempty' => array(
+//				'rule' => array('notempty'),
+//                'message' => 'Please select published state',
+//			),
+//		),
 	);
 
 
