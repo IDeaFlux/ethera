@@ -27,9 +27,14 @@ class ArticlesController extends AppController {
 
 
 	public function add() {
+        $authUser=$this->Auth->user('id');
+
 		if ($this->request->is('post')) {
 			$this->Article->create();
-			if ($this->Article->save($this->request->data)) {
+			if ($this->Article->save($this->request->data))
+
+            {
+                $this->Article->saveField('system_user_id',$authUser);
 				$this->Session->setFlash(__('The article has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
