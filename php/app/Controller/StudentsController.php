@@ -104,11 +104,22 @@ class StudentsController extends AppController {
 
     public function enroll(){
         if ($this->request->is('post')) {
-            if ($this->Student->sendData($this->request->data)) {
-                $this->Session->setFlash(__('You have been registered successfully'),'success_flash');
-                $this->redirect(array('controller'=>'homes','action' => 'main'));
+            if(!empty($this->request->data['Enrollment']))
+            {
+                $enrollments = $this->request->data['Enrollment'];
+                $count = 0;
+                foreach($enrollments as $enrollment){
+                    if(empty($enrollment['course_unit_id'])){
+                        unset($this->request->data['Enrollment'][$count]);
+                    }
+                    $count++;
+                }
+            }
+            if ($this->Enrollment->save($this->request->data)) {
+                $this->Session->setFlash(__('The student has been enrolled in to selected subjects'),'success_flash');
+                $this->redirect(array('controller'=>'students','action' => 'enroll'));
             } else {
-                $this->Session->setFlash(__('The student could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The Enrollments could not be saved. Please, try again.'),'error_flash');
             }
         }
         $registrationNumHeaders = $this->Student->RegistrationNumHeader->find('list');
