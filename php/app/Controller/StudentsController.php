@@ -97,11 +97,6 @@ class StudentsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
-    public function beforeFilter(){
-        parent::beforeFilter();
-        $this->Auth->allow('register');
-    }
-
     public function enroll(){
         if ($this->request->is('post')) {
             if(!empty($this->request->data['Enrollment']))
@@ -139,7 +134,6 @@ class StudentsController extends AppController {
     }
 
     public function add_marks(){
-
     }
 
     public function get_students_by_batch_and_study_prg(){
@@ -179,6 +173,13 @@ class StudentsController extends AppController {
         ));
         $study_program_id = $student['Student']['study_program_id'];
         $this->loadModel('StudyProgramsCourseUnit');
+        $this->loadModel('Enrollment');
+        $enrollments = $this->Enrollment->find('all', array(
+            'conditions' => array(
+                'student_id' => $student_id
+            ),
+            'recursive' => 1
+        ));
         $courses = $students = $this->StudyProgramsCourseUnit->find('all', array(
             'conditions' => array(
                 'study_program_id' => $study_program_id
@@ -187,7 +188,13 @@ class StudentsController extends AppController {
         ));
 
         $this->set('courses',$courses);
+        $this->set('enrollments',$enrollments);
         $this->set('student_id',$student_id);
         $this->layout = 'ajax';
+    }
+
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('register');
     }
 }
