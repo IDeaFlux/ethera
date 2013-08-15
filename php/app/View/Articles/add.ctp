@@ -43,7 +43,7 @@
                 ),
                 'default' => 0
             ));
-            echo $this->Form->input('system_user_id');
+
         ?>
         <div class="form-actions">
             <?php echo $this->Form->submit('Save', array(
