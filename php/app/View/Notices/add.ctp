@@ -75,6 +75,16 @@
                 ),
                 'default'=> 0
             ));
+            echo $this->Form->input('publish_to_calendar', array(
+            'type' => 'radio',
+            'before' => '<label class="control-label">Publish to calendar</label>',
+            'legend' => false,
+            'options' => array(
+                1 => 'on',
+                0 => '0ff'
+            ),
+            'default'=> 0
+        ));
            // echo $this->Form->input('system_user');
            // echo $authUser;
             echo $this->Form->input('article_id');
