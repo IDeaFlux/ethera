@@ -114,8 +114,13 @@ class StudentsController extends AppController {
                     }
                     $count++;
                 }
+                unset($this->request->data['Student']);
+                debug($this->request->data);
             }
-            if ($this->Enrollment->save($this->request->data)) {
+            $this->loadModel('Enrollment');
+            $this->Enrollment->create();
+            $data = $this->request->data['Enrollment'];
+            if ($this->Enrollment->saveAll($data)) {
                 $this->Session->setFlash(__('The student has been enrolled in to selected subjects'),'success_flash');
                 $this->redirect(array('controller'=>'students','action' => 'enroll'));
             } else {
@@ -131,6 +136,10 @@ class StudentsController extends AppController {
         ));
         $batches = $this->Student->Batch->find('list');
         $this->set(compact('groups', 'studyPrograms', 'batches','registrationNumHeaders'));
+    }
+
+    public function add_marks(){
+
     }
 
     public function get_students_by_batch_and_study_prg(){
