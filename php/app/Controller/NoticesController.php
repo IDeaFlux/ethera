@@ -45,8 +45,19 @@ class NoticesController extends AppController {
 			$this->Notice->create();
 			if ($this->Notice->save($this->request->data)) {
                 $this->Notice->saveField('system_user_id',$authUser);
+
+                $data=array(
+                    'data'=>array(
+                        'title'=>'hi',
+                        'date_start'=>'2013-08-15',
+                        'date_end'=>'2013-08-16'
+
+                    )
+                );
+               // debug($data);
+                $this->Notice->createEvent($data);
                 //call the calender creation method
-               // $this->Notice->creteCalender();
+
 				$this->Session->setFlash(__('The notice has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -135,30 +146,53 @@ class NoticesController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
-// Google calender create function
+// Google calender create event function
 
-    public function createCalendar($title, $details, $timezone, $hidden, $color, $location) {
+    public function createEvent($handle, $quick = false, $details, $title = null, $transparency = null, $status = null, $location = null, $start = null, $end = null) {
         if ($this->authenticated === false) {
             return false;
-        } else if (empty($title) || empty($timezone) || !is_bool($hidden) || empty($color) || empty($location)) {
+        } else if ($quick === false && (empty($title) || empty($transparency) || empty($status) || empty($location) || empty($start) || empty($end))) {
+            return false;
+        } else if ($quick === true && empty($details)) {
             return false;
         }
 
-        $data = array(
-            "data" => array(
-                "title" => $title,
+        if (empty($handle)) {
+            $handle = "default";
+        }
+
+        if ($quick === true) {
+            $data = array("data" => array(
                 "details" => $details,
-                "timeZone" => $timezone,
-                "hidden" => $hidden,
-                "color" => $color,
-                "location" => $location
+                "quickAdd" => true
             )
-        );
+            );
+            $data = json_encode($data);
+        } else {
+            $data = sprintf('{
+                "data": {
+                "title": "%s",
+                "details": "%s",
+                "transparency": "%s",
+                "status": "%s",
+                "location": "%s",
+                "when": [
+                {
+                "start": "%s",
+                "end": "%s"
+                }
+                ]
+                }
+                }', $title, $details, $transparency, $status, $location, date("c", strtotime($start)), date("c", strtotime($end)));
 
-        $headers = array('Content-type: application/json');
+        }
 
-        $ch = $this->curlPostHandle("https://www.google.com/calendar/feeds/default/Ethera Events/full", true, $headers);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        $headers = array('Content-Type: application/json');
+
+        $url = sprintf("https://www.google.com/calendar/feeds/%s/private/full", $handle);
+        $ch = $this->curlPostHandle($url, true, $headers);
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_HEADER, true);
 
         $response = curl_exec($ch);
@@ -174,7 +208,7 @@ class NoticesController extends AppController {
 
             $ch = $this->curlPostHandle($url, true, $headers);
 
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
             $response = curl_exec($ch);
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -186,6 +220,114 @@ class NoticesController extends AppController {
             }
 
         } else if ($http_code == 201) {
+            return json_decode($response);
+        } else {
+            return false;
+        }
+    }
+
+    // Google Calendar delete event function
+
+    function deleteEvent($handle, $id, $etag = null) {
+        if ($this->authenticated === false) {
+            return false;
+        } else if (empty($handle) || empty($id)) {
+            return false;
+        }
+
+        if (empty($handle)) {
+            $handle = "default";
+        }
+
+        if (!empty($etag)) {
+
+            if (substr($etag, 0, 1) != '"') {
+                $etag = '"' . $etag;
+            }
+            if (substr($etag, -1, 1) != '"') {
+                $etag .= '"';
+            }
+
+            $headers = array('If-Match: ' . $etag);
+        } else {
+            $headers = array('If-Match: *');
+        }
+
+        $url = sprintf("https://www.google.com/calendar/feeds/%s/private/full/%s", $handle, $id);
+        $ch = $this->curlDeleteHandle($url, true, $headers);
+
+        curl_exec($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        return ($http_code == 200);
+    }
+
+
+    // Google Calendar Update event
+
+    function updateEvent($handle, $id, $etag, $json) {
+        if ($this->authenticated === false) {
+            return false;
+        } else if (empty($handle) || empty($id) || empty($json)) {
+            return false;
+        } else if (!is_object(json_decode($json))) {
+            return false;
+        } else {
+            $json = json_encode(json_decode($json));
+        }
+
+        if (empty($handle)) {
+            $handle = "default";
+        }
+
+        $headers = array('Content-type: application/json');
+
+
+        if (!empty($etag)) {
+
+            if (substr($etag, 0, 1) != '"') {
+                $etag = '"' . $etag;
+            }
+            if (substr($etag, -1, 1) != '"') {
+                $etag .= '"';
+            }
+
+            $headers[] = 'If-Match: ' . $etag;
+        } else {
+            $headers[] = 'If-Match: *';
+        }
+
+        $url = sprintf("https://www.google.com/calendar/feeds/%s/private/full/%s", $handle, $id);
+        $ch = $this->curlPutHandle($url, true, $headers);
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_HEADER, true);
+
+        $response = curl_exec($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $response_headers = $this->http_parse_headers($response);
+
+        curl_close($ch);
+        unset($ch);
+
+        if ($http_code == 302) {
+
+            $url = $response_headers['Location'];
+
+            $ch = $this->curlPutHandle($url, true, $headers);
+
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+
+            $response = curl_exec($ch);
+            $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            if ($http_code == 200) {
+                return json_decode($response);
+            } else {
+                return false;
+            }
+
+        } else if ($http_code == 200) {
             return json_decode($response);
         } else {
             return false;
