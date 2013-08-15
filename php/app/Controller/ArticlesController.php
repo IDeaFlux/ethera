@@ -7,12 +7,13 @@ class ArticlesController extends AppController {
         'TinyMCE.TinyMCE'
     );
 
-	public function index() {
-		$this->Article->recursive = 0;
-		$this->set('articles', $this->paginate());
-	}
 
     public function blog() {
+        $this->Article->recursive = 0;
+        $this->set('articles', $this->paginate());
+    }
+
+    public function index() {
         $this->Article->recursive = 0;
         $this->set('articles', $this->paginate());
     }
