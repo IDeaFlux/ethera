@@ -45,6 +45,8 @@ class NoticesController extends AppController {
 			$this->Notice->create();
 			if ($this->Notice->save($this->request->data)) {
                 $this->Notice->saveField('system_user_id',$authUser);
+                //call the calender creation method
+               // $this->Notice->creteCalender();
 				$this->Session->setFlash(__('The notice has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -132,4 +134,61 @@ class NoticesController extends AppController {
 		$this->Session->setFlash(__('Notice was not deleted'),'info_flash');
 		$this->redirect(array('action' => 'index'));
 	}
+
+// Google calender create function
+
+    public function createCalendar($title, $details, $timezone, $hidden, $color, $location) {
+        if ($this->authenticated === false) {
+            return false;
+        } else if (empty($title) || empty($timezone) || !is_bool($hidden) || empty($color) || empty($location)) {
+            return false;
+        }
+
+        $data = array(
+            "data" => array(
+                "title" => $title,
+                "details" => $details,
+                "timeZone" => $timezone,
+                "hidden" => $hidden,
+                "color" => $color,
+                "location" => $location
+            )
+        );
+
+        $headers = array('Content-type: application/json');
+
+        $ch = $this->curlPostHandle("https://www.google.com/calendar/feeds/default/Ethera Events/full", true, $headers);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HEADER, true);
+
+        $response = curl_exec($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $response_headers = $this->http_parse_headers($response);
+
+        curl_close($ch);
+        unset($ch);
+
+        if ($http_code == 302) {
+
+            $url = $response_headers['Location'];
+
+            $ch = $this->curlPostHandle($url, true, $headers);
+
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+
+            $response = curl_exec($ch);
+            $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            if ($http_code == 201) {
+                return json_decode($response);
+            } else {
+                return false;
+            }
+
+        } else if ($http_code == 201) {
+            return json_decode($response);
+        } else {
+            return false;
+        }
+    }
 }
