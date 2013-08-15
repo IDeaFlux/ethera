@@ -1,5 +1,5 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Add Notice'); ?>
+<?php $this->set('title', 'Add Extra Activity'); ?>
 
 <div class="row">
     <div class="span3">
