@@ -138,11 +138,16 @@ You have 24 hours to complete the request.','success_flash');
             $this->SystemUser->set($this->request->data);
 
             if ($this->SystemUser->validates()) {
+                if($this->request->data['SystemUser']['password'] == $this->request->data['SystemUser']['password_confirmation']){
                 $this->request->data['SystemUser']['reset_password_token'] = $this->request->data['SystemUser']['token_created_at'] = null;
-                if($this->SystemUser->save($this->request->data) && $this->_send_password_update_success_email($system_user['SystemUser']['id'])){
-                    unset($_SESSION['token']);
-                    $this->Session->setflash('Your password was changed successfully. Please login to continue.','success_flash');
-                    $this->redirect(array('controller'=>'system_users','action'=>'login'));
+                    if($this->SystemUser->save($this->request->data) && $this->_send_password_update_success_email($system_user['SystemUser']['id'])){
+                        unset($_SESSION['token']);
+                        $this->Session->setflash('Your password was changed successfully. Please login to continue.','success_flash');
+                        $this->redirect(array('controller'=>'system_users','action'=>'login'));
+                    }
+                }
+                else{
+                    $this->Session->setflash('Two passwords does not match, please try again','error_flash');
                 }
             }
         }

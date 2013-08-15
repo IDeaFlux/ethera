@@ -9,6 +9,7 @@
     ));
     echo $this->Form->hidden('reset_password_token',array('value'=>$token));
     echo $this->Form->input('password');
+    echo $this->Form->input('password_confirmation');
     echo $this->Form->button('Reset Password', array(
         'type' => 'submit',
         'class' => 'btn btn-primary'
