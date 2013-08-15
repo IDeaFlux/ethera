@@ -7,8 +7,8 @@
         <h3><?php //echo __('Actions'); ?></h3>
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('New Extra Activity'), array('action' => 'add')); ?></li>
-            <li><?php echo $this->Html->link(__('List Students Extra Activities'), array('controller' => 'students_extra_activities', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Students Extra Activities'), array('controller' => 'students_extra_activities', 'action' => 'add')); ?> </li>
+            <li><?php //echo $this->Html->link(__('List Students Extra Activities'), array('controller' => 'students_extra_activities', 'action' => 'index')); ?> </li>
+            <li><?php //echo $this->Html->link(__('New Students Extra Activities'), array('controller' => 'students_extra_activities', 'action' => 'add')); ?> </li>
         </ul>
     </div>
 
