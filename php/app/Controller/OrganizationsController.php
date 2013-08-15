@@ -17,13 +17,7 @@ class OrganizationsController extends AppController {
 		$this->set('organizations', $this->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function view($id = null) {
 		if (!$this->Organization->exists($id)) {
 			throw new NotFoundException(__('Invalid organization'));
@@ -32,11 +26,7 @@ class OrganizationsController extends AppController {
 		$this->set('organization', $this->Organization->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Organization->create();
@@ -65,7 +55,7 @@ class OrganizationsController extends AppController {
 				$this->Session->setFlash(__('The organization has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'),'error_flash');
+				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
