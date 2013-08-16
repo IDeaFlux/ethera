@@ -44,6 +44,7 @@
             ),
             'class' => 'well form-horizontal'
         )); ?>
+
             <legend><?php echo __('Student Registration'); ?></legend>
             <?php
             echo $this->Form->input('registration_num_header_id');
@@ -102,8 +103,9 @@
             echo $this->Form->input('linkedin_ref',array(
                 'class' => 'span6'
             ));
-
+            echo $this->Recaptcha->display();
             ?>
+
         <div class="form-actions">
             <?php echo $this->Form->submit('Register', array(
                 'div' => false,

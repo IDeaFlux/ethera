@@ -4,6 +4,7 @@ App::uses('AppController', 'Controller');
 class StudentsController extends AppController {
 
     public $helpers = array('Js');
+    public $components = array('Recaptcha.Recaptcha' => array('actions' => array('register')));
 
 
 	public function index() {
