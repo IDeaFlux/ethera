@@ -92,6 +92,8 @@
                         <ul class="nav pull-right">
                             <li><?php echo $this->Html->link('Blog', array('controller'=>'articles','action'=>'blog'));?></li>
                             <li class="divider-vertical"></li>
+                            <li><?php echo $this->Html->link('Register', array('controller'=>'students','action'=>'register'));?></li>
+                            <li class="divider-vertical"></li>
                             <li><?php if($logged_in):?>
                             <?php echo $this->Html->link('Backend', array('controller'=>'homes','action'=>'admin'));?></li>
                             <li class="divider-vertical"></li>
