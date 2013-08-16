@@ -192,7 +192,7 @@ You have 24 hours to complete the request.','success_flash');
         if (!empty($id)) {
             $this->SystemUser->id = $id;
             $SystemUser = $this->SystemUser->read();
-            $url = 'http://' . env('SERVER_NAME') .Router::url('/'). 'system_users/reset_password_token/' . $SystemUser['SystemUser']['reset_password_token'];
+            $url = "Hi, Please use this URL to reset your password. ".'http://' . env('SERVER_NAME') .Router::url('/'). 'system_users/reset_password_token/' . $SystemUser['SystemUser']['reset_password_token'];
 
             $Email = new CakeEmail('gmail');
             $Email->to($SystemUser['SystemUser']['email']);
@@ -216,7 +216,7 @@ You have 24 hours to complete the request.','success_flash');
             $Email->subject('Password Update - DO NOT REPLY');
             $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
             $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-            $Email->send('Password Successfully Updated');
+            $Email->send('Hi, Password Successfully Updated. Please try to login.');
 
             return true;
         }
