@@ -1,0 +1,33 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP Recaptcha Plugin\n"
+"POT-Creation-Date: 2011-12-25 15:16+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Burak Usgurlu <burak@gencnet.com>\n"
+"Language-Team: CakeDC <contact@cakedc.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Turkish\n"
+
+#: Controller/Component/RecaptchaComponent.php:78
+msgid "You must set your private recaptcha key using Configure::write('Recaptcha.privateKey', 'your-key');!"
+msgstr "Cofigure::write('Recaptcha.privateKey', 'your-key'); kullanarak özel anahtarınızı belirlemelisiniz."
+
+#: Controller/Component/RecaptchaComponent.php:139
+msgid "Invalid API response, please contact the site admin."
+msgstr "Hata API cevabı. Lütfen site yöneticisine danışınız."
+
+#: Controller/Component/RecaptchaComponent.php:148
+msgid "Incorrect captcha"
+msgstr "Hatalı güvenlik kodu"
+
+#: View/Helper/RecaptchaHelper.php:195
+msgid "To use reCAPTCHA Mailhide, you need to have the mcrypt php module installed."
+msgstr "reCAPTCHA Mailhide özelliğini kullanmak için php mcrypt modülü kurulu olmalıdır."
+
+#: View/Helper/RecaptchaHelper.php:225
+msgid "You need to set a private and public mail hide key. Please visit http://mailhide.recaptcha.net/apikey"
+msgstr "Özel ve genel eposta gizleme anahtarını belirlemelisiniz. Lütfen http://mailhide.recaptcha.net/apikey adresini ziyaret edin."
+
