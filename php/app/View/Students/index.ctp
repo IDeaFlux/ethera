@@ -1,19 +1,18 @@
-<?php //$this->layout = 'bootstrap2'; ?>
-<?php //$this->set('title', 'Student List'); ?>
+<?php $this->layout = 'bootstrap2'; ?>
+<?php $this->set('title', 'Student List'); ?>
 
-<!--<div class="row">-->
-<!--    <div class="span3">-->
-<!--        <ul class="nav nav-tabs nav-stacked">-->
-<!--            <li>--><?php //echo $this->Html->link(__('New Subject'), array('action' => 'add')); ?><!--</li>-->
-<!--            <li>--><?php //echo $this->Html->link(__('List Course Units'), array('controller' => 'course_units', 'action' => 'index')); ?><!-- </li>-->
-<!--            <li>--><?php //echo $this->Html->link(__('New Course Unit'), array('controller' => 'course_units', 'action' => 'add')); ?><!-- </li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</div>-->
+<div class="row">
+    <div class="span3">
+        <ul class="nav nav-tabs nav-stacked">
+            <li><?php echo $this->Html->link(__('New Subject'), array('action' => 'add')); ?></li>
+            <li><?php echo $this->Html->link(__('List Course Units'), array('controller' => 'course_units', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('New Course Unit'), array('controller' => 'course_units', 'action' => 'add')); ?> </li>
+        </ul>
+    </div>
 
-<div class="students index">
+<div class="span9">
 	<h2><?php echo __('Students'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table cellpadding="0" cellspacing="0" class="table table-hover">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('first_name'); ?></th>
@@ -70,10 +69,12 @@
 <!--			--><?php //echo $this->Html->link($student['Batch']['academic_year'], array('controller' => 'batches', 'action' => 'view', $student['Batch']['id'])); ?>
 <!--		</td>-->
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $student['Student']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $student['Student']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $student['Student']['id']), null, __('Are you sure you want to delete # %s?', $student['Student']['id'])); ?>
-		</td>
+            <div class="btn-group">
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $student['Student']['id']),array('class' => 'btn')); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $student['Student']['id']),array('class' => 'btn')); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $student['Student']['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $student['Student']['id'])); ?>
+		    </div>
+        </td>
 	</tr>
 <?php endforeach; ?>
 	</table>
@@ -83,31 +84,10 @@
 	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
 	));
 	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+    <div class="paging">
+        <?php echo $this->Paginator->pagination(array(
+            'div' => 'pagination pagination-centered'
+        )); ?>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Student'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Study Programs'), array('controller' => 'study_programs', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Study Program'), array('controller' => 'study_programs', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Batches'), array('controller' => 'batches', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Batch'), array('controller' => 'batches', 'action' => 'add')); ?> </li>
-		<li><?php //echo $this->Html->link(__('List Assignments'), array('controller' => 'assignments', 'action' => 'index')); ?> </li>
-		<li><?php //echo $this->Html->link(__('New Assignment'), array('controller' => 'assignments', 'action' => 'add')); ?> </li>
-		<li><?php //echo $this->Html->link(__('List Cvs'), array('controller' => 'cvs', 'action' => 'index')); ?> </li>
-		<li><?php //echo $this->Html->link(__('New Cv'), array('controller' => 'cvs', 'action' => 'add')); ?> </li>
-		<li><?php //echo $this->Html->link(__('List Enrollments'), array('controller' => 'enrollments', 'action' => 'index')); ?> </li>
-		<li><?php //echo $this->Html->link(__('New Enrollment'), array('controller' => 'enrollments', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Feedbacks'), array('controller' => 'feedbacks', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Feedback'), array('controller' => 'feedbacks', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+    </div>
