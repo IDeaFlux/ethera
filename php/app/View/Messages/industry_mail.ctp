@@ -5,8 +5,8 @@
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('E-mail'), array('controller'=>'Messages','action' => 'email')); ?></li>
-            <li><?php echo $this->Html->link(__('Send mail to students'), array('controller' => 'Messages', 'action' => 'studentMail')); ?> </li>
-            <li><?php echo $this->Html->link(__('Send mail to staff'), array('controller' => 'Messages', 'action' => 'staffMail')); ?> </li>
+            <li><?php echo $this->Html->link(__('Send Mail to Students'), array('controller' => 'Messages', 'action' => 'studentMail')); ?> </li>
+            <li><?php echo $this->Html->link(__('Send Mail to Staff'), array('controller' => 'Messages', 'action' => 'staffMail')); ?> </li>
         </ul>
     </div>
 
@@ -21,11 +21,15 @@
                 'wrapInput' => 'controls'
             ),
             'class' => 'well form-horizontal'
-        ));
+        ));?>
+        <legend><?php echo ('Send Mail to Industry '); ?> </legend>
 
-            echo $this->Form->input("to",array(
-            'name'=>'data[to]',
-            'type'=>'textarea',
+
+        <?php
+            echo $this->Form->input('to',array(
+            //'label'=> false,
+            'id'=>'id',
+            'options'=>$organizations,
             'class' => 'span6'
         ));
         echo $this->Form->input("subject", array(
