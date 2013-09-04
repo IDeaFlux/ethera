@@ -19,6 +19,8 @@
             'class' => 'well form-horizontal'
         ));?>
 
+        <legend><?php echo _('Send SMS') ?></legend>
+
 
         <?php echo $this->Form->input("number",array(
             'name'  => 'data[to]',
