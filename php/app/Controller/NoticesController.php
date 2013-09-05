@@ -103,7 +103,7 @@ class NoticesController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Notice->save($this->request->data)) {
                 $this->Notice->saveField('system_user_id',$authUser);
-				$this->Session->setFlash(__('The notice has been saved'),'success_flash');
+				$this->Session->setFlash(__('The notice has been saved.'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The notice could not be saved. Please, try again.'),'error_flash');
