@@ -115,7 +115,7 @@
     </div>
 <div class="span9">
     <h3><?php echo __('Related Articles'); ?></h3>
-    <?php if (!empty($notice['Article'])): ?>
+    <?php if (!empty($articles)): ?>
         <table cellpadding = "0" cellspacing = "0" class="table table-bordered table-hover">
             <tr>
                 <th><?php echo __('Id'); ?></th>
@@ -126,7 +126,7 @@
             </tr>
             <?php
             $i = 0;
-            foreach ($notice['Article'] as $article): ?>
+            foreach ($articles as $article): ?>
                 <tr>
                     <td><?php echo $article['id']; ?></td>
                     <td><?php echo $article['title']; ?></td>
