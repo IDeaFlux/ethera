@@ -44,10 +44,22 @@ class ArticlesController extends AppController {
 		}
 		$systemUsers = $this->Article->SystemUser->find('list');
 		$this->set(compact('systemUsers'));
+
+        // To get related articles to the notice view
+//        $this->loadModel('Notice');
+//        $notices=$this->Notice->find('list',array('conditions'=>array(
+//            'Notice.article_id'=>'Article.id',
+//        )));
+//        $this->set('notices',$notices);
+
+
+
 	}
 
 
 	public function edit($id = null) {
+        //$authUser=$this->Auth->user('id');
+
 		if (!$this->Article->exists($id)) {
 			throw new NotFoundException(__('Invalid article'),'error_flash');
 		}
@@ -62,6 +74,14 @@ class ArticlesController extends AppController {
 			$options = array('conditions' => array('Article.' . $this->Article->primaryKey => $id));
 			$this->request->data = $this->Article->find('first', $options);
 		}
+
+        // To get related articles to the notice view
+//        $this->loadModel('Notice');
+//        $notices=$this->Notice->find('list',array('conditions'=>array(
+//            'Notice.article_id'=>$authUser,
+//        )));
+//        $this->set('notices',$notices);
+
 		$systemUsers = $this->Article->SystemUser->find('list');
 		$this->set(compact('systemUsers'));
 	}
