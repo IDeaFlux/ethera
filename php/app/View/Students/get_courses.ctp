@@ -1,8 +1,3 @@
-<?php
-//debug($courses);
-//debug($enrollments);
-?>
-
 <?php $count = 0;?>
 <?php foreach($courses as $course): ?>
     <label class="checkbox inline" for="<?php echo $course['CourseUnit']['code'];?>">
