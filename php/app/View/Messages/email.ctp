@@ -1,7 +1,7 @@
 <?php $this->layout = 'bootstrap2'; ?>
 <?php $this->set('title', 'Send an Email'); ?>
 
-<h1 align ='center'>Welcome to ETHERA E-mail Service</h1>
+<h1 align ='center'>welcome to ETHERA E-mail Service</h1>
 
 <div class="container">
     <legend><?php echo __('Actions'); ?></legend>
