@@ -4,7 +4,7 @@ App::uses('AppModel', 'Model');
 class Organization extends AppModel {
 
     public $displayField = 'name';
-
+    //validating form fields name,address and email
 	public $validate = array(
 		'name' => array(
 			'notempty' => array(
