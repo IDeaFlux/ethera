@@ -25,11 +25,21 @@ class NoticesController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+
+        $authUser=$this->Auth->user('id');
+
 		if (!$this->Notice->exists($id)) {
 			throw new NotFoundException(__('Invalid notice'));
 		}
 		$options = array('conditions' => array('Notice.' . $this->Notice->primaryKey => $id));
 		$this->set('notice', $this->Notice->find('first', $options));
+
+        $this->loadModel('Article');
+        $articles=$this->Article->find('all',array('conditions'=>array(
+            'Article.system_user_id'=>$authUser,
+        )));
+        $this->set('articles',$articles);
+        echo debug($articles);
 	}
 
 /**
@@ -81,8 +91,7 @@ class NoticesController extends AppController {
           'Article.system_user_id'=>$authUser,
        )));
         $this->set('articles',$articles);
-
-
+        debug($articles);
 
 	}
 

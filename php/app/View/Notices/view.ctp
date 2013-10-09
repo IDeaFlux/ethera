@@ -1,4 +1,5 @@
-<?php $this->layout = 'bootstrap2'; ?>
+<?php $this->layout = 'bootstrap2';?>
+<?php $this->set('title', 'View Notices'); ?>
 
 <div class="row">
     <div class="span3">
@@ -128,15 +129,16 @@
             $i = 0;
             foreach ($articles as $article): ?>
                 <tr>
-                    <td><?php echo $article['id']; ?></td>
-                    <td><?php echo $article['title']; ?></td>
-                    <td><?php echo $article['published_state']; ?></td>
-                    <td><?php echo $article['system_user_id']; ?></td>
+                    <td><?php echo $article['Article']['id']; ?></td>
+                    <td><?php echo $article['Article']['title']; ?></td>
+                    <td><?php echo $article['Article']['published_state']; ?></td>
+                    <td><?php echo $article['Article']['system_user_id']; ?></td>
                     <td class="actions">
                         <div class="btn-group">
-                            <?php echo $this->Html->link(__('View'), array('controller' => 'articles', 'action' => 'view', $article['id']),array('class' => 'btn')); ?>
-                            <?php echo $this->Html->link(__('Edit'), array('controller' => 'articles', 'action' => 'edit', $article['id']),array('class' => 'btn')); ?>
-                            <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'articles', 'action' => 'delete', $article['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $article['id'])); ?>
+                            <!-- No view in articles therefore put blog for view button -->
+                            <?php echo $this->Html->link(__('View'), array('controller' => 'articles', 'action' => 'blog', $article['Article']['id']),array('class' => 'btn')); ?>
+                            <?php echo $this->Html->link(__('Edit'), array('controller' => 'articles', 'action' => 'edit', $article['Article']['id']),array('class' => 'btn')); ?>
+                            <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'articles', 'action' => 'delete', $article['Article']['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $article['Article']['id'])); ?>
                         </div>
                     </td>
                 </tr>
