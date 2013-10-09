@@ -116,5 +116,19 @@
             );
             ?>
         </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-forward icon-4x\"></i></p>
+                <p class=\"text-center\">Approval Phase selection</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'students', 'action' => 'approval_phase_select'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
     </ul>
 </div>

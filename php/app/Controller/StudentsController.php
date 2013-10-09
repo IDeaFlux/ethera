@@ -229,6 +229,22 @@ class StudentsController extends AppController {
         $this->layout = 'ajax';
     }
 
+    public function reg_approval(){
+
+    }
+
+    public function init_approval(){
+
+    }
+
+    public function final_approval(){
+
+    }
+
+    public function approval_phase_select(){
+
+    }
+
     public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->allow('register');
