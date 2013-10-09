@@ -5,6 +5,7 @@ class Organization extends AppModel {
 
     public $displayField = 'name';
 
+
 	public $validate = array(
 		'name' => array(
 			'notempty' => array(
