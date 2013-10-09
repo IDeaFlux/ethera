@@ -4,12 +4,7 @@ App::uses('AppModel', 'Model');
 class Organization extends AppModel {
 
     public $displayField = 'name';
-<<<<<<< HEAD
-
-
-=======
-  
->>>>>>> 276fd6aa440b944dd585d3145c04105809aa1c24
+    
 	public $validate = array(
 		'name' => array(
 			'notempty' => array(
