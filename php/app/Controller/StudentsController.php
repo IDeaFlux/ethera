@@ -230,7 +230,13 @@ class StudentsController extends AppController {
     }
 
     public function reg_approval(){
+        $registered_students = $this->Student->find('list',array(
+            'conditions' => array(
+                'approved_state' => 0
+            )
+        ));
 
+        debug($registered_students);
     }
 
     public function init_approval(){
