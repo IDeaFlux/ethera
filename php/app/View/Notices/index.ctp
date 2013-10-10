@@ -16,7 +16,7 @@
                 <th><?php echo $this->Paginator->sort('title'); ?></th>
                 <th><?php echo $this->Paginator->sort('date_start'); ?></th>
                 <th><?php echo $this->Paginator->sort('date_end'); ?></th>
-                <th><?php echo $this->Paginator->sort('description'); ?></th>
+                <!-- <th> --><?php //echo $this->Paginator->sort('description'); ?><!-- </th> -->
                 <th><?php echo $this->Paginator->sort('published_state'); ?></th>
                 <th><?php echo $this->Paginator->sort('publish_to_calendar'); ?></th>
                 <th><?php echo $this->Paginator->sort('system_user_id'); ?></th>
@@ -29,8 +29,8 @@
             <td><?php echo h($notice['Notice']['title']); ?>&nbsp;</td>
             <td><?php echo h($notice['Notice']['date_start']); ?>&nbsp;</td>
             <td><?php echo h($notice['Notice']['date_end']); ?>&nbsp;</td>
-            <td><?php echo h($notice['Notice']['description']); ?>&nbsp;</td>
-            <td><?php echo h($notice['Notice']['published_state']); ?>&nbsp;</td>
+            <!-- <td> --><?php //echo h($notice['Notice']['description']); ?> <!-- </td> -->
+             <td><?php echo h($notice['Notice']['published_state']); ?>&nbsp;</td>
             <td><?php echo h($notice['Notice']['publish_to_calendar']); ?>&nbsp;</td>
             <td>
                 <?php echo $this->Html->link($notice['SystemUser']['email'], array('controller' => 'system_users', 'action' => 'view', $notice['SystemUser']['id'])); ?>
