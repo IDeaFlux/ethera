@@ -232,7 +232,11 @@ class StudentsController extends AppController {
     public function reg_approval(){
         $registered_students = $this->Student->find('list',array(
             'conditions' => array(
-                'approved_state' => 0
+                'OR' => array(
+                    array('approved_state' => 0), // Not approved
+                    array('approved_state' => 1), // Approved
+                    array('approved_state' => 9)  // Denied
+                )
             )
         ));
 
