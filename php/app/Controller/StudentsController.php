@@ -4,7 +4,9 @@ App::uses('AppController', 'Controller');
 class StudentsController extends AppController {
 
     public $helpers = array('Js');
-    public $components = array('Recaptcha.Recaptcha' => array('actions' => array('register')));
+    public $components = array('Recaptcha.Recaptcha' => array('actions' => array('register')),
+        'Paginator'
+    );
 
 
 	public function index() {
@@ -230,17 +232,17 @@ class StudentsController extends AppController {
     }
 
     public function reg_approval(){
-        $registered_students = $this->Student->find('list',array(
+        $this->Paginator->settings = array(
             'conditions' => array(
                 'OR' => array(
                     array('approved_state' => 0), // Not approved
                     array('approved_state' => 1), // Approved
                     array('approved_state' => 9)  // Denied
-                )
-            )
-        ));
-
-        debug($registered_students);
+                )),
+            'limit' => 20
+        );
+        $registered_students = $this->Paginator->paginate('Student');
+        $this->set('students',$registered_students);
     }
 
     public function init_approval(){
