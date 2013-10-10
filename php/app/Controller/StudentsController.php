@@ -282,10 +282,8 @@ class StudentsController extends AppController {
     public function init_approval(){
         $this->Paginator->settings = array(
             'conditions' => array(
-                'OR' => array(
-                    array('approved_state' => 2), // Not approved from initial approval
-                    //array('approved_state' => 9)  // Denied
-                )),
+                'approved_state' => 2 // Not approved from initial approval
+                ),
             'limit' => 20
         );
         $initial_ready_students = $this->Paginator->paginate('Student');
@@ -303,10 +301,10 @@ class StudentsController extends AppController {
         debug($data);
         if ($this->Student->save($data)) {
             $this->Session->setFlash(__('The student has been approved'),'success_flash');
-            $this->redirect(array('action' => 'reg_approval'));
+            $this->redirect(array('action' => 'init_approval'));
         } else {
             $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
-            $this->redirect(array('action' => 'reg_approval'));
+            $this->redirect(array('action' => 'init_approval'));
         }
     }
 
