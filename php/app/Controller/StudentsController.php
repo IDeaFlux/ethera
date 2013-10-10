@@ -280,7 +280,34 @@ class StudentsController extends AppController {
         }
     }
     public function init_approval(){
+        $this->Paginator->settings = array(
+            'conditions' => array(
+                'OR' => array(
+                    array('approved_state' => 2), // Not approved from initial approval
+                    //array('approved_state' => 9)  // Denied
+                )),
+            'limit' => 20
+        );
+        $initial_ready_students = $this->Paginator->paginate('Student');
+        $this->set('students',$initial_ready_students);
+    }
 
+    public function init_approval_approve($id=null){
+        $this->Student->id = $id;
+        if (!$this->Student->exists()) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        $this->request->onlyAllow('post');
+        $data['Student']['id'] = $id;
+        $data['Student']['approved_state'] = 3;
+        debug($data);
+        if ($this->Student->save($data)) {
+            $this->Session->setFlash(__('The student has been approved'),'success_flash');
+            $this->redirect(array('action' => 'reg_approval'));
+        } else {
+            $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
+            $this->redirect(array('action' => 'reg_approval'));
+        }
     }
 
     public function final_approval(){
