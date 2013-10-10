@@ -9,24 +9,29 @@
     </div>
 
     <div class="span9">
-<!--        <script>-->
-<!--            $(function() {-->
-<!--                $("#datepicker").datepicker({-->
-<!--                    dateFormat: 'yy-mm-dd'-->
-<!--                });-->
-<!--            });-->
-<!--            $(function() {-->
-<!--                $("#datespicker").datepicker({-->
-<!--                    dateFormat: 'yy-mm-dd'-->
-<!--                });-->
-<!--            });-->
-<!--        </script>-->
-<!---->
-<!--        <style>-->
-<!--            div.ui-datepicker{-->
-<!--                font-size:10px;-->
-<!--            }-->
-<!--        </style>-->
+
+        <!-- Start calender script  -->
+        <script>
+            $(function() {
+                $("#datepicker").datepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+            });
+            $(function() {
+                $("#datespicker").datepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+            });
+        </script>
+
+        <style>
+            div.ui-datepicker{
+                font-size:10px;
+            }
+        </style>
+
+        <!-- End the calender script -->
+
         <?php echo $this->Form->create('Notice',array(
             'novalidate' => true,
             'inputDefaults' => array(
@@ -44,18 +49,22 @@
             echo $this->Form->input('title',array(
                 'class'=>'span6'
             ));
-//            echo $this->Form->input('start_date',array(
-//                'minYear' => date('Y') - 70,
-//                'maxYear' => date('Y') - 18,
-//                'id' => 'datespicker',
-//                'type' => 'text'
-//            ));
-//            echo $this->Form->input('end_date',array(
-//                'minYear' => date('Y') - 70,
-//                'maxYear' => date('Y') - 18,
-//                'id' => 'datepicker',
-//                'type' => 'text'
-//            ));
+
+        // Insert date using a calender
+            echo $this->Form->input('start_date',array(
+                'minYear' => date('Y') - 70,
+                'maxYear' => date('Y') - 18,
+                'id' => 'datespicker',
+                'type' => 'text'
+            ));
+            echo $this->Form->input('end_date',array(
+                'minYear' => date('Y') - 70,
+                'maxYear' => date('Y') - 18,
+                'id' => 'datepicker',
+                'type' => 'text'
+            ));
+
+        // end of the calender
             echo $this->Form->input('date_start',array(
                 'class'=>'span1'
             ));
