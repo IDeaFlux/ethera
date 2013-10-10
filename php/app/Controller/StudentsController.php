@@ -236,7 +236,6 @@ class StudentsController extends AppController {
             'conditions' => array(
                 'OR' => array(
                     array('approved_state' => 0), // Not approved
-                    array('approved_state' => 1), // Approved
                     array('approved_state' => 9)  // Denied
                 )),
             'limit' => 20
@@ -245,6 +244,41 @@ class StudentsController extends AppController {
         $this->set('students',$registered_students);
     }
 
+    public function reg_approval_approve($id=null){
+        $this->Student->id = $id;
+        if (!$this->Student->exists()) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        $this->request->onlyAllow('post');
+        $data['Student']['id'] = $id;
+        $data['Student']['approved_state'] = 1;
+        debug($data);
+        if ($this->Student->save($data)) {
+            $this->Session->setFlash(__('The student has been approved'),'success_flash');
+            $this->redirect(array('action' => 'reg_approval'));
+        } else {
+            $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
+            $this->redirect(array('action' => 'reg_approval'));
+        }
+    }
+
+    public function reg_approval_disapprove($id=null){
+        $this->Student->id = $id;
+        if (!$this->Student->exists()) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        $this->request->onlyAllow('post');
+        $data['Student']['id'] = $id;
+        $data['Student']['approved_state'] = 9;
+        debug($data);
+        if ($this->Student->save($data)) {
+            $this->Session->setFlash(__('The student has been disapproved'),'success_flash');
+            $this->redirect(array('action' => 'reg_approval'));
+        } else {
+            $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
+            $this->redirect(array('action' => 'reg_approval'));
+        }
+    }
     public function init_approval(){
 
     }
