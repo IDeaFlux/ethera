@@ -270,7 +270,6 @@ class StudentsController extends AppController {
         $this->request->onlyAllow('post');
         $data['Student']['id'] = $id;
         $data['Student']['approved_state'] = 9;
-        debug($data);
         if ($this->Student->save($data)) {
             $this->Session->setFlash(__('The student has been disapproved'),'success_flash');
             $this->redirect(array('action' => 'reg_approval'));
@@ -298,7 +297,6 @@ class StudentsController extends AppController {
         $this->request->onlyAllow('post');
         $data['Student']['id'] = $id;
         $data['Student']['approved_state'] = 3;
-        debug($data);
         if ($this->Student->save($data)) {
             $this->Session->setFlash(__('The student has been approved'),'success_flash');
             $this->redirect(array('action' => 'init_approval'));
@@ -309,7 +307,31 @@ class StudentsController extends AppController {
     }
 
     public function final_approval(){
+        $this->Paginator->settings = array(
+            'conditions' => array(
+                'approved_state' => 4 // Not approved from initial approval
+            ),
+            'limit' => 20
+        );
+        $final_ready_students = $this->Paginator->paginate('Student');
+        $this->set('students',$final_ready_students);
+    }
 
+    public function final_approval_approve($id=null){
+        $this->Student->id = $id;
+        if (!$this->Student->exists()) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        $this->request->onlyAllow('post');
+        $data['Student']['id'] = $id;
+        $data['Student']['approved_state'] = 5;
+        if ($this->Student->save($data)) {
+            $this->Session->setFlash(__('The student has been approved'),'success_flash');
+            $this->redirect(array('action' => 'final_approval'));
+        } else {
+            $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
+            $this->redirect(array('action' => 'init_approval'));
+        }
     }
 
     public function approval_phase_select(){
