@@ -11,9 +11,14 @@
             $checked = false;
         }
     }
-    if($checked == true){
-        echo $this->Form->input('Enrollment.'.$count.'.course_unit_id',array('type'=>'checkbox','checked'=>true,'value'=>$course['CourseUnit']['id'],'hiddenField' => false,'label'=>false));
-        echo $this->Form->hidden('Enrollment.'.$count.'.id',array('value'=>$enrollment['Enrollment']['id']));
+    if(!empty($checked)){
+        if($checked == true){
+            echo $this->Form->input('Enrollment.'.$count.'.course_unit_id',array('type'=>'checkbox','checked'=>true,'value'=>$course['CourseUnit']['id'],'hiddenField' => false,'label'=>false));
+            echo $this->Form->hidden('Enrollment.'.$count.'.id',array('value'=>$enrollment['Enrollment']['id']));
+        }
+        else{
+            echo $this->Form->input('Enrollment.'.$count.'.course_unit_id',array('type'=>'checkbox','value'=>$course['CourseUnit']['id'],'hiddenField' => false,'label'=>false));
+        }
     }
     else{
         echo $this->Form->input('Enrollment.'.$count.'.course_unit_id',array('type'=>'checkbox','value'=>$course['CourseUnit']['id'],'hiddenField' => false,'label'=>false));

@@ -211,7 +211,12 @@ class StudentsController extends AppController {
         ));
 
         $this->set('courses',$courses);
-        $this->set('enrollments',$enrollments);
+        if(!empty($enrollments)){
+            $this->set('enrollments',$enrollments);
+        }
+        else{
+            $this->set('enrollments',array());
+        }
         $this->set('student_id',$student_id);
         $this->layout = 'ajax';
     }
