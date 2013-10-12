@@ -335,7 +335,11 @@ class StudentsController extends AppController {
     }
 
     public function approval_phase_select(){
+        $this->loadModel('BatchesStudyProgram');
+        $this->loadModel('Batch');
+        $batches = $this->Batch->find('list');
 
+        $this->set('batches',$batches);
     }
 
     public function beforeFilter(){
