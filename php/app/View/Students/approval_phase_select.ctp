@@ -8,7 +8,23 @@
         </ul>
     </div>
     <div class="span9">
-
+        <?php
+        $this->Js->get('#BatchBatchId')->event('change',
+            $this->Js->request(array(
+                'controller'=>'batches',
+                'action'=>'get_study_programs'
+            ), array(
+                'update'=>'#BatchStudyProgram',
+                'async' => true,
+                'method' => 'post',
+                'dataExpression'=>true,
+                'data'=> $this->Js->serializeForm(array(
+                    'isForm' => true,
+                    'inline' => true
+                ))
+            ))
+        );
+        ?>
         <?php echo $this->Form->create('Batch',array(
             'novalidate' => true,
             'type'=>'file',
