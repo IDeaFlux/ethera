@@ -18,13 +18,18 @@
                     <div class="span4" style="padding-left: 10px">
                         <div class="thumbnail">
                             <h3>Events Calender</h3>
-<!--                            <iframe src="https://www.google.com/calendar/embed?src=lg7d51der6evp1bvdfhvfu094g%40group.calendar.google.com&ctz=Asia/Colombo"-->
-<!--                                    style="border: 0; max-width: 100%" width="360" height="240" frameborder="0" scrolling="yes">-->
-<!--                            </iframe>-->
-                            <iframe src="https://www.google.com/calendar/embed?src=qpn921b5ppnlnrr9ktonaethrc%40group.calendar.google.com&ctz=Asia/Colombo" style="border: 0" width="360" height="360" frameborder="0" scrolling="no"></iframe>
+                            <!--First Calender inserted  -->
+<!--
+                                <iframe src="https://www.google.com/calendar/embed?src=lg7d51der6evp1bvdfhvfu094g%40group.calendar.google.com&ctz=Asia/Colombo"-->
+<!--                                 style="border: 0; max-width: 100%" width="360" height="240" frameborder="0" scrolling="yes">-->
+<!--                           </iframe> -->
 
-   <!--                         <iframe src="https://www.google.com/calendar/embed?showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=360&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=8hnnp6ndfkvh6q6mprsslh8uds%40group.calendar.google.com&amp;color=%232F6309&amp;ctz=Asia%2FColombo" style=" border-width:0 " width="360" height="360" frameborder="0" scrolling="no">
+                            <!--First Calender inserted  -->
+<!--                          <iframe src="https://www.google.com/calendar/embed?showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=360&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=8hnnp6ndfkvh6q6mprsslh8uds%40group.calendar.google.com&amp;color=%232F6309&amp;ctz=Asia%2FColombo" style=" border-width:0 " width="360" height="360" frameborder="0" scrolling="no">
                             </iframe>  -->
+
+                       <iframe src="https://www.google.com/calendar/embed?src=4v8414r52l021tvvkn46jg0pms%40group.calendar.google.com&ctz=Asia/Colombo" style="border: 0" width="360" height="360" frameborder="0" scrolling="no"></iframe>
+
                         </div>
                     </div>
                     <div class="span4">

@@ -39,7 +39,7 @@ class NoticesController extends AppController {
             'Article.system_user_id'=>$authUser,
         )));
         $this->set('articles',$articles);
-        echo debug($articles);
+        //echo debug($articles);
 	}
 
 /**
