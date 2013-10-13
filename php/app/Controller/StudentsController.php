@@ -347,8 +347,24 @@ class StudentsController extends AppController {
         $this->set('batches',$batches);
     }
 
+    public function login() {
+        if($this->request->is('post')){
+            if($this->Auth->login()){
+                //$this->redirect($this->Auth->redirect());
+                $this->redirect(array('controller'=>'homes','action'=>'admin'));
+            }
+            else{
+                $this->Session->setFlash('Your email & password combination is incorrect','error_flash');
+            }
+        }
+    }
+
     public function beforeFilter(){
         parent::beforeFilter();
+        $this->Auth->loginAction = array(
+            'controller' => 'students',
+            'action' => 'login'
+        );
         $this->Auth->allow('register');
     }
 }

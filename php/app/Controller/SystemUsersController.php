@@ -225,6 +225,10 @@ You have 24 hours to complete the request.','success_flash');
 
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->Auth->loginAction = array(
+            'controller' => 'system_users',
+            'action' => 'login'
+        );
         $this->Auth->allow(array('forgot_password','reset_password_token'));
     }
 }
