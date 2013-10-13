@@ -67,6 +67,43 @@ class Notice extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+        //Validate Time
+        'time_start' => array(
+            'time' => array(
+                'rule' => array('time'),
+                'message' => 'Please enter a valid time ',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+            'notempty' => array(
+                //'rule' => array('notempty'),
+                //'message' => 'Please enter the starting date',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
+        'time_end' => array(
+            'time' => array(
+                'rule' => array('time'),
+                'message' => 'Please enter a valid time',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+            'notempty' => array(
+                //'rule' => array('notempty'),
+                //'message' => 'Please enter the ending time',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
 		'published_state' => array(
 			'boolean' => array(
 				'rule' => array('boolean'),
