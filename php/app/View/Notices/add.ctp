@@ -49,8 +49,7 @@
             echo $this->Form->input('title',array(
                 'class'=>'span6'
             ));
-//<!--
-//        // Insert date using a calender
+        // Insert date using a calender
 //            echo $this->Form->input('start_date',array(
 //                'minYear' => date('Y') - 70,
 //                'maxYear' => date('Y') - 18,
@@ -63,21 +62,42 @@
 //                'id' => 'datepicker',
 //                'type' => 'text'
 //            ));
-//
-//        // end of the calender
+
+        // end of the calender
+
+            //Get the date only format
 //            echo $this->Form->input('date_start',array(
 //                'class'=>'span1'
 //            ));
 //            echo $this->Form->input('date_end',array(
 //                'class'=>'span1'
-//            )); -->
+//            ));
+
+
         // Insert fields to get start and end time
-            echo $this->Form->input('time_start',array(
-                'class'=>'span1'
-            ));
-            echo $this->Form->input('time_end',array(
-                'class'=>'span1'
-            ));
+//            echo $this->Form->input('time_start',array(
+//                'class'=>'span1'
+//            ));
+//            echo $this->Form->input('time_end',array(
+//                'class'=>'span1'
+//            ));
+
+        echo $this->Form->input('date_start', array(
+            'class'=> 'span1',
+            'type' => 'datetime',
+           'timeFormat'=>'24',
+            'dateFormat'=>'YMD',
+           //'selected' => '00:01'
+        ));
+        echo $this->Form->input('date_end', array(
+            'class'=> 'span1',
+            'type' => 'datetime',
+            'timeFormat'=>'24',
+            'dateFormat'=>'YMD',
+            //'selected' => '23:59'
+        ));
+
+
             echo $this->Form->input('description',array(
                 'class'=>'span6'
             ));
