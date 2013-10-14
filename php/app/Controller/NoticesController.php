@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Vendor', 'GoogleApi/Google_Client');
+App::import('Vendor', 'GoogleApi/contrib/Google_CalendarService');
 /**
  * Notices Controller
  *
