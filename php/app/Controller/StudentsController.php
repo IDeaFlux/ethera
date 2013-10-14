@@ -339,11 +339,35 @@ class StudentsController extends AppController {
         }
     }
 
-    public function approval_phase_select(){
+    public function approval_phase_select() {
         $this->loadModel('BatchesStudyProgram');
         $this->loadModel('Batch');
-        $batches = $this->Batch->find('list');
 
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+
+            $batch_study_program = $this->BatchesStudyProgram->find(
+                'first',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+
+            );
+            $save_data['BatchesStudyProgram']['id'] = $batch_study_program['BatchesStudyProgram']['id'];
+            $save_data['BatchesStudyProgram']['approval_phase'] = $data['Batch']['phase'];
+            if ($this->BatchesStudyProgram->save($save_data)) {
+                $this->Session->setFlash(__('Approval Phase Updated'),'success_flash');
+                $this->redirect(array('action' => 'approval_phase_select'));
+            } else {
+                $this->Session->setFlash(__('Could not update. Please, try again.'));
+            }
+        }
+
+        $batches = $this->Batch->find('list');
         $this->set('batches',$batches);
     }
 

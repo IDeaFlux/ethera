@@ -9,7 +9,7 @@
     </div>
     <div class="span9">
         <?php
-        $this->Js->get('#BatchBatchId')->event('change',
+        $this->Js->get('#BatchBatchId')->event('click',
             $this->Js->request(array(
                 'controller'=>'batches',
                 'action'=>'get_study_programs'
@@ -55,6 +55,10 @@
         ));
         echo $this->Form->input('phase',array(
             'type' => 'select',
+            'options'=> array(
+                1 => "Initial Choices (3) with CV",
+                2 => "Final Choices (3) with CV and Companies"
+            ),
             'class' => 'span4',
             'label' => array(
                 'text' => 'Phase/Stage'
