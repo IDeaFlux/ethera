@@ -41,10 +41,10 @@ class OpportuniesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Opportuny->create();
 			if ($this->Opportuny->save($this->request->data)) {
-				$this->Session->setFlash(__('The opportuny has been saved'));
+				$this->Session->setFlash(__('The opportuny has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The opportuny could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The opportuny could not be saved. Please, try again.'),'error_flash');
 			}
 		}
 		$interestedAreas = $this->Opportuny->InterestedArea->find('list');
@@ -66,10 +66,10 @@ class OpportuniesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Opportuny->save($this->request->data)) {
-				$this->Session->setFlash(__('The opportuny has been saved'));
+				$this->Session->setFlash(__('The opportuny has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The opportuny could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The opportuny could not be saved. Please, try again.'),'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('Opportuny.' . $this->Opportuny->primaryKey => $id));
@@ -95,10 +95,10 @@ class OpportuniesController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Opportuny->delete()) {
-			$this->Session->setFlash(__('Opportuny deleted'));
+			$this->Session->setFlash(__('Opportuny deleted'),'success_flash');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Opportuny was not deleted'));
+		$this->Session->setFlash(__('Opportuny was not deleted'),'error_flash');
 		$this->redirect(array('action' => 'index'));
 	}
 }
