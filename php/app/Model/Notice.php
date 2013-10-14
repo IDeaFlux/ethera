@@ -33,15 +33,15 @@ class Notice extends AppModel {
 		),
 		'date_start' => array(
 			'date' => array(
-				'rule' => array('date'),
+				'rule' => array('datetime'),
 				'message' => 'Please enter a valid date ',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'notempty' => array(
-				'rule' => array('notempty'),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
 				'message' => 'Please enter the starting date',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -51,15 +51,15 @@ class Notice extends AppModel {
 		),
 		'date_end' => array(
 			'date' => array(
-				'rule' => array('date'),
+				'rule' => array('datetime'),
 				'message' => 'Please enter a valid date',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'notempty' => array(
-				'rule' => array('notempty'),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
 				'message' => 'Please enter the ending date',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -78,8 +78,8 @@ class Notice extends AppModel {
                 //'on' => 'create', // Limit validation to 'create' or 'update' operations
             ),
             'notempty' => array(
-                //'rule' => array('notempty'),
-                //'message' => 'Please enter the starting date',
+                'rule' => array('notempty'),
+                'message' => 'Please enter the starting time',
                 //'allowEmpty' => false,
                 //'required' => false,
                 //'last' => false, // Stop validation after this rule
@@ -96,8 +96,8 @@ class Notice extends AppModel {
                 //'on' => 'create', // Limit validation to 'create' or 'update' operations
             ),
             'notempty' => array(
-                //'rule' => array('notempty'),
-                //'message' => 'Please enter the ending time',
+                'rule' => array('notempty'),
+                'message' => 'Please enter the ending time',
                 //'allowEmpty' => false,
                 //'required' => false,
                 //'last' => false, // Stop validation after this rule
