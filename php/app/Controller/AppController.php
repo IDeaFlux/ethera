@@ -54,6 +54,10 @@ class AppController extends Controller {
 
     public function beforeFilter(){
         //$this->Auth->allow('index','view');
+        $this->Auth->loginAction = array(
+            'controller' => 'system_users',
+            'action' => 'login'
+        );
         $this->set('logged_in', $this->Auth->loggedIn());
         $this->set('current_user', $this->Auth->user());
     }
