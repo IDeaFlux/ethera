@@ -2,6 +2,7 @@
 App::uses('AppController', 'Controller');
 App::uses('MessagesController','Controller');
 App::uses('CakeEmail', 'Network/Email');
+App::uses('EtheraEmail','Lib');
 
 class SystemUsersController extends AppController {
 
@@ -194,12 +195,7 @@ You have 24 hours to complete the request.','success_flash');
             $SystemUser = $this->SystemUser->read();
             $url = "Hi, Please use this URL to reset your password. ".'http://' . env('SERVER_NAME') .Router::url('/'). 'system_users/reset_password_token/' . $SystemUser['SystemUser']['reset_password_token'];
 
-            $Email = new CakeEmail('gmail');
-            $Email->to($SystemUser['SystemUser']['email']);
-            $Email->subject('Password Reset Request - DO NOT REPLY');
-            $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
-            $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-            $Email->send($url);
+            EtheraEmail::mailer($SystemUser['SystemUser']['email'],'Password Reset Request - DO NOT REPLY',$url);
 
             return true;
         }
@@ -211,12 +207,7 @@ You have 24 hours to complete the request.','success_flash');
             $this->SystemUser->id = $id;
             $SystemUser = $this->SystemUser->read();
 
-            $Email = new CakeEmail('gmail');
-            $Email->to($SystemUser['SystemUser']['email']);
-            $Email->subject('Password Update - DO NOT REPLY');
-            $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
-            $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-            $Email->send('Hi, Password Successfully Updated. Please try to login.');
+            EtheraEmail::mailer($SystemUser['SystemUser']['email'],'Password Update - DO NOT REPLY','Hi, Password Successfully Updated. Please try to login.');
 
             return true;
         }
