@@ -52,20 +52,46 @@ class NoticesController extends AppController {
         $authUser=$this->Auth->user('id');
 
 		if ($this->request->is('post')) {
-			$this->Notice->create();
+            debug($this->request->data);
+
+            //get date fields separately and save data; not necessary
+            $data=$this->request->data;
+            $save_year=$data['Notice']['date_start']['year'];
+            $save_month=$data['Notice']['date_start']['month'];
+            $save_day=$data['Notice']['date_start']['day'];
+            $save_hour=$data['Notice']['date_start']['hour'];
+            $save_min=$data['Notice']['date_start']['min'];
+            $start_date=$save_year."-".$save_month."-".$save_day." ".$save_hour.":".$save_min.":00";
+            debug($start_date);
+
+
+
+
+
+            $this->Notice->create();
+
 			if ($this->Notice->save($this->request->data)) {
                 $this->Notice->saveField('system_user_id',$authUser);
 
-                $data=array(
-                    'data'=>array(
-                        'title'=>'hi',
-                        'date_start'=>'2013-08-15',
-                        'date_end'=>'2013-08-16'
+              //save separately collected date; not necessary
+                $this->Notice->saveField('date_start',$start_date);
 
-                    )
-                );
-               // debug($data);
-                $this->Notice->createEvent($data);
+                // get the current date and time
+               // $this->Notice->saveField('date_start', date("Y-m-d H:i:s"));
+               // $this->Notice->saveField('date_end', date("Y-m-d H:i:s"));
+
+
+
+//                $data=array(
+//                    'data'=>array(
+//                        'title'=>'hi',
+//                        'date_start'=>'2013-08-15',
+//                        'date_end'=>'2013-08-16'
+//
+//                    )
+//                );
+
+               // $this->Notice->createEvent($data);
                 //call the calender creation method
 
 				$this->Session->setFlash(__('The notice has been saved'),'success_flash');
@@ -197,6 +223,8 @@ class NoticesController extends AppController {
         }
 
         $headers = array('Content-Type: application/json');
+        //url for my calendar
+        //https://www.googleapis.com/calendar/v3/calendars/4v8414r52l021tvvkn46jg0pms@group.calendar.google.com/events
 
         $url = sprintf("https://www.google.com/calendar/feeds/%s/private/full", $handle);
         $ch = $this->curlPostHandle($url, true, $headers);
