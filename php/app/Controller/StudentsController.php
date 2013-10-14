@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('EtheraEmail','Lib');
 
 class StudentsController extends AppController {
 
@@ -257,7 +258,7 @@ class StudentsController extends AppController {
         $this->request->onlyAllow('post');
         $data['Student']['id'] = $id;
         $data['Student']['approved_state'] = 1;
-        debug($data);
+        //debug($data);
         if ($this->Student->save($data)) {
             $this->Session->setFlash(__('The student has been approved'),'success_flash');
             $this->redirect(array('action' => 'reg_approval'));
@@ -355,8 +356,32 @@ class StudentsController extends AppController {
                     ),
                     'recursive' => -1
                 )
-
             );
+
+            $students = $this->Student->find(
+                'all',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );
+
+            foreach($students as $student){
+                $student_save['Student']['id'] = $student['Student']['id'];
+                $student_save['Student']['approval_phase'] = $data['Batch']['phase'];
+
+                if($this->Student->save($student_save)){
+                    continue;
+                }
+                else{
+                    $this->Session->setFlash(__('Could not update. Please, try again.'));
+                    break;
+                }
+            }
+
             $save_data['BatchesStudyProgram']['id'] = $batch_study_program['BatchesStudyProgram']['id'];
             $save_data['BatchesStudyProgram']['approval_phase'] = $data['Batch']['phase'];
             if ($this->BatchesStudyProgram->save($save_data)) {

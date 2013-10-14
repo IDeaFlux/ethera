@@ -59,7 +59,13 @@ CREATE TABLE IF NOT EXISTS `batches_study_programs` (
   `industry_ready` int(1) NOT NULL,
   `approval_phase` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+INSERT INTO `batches_study_programs` (`id`, `batch_id`, `study_program_id`, `freez_state`, `industry_ready`, `approval_phase`) VALUES
+(1, 1, 1, 0, 0, 0),
+(2, 1, 2, 0, 0, 1),
+(3, 2, 2, 0, 0, 0),
+(4, 2, 3, 0, 0, 0);
 
 DROP TABLE IF EXISTS `course_units`;
 CREATE TABLE IF NOT EXISTS `course_units` (
@@ -98,14 +104,16 @@ CREATE TABLE IF NOT EXISTS `enrollments` (
   `student_id` int(11) NOT NULL,
   `grade` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 INSERT INTO `enrollments` (`id`, `course_unit_id`, `student_id`, `grade`) VALUES
 (6, 1, 1, 'A+'),
 (7, 2, 1, 'B+'),
 (8, 3, 1, ''),
 (9, 4, 1, 'C'),
-(10, 5, 1, 'A+');
+(10, 5, 1, 'A+'),
+(11, 1, 4, ''),
+(12, 2, 4, '');
 
 DROP TABLE IF EXISTS `extra_activities`;
 CREATE TABLE IF NOT EXISTS `extra_activities` (
@@ -222,19 +230,21 @@ CREATE TABLE IF NOT EXISTS `students` (
   `freez_state` int(1) NOT NULL,
   `industry_ready` int(1) NOT NULL,
   `approved_state` int(1) NOT NULL,
+  `approval_phase` int(1) NOT NULL,
   `linkedin_ref` varchar(255) NOT NULL,
   `study_program_id` int(11) NOT NULL,
   `batch_id` int(11) NOT NULL,
   `registration_num_header_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `first_name` (`first_name`,`last_name`,`reg_number`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
-INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `email`, `password`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freez_state`, `industry_ready`, `approved_state`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`) VALUES
-(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'udithabnd@gmail.com', '8463bd09bf1a6867ae282a101f52aab0ef650a47', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 0, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 0, 0, 'udithawijerathna', 1, 1, 1),
-(2, 'Krishantha', 'Sameera', 'Zoysa', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 0, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, '', 2, 1, 2),
-(3, 'Amal', 'De', 'Silva', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '52093438-3310-44fe-9986-3169740d37dd', 0, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, '', 4, 1, 3),
-(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '520da09d-12e0-431f-9007-1071740d37dd', 0, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 0, 0, '', 1, 1, 1);
+INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `email`, `password`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freez_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`) VALUES
+(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'udinnet@gmail.com', '8463bd09bf1a6867ae282a101f52aab0ef650a47', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 0, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 0, 9, 1, 'udithawijerathna', 1, 1, 1),
+(2, 'Krishantha', 'Sameera', 'Zoysa', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 0, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, 0, '', 2, 1, 2),
+(3, 'Amal', 'De', 'Silva', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '52093438-3310-44fe-9986-3169740d37dd', 0, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, 0, '', 4, 1, 3),
+(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '520da09d-12e0-431f-9007-1071740d37dd', 0, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 0, 0, 1, '', 1, 1, 1),
+(5, 'Sameera', 'Lakmal', 'Hokandara', '', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '525a8d68-d194-4537-a46b-039f740d37dd', 0, '56', 'M', '1988-04-08', 'abc', 'abc', 'Avissawella', 0, 0, 0, 1, '', 1, 1, 1);
 
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
