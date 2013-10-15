@@ -25,7 +25,7 @@
                 <p class=\"text-center\">Feed-Backs</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'system_users', 'action' => 'index'),
+                array('controller' => 'feedbacks', 'action' => 'index'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
