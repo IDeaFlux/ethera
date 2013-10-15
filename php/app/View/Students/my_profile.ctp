@@ -1,6 +1,5 @@
 <?php $this->layout = 'bootstrap2'; ?>
 <?php $this->set('title', 'Admin Home'); ?>
-
 <h1 align="center">My Profile</h1>
 
 <div class="container">
@@ -11,7 +10,7 @@
                 <p class=\"text-center\">Edit My Profile</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'homes', 'action' => 'student_processing'),
+                array('controller' => 'students', 'action' => 'edit_my_profile',$student),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
@@ -33,6 +32,7 @@
             );
             ?>
         </li>
+        <?php if($enable == 1): ?>
         <li class="span2">
             <?php
             $i = "<p class=\"text-center\"><i class=\"icon-user icon-4x\"></i></p>
@@ -47,6 +47,7 @@
             );
             ?>
         </li>
+        <?php endif ?>
         <li class="span2">
             <?php
             $i = "<p class=\"text-center\"><i class=\"icon-user icon-4x\"></i></p>
