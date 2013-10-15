@@ -57,15 +57,42 @@ class NoticesController extends AppController {
             debug($this->request->data);
 
             //get date fields separately and save data; not necessary
+//            $data=$this->request->data;
+//            $save_year=$data['Notice']['date_start']['year'];
+//            $save_month=$data['Notice']['date_start']['month'];
+//            $save_day=$data['Notice']['date_start']['day'];
+//            $save_hour=$data['Notice']['date_start']['hour'];
+//            $save_min=$data['Notice']['date_start']['min'];
+//            $start_date=$save_year."-".$save_month."-".$save_day." ".$save_hour.":".$save_min.":00";
+//            debug($start_date);
+
+
             $data=$this->request->data;
             $save_year=$data['Notice']['date_start']['year'];
             $save_month=$data['Notice']['date_start']['month'];
             $save_day=$data['Notice']['date_start']['day'];
             $save_hour=$data['Notice']['date_start']['hour'];
             $save_min=$data['Notice']['date_start']['min'];
-            $start_date=$save_year."-".$save_month."-".$save_day." ".$save_hour.":".$save_min.":00";
+            $date1=$save_year."-".$save_month."-".$save_day;
+            $starttime=$save_hour.":".$save_min;
+            $start_date=$save_year."-".$save_month."-".$save_day."T".$save_hour.":".$save_min.":00.000+05:30";
+            debug($date1);
+            debug($starttime);
             debug($start_date);
 
+
+            $save_year=$data['Notice']['date_end']['year'];
+            $save_month=$data['Notice']['date_end']['month'];
+            $save_day=$data['Notice']['date_end']['day'];
+            $save_hour=$data['Notice']['date_end']['hour'];
+            $save_min=$data['Notice']['date_end']['min'];
+            $date2=$save_year."-".$save_month."-".$save_day;
+            $endtime=$save_hour.":".$save_min;
+            $end_date=$save_year."-".$save_month."-".$save_day."T".$save_hour.":".$save_min.":00.000+05:30";
+            debug($date2);
+            debug($starttime);
+
+            $title=$data['Notice']['title'];
 
 
 
@@ -75,8 +102,11 @@ class NoticesController extends AppController {
 			if ($this->Notice->save($this->request->data)) {
                 $this->Notice->saveField('system_user_id',$authUser);
 
+                $response = $this->send_post_request($start_date,$end_date,$title);
+                debug($response);
+
               //save separately collected date; not necessary
-                $this->Notice->saveField('date_start',$start_date);
+             //   $this->Notice->saveField('date_start',$start_date);
 
                 // get the current date and time
                // $this->Notice->saveField('date_start', date("Y-m-d H:i:s"));
@@ -97,7 +127,7 @@ class NoticesController extends AppController {
                 //call the calender creation method
 
 				$this->Session->setFlash(__('The notice has been saved'),'success_flash');
-				$this->redirect(array('action' => 'index'));
+				//$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The notice could not be saved. Please, try again.'),'error_flash');
 			}
@@ -401,54 +431,54 @@ class NoticesController extends AppController {
     // The example method header
     //function create_post_argsJSON($date,$starttime,$endtime,$title){
 
-    public function create_post_request($date1,$date2,$starttime,$endtime,$title){
-       // $date_start = $this->Article->find('date_start', array(
-         //   'conditions' => array('Notice.id' => '82')
-
-        //get the data hardcoded
+//    public function create_post_request(){
+//       // $date_start = $this->Article->find('date_start', array(
+//         //   'conditions' => array('Notice.id' => '82')
+//
+//        //get the data hardcoded
 //        $date1='2013-10-15';
 //        $date2='2013-10-25';
 //        $starttime='18:00';
 //        $endtime='19:00';
 //        $title='Hello success';
-        $arg_list = func_get_args();
-        foreach($arg_list as $key => $arg){
-            $arg_list[$key] = urlencode($arg);
-        }
-        //2013-06-07T10:00:00.000-07:00
-        $postargs = <<<JSON
-{
- "end": {
-  "dateTime": "{$date2}T{$starttime}:00.000+05:30"
- },
-  "start": {
-  "dateTime": "{$date1}T{$endtime}:00.000+05:30"
- },
- "summary": "$title",
- "description": "$title"
-}
-JSON;
+//        $arg_list = func_get_args();
+//        foreach($arg_list as $key => $arg){
+//            $arg_list[$key] = urlencode($arg);
+//        }
+//        //2013-06-07T10:00:00.000-07:00
+//        $postargs = <<<JSON
+//{
+// "end": {
+//  "dateTime": "{$date2}T{$starttime}:00.000+05:30"
+// },
+//  "start": {
+//  "dateTime": "{$date1}T{$endtime}:00.000+05:30"
+// },
+// "summary": "$title",
+// "description": "$title"
+//}
+//JSON;
+//
+//
+//        $postargs2 = <<<JSON
+//{
+//"end": {
+//"dateTime": "2013-06-23T10:00:00.000-07:00"
+//},
+//"start": {
+//"dateTime": "2013-06-07T10:00:00.000-07:00"
+//}
+//}
+//JSON;
+//
+//
+//        return $postargs;
+//        //debug($postargs2);
+//        //debug(json_decode($postargs2,true));
+//
+//    }
 
-
-        $postargs2 = <<<JSON
-{
-"end": {
-"dateTime": "2013-06-23T10:00:00.000-07:00"
-},
-"start": {
-"dateTime": "2013-06-07T10:00:00.000-07:00"
-}
-}
-JSON;
-
-
-        return $postargs;
-        //debug($postargs2);
-        //debug(json_decode($postargs2,true));
-
-    }
-
-    function send_post_request(){
+    function send_post_request($start_date,$end_date,$title){
         $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
         $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
         $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY;
@@ -457,12 +487,35 @@ JSON;
 
         //var_dump($auth);
 
+        $arg_list = func_get_args();
+        foreach($arg_list as $key => $arg){
+            $arg_list[$key] = urlencode($arg);
+        }
+        //2013-06-07T10:00:00.000-07:00
+        $postargs = <<<JSON
+{
+ "end": {
+  "dateTime": "$end_date"
+ },
+  "start": {
+  "dateTime": "$start_date"
+ },
+ "summary": "$title",
+ "description": "$title"
+}
+JSON;
+
+    debug($postargs);
+
         $session = curl_init($request);
 
         // Tell curl to use HTTP POST
         curl_setopt ($session, CURLOPT_POST, true);
         // Tell curl that this is the body of the POST
-        curl_setopt ($session, CURLOPT_POSTFIELDS, $this->create_post_request());
+
+
+        // $save_year=$data['Notice']['date_start']['year'];
+        curl_setopt ($session, CURLOPT_POSTFIELDS,$postargs);
         // Tell curl not to return headers, but do return the response
         curl_setopt($session, CURLOPT_HEADER, true);
         curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
@@ -477,8 +530,8 @@ JSON;
         //echo '</pre>';
 
         curl_close($session);
-        $this->set('response',$response);
-        //return $response;
+        //$this->set('response',$response);
+        return $response;
     }
 
 
