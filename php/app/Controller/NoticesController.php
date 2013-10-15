@@ -185,7 +185,7 @@ class NoticesController extends AppController {
 
 // Google calender create event function
 
-    public function createEvent($handle, $quick = false, $details, $title = null, $transparency = null, $status = null, $location = null, $start = null, $end = null) {
+   /* public function createEvent($handle, $quick = false, $details, $title = null, $transparency = null, $status = null, $location = null, $start = null, $end = null) {
         if ($this->authenticated === false) {
             return false;
         } else if ($quick === false && (empty($title) || empty($transparency) || empty($status) || empty($location) || empty($start) || empty($end))) {
@@ -371,5 +371,115 @@ class NoticesController extends AppController {
         } else {
             return false;
         }
+    } */
+
+        //Get the access token for the session
+
+        public function get_access_token(){
+            //$this->autoRender = false;
+            $tokenURL = 'https://accounts.google.com/o/oauth2/token';
+            $postData = array(
+                'client_secret'=>'fqkcG3LiI7NH3QhQ-tCOtgVG',
+                'grant_type'=>'refresh_token',
+                'refresh_token'=>'1/HneWiwqvhClUi80aa-c3nwtzpNizd0seiq8K7yny0yM',
+                'client_id'=>'1077896430665-r2m8jhs76tehuccralfjd688vpfcdr9m.apps.googleusercontent.com'
+            );
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $tokenURL);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $tokenReturn = curl_exec($ch);
+            $token = json_decode($tokenReturn);
+            //var_dump($tokenReturn);
+            $accessToken = $token->access_token;
+            debug($accessToken);
+            return $accessToken;
+        }
+
+    // The example method header
+    //function create_post_argsJSON($date,$starttime,$endtime,$title){
+
+    public function create_post_request(){
+       // $date_start = $this->Article->find('date_start', array(
+         //   'conditions' => array('Notice.id' => '82')
+        //
+        $date1='2013-10-17';
+        $date2='2013-10-21';
+        $starttime='10:00';
+        $endtime='17:00';
+        $title='Hello success';
+        $arg_list = func_get_args();
+        foreach($arg_list as $key => $arg){
+            $arg_list[$key] = urlencode($arg);
+        }
+        //2013-06-07T10:00:00.000-07:00
+        $postargs = <<<JSON
+{
+ "end": {
+  "dateTime": "{$date2}T{$endtime}:00.000+05:30"
+ },
+  "start": {
+  "dateTime": "{$date1}T{$endtime}:00.000+05:30"
+ },
+ "summary": "$title",
+ "description": "$title"
+}
+JSON;
+
+
+        $postargs2 = <<<JSON
+{
+"end": {
+"dateTime": "2013-06-23T10:00:00.000-07:00"
+},
+"start": {
+"dateTime": "2013-06-07T10:00:00.000-07:00"
+}
+}
+JSON;
+
+
+        return $postargs;
+        //debug($postargs2);
+        //debug(json_decode($postargs2,true));
+
     }
+
+    function send_post_request(){
+        $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
+        $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+        $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY;
+
+        //$auth = json_decode($_SESSION['oauth_access_token'],true);
+
+        //var_dump($auth);
+
+        $session = curl_init($request);
+
+        // Tell curl to use HTTP POST
+        curl_setopt ($session, CURLOPT_POST, true);
+        // Tell curl that this is the body of the POST
+        curl_setopt ($session, CURLOPT_POSTFIELDS, $this->create_post_request());
+        // Tell curl not to return headers, but do return the response
+        curl_setopt($session, CURLOPT_HEADER, true);
+        curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($session, CURLOPT_VERBOSE, true);
+        curl_setopt($session, CURLINFO_HEADER_OUT, true);
+        curl_setopt($session, CURLOPT_HTTPHEADER, array('Content-Type:  application/json','Authorization:  Bearer ' . $this->get_access_token(),'X-JavaScript-User-Agent:  Mount Pearl Tennis Club Bookings'));
+
+        $response = curl_exec($session);
+
+        //echo '<pre>';
+        //var_dump(curl_getinfo($session, CURLINFO_HEADER_OUT));
+        //echo '</pre>';
+
+        curl_close($session);
+        $this->set('response',$response);
+        //return $response;
+    }
+
+
+
 }
