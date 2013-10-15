@@ -23,7 +23,9 @@ class ArticlesController extends AppController {
 			throw new NotFoundException(__('Invalid article'),'error_flash');
 		}
 		$options = array('conditions' => array('Article.' . $this->Article->primaryKey => $id));
-		$this->set('article', $this->Article->find('first', $options));
+		$this->set('articles', $this->Article->find('first', $options));
+
+
 	}
 
 
