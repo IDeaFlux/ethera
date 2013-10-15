@@ -298,6 +298,7 @@ class Student extends AppModel {
     }
 
     public function sendData($data) {
+        $data['Student']['group_id'] = 4;
         $this->create($data);
         if($this->uploadFile())
         {
