@@ -106,7 +106,8 @@ class NoticesController extends AppController {
 
                 if($calpost==1){
                 $response = $this->send_post_request($start_date,$end_date,$title);
-                debug($response);}
+                //debug($response);
+                }
                 
 
               //save separately collected date; not necessary
@@ -131,7 +132,7 @@ class NoticesController extends AppController {
                 //call the calender creation method
 
 				$this->Session->setFlash(__('The notice has been saved'),'success_flash');
-				//$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The notice could not be saved. Please, try again.'),'error_flash');
 			}
