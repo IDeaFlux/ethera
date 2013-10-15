@@ -400,6 +400,11 @@ class StudentsController extends AppController {
         if($this->request->is('post')){
             if($this->Auth->login()){
                 //$this->redirect($this->Auth->redirectUrl());
+                $student = $this->Auth->user();
+                if($student['approved_state']==0 || $student['approved_state']==9) {
+                    $this->Session->setFlash('Your account not yet approved or it has been disapproved','error_flash');
+                    $this->redirect($this->Auth->logout());
+                }
                 $this->redirect(array('controller'=>'homes','action'=>'student'));
             }
             else{
@@ -412,7 +417,7 @@ class StudentsController extends AppController {
         $current_student = $this->Auth->user();
         $this->set('student',$current_student['id']);
 
-        if($current_student['approval_phase'] == 5 || $current_student['approval_phase'] == 3) {
+        if($current_student['approval_phase'] == 1 || $current_student['approval_phase'] == 2) {
             $enable = 1;
         }
         else {
@@ -453,11 +458,68 @@ class StudentsController extends AppController {
         elseif($id != $current_student['id']) {
             $this->redirect(array('action' => 'my_profile'));
         }
-        elseif($current_student['approval_phase'] != 5 || $current_student['approval_phase'] != 3) {
+        elseif($current_student['approval_phase'] != 1 || $current_student['approval_phase'] != 2) {
             $this->redirect(array('action' => 'my_profile'));
         }
+        elseif($current_student['freeze_state']!=0) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+    }
 
+    public function freeze_unfreeze() {
+        $this->loadModel('BatchesStudyProgram');
+        $this->loadModel('Batch');
 
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+
+            $batch_study_program = $this->BatchesStudyProgram->find(
+                'first',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );
+
+            $students = $this->Student->find(
+                'all',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );
+
+            foreach($students as $student){
+                $student_save['Student']['id'] = $student['Student']['id'];
+                $student_save['Student']['freeze_state'] = $data['Batch']['freeze_state'];
+
+                if($this->Student->save($student_save)){
+                    continue;
+                }
+                else{
+                    $this->Session->setFlash(__('Could not update. Please, try again.'));
+                    break;
+                }
+            }
+
+            $save_data['BatchesStudyProgram']['id'] = $batch_study_program['BatchesStudyProgram']['id'];
+            $save_data['BatchesStudyProgram']['freeze_state'] = $data['Batch']['freeze_state'];
+            if ($this->BatchesStudyProgram->save($save_data)) {
+                $this->Session->setFlash(__('Freeze State Updated'),'success_flash');
+                $this->redirect(array('action' => 'freeze_unfreeze'));
+            } else {
+                $this->Session->setFlash(__('Could not update. Please, try again.'));
+            }
+        }
+
+        $batches = $this->Batch->find('list');
+        $this->set('batches',$batches);
     }
 
     public function beforeFilter(){
