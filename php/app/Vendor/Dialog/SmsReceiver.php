@@ -24,8 +24,8 @@ class SmsReceiver{
         Get data from Json objects
         check the validity of the response
     **/
-    public function __construct($array){
-        //$array = json_decode(file_get_contents('php://input'), true);
+    public function __construct($data){
+        $array = json_decode($data, true);
         $this->sourceAddress = $array['sourceAddress'];
         $this->message = $array['message'];
         $this->requestId = $array['requestId'];
@@ -40,6 +40,7 @@ class SmsReceiver{
             $responses = array("statusCode" => "S1000", "statusDetail" => "Success");
             header("Content-type: application/json");
             echo json_encode($responses);
+//            CakeLog::write('notice',$responses);
         }
     }
 
