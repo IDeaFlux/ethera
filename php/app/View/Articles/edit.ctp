@@ -9,12 +9,12 @@
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-            <li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Article.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Article.id'))); ?></li>
-            <li><?php echo $this->Html->link(__('List Articles'), array('action' => 'index')); ?></li>
+            <li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Article.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Article.id'))); ?></li>//added delete function to article
+            <li><?php echo $this->Html->link(__('List Articles'), array('action' => 'index')); ?></li>//sending data to view file
         </ul>
     </div>
     <div class="span9">
-    <?php echo $this->Form->create('Article',array(
+    <?php echo $this->Form->create('Article',array(//creating form
         'novalidate' => true,
         'inputDefaults' => array(
             'div' => 'control-group',
@@ -26,7 +26,7 @@
         'class' => 'well form-horizontal'
     )); ?>
 
-            <legend><?php echo __('Edit Article'); ?></legend>
+            <legend><?php echo __('Edit Article'); ?></legend>//edit article
         <?php
             echo $this->Form->input('id');
             echo $this->Form->input('title',array(
