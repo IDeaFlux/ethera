@@ -38,18 +38,44 @@ class FeedbacksController extends AppController {
  * @return void
  */
 	public function add() {
+        $student = $this->Auth->user('id');
 		if ($this->request->is('post')) {
+            debug($this->request->data);
+
+            $data=$this->request->data;
+
+            //$save_year=$data['Feedback']['year'];
+            //$save_month=$data['Feedback']['month'];
+            //$save_day=$data['Feedback']['day'];
+            //$save_hour=$data['Feedback']['hour'];
+            //$save_min=$data['Feedback']['min'];
+            //$date=$save_year."-".$save_month."-".$save_day."-".$save_hour."-".$save_min;
+
 			$this->Feedback->create();
-			if ($this->Feedback->save($this->request->data)) {
+
+            if($this->Feedback->save($this->request->data)){
+                $this->Feedback->saveField('student_id',$student);
+                $this->Feedback->saveField('date', date("Y-m-d H:i:s"));
+
 				$this->Session->setFlash(__('The feedback has been saved'), 'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The feedback could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
-		$students = $this->Feedback->Student->find('list');
+
+//        $this->loadModel('InterestedArea');
+//        $inter=$this->InterestedArea->find('list',array('conditions'=>array(
+//            'InterestedArea.system_user_id'=>$student,
+//        )));
+//        $this->set('interested_areas',$inter);
+
+
+
 		$organizations = $this->Feedback->Organization->find('list');
-		$this->set(compact('students', 'organizations'));
+		$this->set(compact('student', 'organizations'));
+
+
 	}
 
 /**
@@ -63,8 +89,11 @@ class FeedbacksController extends AppController {
 		if (!$this->Feedback->exists($id)) {
 			throw new NotFoundException(__('Invalid feedback'));
 		}
+        $student=$this->Auth->user('id');
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Feedback->save($this->request->data)) {
+                $this->Feedback->saveField('student_id',$student);
+                $this->Feedback->saveField('date', date("Y-m-d H:i:s"));
 				$this->Session->setFlash(__('The feedback has been saved'), 'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -74,7 +103,6 @@ class FeedbacksController extends AppController {
 			$options = array('conditions' => array('Feedback.' . $this->Feedback->primaryKey => $id));
 			$this->request->data = $this->Feedback->find('first', $options);
 		}
-		$students = $this->Feedback->Student->find('list');
 		$organizations = $this->Feedback->Organization->find('list');
 		$this->set(compact('students', 'organizations'));
 	}
@@ -99,4 +127,5 @@ class FeedbacksController extends AppController {
 		$this->Session->setFlash(__('Feedback was not deleted'), 'error_flash');
 		$this->redirect(array('action' => 'index'));
 	}
+
 }
