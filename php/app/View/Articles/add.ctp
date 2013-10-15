@@ -4,7 +4,7 @@
 <?php $this->TinyMCE->editor(array(
     'theme' => 'advanced',
     'mode' => 'textareas',
-));?>
+));?>//adding wisiwig edditor for easily add article and decorate the article
 
 <div class="row">
     <div class="span3">
