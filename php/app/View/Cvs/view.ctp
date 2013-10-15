@@ -1,6 +1,21 @@
-<div class="cvs view">
-<h2><?php  echo __('Cv'); ?></h2>
-	<dl>
+<?php $this->layout = 'bootstrap2'; ?>
+<?php $this->set('title', 'View Cv');?>
+
+<div class="row">
+<div class="span3">
+    <ul class="nav nav-tabs nav-stacked">
+        <li><?php echo $this->Html->link(__('Edit CV'), array('action' => 'edit', $cv['Cv']['id'])); ?> </li>
+        <li><?php echo $this->Form->postLink(__('Delete CV'), array('action' => 'delete', $cv['Cv']['id']), null, __('Are you sure you want to delete # %s?', $cv['Cv']['id'])); ?> </li>
+        <li><?php echo $this->Html->link(__('List CVs'), array('action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('New CV'), array('action' => 'add')); ?> </li>
+        <li><?php echo $this->Html->link(__('List Students'), array('controller' => 'students', 'action' => 'index')); ?> </li>
+        <li><?php //echo $this->Html->link(__('New Student'), array('controller' => 'students', 'action' => 'add')); ?> </li>
+    </ul>
+</div>
+
+<div class="span9">
+<h2><?php  echo __('CV'); ?></h2>
+    <dl class="dl-horizontal">
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($cv['Cv']['id']); ?>
@@ -23,14 +38,6 @@
 		</dd>
 	</dl>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Cv'), array('action' => 'edit', $cv['Cv']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Cv'), array('action' => 'delete', $cv['Cv']['id']), null, __('Are you sure you want to delete # %s?', $cv['Cv']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Cvs'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Cv'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Students'), array('controller' => 'students', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Student'), array('controller' => 'students', 'action' => 'add')); ?> </li>
-	</ul>
 </div>
+
+
