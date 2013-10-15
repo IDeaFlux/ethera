@@ -1,4 +1,5 @@
 <?php $this->layout= 'bootstrap2'; ?>
+<?php $this->set('title', 'Edit Interested Area'); ?>
 
 <div class="row">
     <div class="span3">

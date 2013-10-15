@@ -1,6 +1,8 @@
 <?php $this->layout = 'bootstrap2'?>
+<?php $this->set('title', 'Add Interested Area'); ?>
 
 <div class="row">
+
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('List Interested Areas'), array('action' => 'index')); ?></li>
@@ -13,9 +15,9 @@
         </ul>
     </div>
 
-    <div class="span9"
+    <div class="span9">
         <?php echo $this->Form->create('Organization',array(
-            'novalidate' => true,
+            'novalidate'=>true,
             'inputDefaults' => array(
                 'div' => 'control-group',
                 'label' => array(
