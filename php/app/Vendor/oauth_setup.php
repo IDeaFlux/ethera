@@ -1,12 +1,15 @@
+// oauth-setup for web application
+
 <?php
 $cScope         =   'https://www.googleapis.com/auth/calendar';
 $cClientID      =   '1077896430665.apps.googleusercontent.com';
 $cClientSecret  =   '7ICseY230U8x54FBj6MaH2Ak';
-//$cRedirectURI   =   'urn:ietf:wg:oauth:2.0:oob';
-$cRedirectURI = 'http://ethera-udinnet.rhcloud.com/oauth2callback';
+//$cRedirectURI   =   'http://ethera-udinnet.rhcloud.com/';
+$cRedirectURI = 'http://ethera-udinnet.rhcloud.com';
 
 
-$cAuthCode      =   '';
+$cAuthCode      =   '4/aVBSl7NhRXrklUygqhGCaoJnq9P0.cimdlMT-58wXXE-sT2ZLcbQht8ZzgwI';
+//$cAuthCode      =   '4/c-cAScpP-WjPUAMrylUQEk2cdUV2.MhObkQ-17PUXXE-sT2ZLcbRPbmtzgwI';
 
 if (empty($cAuthCode)) {
     $rsParams = array(
