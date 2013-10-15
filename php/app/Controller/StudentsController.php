@@ -399,8 +399,8 @@ class StudentsController extends AppController {
     public function login() {
         if($this->request->is('post')){
             if($this->Auth->login()){
-                //$this->redirect($this->Auth->redirect());
-                $this->redirect(array('controller'=>'homes','action'=>'admin'));
+                //$this->redirect($this->Auth->redirectUrl());
+                $this->redirect(array('controller'=>'homes','action'=>'student'));
             }
             else{
                 $this->Session->setFlash('Your email & password combination is incorrect','error_flash');
@@ -408,11 +408,71 @@ class StudentsController extends AppController {
         }
     }
 
+    public function my_profile(){
+        $current_student = $this->Auth->user();
+        $this->set('student',$current_student['id']);
+
+        if($current_student['approval_phase'] == 5 || $current_student['approval_phase'] == 3) {
+            $enable = 1;
+        }
+        else {
+            $enable = 0;
+        }
+
+        $this->set('enable',$enable);
+    }
+
+    public function edit_my_profile($id=null) {
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->Student->save($this->request->data)) {
+                $this->Session->setFlash(__('The student data has been updated'));
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The student could not be saved. Please, try again.'));
+            }
+        } else {
+            $options = array('conditions' => array('Student.' . $this->Student->primaryKey => $id));
+            $this->request->data = $this->Student->find('first', $options);
+        }
+
+    }
+
+    public function my_cv_data($id=null) {
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+        elseif($current_student['approval_phase'] != 5 || $current_student['approval_phase'] != 3) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+
+
+    }
+
     public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->loginAction = array(
             'controller' => 'students',
             'action' => 'login'
+        );
+        $this->Auth->loginRedirect = array(
+            'controller'=>'home',
+            'action'=>'student'
+        );
+        $this->Auth->logoutRedirect = array(
+            'controller'=>'homes',
+            'action'=>'main'
         );
         $this->Auth->allow('register');
     }
