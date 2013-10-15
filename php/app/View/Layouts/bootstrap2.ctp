@@ -104,7 +104,7 @@
                                 <?php if($logged_in): ?>
                                     <?php echo $this->Html->link('Logout', array('controller'=>'system_users','action'=>'logout'));?>
                                 <?php else: ?>
-                                    <?php echo $this->Html->link('Login', array('controller'=>'system_users','action'=>'login'));?>
+                                    <?php echo $this->Html->link('Login', array('controller'=>'homes','action'=>'login'));?>
                                 <?php endif; ?>
                             </li>
                             <li>
