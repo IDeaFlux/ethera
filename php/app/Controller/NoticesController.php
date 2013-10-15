@@ -401,15 +401,16 @@ class NoticesController extends AppController {
     // The example method header
     //function create_post_argsJSON($date,$starttime,$endtime,$title){
 
-    public function create_post_request(){
+    public function create_post_request($date1,$date2,$starttime,$endtime,$title){
        // $date_start = $this->Article->find('date_start', array(
          //   'conditions' => array('Notice.id' => '82')
-        //
-        $date1='2013-10-17';
-        $date2='2013-10-21';
-        $starttime='10:00';
-        $endtime='17:00';
-        $title='Hello success';
+
+        //get the data hardcoded
+//        $date1='2013-10-15';
+//        $date2='2013-10-25';
+//        $starttime='18:00';
+//        $endtime='19:00';
+//        $title='Hello success';
         $arg_list = func_get_args();
         foreach($arg_list as $key => $arg){
             $arg_list[$key] = urlencode($arg);
@@ -418,7 +419,7 @@ class NoticesController extends AppController {
         $postargs = <<<JSON
 {
  "end": {
-  "dateTime": "{$date2}T{$endtime}:00.000+05:30"
+  "dateTime": "{$date2}T{$starttime}:00.000+05:30"
  },
   "start": {
   "dateTime": "{$date1}T{$endtime}:00.000+05:30"
