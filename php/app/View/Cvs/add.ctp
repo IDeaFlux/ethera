@@ -1,22 +1,51 @@
-<div class="cvs form">
-<?php echo $this->Form->create('Cv'); ?>
-	<fieldset>
+<?php $this->layout = 'bootstrap2'; ?>
+<?php $this->set('title', 'Add CVs'); ?>
+
+<div class="row">
+    <div class="span3">
+     <ul class="nav nav-tabs nav-stacked">
+        <li><?php echo $this->Html->link(__('List CVs'), array('action' => 'index')); ?></li>
+        <li><?php echo $this->Html->link(__('List Students'), array('controller' => 'students', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('New Student'), array('controller' => 'students', 'action' => 'add')); ?> </li>
+     </ul>
+    </div>
+
+<div class="span9">
+<?php echo $this->Form->create('Cv',array(
+    'novalidate' => true,
+    'inputDefaults' => array(
+        'div' => 'control-group',
+        'label' => array(
+            'class' => 'control-label'
+        ),
+        'wrapInput' => 'controls'
+    ),
+    'class' => 'well form-horizontal'
+)); ?>
+
 		<legend><?php echo __('Add CV'); ?></legend>
 	<?php
-		echo $this->Form->input('student_id');
-		echo $this->Form->input('reviewed_state');
+		echo $this->Form->input('student_id',array(
+            'class' => 'span2'
+        ));
+		echo $this->Form->input('reviewed_state',array(
+            'class' => 'span6'
+        ));
         echo $this->Form->input('cv',$options = array('label'=>'CV','type'=>'file'));
-		echo $this->Form->input('upload_time');
+		echo $this->Form->input('upload_time',array(
+            'class' => 'span2'
+        ));
 	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Html->link(__('List Cvs'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Students'), array('controller' => 'students', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Student'), array('controller' => 'students', 'action' => 'add')); ?> </li>
-	</ul>
+
+    <div class="form-actions">
+        <?php echo $this->Form->submit('Save', array(
+            'div' => false,
+            'class' => 'btn btn-primary'
+        )); ?>
+    </div>
+    <?php echo $this->Form->end(); ?>
 </div>
+</div
+	<h3><?php //echo __('Actions'); ?></h3>
+
