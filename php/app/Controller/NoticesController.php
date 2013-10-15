@@ -73,12 +73,12 @@ class NoticesController extends AppController {
             $save_day=$data['Notice']['date_start']['day'];
             $save_hour=$data['Notice']['date_start']['hour'];
             $save_min=$data['Notice']['date_start']['min'];
-            $date1=$save_year."-".$save_month."-".$save_day;
-            $starttime=$save_hour.":".$save_min;
+            //$date1=$save_year."-".$save_month."-".$save_day;
+            //$starttime=$save_hour.":".$save_min;
             $start_date=$save_year."-".$save_month."-".$save_day."T".$save_hour.":".$save_min.":00.000+05:30";
-            debug($date1);
-            debug($starttime);
-            debug($start_date);
+            //debug($date1);
+            //debug($starttime);
+            //debug($start_date);
 
 
             $save_year=$data['Notice']['date_end']['year'];
@@ -86,13 +86,15 @@ class NoticesController extends AppController {
             $save_day=$data['Notice']['date_end']['day'];
             $save_hour=$data['Notice']['date_end']['hour'];
             $save_min=$data['Notice']['date_end']['min'];
-            $date2=$save_year."-".$save_month."-".$save_day;
-            $endtime=$save_hour.":".$save_min;
+            //$date2=$save_year."-".$save_month."-".$save_day;
+            //$endtime=$save_hour.":".$save_min;
             $end_date=$save_year."-".$save_month."-".$save_day."T".$save_hour.":".$save_min.":00.000+05:30";
-            debug($date2);
-            debug($starttime);
+            //debug($date2);
+            //debug($starttime);
 
             $title=$data['Notice']['title'];
+            $calpost=$data['Notice']['published_state'];
+
 
 
 
@@ -102,8 +104,10 @@ class NoticesController extends AppController {
 			if ($this->Notice->save($this->request->data)) {
                 $this->Notice->saveField('system_user_id',$authUser);
 
+                if($calpost==1){
                 $response = $this->send_post_request($start_date,$end_date,$title);
-                debug($response);
+                debug($response);}
+                
 
               //save separately collected date; not necessary
              //   $this->Notice->saveField('date_start',$start_date);
