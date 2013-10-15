@@ -16,7 +16,7 @@
     </div>
 
     <div class="span9">
-        <?php echo $this->Form->create('Organization',array(
+        <?php echo $this->Form->create('InterestedArea',array(
             'novalidate'=>true,
             'inputDefaults' => array(
                 'div' => 'control-group',
