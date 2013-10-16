@@ -69,6 +69,13 @@ class Cv extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+        'Assignment' => array(
+            'className' => 'Assignment',
+            'foreignKey' => 'assignment_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
 	);
 }

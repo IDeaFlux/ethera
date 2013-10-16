@@ -29,10 +29,11 @@
         <legend><?php echo __('Edit Feedback'); ?></legend>
 
             <?php
-                echo $this->Form->input('date', array('class'=>'span2'));
-                echo $this->Form->input('content', array('class'=>'span5'));
-                echo $this->Form->input('student_id', array('class'=>'span5'));
-                echo $this->Form->input('organization_id', array('class'=>'span5'));
+                //echo $this->Form->input('date', array('class'=>'span2'));
+                echo $this->Form->input('content', array('class'=>'span4'));
+                echo $this->Form->input('interested_area_id', array('class'=>'span4'));
+                //echo $this->Form->input('student_id', array('class'=>'span5'));
+                echo $this->Form->input('organization_id', array('class'=>'span4'));
             ?>
         <div class="form-actions">
             <?php echo $this->Form->submit('Save Changes', array(

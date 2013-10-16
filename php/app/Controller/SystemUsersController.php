@@ -76,7 +76,7 @@ class SystemUsersController extends AppController {
     public function login() {
         if($this->request->is('post')){
             if($this->Auth->login()){
-                //$this->redirect($this->Auth->redirect());
+                //$this->redirect($this->Auth->redirectUrl());
                 $this->redirect(array('controller'=>'homes','action'=>'admin'));
             }
             else{
@@ -219,6 +219,14 @@ You have 24 hours to complete the request.','success_flash');
         $this->Auth->loginAction = array(
             'controller' => 'system_users',
             'action' => 'login'
+        );
+        $this->Auth->loginRedirect = array(
+            'controller'=>'homes',
+            'action'=>'admin'
+        );
+        $this->Auth->logoutRedirect = array(
+            'controller'=>'homes',
+            'action'=>'main'
         );
         $this->Auth->allow(array('forgot_password','reset_password_token'));
     }

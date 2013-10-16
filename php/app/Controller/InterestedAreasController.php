@@ -44,6 +44,7 @@ class InterestedAreasController extends AppController {
 				$this->Session->setFlash(__('The interested area has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
+                debug($this->request->data);
 				$this->Session->setFlash(__('The interested area could not be saved. Please, try again.'));
 			}
 		}

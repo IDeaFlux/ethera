@@ -399,8 +399,13 @@ class StudentsController extends AppController {
     public function login() {
         if($this->request->is('post')){
             if($this->Auth->login()){
-                //$this->redirect($this->Auth->redirect());
-                $this->redirect(array('controller'=>'homes','action'=>'admin'));
+                //$this->redirect($this->Auth->redirectUrl());
+                $student = $this->Auth->user();
+                if($student['approved_state']==0 || $student['approved_state']==9) {
+                    $this->Session->setFlash('Your account not yet approved or it has been disapproved','error_flash');
+                    $this->redirect($this->Auth->logout());
+                }
+                $this->redirect(array('controller'=>'homes','action'=>'student'));
             }
             else{
                 $this->Session->setFlash('Your email & password combination is incorrect','error_flash');
@@ -408,11 +413,128 @@ class StudentsController extends AppController {
         }
     }
 
+    public function my_profile(){
+        $current_student = $this->Auth->user();
+        $this->set('student',$current_student['id']);
+
+        if($current_student['approval_phase'] == 1 || $current_student['approval_phase'] == 2) {
+            $enable = 1;
+        }
+        else {
+            $enable = 0;
+        }
+
+        $this->set('enable',$enable);
+    }
+
+    public function edit_my_profile($id=null) {
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->Student->save($this->request->data)) {
+                $this->Session->setFlash(__('The student data has been updated'));
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The student could not be saved. Please, try again.'));
+            }
+        } else {
+            $options = array('conditions' => array('Student.' . $this->Student->primaryKey => $id));
+            $this->request->data = $this->Student->find('first', $options);
+        }
+
+    }
+
+    public function my_cv_data($id=null) {
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+        elseif($current_student['approval_phase'] != 1 || $current_student['approval_phase'] != 2) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+        elseif($current_student['freeze_state']!=0) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+    }
+
+    public function freeze_unfreeze() {
+        $this->loadModel('BatchesStudyProgram');
+        $this->loadModel('Batch');
+
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+
+            $batch_study_program = $this->BatchesStudyProgram->find(
+                'first',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );
+
+            $students = $this->Student->find(
+                'all',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );
+
+            foreach($students as $student){
+                $student_save['Student']['id'] = $student['Student']['id'];
+                $student_save['Student']['freeze_state'] = $data['Batch']['freeze_state'];
+
+                if($this->Student->save($student_save)){
+                    continue;
+                }
+                else{
+                    $this->Session->setFlash(__('Could not update. Please, try again.'));
+                    break;
+                }
+            }
+
+            $save_data['BatchesStudyProgram']['id'] = $batch_study_program['BatchesStudyProgram']['id'];
+            $save_data['BatchesStudyProgram']['freeze_state'] = $data['Batch']['freeze_state'];
+            if ($this->BatchesStudyProgram->save($save_data)) {
+                $this->Session->setFlash(__('Freeze State Updated'),'success_flash');
+                $this->redirect(array('action' => 'freeze_unfreeze'));
+            } else {
+                $this->Session->setFlash(__('Could not update. Please, try again.'));
+            }
+        }
+
+        $batches = $this->Batch->find('list');
+        $this->set('batches',$batches);
+    }
+
     public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->loginAction = array(
             'controller' => 'students',
             'action' => 'login'
+        );
+        $this->Auth->loginRedirect = array(
+            'controller'=>'home',
+            'action'=>'student'
+        );
+        $this->Auth->logoutRedirect = array(
+            'controller'=>'homes',
+            'action'=>'main'
         );
         $this->Auth->allow('register');
     }
