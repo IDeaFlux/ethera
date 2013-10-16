@@ -20,7 +20,7 @@
         </li>
         <li class="span2">
             <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-user icon-4x\"></i></p>
+            $i = "<p class=\"text-center\"><i class=\"icon-key icon-4x\"></i></p>
                 <p class=\"text-center\">Edit My Password</p>";
             echo $this->Html->link(
                 $i,
@@ -35,7 +35,7 @@
         <?php if($enable == 1): ?>
         <li class="span2">
             <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-user icon-4x\"></i></p>
+            $i = "<p class=\"text-center\"><i class=\"icon-folder-open icon-4x\"></i></p>
                 <p class=\"text-center\">My CV Data</p>";
             echo $this->Html->link(
                 $i,
@@ -50,7 +50,7 @@
         <?php endif ?>
         <li class="span2">
             <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-user icon-4x\"></i></p>
+            $i = "<p class=\"text-center\"><i class=\"icon-link icon-4x\"></i></p>
                 <p class=\"text-center\">My Extra Activities</p>";
             echo $this->Html->link(
                 $i,

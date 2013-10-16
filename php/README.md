@@ -1,6 +1,6 @@
-FFS / Fin IS (Fedora Financial System)
+ETHERA
 =======
 
 ----------------
 
-[FFS](https://fedoraproject.org/wiki/GSOC_2013/Student_Application_udinnet/Fin_IS%28466%29) - The Proposal
+[ETHERA](https://github.com/IDeaFlux/ethera-docs/blob/master/Project%20Proposal--ETHERA-IDeaFlux.pdf) - The Proposal

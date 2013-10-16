@@ -30,7 +30,7 @@
 <!--			<th>--><?php //echo $this->Paginator->sort('address1'); ?><!--</th>-->
 <!--			<th>--><?php //echo $this->Paginator->sort('address2'); ?><!--</th>-->
 <!--			<th>--><?php //echo $this->Paginator->sort('city'); ?><!--</th>-->
-<!--			<th>--><?php //echo $this->Paginator->sort('freez_state'); ?><!--</th>-->
+<!--			<th>--><?php //echo $this->Paginator->sort('freeze_state'); ?><!--</th>-->
 <!--			<th>--><?php //echo $this->Paginator->sort('industry_ready'); ?><!--</th>-->
 <!--			<th>--><?php //echo $this->Paginator->sort('approved_state'); ?><!--</th>-->
 <!--			<th>--><?php //echo $this->Paginator->sort('linkedin_ref'); ?><!--</th>-->
@@ -58,7 +58,7 @@
 <!--		<td>--><?php //echo h($student['Student']['address1']); ?><!--&nbsp;</td>-->
 <!--		<td>--><?php //echo h($student['Student']['address2']); ?><!--&nbsp;</td>-->
 <!--		<td>--><?php //echo h($student['Student']['city']); ?><!--&nbsp;</td>-->
-<!--		<td>--><?php //echo h($student['Student']['freez_state']); ?><!--&nbsp;</td>-->
+<!--		<td>--><?php //echo h($student['Student']['freeze_state']); ?><!--&nbsp;</td>-->
 <!--		<td>--><?php //echo h($student['Student']['industry_ready']); ?><!--&nbsp;</td>-->
 <!--		<td>--><?php //echo h($student['Student']['approved_state']); ?><!--&nbsp;</td>-->
 <!--		<td>--><?php //echo h($student['Student']['linkedin_ref']); ?><!--&nbsp;</td>-->

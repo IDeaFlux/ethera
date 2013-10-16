@@ -22,7 +22,7 @@
 		echo $this->Form->input('address1');
 		echo $this->Form->input('address2');
 		echo $this->Form->input('city');
-		echo $this->Form->input('freez_state');
+		echo $this->Form->input('freeze_state');
 		echo $this->Form->input('industry_ready');
 		echo $this->Form->input('approved_state');
 		echo $this->Form->input('linkedin_ref');

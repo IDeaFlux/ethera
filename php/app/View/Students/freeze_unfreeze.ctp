@@ -1,12 +1,11 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Student Approval Phase Selection'); ?>
+<?php $this->set('title', 'Freeze Unfreeze'); ?>
 
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-            <li><?php echo $this->Html->link(__('E-mail'), array('controller'=>'Messages','action' => 'email')); ?></li>
-            <li><?php echo $this->Html->link(__('Send Mail to Staff'), array('controller' => 'Messages', 'action' => 'staffMail')); ?> </li>
-            <li><?php echo $this->Html->link(__('Send Mail to Industry'), array('controller' => 'Messages', 'action' => 'industryMail')); ?> </li>        </ul>
+            <li><?php echo $this->Html->link(__('Students'), array('controller' => 'homes','action' => 'student_processing')); ?></li>
+        </ul>
     </div>
     <div class="span9">
         <?php
@@ -38,7 +37,7 @@
             ),
             'class' => 'well form-horizontal'
         )); ?>
-        <legend><?php echo __('Send Mail to Students'); ?></legend>
+        <legend><?php echo __('Freeze Unfreeze Selection'); ?></legend>
         <?php
         echo $this->Form->input('Batch.batch_id',array(
             'type' => 'select',
@@ -54,20 +53,20 @@
                 'text' => 'Study Program'
             )
         ));
-        echo $this->Form->input("subject", array(
-            'name'=>'data[subject]',
-            'type'=>'text',
-            'class' => 'span6'
-        ));
-        echo $this->Form->input("message",array(
-            'name'=>'data[body]',
-            'type'=>'textarea',
-            'class'=>'span6'
-
+        echo $this->Form->input('freeze_state',array(
+            'type' => 'select',
+            'options'=> array(
+                0 => "Unfreeze",
+                1 => "Freeze"
+            ),
+            'class' => 'span4',
+            'label' => array(
+                'text' => 'Freeze/Unfreeze'
+            )
         ));
         ?>
         <div class="form-actions">
-            <?php echo $this->Form->submit('Send Email', array(
+            <?php echo $this->Form->submit('Freeze/Unfreeze', array(
                 'div' => false,
                 'class' => 'btn btn-primary',
             )); ?>
