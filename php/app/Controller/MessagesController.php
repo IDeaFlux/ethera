@@ -25,54 +25,38 @@ class MessagesController extends AppController {
         $this->loadModel('Student');
 
         if($this->request->is('post')){
-            if($this->request->data)
-            {
-                $data = $this->request->data;
+            foreach(Student as $students){
+                {
+                    EtheraEmail::mailer($students['Student']['email']);
+
+
+//                    $data = $this->request->data;
+//                    $Email = new CakeEmail('gmail');
+//                    //$Email->config('gmail');
+//                    $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
+//                    $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
+//                    $Email->to($data['to']);
+//                    $Email->subject($data['subject']);
+//                    $Email->send($data['body']);
+                }
+
+                $this->redirect(array('controller'=>'messages','action'=>'email'));
+            }
+
+            if(!empty($data)){
                 $Email = new CakeEmail('gmail');
                 //$Email->config('gmail');
                 $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
                 $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-//                $Email->to($data['to']);
+                $Email->to($data['to']);
                 $Email->subject($data['subject']);
-//                $Email->send($data['body']);
+                $Email->send($data['body']);
+
+                return true;
+            }
             }
 
-            $this->redirect(array('controller'=>'messages','action'=>'email'));
-        }
-
-        if(!empty($data)){
-            $Email = new CakeEmail('gmail');
-            //$Email->config('gmail');
-            $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
-            $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-            $Email->to($data['to']);
-            $Email->subject($data['subject']);
-            $Email->send($data['body']);
-
-            return true;
-        }
-
-        if($this->request->is('post')){
-            $data = $this->request->data;
-
-        $students = $this->Student->find(
-            'all',
-            array(
-                'conditions' => array(
-                    'batch_id' => $data['Batch']['batch_id'],
-                    'study_program_id' => $data['Batch']['study_program']
-                ),
-                'recursive' => -1
-            )
-        );
-            foreach($students as $students);
-            {
-
-            }
-
-
-
-        }
+            if($this->request->data)
 
         $batches = $this->Batch->find('list',array(
             'fields'=>array(
@@ -89,8 +73,35 @@ class MessagesController extends AppController {
             )
             //'conditions'=>array('Student.batch_id'=>'2')
         ));
-
         $this->set('study_programs',$study_programs);
+
+//**********************************
+
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+
+            $batch_study_program = $this->BatchesStudyProgram->find(
+                'first',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );
+            $students = $this->Student->find(
+                'all',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );
+    }
+//**********************************
     }
 
 
@@ -124,6 +135,7 @@ class MessagesController extends AppController {
 
             return true;
         }
+
         $this->loadModel('Organization');
         $organizations = $this->Organization->find('list',array(
             'fields'=>array(
@@ -166,6 +178,7 @@ class MessagesController extends AppController {
 
             return true;
         }
+        
 
     }
 
@@ -219,10 +232,13 @@ class MessagesController extends AppController {
 
             $save_data['Student']['id'] = $student_found['Student']['id'];
             $save_data['Student']['sms_num'] = $number;
-
-            $this->Student->save($save_data);
-
-            $responseMsg ="Successfully registered. Your number is : ".$number;
+            if(!empty($save_data['Student']['id'])){
+                $this->Student->save($save_data);
+                $responseMsg ="Successfully registered. Your number is : ".$number;
+            }
+            else {
+                $responseMsg ="Error : Your student registration number is invalid. The correct format is XXX/XXXX/XXXX/XXX";
+            }
         }
 
         return $responseMsg;
