@@ -38,7 +38,7 @@
             ),
             'class' => 'well form-horizontal'
         )); ?>
-        <legend><?php echo __('Student Approval Phase Selection'); ?></legend>
+        <legend><?php echo __('Send Mail to Students'); ?></legend>
         <?php
         echo $this->Form->input('Batch.batch_id',array(
             'type' => 'select',
