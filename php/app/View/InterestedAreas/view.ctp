@@ -1,5 +1,5 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'View Interested Areas :: '.h($interestedArea['InteresedArea']['id'])); ?>
+<?php $this->set('title', 'View Interested Areas'); ?>
 
 <div class="row">
     <div class="span3">
@@ -8,13 +8,7 @@
             <li><?php echo $this->Form->postLink(__('Delete Interested Area'), array('action' => 'delete', $interestedArea['InterestedArea']['id']), null, __('Are you sure you want to delete # %s?', $interestedArea['InterestedArea']['id'])); ?> </li>
             <li><?php echo $this->Html->link(__('List Interested Areas'), array('action' => 'index')); ?> </li>
             <li><?php echo $this->Html->link(__('New Interested Area'), array('action' => 'add')); ?> </li>
-            <li><?php echo $this->Html->link(__('List Assignments'), array('controller' => 'assignments', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Assignment'), array('controller' => 'assignments', 'action' => 'add')); ?> </li>
-            <li><?php echo $this->Html->link(__('List Opportunies'), array('controller' => 'opportunies', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Opportuny'), array('controller' => 'opportunies', 'action' => 'add')); ?> </li>
-            <li><?php echo $this->Html->link(__('List Study Programs'), array('controller' => 'study_programs', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Study Program'), array('controller' => 'study_programs', 'action' => 'add')); ?> </li>
-        </ul>
+            </ul>
     </div>
 
     <div class="span9">
@@ -39,6 +33,8 @@
     </div>
 </div>
 
+<hr/>
+
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
@@ -49,7 +45,7 @@
     <div class="span9">
         <h3><?php echo __('Related Assignments'); ?></h3>
         <?php if (!empty($interestedArea['Assignment'])): ?>
-        <table cellpadding = "0" cellspacing = "0" class="table table-hover">
+        <table cellpadding = "0" cellspacing = "0" class="table table-bordered table-hover">
         <tr>
             <th><?php echo __('Id'); ?></th>
             <th><?php echo __('Interested Area Id'); ?></th>
@@ -81,7 +77,11 @@
         </table>
         <?php endif; ?>
     </div>
+</div>
 
+<hr/>
+
+<div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('New Opportuny'), array('controller' => 'opportunies', 'action' => 'add')); ?> </li>
@@ -91,7 +91,7 @@
     <div class="span9">
         <h3><?php echo __('Related Opportunies'); ?></h3>
         <?php if (!empty($interestedArea['Opportuny'])): ?>
-        <table cellpadding = "0" cellspacing = "0" class="table table-hover">
+        <table cellpadding = "0" cellspacing = "0" class="table table-bordered table-hover">
         <tr>
             <th><?php echo __('Id'); ?></th>
             <th><?php echo __('Interested Area Id'); ?></th>
@@ -123,7 +123,11 @@
         </table>
     <?php endif; ?>
     </div>
+</div>
 
+<hr/>
+
+<div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('New Study Program'), array('controller' => 'study_programs', 'action' => 'add')); ?> </li>
@@ -133,7 +137,7 @@
     <div class="span9">
         <h3><?php echo __('Related Study Programs'); ?></h3>
         <?php if (!empty($interestedArea['StudyProgram'])): ?>
-        <table cellpadding = "0" cellspacing = "0" class="table table-hover">
+        <table cellpadding = "0" cellspacing = "0" class="table table-bordered table-hover">
             <tr>
                 <th><?php echo __('Id'); ?></th>
                 <th><?php echo __('Program Code'); ?></th>
@@ -159,5 +163,4 @@
         </table>
         <?php endif; ?>
     </div>
-
 </div>

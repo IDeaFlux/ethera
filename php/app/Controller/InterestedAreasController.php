@@ -41,11 +41,11 @@ class InterestedAreasController extends AppController {
 		if ($this->request->is('post')) {
 			$this->InterestedArea->create();
 			if ($this->InterestedArea->save($this->request->data)) {
-				$this->Session->setFlash(__('The interested area has been saved'));
+				$this->Session->setFlash(__('The interested area has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
                 debug($this->request->data);
-				$this->Session->setFlash(__('The interested area could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The interested area could not be saved. Please, try again.'),'error_flash');
 			}
 		}
 		$studyPrograms = $this->InterestedArea->StudyProgram->find('list');
@@ -65,10 +65,10 @@ class InterestedAreasController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->InterestedArea->save($this->request->data)) {
-				$this->Session->setFlash(__('The interested area has been saved'));
+				$this->Session->setFlash(__('The interested area has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The interested area could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The interested area could not be saved. Please, try again.'),'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('InterestedArea.' . $this->InterestedArea->primaryKey => $id));
@@ -92,10 +92,10 @@ class InterestedAreasController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->InterestedArea->delete()) {
-			$this->Session->setFlash(__('Interested area deleted'));
+			$this->Session->setFlash(__('Interested area deleted'),'success_flash');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Interested area was not deleted'));
+		$this->Session->setFlash(__('Interested area was not deleted'),'error_flash');
 		$this->redirect(array('action' => 'index'));
 	}
 }
