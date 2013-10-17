@@ -6,10 +6,6 @@
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('List Feedbacks'), array('action' => 'index')); ?></li>
-            <li><?php echo $this->Html->link(__('List Students'), array('controller' => 'students', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Student'), array('controller' => 'students', 'action' => 'add')); ?> </li>
-            <li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Organization'), array('controller' => 'organizations', 'action' => 'add')); ?> </li>
         </ul>
     </div>
 
@@ -32,7 +28,7 @@
                     //echo $this->Form->input('date', array('class'=>'span2'));
                     echo $this->Form->input('content', array('class'=>'span4'));
                     //echo $this->Form->input('student_id', array('class'=>'span5'));
-                    echo $this->Form->input('interested_area_id', array('class'=>'span4'));
+                    //echo $this->Form->input('interested_area_id', array('class'=>'span4'));
 
 
                     //echo $this->Form->input('interested_areas_id');

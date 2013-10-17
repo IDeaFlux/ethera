@@ -1,20 +1,16 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Feedbacks'); ?>
+<?php $this->set('title', 'Feedback'); ?>
 
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('New Feedback'), array('action' => 'add')); ?></li>
-            <li><?php echo $this->Html->link(__('List Students'), array('controller' => 'students', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Student'), array('controller' => 'students', 'action' => 'add')); ?> </li>
-            <li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Organization'), array('controller' => 'organizations', 'action' => 'add')); ?> </li>
         </ul>
 
     </div>
 
     <div class="span9">
-	    <h2><?php echo __('Feedbacks'); ?></h2>
+	    <h2><?php echo __('Feedback'); ?></h2>
 
         <table cellpadding="0" cellspacing="0" class="table table-hover">
         <tr>
@@ -31,7 +27,7 @@
             <td><?php echo h($feedback['Feedback']['date']); ?>&nbsp;</td>
             <td><?php echo h($feedback['Feedback']['content']); ?>&nbsp;</td>
             <td>
-                <?php echo $this->Html->link($feedback['Student']['reg_number'], array('controller' => 'students', 'action' => 'view', $feedback['Student']['id'])); ?>
+                <?php echo $this->Html->link ($feedback['Feedback']['student_id'], array('controller' => 'students', 'action' => 'view', $feedback['Student']['id'])); ?>
             </td>
             <td>
                 <?php echo $this->Html->link($feedback['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $feedback['Organization']['id'])); ?>

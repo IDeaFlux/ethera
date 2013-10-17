@@ -44,13 +44,6 @@ class FeedbacksController extends AppController {
 
             $data=$this->request->data;
 
-            //$save_year=$data['Feedback']['year'];
-            //$save_month=$data['Feedback']['month'];
-            //$save_day=$data['Feedback']['day'];
-            //$save_hour=$data['Feedback']['hour'];
-            //$save_min=$data['Feedback']['min'];
-            //$date=$save_year."-".$save_month."-".$save_day."-".$save_hour."-".$save_min;
-
 			$this->Feedback->create();
 
             if($this->Feedback->save($this->request->data)){
@@ -64,17 +57,8 @@ class FeedbacksController extends AppController {
 			}
 		}
 
-//        $this->loadModel('InterestedArea');
-//        $inter=$this->InterestedArea->find('list',array('conditions'=>array(
-//            'InterestedArea.system_user_id'=>$student,
-//        )));
-//        $this->set('interested_areas',$inter);
-
-
-
 		$organizations = $this->Feedback->Organization->find('list');
 		$this->set(compact('student', 'organizations'));
-
 
 	}
 
