@@ -107,6 +107,8 @@ class NoticesController extends AppController {
                 if($calpost==1){
                 $response = $this->send_post_request($start_date,$end_date,$title);
                 //debug($response);
+                    $id='odf4mi3b6mmlrcvmg3jnlkvfgs';
+                    $this->delete_event($id);
                 }
                 
 
@@ -218,7 +220,7 @@ class NoticesController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
-
+    // Google Calendar Integration
 
         //Get the access token for the session
 
@@ -245,12 +247,10 @@ class NoticesController extends AppController {
             return $accessToken;
         }
 
-    // The example method header
-    //function create_post_argsJSON($date,$starttime,$endtime,$title){
+
 
 //    public function create_post_request(){
-//       // $date_start = $this->Article->find('date_start', array(
-//         //   'conditions' => array('Notice.id' => '82')
+
 //
 //        //get the data hardcoded
 //        $date1='2013-10-15';
@@ -295,6 +295,7 @@ class NoticesController extends AppController {
 //
 //    }
 
+    // Create/Post an Event in the Calendar
     function send_post_request($start_date,$end_date,$title){
         $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
         $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
@@ -351,6 +352,39 @@ JSON;
         return $response;
     }
 
+    // Delete an event in the Calendar
+
+function delete_event($eventId){
+    $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
+    $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+    $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events/'.$eventId.'?&key=' . $APIKEY;
+
+    //$auth = json_decode($_SESSION['oauth_access_token'],true);
+
+    //var_dump($auth);
+
+//    $arg_list = func_get_args();
+//    foreach($arg_list as $key => $arg){
+//        $arg_list[$key] = urlencode($arg);
+//    }
+
+    $session = curl_init($request);
+
+    //tell curl this is a delete request
+
+    curl_setopt($session, CURLOPT_CUSTOMREQUEST, 'DELETE');
+    // Tell curl not to return headers, but do return the response
+    curl_setopt($session, CURLOPT_HEADER, true);
+    curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($session, CURLOPT_VERBOSE, true);
+    curl_setopt($session, CURLINFO_HEADER_OUT, true);
+    curl_setopt($session, CURLOPT_HTTPHEADER, array('Content-Type:  application/json','Authorization:  Bearer ' . $this->get_access_token(),'X-JavaScript-User-Agent:  Mount Pearl Tennis Club Bookings'));
+
+    $response = curl_exec($session);
 
 
+    curl_close($session);
+    //$this->set('response',$response);
+   // return $response;
+}
 }
