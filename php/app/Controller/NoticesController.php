@@ -54,7 +54,7 @@ class NoticesController extends AppController {
         $authUser=$this->Auth->user('id');
 
 		if ($this->request->is('post')) {
-            debug($this->request->data);
+           // debug($this->request->data);
 
             //get date fields separately and save data; not necessary
 //            $data=$this->request->data;
@@ -107,7 +107,11 @@ class NoticesController extends AppController {
                 if($calpost==1){
                 $response = $this->send_post_request($start_date,$end_date,$title);
                 //debug($response);
-                    $id='odf4mi3b6mmlrcvmg3jnlkvfgs';
+                    $eventId=$this->list_events();
+                    $this->set('eventId',$eventId);
+                    debug($eventId);
+
+                    $id='474ros237lbffc61ga41rq8kgc';
                     $this->delete_event($id);
                 }
                 
@@ -134,7 +138,7 @@ class NoticesController extends AppController {
                 //call the calender creation method
 
 				$this->Session->setFlash(__('The notice has been saved'),'success_flash');
-				$this->redirect(array('action' => 'index'));
+				//$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The notice could not be saved. Please, try again.'),'error_flash');
 			}
@@ -243,7 +247,7 @@ class NoticesController extends AppController {
             $token = json_decode($tokenReturn);
             //var_dump($tokenReturn);
             $accessToken = $token->access_token;
-            debug($accessToken);
+           // debug($accessToken);
             return $accessToken;
         }
 
@@ -299,7 +303,8 @@ class NoticesController extends AppController {
     function send_post_request($start_date,$end_date,$title){
         $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
         $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
-        $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY;
+       // $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY;
+        $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&fields=id&key=' . $APIKEY;
 
         //$auth = json_decode($_SESSION['oauth_access_token'],true);
 
@@ -323,7 +328,7 @@ class NoticesController extends AppController {
 }
 JSON;
 
-    debug($postargs);
+   // debug($postargs);
 
         $session = curl_init($request);
 
@@ -387,4 +392,44 @@ function delete_event($eventId){
     //$this->set('response',$response);
    // return $response;
 }
+
+    // Return the Calendar ID function
+
+    function list_events(){
+        $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
+        $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+        $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events/?fields=items%2Fid&key='. $APIKEY;
+
+
+        //$auth = json_decode($_SESSION['oauth_access_token'],true);
+
+        //var_dump($auth);
+
+//    $arg_list = func_get_args();
+//    foreach($arg_list as $key => $arg){
+//        $arg_list[$key] = urlencode($arg);
+//    }
+
+        $session = curl_init($request);
+
+        //tell curl this is a delete request
+
+        curl_setopt($session, CURLOPT_CUSTOMREQUEST, 'GET');
+        // Tell curl not to return headers, but do return the response
+        curl_setopt($session, CURLOPT_HEADER, true);
+        curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($session, CURLOPT_VERBOSE, true);
+        curl_setopt($session, CURLINFO_HEADER_OUT, true);
+        curl_setopt($session, CURLOPT_HTTPHEADER, array('Content-Type:  application/json','Authorization:  Bearer ' . $this->get_access_token(),'X-JavaScript-User-Agent:  Mount Pearl Tennis Club Bookings'));
+
+        $response = curl_exec($session);
+
+
+        curl_close($session);
+        //$this->set('response',$response);
+        return $response;
+    }
+
+
+
 }
