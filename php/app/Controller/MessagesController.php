@@ -25,19 +25,15 @@ class MessagesController extends AppController {
         $this->loadModel('Student');
 
         if($this->request->is('post')){
-            foreach(Student as $students){
-                {
-                    EtheraEmail::mailer($students['Student']['email']);
-
-
-//                    $data = $this->request->data;
-//                    $Email = new CakeEmail('gmail');
-//                    //$Email->config('gmail');
-//                    $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
-//                    $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-//                    $Email->to($data['to']);
-//                    $Email->subject($data['subject']);
-//                    $Email->send($data['body']);
+                    {
+                    $data = $this->request->data;
+                    $Email = new CakeEmail('gmail');
+                    //$Email->config('gmail');
+                    $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
+                    $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
+                    $Email->to($data['to']);
+                    $Email->subject($data['subject']);
+                    $Email->send($data['body']);
                 }
 
                 $this->redirect(array('controller'=>'messages','action'=>'email'));
@@ -54,28 +50,8 @@ class MessagesController extends AppController {
 
                 return true;
             }
-            }
 
-            if($this->request->data)
 
-        $batches = $this->Batch->find('list',array(
-            'fields'=>array(
-                'Batch.id','Batch.academic_year'
-            )
-            //'conditions'=>array('Student.batch_id'=>'2')
-        ));
-        $this->set('batches',$batches);
-
-        $this->loadModel('StudyProgram');
-        $study_programs = $this->StudyProgram->find('list',array(
-            'fields'=>array(
-                'StudyProgram.id','StudyProgram.program_code'
-            )
-            //'conditions'=>array('Student.batch_id'=>'2')
-        ));
-        $this->set('study_programs',$study_programs);
-
-//**********************************
 
         if ($this->request->is('post')) {
             $data = $this->request->data;
@@ -90,6 +66,7 @@ class MessagesController extends AppController {
                     'recursive' => -1
                 )
             );
+
             $students = $this->Student->find(
                 'all',
                 array(
@@ -99,9 +76,15 @@ class MessagesController extends AppController {
                     ),
                     'recursive' => -1
                 )
-            );
-    }
-//**********************************
+            );}
+
+        $batches = $this->Batch->find('list');
+        $this->set('batches',$batches);
+
+        foreach($students as $student){
+            $student ['Student']['email'] = $data['to'];
+
+        }
     }
 
 
@@ -229,14 +212,20 @@ class MessagesController extends AppController {
                     'recursive' => -1
                 )
             );
+            if((!empty($batch_found))||(!empty($student_found))){
 
-            $save_data['Student']['id'] = $student_found['Student']['id'];
-            $save_data['Student']['sms_num'] = $number;
-            if(!empty($save_data['Student']['id'])){
-                $this->Student->save($save_data);
-                $responseMsg ="Successfully registered. Your number is : ".$number;
+                $save_data['Student']['id'] = $student_found['Student']['id'];
+                $save_data['Student']['sms_num'] = $number;
+                if(!empty($save_data['Student']['id'])){
+                    $this->Student->save($save_data);
+                    $responseMsg ="Successfully registered. Your number is : ".$number;
+                }
+                else {
+                    $responseMsg ="Error : Your are not registered to the system. To register go to Ethera official web site";
+                }
+
             }
-            else {
+            else{
                 $responseMsg ="Error : Your student registration number is invalid. The correct format is XXX/XXXX/XXXX/XXX";
             }
         }
