@@ -1,5 +1,5 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Admin Home'); ?>
+<?php $this->set('title', 'My Profile'); ?>
 <h1 align="center">My Profile</h1>
 
 <div class="container">
@@ -24,7 +24,7 @@
                 <p class=\"text-center\">Edit My Password</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'system_users', 'action' => 'index'),
+                array('controller' => 'students', 'action' => 'edit_password'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
@@ -39,7 +39,7 @@
                 <p class=\"text-center\">My CV Data</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'system_users', 'action' => 'index'),
+                array('controller' => 'students', 'action' => 'my_cv_data',$student),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
@@ -54,7 +54,7 @@
                 <p class=\"text-center\">My Extra Activities</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'system_users', 'action' => 'index'),
+                array('controller' => 'students', 'action' => 'my_extra_activities'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
