@@ -39,10 +39,16 @@
         //                'type' => 'text'
         //            ));
         echo $this->Form->input('date_start',array(
-            'class'=>'span1'
+            'class'=>'span1',
+            'type' => 'datetime',
+            'timeFormat'=>'24',
+            'dateFormat'=>'YMD'
         ));
         echo $this->Form->input('date_end',array(
-            'class'=>'span1'
+            'class'=>'span1',
+            'type' => 'datetime',
+           'timeFormat'=>'24',
+            'dateFormat'=>'YMD',
         ));
         echo $this->Form->input('description',array(
             'class'=>'span6'

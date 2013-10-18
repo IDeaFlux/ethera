@@ -106,10 +106,15 @@ class NoticesController extends AppController {
 
                 if($calpost==1){
                 $response = $this->send_post_request($start_date,$end_date,$title);
-                //debug($response);
+
+                    debug($response);
+
+
+
                     $eventId=$this->list_events();
                     $this->set('eventId',$eventId);
                     debug($eventId);
+                    $this->Notice->saveField('event_id',$response);
 
                     $id='474ros237lbffc61ga41rq8kgc';
                     $this->delete_event($id);
@@ -181,6 +186,39 @@ class NoticesController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Notice->save($this->request->data)) {
                 $this->Notice->saveField('system_user_id',$authUser);
+
+                //Newly Inserted for edit calender post
+
+                $data=$this->request->data;
+                $save_year=$data['Notice']['date_start']['year'];
+                $save_month=$data['Notice']['date_start']['month'];
+                $save_day=$data['Notice']['date_start']['day'];
+                $save_hour=$data['Notice']['date_start']['hour'];
+                $save_min=$data['Notice']['date_start']['min'];
+
+                $start_date=$save_year."-".$save_month."-".$save_day."T".$save_hour.":".$save_min.":00.000+05:30";
+
+                $save_year=$data['Notice']['date_end']['year'];
+                $save_month=$data['Notice']['date_end']['month'];
+                $save_day=$data['Notice']['date_end']['day'];
+                $save_hour=$data['Notice']['date_end']['hour'];
+                $save_min=$data['Notice']['date_end']['min'];
+
+                $end_date=$save_year."-".$save_month."-".$save_day."T".$save_hour.":".$save_min.":00.000+05:30";
+
+                $title=$data['Notice']['title'];
+                $calpost=$data['Notice']['published_state'];
+                if($calpost==1){
+                    $response = $this->send_post_request($start_date,$end_date,$title);
+
+                    debug($response);
+                    $this->Notice->saveField('event_id',$response);
+
+
+                }
+
+                //End of the newly additions
+
 				$this->Session->setFlash(__('The notice has been saved.'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
