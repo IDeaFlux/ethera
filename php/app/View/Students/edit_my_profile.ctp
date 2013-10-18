@@ -4,7 +4,7 @@
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-            <li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('SystemUser.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('SystemUser.id'))); ?></li>
+            <li><?php echo $this->Html->link(__('My Profile'), array('controller' => 'students', 'action' => 'my_profile')); ?></li>
         </ul>
     </div>
 
