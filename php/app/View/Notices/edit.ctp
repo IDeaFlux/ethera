@@ -21,8 +21,9 @@
             'class' => 'well form-horizontal'
         )); ?>
 
-        <legend><?php echo __('Add Notice'); ?></legend>
+        <legend><?php echo __('Edit Notice'); ?></legend>
         <?php
+        echo $this->Form->input('id');
         echo $this->Form->input('title',array(
             'class'=>'span6'
         ));
@@ -42,7 +43,7 @@
             'class'=>'span1',
             'type' => 'datetime',
             'timeFormat'=>'24',
-            'dateFormat'=>'YMD'
+            'dateFormat'=>'YMD',
         ));
         echo $this->Form->input('date_end',array(
             'class'=>'span1',
@@ -63,7 +64,7 @@
             ),
             'default'=> 0
         ));
-        echo $this->Form->input('published_state', array(
+        echo $this->Form->input('published_to_cal', array(
             'type' => 'radio',
             'before' => '<label class="control-label">Publish to Calendar</label>',
             'legend' => false,
@@ -80,7 +81,7 @@
 
         ?>
         <div class="form-actions">
-            <?php echo $this->Form->submit('Save', array(
+            <?php echo $this->Form->submit('Save Changes', array(
                 'div' => false,
                 'class' => 'btn btn-primary'
             )); ?>
