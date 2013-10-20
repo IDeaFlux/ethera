@@ -1,26 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * InterestedArea Model
- *
- * @property Assignment $Assignment
- * @property Opportuny $Opportuny
- * @property StudyProgram $StudyProgram
- */
+
 class InterestedArea extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
+
 	public $displayField = 'name';
 
-/**
- * Validation rules
- *
- * @var array
- */
+
 	public $validate = array(
 		'name' => array(
 			'notempty' => array(
@@ -46,11 +32,7 @@ class InterestedArea extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-/**
- * hasMany associations
- *
- * @var array
- */
+
 	public $hasMany = array(
 		'Assignment' => array(
 			'className' => 'Assignment',
@@ -81,11 +63,7 @@ class InterestedArea extends AppModel {
 	);
 
 
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
+
 	public $hasAndBelongsToMany = array(
 		'StudyProgram' => array(
 			'className' => 'StudyProgram',
