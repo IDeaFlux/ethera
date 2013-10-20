@@ -107,13 +107,23 @@ class Notice extends AppModel {
 		'published_state' => array(
 			'boolean' => array(
 				'rule' => array('boolean'),
-				'message' => 'Enter your preference to publish /un-publish the notice',
+				'message' => 'Enter your preference to publish /un-publish the notice to the Notice Board',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+        'published_to_cal' => array(
+            'boolean' => array(
+                'rule' => array('boolean'),
+                'message' => 'Enter your preference to publish /un-publish the notice to the Calendar',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
