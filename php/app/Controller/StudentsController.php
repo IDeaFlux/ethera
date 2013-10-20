@@ -418,7 +418,12 @@ class StudentsController extends AppController {
         $this->set('student',$current_student['id']);
 
         if($current_student['approval_phase'] == 1 || $current_student['approval_phase'] == 2) {
-            $enable = 1;
+            if($current_student['freeze_state']==0) {
+                $enable = 1;
+            }
+            else {
+                $enable = 0;
+            }
         }
         else {
             $enable = 0;
@@ -458,12 +463,14 @@ class StudentsController extends AppController {
         elseif($id != $current_student['id']) {
             $this->redirect(array('action' => 'my_profile'));
         }
-        elseif($current_student['approval_phase'] != 1 || $current_student['approval_phase'] != 2) {
+        elseif($current_student['approval_phase'] != 1 && $current_student['approval_phase'] != 2) {
             $this->redirect(array('action' => 'my_profile'));
         }
         elseif($current_student['freeze_state']!=0) {
             $this->redirect(array('action' => 'my_profile'));
         }
+
+
     }
 
     public function freeze_unfreeze() {
