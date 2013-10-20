@@ -94,7 +94,7 @@ class NoticesController extends AppController {
             //debug($starttime);
 
             $title=$data['Notice']['title'];
-            $calpost=$data['Notice']['published_state'];
+            $calpost=$data['Notice']['published_to_cal'];
 
 
 
