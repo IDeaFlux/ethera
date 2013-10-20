@@ -1,5 +1,5 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Student Approval Phase Selection'); ?>
+<?php $this->set('title', 'Send Email to Students'); ?>
 
 <div class="row">
     <div class="span3">
