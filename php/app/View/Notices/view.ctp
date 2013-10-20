@@ -43,6 +43,11 @@
                 <?php echo h($notice['Notice']['published_state']); ?>
                 &nbsp;
             </dd>
+            <dt><?php echo __('Published to Cal'); ?></dt>
+            <dd>
+                <?php echo h($notice['Notice']['published_to_cal']); ?>
+                &nbsp;
+            </dd>
             <dt><?php echo __('System User'); ?></dt>
             <dd>
                 <?php echo $this->Html->link($notice['SystemUser']['email'], array('controller' => 'system_users', 'action' => 'view', $notice['SystemUser']['id'])); ?>
