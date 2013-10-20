@@ -12,8 +12,44 @@ class MessagesController extends AppController {
 
 
     public function sms() {
+        $this->loadModel('BatchesStudyProgram');
+        $this->loadModel('Batch');
+        $this->loadModel('Student');
+
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+
+            $batch_study_program = $this->BatchesStudyProgram->find(
+                'first',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );
+
+            $students = $this->Student->find(
+                'all',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );}
+
+        $batches = $this->Batch->find('list');
+        $this->set('batches',$batches);
 
     }
+
+
+
+
+
 
     public function email($data = null) {
     }
@@ -221,7 +257,7 @@ class MessagesController extends AppController {
                     $responseMsg ="Successfully registered. Your number is : ".$number;
                 }
                 else {
-                    $responseMsg ="Error : Your are not registered to the system. To register go to Ethera official web site";
+                    $responseMsg ="Error : Your are not registered to the system. Go to Ethera official web site for registration";
                 }
 
             }
