@@ -187,10 +187,13 @@ class NoticesController extends AppController {
 			throw new NotFoundException(__('Invalid notice'),'error_flash');
 		}
 
+
         $authUser=$this->Auth->user('id');
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Notice->save($this->request->data)) {
                 $this->Notice->saveField('system_user_id',$authUser);
+
+
 
                 //Newly Inserted for edit calender post
 
@@ -210,14 +213,26 @@ class NoticesController extends AppController {
                 $save_min=$data['Notice']['date_end']['min'];
 
                 $end_date=$save_year."-".$save_month."-".$save_day."T".$save_hour.":".$save_min.":00.000+05:30";
-
+debug($end_date);
+                debug($end_date);
+                debug($end_date);
+                debug($end_date);
+                debug($start_date);
                 $title=$data['Notice']['title'];
-                $calpost=$data['Notice']['published_state'];
+                $calpost=$data['Notice']['published_to_cal'];
+
+                $result = $this->Notice->find('first', array(
+                    'conditions' => array('Notice.id' => $id)
+
+                ));
+                debug($result['Notice']['event_id']);
+                $eventId=$result['Notice']['event_id'];
+
                 if($calpost==1){
-                    $response = $this->send_post_request($start_date,$end_date,$title);
+                    $response = $this->update_event($start_date,$end_date,$title,$eventId);
 
                     debug($response);
-                    $this->Notice->saveField('event_id',$response);
+                   // $this->Notice->saveField('event_id',$response);
 
 
                 }
@@ -225,7 +240,7 @@ class NoticesController extends AppController {
                 //End of the newly additions
 
 				$this->Session->setFlash(__('The notice has been saved.'),'success_flash');
-				$this->redirect(array('action' => 'index'));
+				//$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The notice could not be saved. Please, try again.'),'error_flash');
 			}
@@ -492,17 +507,18 @@ function delete_event($eventId){
     function update_event($start_date,$end_date,$title,$eventId){
         $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
         $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+
         // $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY;
         $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events/'. $eventId .'?key=' . $APIKEY;
 
         //$auth = json_decode($_SESSION['oauth_access_token'],true);
 
         //var_dump($auth);
-
-        $arg_list = func_get_args();
-        foreach($arg_list as $key => $arg){
-            $arg_list[$key] = urlencode($arg);
-        }
+//
+//        $arg_list = func_get_args();
+//        foreach($arg_list as $key => $arg){
+//            $arg_list[$key] = urlencode($arg);
+//        }
         //2013-06-07T10:00:00.000-07:00
         $postargs = <<<JSON
 {
@@ -527,7 +543,8 @@ JSON;
 
 
         // $save_year=$data['Notice']['date_start']['year'];
-        curl_setopt ($session, CURLOPT_POSTFIELDS,$postargs);
+        curl_setopt ($session, CURLOPT_INFILE,$postargs);
+        curl_setopt($session,CURLOPT_INFILESIZE,0);
         // Tell curl not to return headers, but do return the response
         curl_setopt($session, CURLOPT_HEADER, true);
         curl_setopt($session, CURLOPT_RETURNTRANSFER, true);

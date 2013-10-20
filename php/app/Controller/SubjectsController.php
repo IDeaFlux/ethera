@@ -41,7 +41,7 @@ class SubjectsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Subject->save($this->request->data)) {
-				$this->Session->setFlash(__('The subject has been saved'),'success_flash');
+                $this->Session->setFlash(__('The subject has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The subject could not be saved. Please, try again.'),'error_flash');
