@@ -106,9 +106,9 @@ class NoticesController extends AppController {
                 $this->Notice->saveField('system_user_id',$authUser);
 
                 if($calpost==1){
-                    //create event
+                    //create event return the eventId
                 $response = $this->send_post_request($start_date,$end_date,$title);
-                    debug($response);
+                  //  debug($response);
 
                     //list all eventIds
                     $eventId=$this->list_events();
@@ -116,15 +116,11 @@ class NoticesController extends AppController {
                     //debug($eventId);
                     $this->Notice->saveField('event_id',$response);
 
-                       //Delete event
-                    $id='q1182d91i8e16nn7lqamcc4qac';
-                    $this->delete_event($id);
-
                     //Update event
                     $start_date='2013-10-04T10:00:00.000-07:00';
                     $end_date='2013-10-10T10:00:00.000-07:00';
                     $title='updated';
-                    $update = $this->update_event($start_date,$end_date,$title,$id);
+                  //  $update = $this->update_event($start_date,$end_date,$title,$id);
                     //debug($update);
 
                 }
@@ -152,7 +148,7 @@ class NoticesController extends AppController {
                 //call the calender creation method
 
 				$this->Session->setFlash(__('The notice has been saved'),'success_flash');
-				//$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The notice could not be saved. Please, try again.'),'error_flash');
 			}
@@ -262,8 +258,18 @@ class NoticesController extends AppController {
 		if (!$this->Notice->exists()) {
 			throw new NotFoundException(__('Invalid notice'),'error_flash');
 		}
-		$this->request->onlyAllow('post', 'delete');
+
+        $result = $this->Notice->find('first', array(
+            'conditions' => array('Notice.id' => $id)
+
+        ));
+        //debug($result['Notice']['event_id']);
+        $eventId=$result['Notice']['event_id'];
+        $this->delete_event($eventId);
+
+      	$this->request->onlyAllow('post', 'delete');
 		if ($this->Notice->delete()) {
+
 			$this->Session->setFlash(__('Notice deleted'),'success_flash');
 			$this->redirect(array('action' => 'index'));
 		}
