@@ -111,7 +111,7 @@
                 ),
                 'default'=> 0
             ));
-            echo $this->Form->input('publish_to_calendar', array(
+            echo $this->Form->input('published_to_cal', array(
             'type' => 'radio',
             'before' => '<label class="control-label">Publish to calendar</label>',
             'legend' => false,
