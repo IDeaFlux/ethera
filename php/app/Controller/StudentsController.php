@@ -470,7 +470,48 @@ class StudentsController extends AppController {
             $this->redirect(array('action' => 'my_profile'));
         }
 
+        $this->loadModel('Assignment');
+        $this->loadModel('InterestedArea');
 
+        $student = $this->Student->find(
+            'first', array(
+                'conditions' => array(
+                    'Student.id' => $id
+                )
+            )
+        );
+
+        $interested_areas = $this->InterestedArea->find(
+            'list',array(
+                'contain' => array(
+                    'StudyProgram' => array(
+                        'conditions' => array(
+                            'StudyProgram.id'=> $student['Student']['study_program_id']
+                        )
+                    )
+                )
+            )
+        );
+        $this->set('interested_areas',$interested_areas);
+        if($this->request->is('post')){
+            debug($this->request->data);
+            $assignments = $this->request->data['Assignment'];
+            $count = 1;
+            foreach($assignments as $assignment){
+                $data[$count-1]['Assignment']['interested_area_id'] = $assignment['interested_area_id'];
+                $data[$count-1]['Assignment']['student_id'] = $id;
+                $data[$count-1]['Assignment']['priority'] = $count;
+                $count++;
+            }
+            if($this->Assignment->saveAll($data)){
+                $this->Session->setFlash(__('Your CV Data updated'),'success_flash');
+                $this->redirect(array('action' => 'my_profile'));
+            }
+            else {
+                $this->Session->setFlash(__('Your CV Data update failed'),'error_flash');
+                $this->redirect(array('action' => 'my_profile'));
+            }
+        }
     }
 
     public function freeze_unfreeze() {

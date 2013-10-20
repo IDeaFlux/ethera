@@ -24,8 +24,9 @@
         <legend><?php echo __('Add My CV Data'); ?></legend>
         <legend><?php echo __('<span style="font-size: 18px">Priority #1</span>'); ?></legend>
         <?php
-        echo $this->Form->input('Assignment.0.interestedAreas',array(
+        echo $this->Form->input('Assignment.0.interested_area_id',array(
             'type' => 'select',
+            'options' => $interested_areas,
             'class' => 'span4',
             'label' => array(
                 'text' => 'Interested Area'
@@ -34,8 +35,9 @@
         ?>
         <legend><?php echo __('<span style="font-size: 18px">Priority #2</span>'); ?></legend>
         <?php
-        echo $this->Form->input('Assignment.1.interestedAreas',array(
+        echo $this->Form->input('Assignment.1.interested_area_id',array(
             'type' => 'select',
+            'options' => $interested_areas,
             'class' => 'span4',
             'label' => array(
                 'text' => 'Interested Area'
@@ -44,8 +46,9 @@
         ?>
         <legend><?php echo __('<span style="font-size: 18px">Priority #3</span>'); ?></legend>
         <?php
-        echo $this->Form->input('Assignment.2.interestedAreas',array(
+        echo $this->Form->input('Assignment.2.interested_area_id',array(
             'type' => 'select',
+            'options' => $interested_areas,
             'class' => 'span4',
             'label' => array(
                 'text' => 'Interested Area'
