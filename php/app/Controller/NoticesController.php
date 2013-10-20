@@ -117,8 +117,8 @@ class NoticesController extends AppController {
                     $this->Notice->saveField('event_id',$response);
 
                        //Delete event
-                    $id='1msndpequnifafeeta41gi4gok';
-                    //$this->delete_event($id);
+                    $id='q1182d91i8e16nn7lqamcc4qac';
+                    $this->delete_event($id);
 
                     //Update event
                     $start_date='2013-10-04T10:00:00.000-07:00';
@@ -387,23 +387,24 @@ JSON;
         // $save_year=$data['Notice']['date_start']['year'];
         curl_setopt ($session, CURLOPT_POSTFIELDS,$postargs);
         // Tell curl not to return headers, but do return the response
-        curl_setopt($session, CURLOPT_HEADER, true);
+        //curl_setopt($session, CURLOPT_HEADER, true);
         curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($session, CURLOPT_VERBOSE, true);
-        curl_setopt($session, CURLINFO_HEADER_OUT, true);
+        //curl_setopt($session, CURLINFO_HEADER_OUT, true);
         curl_setopt($session, CURLOPT_HTTPHEADER, array('Content-Type:  application/json','Authorization:  Bearer ' . $this->get_access_token(),'X-JavaScript-User-Agent:  Mount Pearl Tennis Club Bookings'));
 
         $response = curl_exec($session);
         $data=json_decode($response,true);
+        $eventId=$data['id'];
 
-        
+
         //echo '<pre>';
         //var_dump(curl_getinfo($session, CURLINFO_HEADER_OUT));
         //echo '</pre>';
 
         curl_close($session);
         //$this->set('response',$response);
-        return $data;
+        return $eventId;
     }
 
     // Delete an event in the Calendar
