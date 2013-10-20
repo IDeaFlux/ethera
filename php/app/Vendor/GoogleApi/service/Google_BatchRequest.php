@@ -18,7 +18,7 @@
 /**
  * @author Chirag Shah <chirags@google.com>
  */
-class Google_BatchRequest {
+class Google_BatchRequest{
   /** @var string Multipart Boundary. */
   private $boundary;
 
@@ -84,13 +84,13 @@ class Google_BatchRequest {
         $part = trim($part);
         if (!empty($part)) {
           list($metaHeaders, $part) = explode("\r\n\r\n", $part, 2);
-          $metaHeaders = Google_CurlIO::parseResponseHeaders($metaHeaders);
+          $metaHeaders = Google_CurlIO::parseResponseHeader($metaHeaders);
 
           $status = substr($part, 0, strpos($part, "\n"));
           $status = explode(" ", $status);
           $status = $status[1];
 
-          list($partHeaders, $partBody) = Google_CurlIO::parseHttpResponse($part, false);
+          list($partHeaders, $partBody) = Google_CurlIO::parseHttpResponses($part, false);
           $response = new Google_HttpRequest("");
           $response->setResponseHttpCode($status);
           $response->setResponseHeaders($partHeaders);
