@@ -2,6 +2,7 @@
 App::uses('AppController', 'Controller');
 App::import('Vendor', 'GoogleApi/Google_Client');
 App::import('Vendor', 'GoogleApi/contrib/Google_CalendarService');
+
 /**
  * Notices Controller
  *
@@ -105,19 +106,27 @@ class NoticesController extends AppController {
                 $this->Notice->saveField('system_user_id',$authUser);
 
                 if($calpost==1){
+                    //create event
                 $response = $this->send_post_request($start_date,$end_date,$title);
-
                     debug($response);
 
-
-
+                    //list all eventIds
                     $eventId=$this->list_events();
                     $this->set('eventId',$eventId);
-                    debug($eventId);
+                    //debug($eventId);
                     $this->Notice->saveField('event_id',$response);
 
-                    $id='474ros237lbffc61ga41rq8kgc';
-                    $this->delete_event($id);
+                       //Delete event
+                    $id='1msndpequnifafeeta41gi4gok';
+                    //$this->delete_event($id);
+
+                    //Update event
+                    $start_date='2013-10-04T10:00:00.000-07:00';
+                    $end_date='2013-10-10T10:00:00.000-07:00';
+                    $title='updated';
+                    $update = $this->update_event($start_date,$end_date,$title,$id);
+                    //debug($update);
+
                 }
                 
 
@@ -385,14 +394,16 @@ JSON;
         curl_setopt($session, CURLOPT_HTTPHEADER, array('Content-Type:  application/json','Authorization:  Bearer ' . $this->get_access_token(),'X-JavaScript-User-Agent:  Mount Pearl Tennis Club Bookings'));
 
         $response = curl_exec($session);
+        $data=json_decode($response,true);
 
+        
         //echo '<pre>';
         //var_dump(curl_getinfo($session, CURLINFO_HEADER_OUT));
         //echo '</pre>';
 
         curl_close($session);
         //$this->set('response',$response);
-        return $response;
+        return $data;
     }
 
     // Delete an event in the Calendar
@@ -468,6 +479,65 @@ function delete_event($eventId){
         return $response;
     }
 
+
+    //Update Event in Google Calendar
+
+    function update_event($start_date,$end_date,$title,$eventId){
+        $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
+        $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+        // $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY;
+        $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events/'. $eventId .'?key=' . $APIKEY;
+
+        //$auth = json_decode($_SESSION['oauth_access_token'],true);
+
+        //var_dump($auth);
+
+        $arg_list = func_get_args();
+        foreach($arg_list as $key => $arg){
+            $arg_list[$key] = urlencode($arg);
+        }
+        //2013-06-07T10:00:00.000-07:00
+        $postargs = <<<JSON
+{
+ "end": {
+  "dateTime": "$end_date"
+ },
+  "start": {
+  "dateTime": "$start_date"
+ },
+ "summary": "$title",
+ "description": "$title"
+}
+JSON;
+
+        // debug($postargs);
+
+        $session = curl_init($request);
+
+        // Tell curl to use HTTP PUT
+        curl_setopt($session, CURLOPT_PUT, true);
+        // Tell curl that this is the body of the POST
+
+
+        // $save_year=$data['Notice']['date_start']['year'];
+        curl_setopt ($session, CURLOPT_POSTFIELDS,$postargs);
+        // Tell curl not to return headers, but do return the response
+        curl_setopt($session, CURLOPT_HEADER, true);
+        curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($session, CURLOPT_VERBOSE, true);
+        curl_setopt($session, CURLINFO_HEADER_OUT, true);
+        curl_setopt($session, CURLOPT_HTTPHEADER, array('Content-Type:  application/json','Authorization:  Bearer ' . $this->get_access_token(),'X-JavaScript-User-Agent:  Mount Pearl Tennis Club Bookings'));
+
+        $response = curl_exec($session);
+
+        //echo '<pre>';
+        //var_dump(curl_getinfo($session, CURLINFO_HEADER_OUT));
+        //echo '</pre>';
+
+        curl_close($session);
+        //$this->set('response',$response);
+        return $response;
+    }
 
 
 }
