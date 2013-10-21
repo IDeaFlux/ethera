@@ -25,12 +25,21 @@
         <legend><?php echo __('Edit Organization'); ?></legend>
 
         <?php
-            echo $this->Form->input('id', array('class'=>'span6'));
-            echo $this->Form->input('name', array('class'=>'span6'));
-            echo $this->Form->input('address', array('class'=>'span6'));
-            echo $this->Form->input('email', array('class'=>'span6'));
-            echo $this->Form->input('logo',array('type'=>'file') ,array('class'=>'span6'));
-            echo $this->Form->input('profile', array('class'=>'span6'));
+        echo $this->Form->input('name', array('class'=>'span6'));
+
+        echo $this->Form->input('SystemUser.name',array(
+            'type' => 'select',
+            'options' => $system_users,
+            'class' => 'span4',
+            'label' => array(
+                'text' => 'Related System User Name'
+            )
+        ));
+
+        echo $this->Form->input('address', array('class'=>'span6'));
+        echo $this->Form->input('email', array('class'=>'span6'));
+        echo $this->Form->input('logo',   array('type'=>'file'));
+        echo $this->Form->input('profile', array('class'=>'span6'));
         ?>
 
         <div class="form-actions">

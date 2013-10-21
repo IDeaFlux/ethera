@@ -43,8 +43,6 @@ class OrganizationsController extends AppController {
 			}
 		}
 
-
-
         $system_users = $this->SystemUser->find('list', array('conditions'=>array('group_id'=>5)));
         $this->set('system_users',$system_users);
 	}
@@ -57,11 +55,14 @@ class OrganizationsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+        $this->loadModel('SystemUser');
+
 		if (!$this->Organization->exists($id)) {
 			throw new NotFoundException(__('Invalid organization'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Organization->save($this->request->data)) {
+			if ($this->Organization->saveAll($this->request->data)) {
+                $this->Organization->saveField('organization_user_id',5);
 				$this->Session->setFlash(__('The organization has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -71,6 +72,9 @@ class OrganizationsController extends AppController {
 			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
 			$this->request->data = $this->Organization->find('first', $options);
 		}
+
+        $system_users = $this->SystemUser->find('list', array('conditions'=>array('group_id'=>5)));
+        $this->set('system_users',$system_users);
 	}
 
 /**
