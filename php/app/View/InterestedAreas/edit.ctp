@@ -27,7 +27,7 @@
                 echo $this->Form->input('id', array('class'=>'span5'));
                 echo $this->Form->input('name', array('class'=>'span5'));
                 echo $this->Form->input('description', array('class'=>'span5'));
-                echo $this->Form->input('StudyProgram', array('class'=>'span5'));
+                echo $this->Form->input('study_program', array('class'=>'span5'));
             ?>
             </fieldset>
 
