@@ -121,9 +121,20 @@
             ),
             'default'=> 0
         ));
-           // echo $this->Form->input('system_user');
+//        echo $this->Form->input('attach_article',array(
+//            'type'=>'checkbox',
+//            'checked'=>false,
+//        ));
+
+        // echo $this->Form->input('system_user');
            // echo $authUser;
-            echo $this->Form->input('article_id');
+            echo $this->Form->input('article_id',array(
+
+                'options'=>array('Select an Article',$articles),
+                'selected'=>0,
+
+            ));
+
 
 
         ?>
