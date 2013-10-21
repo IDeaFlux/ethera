@@ -5,7 +5,7 @@ App::uses('Folder','Utility');
 class SystemUser extends AppModel {
 
 
-	public $displayField = 'email';
+	public $displayField = 'first_name';
 
 
 	public $validate = array(

@@ -28,15 +28,25 @@ class OrganizationsController extends AppController {
 
 
 	public function add() {
+        $this->loadModel('SystemUser');
+
 		if ($this->request->is('post')) {
 			$this->Organization->create();
-			if ($this->Organization->save($this->request->data)) {
-				$this->Session->setFlash(__('The organization has been saved'),'success_flash');
+
+			if ($this->Organization->saveAll($this->request->data)) {
+                $this->Organization->saveField('organization_user_id',5);
+
+                $this->Session->setFlash(__('The organization has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'),'error_flash');
 			}
 		}
+
+
+
+        $system_users = $this->SystemUser->find('list', array('conditions'=>array('group_id'=>5)));
+        $this->set('system_users',$system_users);
 	}
 
 /**

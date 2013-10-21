@@ -1,13 +1,11 @@
 <?php $this->layout = 'bootstrap2'; ?>
+<?php $this->set('title', 'Add Organization'); ?>
 
 <div class="row">
 
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('List Organizations'), array('action' => 'index')); ?></li>
-            <li><?php echo $this->Html->link(__('List Assignments'), array('controller' => 'assignments', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('List Feedbacks'), array('controller' => 'feedbacks', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('List Opportunies'), array('controller' => 'opportunies', 'action' => 'index')); ?> </li>
         </ul>
 
     </div>
@@ -28,6 +26,16 @@
         <fieldset>
             <?php
                 echo $this->Form->input('name', array('class'=>'span6'));
+
+                echo $this->Form->input('SystemUser.name',array(
+                    'type' => 'select',
+                    'options' => $system_users,
+                    'class' => 'span4',
+                    'label' => array(
+                        'text' => 'Related System User Name'
+                    )
+                ));
+
                 echo $this->Form->input('address', array('class'=>'span6'));
                 echo $this->Form->input('email', array('class'=>'span6'));
                 echo $this->Form->input('logo',   array('type'=>'file'));
