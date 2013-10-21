@@ -236,7 +236,7 @@ class NoticesController extends AppController {
                 //End of the newly additions
 
 				$this->Session->setFlash(__('The notice has been saved.'),'success_flash');
-				//$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The notice could not be saved. Please, try again.'),'error_flash');
 			}
