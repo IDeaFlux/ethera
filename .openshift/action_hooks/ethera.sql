@@ -195,6 +195,7 @@ CREATE TABLE IF NOT EXISTS `opportunies` (
 DROP TABLE IF EXISTS `organizations`;
 CREATE TABLE IF NOT EXISTS `organizations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `organization_user_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
