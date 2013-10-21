@@ -96,14 +96,16 @@ class NoticesController extends AppController {
             $title=$data['Notice']['title'];
             $calpost=$data['Notice']['published_to_cal'];
 
-
+           // debug($data['Notice']['article_id']);
 
 
 
             $this->Notice->create();
 
+
 			if ($this->Notice->save($this->request->data)) {
                 $this->Notice->saveField('system_user_id',$authUser);
+//
 
                 if($calpost==1){
                     //create event return the eventId
@@ -228,7 +230,7 @@ class NoticesController extends AppController {
                     $response = $this->update_event($start_date,$end_date,$title,$eventId);
 
                       //debug($response);
-                   // $this->Notice->saveField('event_id',$response);
+                    $this->Notice->saveField('event_id',$response);
 
 
                 }
