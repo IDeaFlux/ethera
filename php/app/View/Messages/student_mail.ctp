@@ -1,12 +1,12 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Send Email to Students'); ?>
+<?php $this->set('title', 'Send Email'); ?>
 
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('E-mail'), array('controller'=>'Messages','action' => 'email')); ?></li>
-            <li><?php echo $this->Html->link(__('Send Mail to Staff'), array('controller' => 'Messages', 'action' => 'staffMail')); ?> </li>
-            <li><?php echo $this->Html->link(__('Send Mail to Industry'), array('controller' => 'Messages', 'action' => 'industryMail')); ?> </li>        </ul>
+            <li><?php echo $this->Html->link(__('Send Mail to Staff'), array('controller' => 'Messages', 'action' => 'staff_mail')); ?> </li>
+            <li><?php echo $this->Html->link(__('Send Mail to Industry'), array('controller' => 'Messages', 'action' => 'industry_mail')); ?> </li>        </ul>
     </div>
     <div class="span9">
         <?php
@@ -28,7 +28,6 @@
         ?>
         <?php echo $this->Form->create('Batch',array(
             'novalidate' => true,
-            'type'=>'file',
             'inputDefaults' => array(
                 'div' => 'control-group',
                 'label' => array(

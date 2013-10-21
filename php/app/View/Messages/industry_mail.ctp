@@ -5,14 +5,14 @@
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('E-mail'), array('controller'=>'Messages','action' => 'email')); ?></li>
-            <li><?php echo $this->Html->link(__('Send Mail to Students'), array('controller' => 'Messages', 'action' => 'studentMail')); ?> </li>
-            <li><?php echo $this->Html->link(__('Send Mail to Staff'), array('controller' => 'Messages', 'action' => 'staffMail')); ?> </li>
+            <li><?php echo $this->Html->link(__('Send Mail to Students'), array('controller' => 'Messages', 'action' => 'student_mail')); ?> </li>
+            <li><?php echo $this->Html->link(__('Send Mail to Staff'), array('controller' => 'Messages', 'action' => 'staff_mail')); ?> </li>
         </ul>
     </div>
 
     <div class="span9">
         <?php echo $this->Form->create(null,array(
-            'url' => array('controller'=>'messages','action'=>'email'),
+            'novalidate' => true,
             'inputDefaults' => array(
                 'div' => 'control-group',
                 'label' => array(
