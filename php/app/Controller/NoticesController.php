@@ -213,11 +213,7 @@ class NoticesController extends AppController {
                 $save_min=$data['Notice']['date_end']['min'];
 
                 $end_date=$save_year."-".$save_month."-".$save_day."T".$save_hour.":".$save_min.":00.000+05:30";
-debug($end_date);
-                debug($end_date);
-                debug($end_date);
-                debug($end_date);
-                debug($start_date);
+
                 $title=$data['Notice']['title'];
                 $calpost=$data['Notice']['published_to_cal'];
 
@@ -231,7 +227,7 @@ debug($end_date);
                 if($calpost==1){
                     $response = $this->update_event($start_date,$end_date,$title,$eventId);
 
-                    debug($response);
+                      debug($response);
                    // $this->Notice->saveField('event_id',$response);
 
 
@@ -509,7 +505,7 @@ function delete_event($eventId){
         $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
 
         // $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY;
-        $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events/'. $eventId .'?key=' . $APIKEY;
+        $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events/'. $eventId .'?fields=id&key=' . $APIKEY;
 
         //$auth = json_decode($_SESSION['oauth_access_token'],true);
 
@@ -538,15 +534,15 @@ JSON;
         $session = curl_init($request);
 
         // Tell curl to use HTTP PUT
-        curl_setopt($session, CURLOPT_PUT, true);
+        curl_setopt($session, CURLOPT_CUSTOMREQUEST,'PATCH');
         // Tell curl that this is the body of the POST
 
 
         // $save_year=$data['Notice']['date_start']['year'];
-        curl_setopt ($session, CURLOPT_INFILE,$postargs);
+        curl_setopt ($session, CURLOPT_POSTFIELDS,$postargs);
         curl_setopt($session,CURLOPT_INFILESIZE,0);
         // Tell curl not to return headers, but do return the response
-        curl_setopt($session, CURLOPT_HEADER, true);
+        //curl_setopt($session, CURLOPT_HEADER, true);
         curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($session, CURLOPT_VERBOSE, true);
         curl_setopt($session, CURLINFO_HEADER_OUT, true);
