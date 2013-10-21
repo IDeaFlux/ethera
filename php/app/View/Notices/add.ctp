@@ -106,8 +106,8 @@
                 'before' => '<label class="control-label">Publish Notice on/off</label>',
                 'legend' => false,
                 'options' => array(
-                    1 => 'on',
-                    0 => '0ff'
+                    1 => 'On',
+                    0 => 'Off'
                 ),
                 'default'=> 0
             ));
@@ -116,8 +116,8 @@
             'before' => '<label class="control-label">Publish to calendar</label>',
             'legend' => false,
             'options' => array(
-                1 => 'on',
-                0 => '0ff'
+                1 => 'On',
+                0 => 'Off'
             ),
             'default'=> 0
         ));
