@@ -12,7 +12,7 @@
                 <p class=\"text-center\">Send Mail to Students</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'Messages', 'action' => 'studentMail'),
+                array('controller' => 'Messages', 'action' => 'student_mail'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
@@ -27,7 +27,7 @@
                 <p class=\"text-center\">Send Mail to Staff</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'Messages', 'action' => 'staffMail'),
+                array('controller' => 'Messages', 'action' => 'staff_mail'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
@@ -41,7 +41,7 @@
                 <p class=\"text-center\">Send Mail to Industry</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'Messages', 'action' => 'industryMail'),
+                array('controller' => 'Messages', 'action' => 'industry_mail'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false

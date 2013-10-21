@@ -28,7 +28,6 @@
         ?>
         <?php echo $this->Form->create('Batch',array(
             'novalidate' => true,
-            'type'=>'file',
             'inputDefaults' => array(
                 'div' => 'control-group',
                 'label' => array(

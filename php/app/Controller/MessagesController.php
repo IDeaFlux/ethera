@@ -1,6 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
-App::uses('CakeEmail', 'Network/Email');
+App::uses('EtheraEmail','Lib');
 App::import('Vendor','Dialog/SmsReceiver');
 App::import('Vendor','Dialog/SmsSender');
 
@@ -47,50 +47,18 @@ class MessagesController extends AppController {
     }
 
 
-
-
-
-
     public function email($data = null) {
     }
 
 
-    public function studentMail(){
+    public function student_mail(){
         $this->loadModel('BatchesStudyProgram');
         $this->loadModel('Batch');
         $this->loadModel('Student');
 
-        if($this->request->is('post')){
-                    {
-                    $data = $this->request->data;
-                    $Email = new CakeEmail('gmail');
-                    //$Email->config('gmail');
-                    $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
-                    $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-                    $Email->to($data['to']);
-                    $Email->subject($data['subject']);
-                    $Email->send($data['body']);
-                }
-
-                $this->redirect(array('controller'=>'messages','action'=>'email'));
-            }
-
-            if(!empty($data)){
-                $Email = new CakeEmail('gmail');
-                //$Email->config('gmail');
-                $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
-                $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-                $Email->to($data['to']);
-                $Email->subject($data['subject']);
-                $Email->send($data['body']);
-
-                return true;
-            }
-
-
-
         if ($this->request->is('post')) {
             $data = $this->request->data;
+            debug($data);
 
             $batch_study_program = $this->BatchesStudyProgram->find(
                 'first',
@@ -106,54 +74,36 @@ class MessagesController extends AppController {
             $students = $this->Student->find(
                 'all',
                 array(
-                    'conditions' => array(
+                     'conditions' => array(
                         'batch_id' => $data['Batch']['batch_id'],
                         'study_program_id' => $data['Batch']['study_program']
                     ),
                     'recursive' => -1
                 )
-            );}
+            );
+            debug($students);
 
-        $batches = $this->Batch->find('list');
-        $this->set('batches',$batches);
 
-        foreach($students as $student){
-            $student ['Student']['email'] = $data['to'];
+            foreach($students as $student){
+
+                EtheraEmail::mailer($student ['Student']['email'],$data['subject'],$data['body']);
+
+
+            }
 
         }
+
+        $batches = $this->Batch->find('list');
+        debug($batches);
+        $this->set('batches',$batches);
+
+
     }
 
 
+//Need to modify
 
-    public function industryMail(){
-
-        if($this->request->is('post')){
-            if($this->request->data)
-            {
-                $data = $this->request->data;
-                $Email = new CakeEmail('gmail');
-                //$Email->config('gmail');
-                $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
-                $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-                $Email->to($data['to']);
-                $Email->subject($data['subject']);
-                $Email->send($data['body']);
-            }
-
-            $this->redirect(array('controller'=>'messages','action'=>'email'));
-        }
-
-        if(!empty($data)){
-            $Email = new CakeEmail('gmail');
-            //$Email->config('gmail');
-            $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
-            $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-            $Email->to($data['to']);
-            $Email->subject($data['subject']);
-            $Email->send($data['body']);
-
-            return true;
-        }
+    public function industry_mail(){
 
         $this->loadModel('Organization');
         $organizations = $this->Organization->find('list',array(
@@ -164,41 +114,30 @@ class MessagesController extends AppController {
         ));
 
         $this->set('organizations',$organizations);
-    }
 
+            if($this->request->is('post')){
+                if($this->request->data)
+                {
+                    $data = $this->request->data;
+                    EtheraEmail::mailer($data['to'],$data['subject'],$data['body']);
 
+                }
 
-
-    public function staffMail(){
-        if($this->request->is('post')){
-            if($this->request->data)
-            {
-                $data = $this->request->data;
-                $Email = new CakeEmail('gmail');
-                //$Email->config('gmail');
-                $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
-                $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-                $Email->to($data['to']);
-                $Email->subject($data['subject']);
-                $Email->send($data['body']);
+//                $this->redirect(array('controller'=>'messages','action'=>'email'));
             }
 
-            $this->redirect(array('controller'=>'messages','action'=>'email'));
+
         }
 
-        if(!empty($data)){
-            $Email = new CakeEmail('gmail');
-            //$Email->config('gmail');
-            $Email->from(array('postmaster.fnp@gmail.com' => "ETHERA Postmaster"));
-            $Email->sender('ethera.rjt@gmail.com', 'ETHERA Postmaster');
-            $Email->to($data['to']);
-            $Email->subject($data['subject']);
-            $Email->send($data['body']);
 
-            return true;
+    public function staff_mail(){
+        if($this->request->is('post')){
+            $data = $this->request->data;
+            debug($data);
+
+            EtheraEmail::mailer($data['to'],$data['subject'],$data['body']);
         }
-        
-
+//    debug($data);
     }
 
 
