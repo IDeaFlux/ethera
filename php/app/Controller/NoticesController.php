@@ -221,13 +221,13 @@ class NoticesController extends AppController {
                     'conditions' => array('Notice.id' => $id)
 
                 ));
-                debug($result['Notice']['event_id']);
+                //debug($result['Notice']['event_id']);
                 $eventId=$result['Notice']['event_id'];
 
                 if($calpost==1){
                     $response = $this->update_event($start_date,$end_date,$title,$eventId);
 
-                      debug($response);
+                      //debug($response);
                    // $this->Notice->saveField('event_id',$response);
 
 
