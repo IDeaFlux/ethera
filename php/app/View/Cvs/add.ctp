@@ -31,10 +31,10 @@
 		echo $this->Form->input('reviewed_state',array(
             'class' => 'span6'
         ));
-        echo $this->Form->input('cv',$options = array('label'=>'CV','type'=>'file'));
-		echo $this->Form->input('upload_time',array(
-            'class' => 'span2'
-        ));
+        echo $this->Form->input('cv',$options = array('type'=>'file'));
+//		echo $this->Form->input('upload_time',array(
+//            'class' => 'span2'
+//        ));
 	?>
 
 
