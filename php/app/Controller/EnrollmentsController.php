@@ -26,7 +26,7 @@ class EnrollmentsController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->Enrollment->exists($id)) {
-			throw new NotFoundException(__('Invalid enrollment'),'error_flash');
+			throw new NotFoundException(__('Invalid enrollment'));
 		}
 		$options = array('conditions' => array('Enrollment.' . $this->Enrollment->primaryKey => $id));
 		$this->set('enrollment', $this->Enrollment->find('first', $options));
@@ -61,7 +61,7 @@ class EnrollmentsController extends AppController {
  */
 	public function edit($id = null) {
 		if (!$this->Enrollment->exists($id)) {
-			throw new NotFoundException(__('Invalid enrollment'),'error_flash');
+			throw new NotFoundException(__('Invalid enrollment'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Enrollment->save($this->request->data)) {
@@ -89,7 +89,7 @@ class EnrollmentsController extends AppController {
 	public function delete($id = null) {
 		$this->Enrollment->id = $id;
 		if (!$this->Enrollment->exists()) {
-			throw new NotFoundException(__('Invalid enrollment'),'error_flash');
+			throw new NotFoundException(__('Invalid enrollment'));
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Enrollment->delete()) {
