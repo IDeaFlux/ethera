@@ -126,6 +126,9 @@ class NoticesController extends AppController {
                     //debug($update);
 
                 }
+
+                else
+                    $this->Notice->saveField('event_id',0);
                 
 
               //save separately collected date; not necessary
@@ -189,6 +192,12 @@ class NoticesController extends AppController {
 			throw new NotFoundException(__('Invalid notice'),'error_flash');
 		}
 
+        $check=$this->Notice->find('all',array(
+            'conditions'=>array('Notice.id'=>$id)
+        ));
+
+        $eid=$check['Notice']['event_id'];
+
 
         $authUser=$this->Auth->user('id');
 		if ($this->request->is('post') || $this->request->is('put')) {
@@ -226,19 +235,25 @@ class NoticesController extends AppController {
                 //debug($result['Notice']['event_id']);
                 $eventId=$result['Notice']['event_id'];
 
-                if($calpost==1){
+
+
+                if($calpost==1 && $eid==!null){
                     $response = $this->update_event($start_date,$end_date,$title,$eventId);
 
-                     // debug($response);
+                   debug($response);
                     $this->Notice->saveField('event_id',$response);
 
 
                 }
+                else if($calpost==1 && $eid==null)
+                    $response = $this->send_post_request($start_date,$end_date,$title);
+
+
 
                 //End of the newly additions
 
 				$this->Session->setFlash(__('The notice has been saved.'),'success_flash');
-				$this->redirect(array('action' => 'index'));
+				//$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The notice could not be saved. Please, try again.'),'error_flash');
 			}
@@ -505,7 +520,6 @@ function delete_event($eventId){
     function update_event($start_date,$end_date,$title,$eventId){
         $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
         $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
-
         // $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY;
         $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events/'. $eventId .'?fields=id&key=' . $APIKEY;
 
