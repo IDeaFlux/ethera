@@ -30,6 +30,31 @@ class InterestedAreasController extends AppController {
 		}
 		$options = array('conditions' => array('InterestedArea.' . $this->InterestedArea->primaryKey => $id));
 		$this->set('interestedArea', $this->InterestedArea->find('first', $options));
+
+
+//        +        $this->loadModel('Assignment');
+//        +        $this->loadModel('InterestedArea');
+//
+//        +        $student = $this->Student->find(
+//            +            'first', array(
+//            +                'conditions' => array(
+//                +                    'Student.id' => $id
+//                    +                )
+//                +            )
+//            +        );
+//+
+//+        $interested_areas = $this->InterestedArea->find(
+//    +            'list',array(
+//            +                'contain' => array(
+//                +                    'StudyProgram' => array(
+//                    +                        'conditions' => array(
+//                        +                            'StudyProgram.id'=> $student['Student']['study_program_id']
+//                            +                        )
+//                        +                    )
+//                    +                )
+//                +            )
+//            +        );
+//+       $this->set('interested_areas',$interested_areas);
 	}
 
 /**

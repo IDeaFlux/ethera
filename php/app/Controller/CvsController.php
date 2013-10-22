@@ -44,7 +44,7 @@ class CvsController extends AppController {
                 $this->Cv->saveField('upload_time',date(DATE_ATOM));
                 //xdebug(date(DATE_ATOM));
 				$this->Session->setFlash(__('The cv has been saved'),'success_flash');
-				//$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The cv could not be saved. Please, try again.'),'error_flash');
 			}
