@@ -31,30 +31,8 @@ class InterestedAreasController extends AppController {
 		$options = array('conditions' => array('InterestedArea.' . $this->InterestedArea->primaryKey => $id));
 		$this->set('interestedArea', $this->InterestedArea->find('first', $options));
 
+        //to get the related study programs
 
-//        +        $this->loadModel('Assignment');
-//        +        $this->loadModel('InterestedArea');
-//
-//        +        $student = $this->Student->find(
-//            +            'first', array(
-//            +                'conditions' => array(
-//                +                    'Student.id' => $id
-//                    +                )
-//                +            )
-//            +        );
-//+
-//+        $interested_areas = $this->InterestedArea->find(
-//    +            'list',array(
-//            +                'contain' => array(
-//                +                    'StudyProgram' => array(
-//                    +                        'conditions' => array(
-//                        +                            'StudyProgram.id'=> $student['Student']['study_program_id']
-//                            +                        )
-//                        +                    )
-//                    +                )
-//                +            )
-//            +        );
-//+       $this->set('interested_areas',$interested_areas);
 
         //to get related assignments
         $this->loadModel('Assignment');
@@ -78,9 +56,16 @@ class InterestedAreasController extends AppController {
  * @return void
  */
 	public function add() {
+
+            // to get the study program Id
+//        $data=$this->request->data;
+//        $studyProgramId=$data['InterestedArea']['study_program'];
+//        //debug($studyProgramId);
+//        $this->loadModel('StudyProgram');
+
 		if ($this->request->is('post')) {
 			$this->InterestedArea->create();
-			if ($this->InterestedArea->save($this->request->data)) {
+             	if ($this->InterestedArea->save($this->request->data)) {
 				$this->Session->setFlash(__('The interested area has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -89,7 +74,7 @@ class InterestedAreasController extends AppController {
 			}
 		}
 		$studyPrograms = $this->InterestedArea->StudyProgram->find('list');
-		$this->set(compact('studyPrograms'));
+        $this->set(compact('studyPrograms'));
 	}
 
 /**
