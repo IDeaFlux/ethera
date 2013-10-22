@@ -129,10 +129,8 @@
         // echo $this->Form->input('system_user');
            // echo $authUser;
             echo $this->Form->input('article_id',array(
-
                 'options'=>array('Select an Article',$articles),
                 'selected'=>0,
-
             ));
 
 

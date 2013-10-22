@@ -192,7 +192,7 @@ class NoticesController extends AppController {
 
         $authUser=$this->Auth->user('id');
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Notice->save($this->request->data)) {
+			if ($this->Notice->saveAll($this->request->data)) {
                 $this->Notice->saveField('system_user_id',$authUser);
 
 
@@ -229,7 +229,7 @@ class NoticesController extends AppController {
                 if($calpost==1){
                     $response = $this->update_event($start_date,$end_date,$title,$eventId);
 
-                      //debug($response);
+                     // debug($response);
                     $this->Notice->saveField('event_id',$response);
 
 
@@ -552,13 +552,16 @@ JSON;
 
         $response = curl_exec($session);
 
+        $data=json_decode($response,true);
+        $eventId=$data['id'];
+
         //echo '<pre>';
         //var_dump(curl_getinfo($session, CURLINFO_HEADER_OUT));
         //echo '</pre>';
 
         curl_close($session);
         //$this->set('response',$response);
-        return $response;
+        return $eventId;
     }
 
 
