@@ -141,7 +141,7 @@
                     <td class="actions">
                         <div class="btn-group">
                             <!-- No view in articles therefore put blog for view button -->
-                            <?php echo $this->Html->link(__('View'), array('controller' => 'articles', 'action' => 'view', $article['Article']['id']),array('class' => 'btn')); ?>
+                            <?php echo $this->Html->link(__('View'), array('controller' => 'articles', 'action' => 'blog', $article['Article']['id']),array('class' => 'btn')); ?>
                             <?php echo $this->Html->link(__('Edit'), array('controller' => 'articles', 'action' => 'edit', $article['Article']['id']),array('class' => 'btn')); ?>
                             <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'articles', 'action' => 'delete', $article['Article']['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $article['Article']['id'])); ?>
                         </div>
