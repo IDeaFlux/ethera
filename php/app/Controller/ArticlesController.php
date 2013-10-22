@@ -19,14 +19,20 @@ class ArticlesController extends AppController {
     }
 
 	public function view($id = null) {
-		if (!$this->Article->exists($id)) {
+
+        $this->set('articles', $this->paginate());
+
+        if (!$this->Article->exists($id)) {
 			throw new NotFoundException(__('Invalid article'),'error_flash');
 		}
+        $this->Article->recursive = 0;
 		$options = array('conditions' => array('Article.' . $this->Article->primaryKey => $id));
 		$this->set('articles', $this->Article->find('first', $options));
 
 
-	}
+
+
+    }
 
 
 	public function add() {
