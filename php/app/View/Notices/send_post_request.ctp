@@ -1,4 +1,0 @@
-<?php
-
-debug($response);
-?>
