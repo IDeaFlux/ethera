@@ -28,7 +28,7 @@
                 <div class="btn-group">
                     <?php echo $this->Html->link(__('View'), array('action' => 'view', $interestedArea['InterestedArea']['id']),array('class'=>'btn')); ?>
                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $interestedArea['InterestedArea']['id']),array('class'=>'btn')); ?>
-                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $interestedArea['InterestedArea']['id']), null, __('Are you sure you want to delete # %s?', $interestedArea['InterestedArea']['id']),array('class'=>'btn')); ?>
+                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $interestedArea['InterestedArea']['id']),array('class' => 'btn'), __('Are you sure you want to delete # %s?', $interestedArea['InterestedArea']['id']),array('class'=>'btn')); ?>
                 </div>
             </td>
         </tr>
