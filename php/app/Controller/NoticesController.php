@@ -192,11 +192,13 @@ class NoticesController extends AppController {
 			throw new NotFoundException(__('Invalid notice'),'error_flash');
 		}
 
-        $check=$this->Notice->find('all',array(
-            'conditions'=>array('Notice.id'=>$id)
-        ));
-
-        $eid=$check['Notice']['event_id'];
+            //to get the event_id from the DB
+//        $check=$this->Notice->find('first',array(
+//            'conditions'=>array('Notice.id'=>$id)
+//        ));
+//
+//        $eid=$check['Notice']['event_id'];
+//        debug($eid);
 
 
         $authUser=$this->Auth->user('id');
@@ -235,25 +237,33 @@ class NoticesController extends AppController {
                 //debug($result['Notice']['event_id']);
                 $eventId=$result['Notice']['event_id'];
 
+//                if($calpost==1){
+//                    $response = $this->update_event($start_date,$end_date,$title,$eventId);
+//
+//                    debug($response);
+//                    $this->Notice->saveField('event_id',$response);
+//                }
 
-
-                if($calpost==1 && $eid==!null){
+                if($calpost==1 && $eventId==!0){
                     $response = $this->update_event($start_date,$end_date,$title,$eventId);
 
-                   debug($response);
+                   //debug($response);
                     $this->Notice->saveField('event_id',$response);
-
-
                 }
-                else if($calpost==1 && $eid==null)
+                else if($calpost==1 && $eventId==0){
                     $response = $this->send_post_request($start_date,$end_date,$title);
+                    $this->Notice->saveField('event_id',$response);
+            }
+            else if($calpost==0 && $eventId==!0)
+                    $this->delete_event($eventId);
+
 
 
 
                 //End of the newly additions
 
 				$this->Session->setFlash(__('The notice has been saved.'),'success_flash');
-				//$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The notice could not be saved. Please, try again.'),'error_flash');
 			}
