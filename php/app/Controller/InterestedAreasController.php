@@ -55,6 +55,21 @@ class InterestedAreasController extends AppController {
 //                +            )
 //            +        );
 //+       $this->set('interested_areas',$interested_areas);
+
+        //to get related assignments
+        $this->loadModel('Assignment');
+        $assignment=$this->Assignment->find('list',array('conditions'=>array(
+            'Assignment.interested_area_id'=>$id,
+        )));
+        $this->set('assignment',$assignment);
+
+        //to get realted opportunities
+
+        $this->loadModel('Opportuny');
+        $opportunity=$this->Opportuny->find('list',array('conditions'=>array(
+            'Opportuny.interested_area_id'=>$id,
+        )));
+        $this->set('opportuny',$opportunity);
 	}
 
 /**
