@@ -31,42 +31,42 @@ class Notice extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-//		'date_start' => array(
-//			'date' => array(
-//				'rule' => array('datetime'),
-//				'message' => 'Please enter a valid date ',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//			'notEmpty' => array(
-//				'rule' => array('notEmpty'),
-//				'message' => 'Please enter the starting date',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//		),
-//		'date_end' => array(
-//			'date' => array(
-//				'rule' => array('datetime'),
-//				'message' => 'Please enter a valid date',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//			'notEmpty' => array(
-//				'rule' => array('notEmpty'),
-//				'message' => 'Please enter the ending date',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//		),
+		'date_start' => array(
+			'date' => array(
+				'rule' => array('datetime'),
+				'message' => 'Please enter a valid date ',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Please enter the starting date',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'date_end' => array(
+			'date' => array(
+				'rule' => array('datetime'),
+				'message' => 'Please enter a valid date',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Please enter the ending date',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
         //Validate Time
         'time_start' => array(
             'time' => array(
