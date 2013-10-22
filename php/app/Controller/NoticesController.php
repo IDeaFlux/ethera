@@ -118,39 +118,12 @@ class NoticesController extends AppController {
                     //debug($eventId);
                     $this->Notice->saveField('event_id',$response);
 
-                    //Update event
-                    $start_date='2013-10-04T10:00:00.000-07:00';
-                    $end_date='2013-10-10T10:00:00.000-07:00';
-                    $title='updated';
-                  //  $update = $this->update_event($start_date,$end_date,$title,$id);
-                    //debug($update);
+
 
                 }
 
                 else
                     $this->Notice->saveField('event_id',0);
-                
-
-              //save separately collected date; not necessary
-             //   $this->Notice->saveField('date_start',$start_date);
-
-                // get the current date and time
-               // $this->Notice->saveField('date_start', date("Y-m-d H:i:s"));
-               // $this->Notice->saveField('date_end', date("Y-m-d H:i:s"));
-
-
-
-//                $data=array(
-//                    'data'=>array(
-//                        'title'=>'hi',
-//                        'date_start'=>'2013-08-15',
-//                        'date_end'=>'2013-08-16'
-//
-//                    )
-//                );
-
-               // $this->Notice->createEvent($data);
-                //call the calender creation method
 
 				$this->Session->setFlash(__('The notice has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
@@ -236,13 +209,6 @@ class NoticesController extends AppController {
                 ));
                 //debug($result['Notice']['event_id']);
                 $eventId=$result['Notice']['event_id'];
-
-//                if($calpost==1){
-//                    $response = $this->update_event($start_date,$end_date,$title,$eventId);
-//
-//                    debug($response);
-//                    $this->Notice->saveField('event_id',$response);
-//                }
 
                 if($calpost==1 && $eventId==!0){
                     $response = $this->update_event($start_date,$end_date,$title,$eventId);
@@ -390,11 +356,11 @@ class NoticesController extends AppController {
 //
 //    }
 
+
     // Create/Post an Event in the Calendar
     function send_post_request($start_date,$end_date,$title){
         $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
         $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
-       // $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY;
         $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&fields=id&key=' . $APIKEY;
 
         //$auth = json_decode($_SESSION['oauth_access_token'],true);
@@ -541,7 +507,7 @@ function delete_event($eventId){
 //        foreach($arg_list as $key => $arg){
 //            $arg_list[$key] = urlencode($arg);
 //        }
-        //2013-06-07T10:00:00.000-07:00
+
         $postargs = <<<JSON
 {
  "end": {
@@ -578,10 +544,6 @@ JSON;
 
         $data=json_decode($response,true);
         $eventId=$data['id'];
-
-        //echo '<pre>';
-        //var_dump(curl_getinfo($session, CURLINFO_HEADER_OUT));
-        //echo '</pre>';
 
         curl_close($session);
         //$this->set('response',$response);
