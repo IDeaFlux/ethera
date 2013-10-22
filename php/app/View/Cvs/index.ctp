@@ -31,8 +31,8 @@
                     <div class="btn-group">
 			            <?php echo $this->Html->link(__('View'), array('action' => 'view', $cv['Cv']['id']),array('class' => 'btn')); ?>
 			            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $cv['Cv']['id']),array('class' => 'btn')); ?>
-			            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $cv['Cv']['id']),array('class' => 'btn'), null, __('Are you sure you want to delete # %s?', $cv['Cv']['id'])); ?>
-		            </div>
+			            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $cv['Cv']['id']),array('class' => 'btn'), __('Are you sure you want to delete # %s?', $cv['Cv']['id'])); ?>
+                    </div>
                 </td>
 	        </tr>
     <?php endforeach; ?>

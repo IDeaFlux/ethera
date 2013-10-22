@@ -41,10 +41,10 @@ class CvsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Cv->create();
 			if ($this->Cv->save($this->request->data)) {
-				$this->Session->setFlash(__('The cv has been saved'));
+				$this->Session->setFlash(__('The cv has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The cv could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The cv could not be saved. Please, try again.'),'info_flash');
 			}
 		}
 		$students = $this->Cv->Student->find('list');
@@ -60,14 +60,14 @@ class CvsController extends AppController {
  */
 	public function edit($id = null) {
 		if (!$this->Cv->exists($id)) {
-			throw new NotFoundException(__('Invalid cv'));
+			throw new NotFoundException(__('Invalid cv'),'error_flash');
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Cv->save($this->request->data)) {
-				$this->Session->setFlash(__('The cv has been saved'));
+				$this->Session->setFlash(__('The cv has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The cv could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The cv could not be saved. Please, try again.'),'info_flash');
 			}
 		} else {
 			$options = array('conditions' => array('Cv.' . $this->Cv->primaryKey => $id));
@@ -87,14 +87,14 @@ class CvsController extends AppController {
 	public function delete($id = null) {
 		$this->Cv->id = $id;
 		if (!$this->Cv->exists()) {
-			throw new NotFoundException(__('Invalid cv'));
+			throw new NotFoundException(__('Invalid cv'),'error_flash');
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Cv->delete()) {
-			$this->Session->setFlash(__('Cv deleted'));
+			$this->Session->setFlash(__('Cv deleted'),'success_flash');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Cv was not deleted'));
+		$this->Session->setFlash(__('Cv was not deleted'),'info_flash');
 		$this->redirect(array('action' => 'index'));
 	}
 }
