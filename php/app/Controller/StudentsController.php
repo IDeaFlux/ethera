@@ -498,16 +498,31 @@ class StudentsController extends AppController {
             )
         );
 
+        $current_submissions_pre = $this->Assignment->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'student_id' => $id
+                ),
+                'recursive' => 1,
+                'order' => 'Assignment.priority ASC'
+            )
+        );
+
+        $count = 0;
+        foreach($current_submissions_pre as $current_submission_pre){
+            $current_submissions[$count]['name'] = $current_submission_pre['InterestedArea']['name'];
+            $current_submissions[$count]['priority'] = $current_submission_pre['Assignment']['priority'];
+            $count++;
+        }
+
         $interested_areas_pre = $interested_areas_pre[0]['InterestedArea'];
 
         foreach($interested_areas_pre as $interested_area_pre){
             $interested_areas[$interested_area_pre['id']] = $interested_area_pre['name'];
         }
-        //debug($interested_areas);
-        //debug($student['Student']['study_program_id']);
 
-
-        $this->set('interested_areas',$interested_areas);
+        $this->set(compact('interested_areas','current_submissions'));
         if($this->request->is('post')){
             debug($this->request->data);
             $assignments = $this->request->data['Assignment'];
