@@ -39,37 +39,7 @@ class MessagesController extends AppController {
                     ),
                     'recursive' => -1
                 )
-            );
-            debug($students);
-        }
-
-        foreach($students as $student){
-            try{
-                $responseMsg = $data['body'];
-                debug($responseMsg);
-
-                $sender = new SmsSender("https://localhost:7443/sms/send");
-
-                $applicationId = "APP_000001";
-                $encoding = "0";
-                $version =  "1.0";
-                $password = "password";
-                $sourceAddress = "77000";
-                $deliveryStatusRequest = "1";
-                $charging_amount = ":15.75";
-                $destinationAddresses = array($student['Student']['sms_num']);
-                $binary_header = "";
-
-                $res = $sender->sms($responseMsg, $destinationAddresses, $password, $applicationId, $sourceAddress, $deliveryStatusRequest, $charging_amount, $encoding, $version, $binary_header);
-                debug($destinationAddresses);
-
-            }
-
-            catch (SmsException $ex){
-
-            }
-
-        }
+            );}
 
         $batches = $this->Batch->find('list');
         $this->set('batches',$batches);
@@ -104,7 +74,7 @@ class MessagesController extends AppController {
             $students = $this->Student->find(
                 'all',
                 array(
-                     'conditions' => array(
+                    'conditions' => array(
                         'batch_id' => $data['Batch']['batch_id'],
                         'study_program_id' => $data['Batch']['study_program']
                     ),
@@ -145,19 +115,19 @@ class MessagesController extends AppController {
 
         $this->set('organizations',$organizations);
 
-            if($this->request->is('post')){
-                if($this->request->data)
-                {
-                    $data = $this->request->data;
-                    EtheraEmail::mailer($data['to'],$data['subject'],$data['body']);
+        if($this->request->is('post')){
+            if($this->request->data)
+            {
+                $data = $this->request->data;
+                EtheraEmail::mailer($data['to'],$data['subject'],$data['body']);
 
-                }
-
-//                $this->redirect(array('controller'=>'messages','action'=>'email'));
             }
 
-
+//                $this->redirect(array('controller'=>'messages','action'=>'email'));
         }
+
+
+    }
 
 
     public function staff_mail(){
@@ -239,7 +209,7 @@ class MessagesController extends AppController {
     }
 
     public function sms_receive(){
-//        $this->autoRender = false;
+        $this->autoRender = false;
         try{
             $data = $this->request->input();
 
