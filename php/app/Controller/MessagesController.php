@@ -39,7 +39,37 @@ class MessagesController extends AppController {
                     ),
                     'recursive' => -1
                 )
-            );}
+            );
+            debug($students);
+        }
+
+        foreach($students as $student){
+            try{
+                $responseMsg = $data['body'];
+                debug($responseMsg);
+
+                $sender = new SmsSender("https://localhost:7443/sms/send");
+
+                $applicationId = "APP_000001";
+                $encoding = "0";
+                $version =  "1.0";
+                $password = "password";
+                $sourceAddress = "77000";
+                $deliveryStatusRequest = "1";
+                $charging_amount = ":15.75";
+                $destinationAddresses = array($student['Student']['sms_num']);
+                $binary_header = "";
+
+                $res = $sender->sms($responseMsg, $destinationAddresses, $password, $applicationId, $sourceAddress, $deliveryStatusRequest, $charging_amount, $encoding, $version, $binary_header);
+                debug($destinationAddresses);
+
+            }
+
+            catch (SmsException $ex){
+
+            }
+
+        }
 
         $batches = $this->Batch->find('list');
         $this->set('batches',$batches);
@@ -209,7 +239,7 @@ class MessagesController extends AppController {
     }
 
     public function sms_receive(){
-        $this->autoRender = false;
+//        $this->autoRender = false;
         try{
             $data = $this->request->input();
 
