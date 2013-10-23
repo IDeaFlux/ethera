@@ -70,7 +70,7 @@
     <div class="span9">
         <div class="well">
             <legend><?php echo __('Your Current Submissions'); ?></legend>
-            <table cellpadding="0" cellspacing="0" class="table table-hover">
+            <table cellpadding="0" cellspacing="0" class="table table-bordered">
                 <tr>
                     <th>Priority</th>
                     <th>Interested Area</th>
