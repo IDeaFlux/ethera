@@ -159,7 +159,10 @@ CREATE TABLE IF NOT EXISTS `interested_areas` (
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `interested_areas` (`id`, `name`, `description`) VALUES
+(1, 'Linux System Engineering', 'Redhat 6.0');
 
 DROP TABLE IF EXISTS `notices`;
 CREATE TABLE IF NOT EXISTS `notices` (
@@ -175,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `notices` (
   `event_id` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `title` (`title`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 INSERT INTO `notices` (`id`, `title`, `date_start`, `date_end`, `description`, `published_state`, `published_to_cal`, `system_user_id`, `article_id`, `event_id`) VALUES
 (45, 'Bravoooo it is completed', '2013-10-22 02:16:00', '2013-10-27 02:16:00', '', 0, 1, 7, 2, 'kfi6bpkeabn6ltjn4rdi06utro'),
@@ -299,7 +302,10 @@ CREATE TABLE IF NOT EXISTS `study_programs_interested_areas` (
   `study_program_id` int(11) NOT NULL,
   `interested_area_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `study_programs_interested_areas` (`id`, `study_program_id`, `interested_area_id`) VALUES
+(1, 1, 1);
 
 DROP TABLE IF EXISTS `subjects`;
 CREATE TABLE IF NOT EXISTS `subjects` (
