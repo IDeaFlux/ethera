@@ -486,17 +486,27 @@ class StudentsController extends AppController {
             )
         );
 
-        $interested_areas = $this->InterestedArea->find(
-            'list',array(
+        $interested_areas_pre = $this->InterestedArea->StudyProgram->find(
+            'all',array(
+                'conditions' => array(
+                    'StudyProgram.id'=> $student['Student']['study_program_id']
+                ),
                 'contain' => array(
-                    'StudyProgram' => array(
-                        'conditions' => array(
-                            'StudyProgram.id'=> $student['Student']['study_program_id']
-                        )
+                    'InterestedArea' => array(
                     )
                 )
             )
         );
+
+        $interested_areas_pre = $interested_areas_pre[0]['InterestedArea'];
+
+        foreach($interested_areas_pre as $interested_area_pre){
+            $interested_areas[$interested_area_pre['id']] = $interested_area_pre['name'];
+        }
+        //debug($interested_areas);
+        //debug($student['Student']['study_program_id']);
+
+
         $this->set('interested_areas',$interested_areas);
         if($this->request->is('post')){
             debug($this->request->data);
