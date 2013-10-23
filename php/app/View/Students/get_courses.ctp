@@ -1,3 +1,4 @@
+<?php if(!empty($courses)) : ?>
 <?php $count = 0;?>
 <?php foreach($courses as $course): ?>
     <label class="checkbox inline" for="<?php echo $course['CourseUnit']['code'];?>">
@@ -32,3 +33,4 @@
     ?>
 
 <?php endforeach ?>
+<?php endif;?>
