@@ -177,48 +177,53 @@ class StudentsController extends AppController {
 
     public function get_student_profile(){
         //debug($this->request->data);
-        $reg_number = $this->request->data['Student']['reg_number'];
-        $student = $this->Student->find('first', array(
-            'conditions' => array(
-                'Student.id' => $reg_number
-            ),
-        ));
-        $this->set('student',$student);
+        if(!empty($this->request->data['Student']['reg_number'])) {
+            $reg_number = $this->request->data['Student']['reg_number'];
+            $student = $this->Student->find('first', array(
+                'conditions' => array(
+                    'Student.id' => $reg_number
+                ),
+            ));
+            $this->set('student',$student);
+        }
         $this->layout = 'ajax';
     }
 
     public function get_courses(){
         //debug($this->request->data);
-        $student_id = $this->request->data['Student']['reg_number'];
-        $student = $this->Student->find('first', array(
-            'conditions' => array(
-                'Student.id' => $student_id
-            ),
-        ));
-        $study_program_id = $student['Student']['study_program_id'];
-        $this->loadModel('StudyProgramsCourseUnit');
-        $this->loadModel('Enrollment');
-        $enrollments = $this->Enrollment->find('all', array(
-            'conditions' => array(
-                'student_id' => $student_id
-            ),
-            'recursive' => 1
-        ));
-        $courses = $students = $this->StudyProgramsCourseUnit->find('all', array(
-            'conditions' => array(
-                'study_program_id' => $study_program_id
-            ),
-            'recursive' => 0
-        ));
+        if(!empty($this->request->data['Student']['reg_number'])){
+            $student_id = $this->request->data['Student']['reg_number'];
+            $student = $this->Student->find('first', array(
+                'conditions' => array(
+                    'Student.id' => $student_id
+                ),
+            ));
+            $study_program_id = $student['Student']['study_program_id'];
+            $this->loadModel('StudyProgramsCourseUnit');
+            $this->loadModel('Enrollment');
+            $enrollments = $this->Enrollment->find('all', array(
+                'conditions' => array(
+                    'student_id' => $student_id
+                ),
+                'recursive' => 1
+            ));
+            $courses = $students = $this->StudyProgramsCourseUnit->find('all', array(
+                'conditions' => array(
+                    'study_program_id' => $study_program_id
+                ),
+                'recursive' => 0
+            ));
 
-        $this->set('courses',$courses);
-        if(!empty($enrollments)){
-            $this->set('enrollments',$enrollments);
+            $this->set('courses',$courses);
+            if(!empty($enrollments)){
+                $this->set('enrollments',$enrollments);
+            }
+            else{
+                $this->set('enrollments',array());
+            }
+            $this->set('student_id',$student_id);
         }
-        else{
-            $this->set('enrollments',array());
-        }
-        $this->set('student_id',$student_id);
+
         $this->layout = 'ajax';
     }
 
