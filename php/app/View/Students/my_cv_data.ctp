@@ -64,3 +64,24 @@
         <?php echo $this->Form->end(); ?>
     </div>
 </div>
+<div class="row">
+    <div class="span3">
+    </div>
+    <div class="span9">
+        <div class="well">
+            <legend><?php echo __('Your Current Submissions'); ?></legend>
+            <table cellpadding="0" cellspacing="0" class="table table-hover">
+                <tr>
+                    <th>Priority</th>
+                    <th>Interested Area</th>
+                </tr>
+                <?php foreach($current_submissions as $current_submission): ?>
+                    <tr>
+                        <td><?php echo $current_submission['priority']?></td>
+                        <td><?php echo $current_submission['name']?></td>
+                    </tr>
+                <?php endforeach;?>
+            </table>
+        </div>
+    </div>
+</div>
