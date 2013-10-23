@@ -524,13 +524,16 @@ class StudentsController extends AppController {
 
         $this->set(compact('interested_areas','current_submissions'));
         if($this->request->is('post')){
-            debug($this->request->data);
+            //debug($this->request->data);
             $assignments = $this->request->data['Assignment'];
             $count = 1;
             foreach($assignments as $assignment){
                 $data[$count-1]['Assignment']['interested_area_id'] = $assignment['interested_area_id'];
                 $data[$count-1]['Assignment']['student_id'] = $id;
                 $data[$count-1]['Assignment']['priority'] = $count;
+                if(!empty($current_submissions_pre[$count-1]['Assignment']['priority']) && $current_submissions_pre[$count-1]['Assignment']['priority'] == $count){
+                    $data[$count-1]['Assignment']['id'] = $current_submissions_pre[$count-1]['Assignment']['id'];
+                }
                 $count++;
             }
             if($this->Assignment->saveAll($data)){
