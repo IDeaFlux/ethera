@@ -486,26 +486,54 @@ class StudentsController extends AppController {
             )
         );
 
-        $interested_areas = $this->InterestedArea->find(
-            'list',array(
+        $interested_areas_pre = $this->InterestedArea->StudyProgram->find(
+            'all',array(
+                'conditions' => array(
+                    'StudyProgram.id'=> $student['Student']['study_program_id']
+                ),
                 'contain' => array(
-                    'StudyProgram' => array(
-                        'conditions' => array(
-                            'StudyProgram.id'=> $student['Student']['study_program_id']
-                        )
+                    'InterestedArea' => array(
                     )
                 )
             )
         );
-        $this->set('interested_areas',$interested_areas);
+
+        $current_submissions_pre = $this->Assignment->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'student_id' => $id
+                ),
+                'recursive' => 1,
+                'order' => 'Assignment.priority ASC'
+            )
+        );
+
+        $count = 0;
+        foreach($current_submissions_pre as $current_submission_pre){
+            $current_submissions[$count]['name'] = $current_submission_pre['InterestedArea']['name'];
+            $current_submissions[$count]['priority'] = $current_submission_pre['Assignment']['priority'];
+            $count++;
+        }
+
+        $interested_areas_pre = $interested_areas_pre[0]['InterestedArea'];
+
+        foreach($interested_areas_pre as $interested_area_pre){
+            $interested_areas[$interested_area_pre['id']] = $interested_area_pre['name'];
+        }
+
+        $this->set(compact('interested_areas','current_submissions'));
         if($this->request->is('post')){
-            debug($this->request->data);
+            //debug($this->request->data);
             $assignments = $this->request->data['Assignment'];
             $count = 1;
             foreach($assignments as $assignment){
                 $data[$count-1]['Assignment']['interested_area_id'] = $assignment['interested_area_id'];
                 $data[$count-1]['Assignment']['student_id'] = $id;
                 $data[$count-1]['Assignment']['priority'] = $count;
+                if(!empty($current_submissions_pre[$count-1]['Assignment']['priority']) && $current_submissions_pre[$count-1]['Assignment']['priority'] == $count){
+                    $data[$count-1]['Assignment']['id'] = $current_submissions_pre[$count-1]['Assignment']['id'];
+                }
                 $count++;
             }
             if($this->Assignment->saveAll($data)){
