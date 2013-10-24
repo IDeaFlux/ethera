@@ -474,6 +474,9 @@ class StudentsController extends AppController {
         elseif($current_student['freeze_state']!=0) {
             $this->redirect(array('action' => 'my_profile'));
         }
+        elseif($current_student['approval_phase'] == 2) {
+            $this->redirect(array('controller' => 'students','action' => 'my_cv_data_upl',$id));
+        }
 
         $this->loadModel('Assignment');
         $this->loadModel('InterestedArea');
@@ -536,7 +539,7 @@ class StudentsController extends AppController {
                 }
                 $count++;
             }
-            if($this->Assignment->saveAll($data)){
+            if($this->Assignment->saveAll($data)) {
                 $this->Session->setFlash(__('Your CV Data updated'),'success_flash');
                 $this->redirect(array('action' => 'my_profile'));
             }
@@ -544,6 +547,22 @@ class StudentsController extends AppController {
                 $this->Session->setFlash(__('Your CV Data update failed'),'error_flash');
                 $this->redirect(array('action' => 'my_profile'));
             }
+        }
+    }
+
+    public function my_cv_data_upl($id=null) {
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+        elseif($current_student['approval_phase'] != 2) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+        elseif($current_student['freeze_state']!=0) {
+            $this->redirect(array('action' => 'my_profile'));
         }
     }
 
