@@ -39,10 +39,41 @@ class MessagesController extends AppController {
                     ),
                     'recursive' => -1
                 )
-            );}
+            );
+//            debug($students);
+        }
+
+        foreach($students as $student){
+            try{
+                $responseMsg = $data['body'];
+//                debug($responseMsg);
+
+                $sender = new SmsSender("https://localhost:7443/sms/send");
+
+                $applicationId = "APP_000001";
+                $encoding = "0";
+                $version =  "1.0";
+                $password = "password";
+                $sourceAddress = "77000";
+                $deliveryStatusRequest = "1";
+                $charging_amount = ":15.75";
+                $destinationAddresses = array($student['Student']['sms_num']);
+                $binary_header = "";
+
+                $res = $sender->sms($responseMsg, $destinationAddresses, $password, $applicationId, $sourceAddress, $deliveryStatusRequest, $charging_amount, $encoding, $version, $binary_header);
+//                debug($destinationAddresses);
+
+            }
+
+            catch (SmsException $ex){
+
+            }
+
+        }
 
         $batches = $this->Batch->find('list');
         $this->set('batches',$batches);
+
 
     }
 
@@ -101,17 +132,18 @@ class MessagesController extends AppController {
     }
 
 
-//Need to modify
+//Need to enhance
 
     public function industry_mail(){
 
         $this->loadModel('Organization');
-        $organizations = $this->Organization->find('list',array(
-            'fields'=>array(
-                'Organization.id','Organization.email'
-            )
+        $organizations = $this->Organization->find('first',array(
+//            'fields'=>array(
+//                'Organization.id','Organization.email'
+//            )
             //'conditions'=>array('Student.batch_id'=>'2')
         ));
+//        debug($organizations);
 
         $this->set('organizations',$organizations);
 
@@ -119,8 +151,8 @@ class MessagesController extends AppController {
             if($this->request->data)
             {
                 $data = $this->request->data;
-                EtheraEmail::mailer($data['to'],$data['subject'],$data['body']);
-
+//                debug($data);
+                EtheraEmail::mailer($organizations['Organization']['email'],$data['subject'],$data['body']);
             }
 
 //                $this->redirect(array('controller'=>'messages','action'=>'email'));
@@ -187,6 +219,14 @@ class MessagesController extends AppController {
                     'recursive' => -1
                 )
             );
+            if(!empty($student_found['Student']['sms_num'])){
+                $responseMsg ="Error : Your registration number is already registered";
+
+            }
+            else{
+
+
+
             if((!empty($batch_found))||(!empty($student_found))){
 
                 $save_data['Student']['id'] = $student_found['Student']['id'];
@@ -203,7 +243,7 @@ class MessagesController extends AppController {
             else{
                 $responseMsg ="Error : Your student registration number is invalid. The correct format is XXX/XXXX/XXXX/XXX";
             }
-        }
+        }}
 
         return $responseMsg;
     }
