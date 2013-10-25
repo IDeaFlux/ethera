@@ -527,7 +527,6 @@ class StudentsController extends AppController {
 
         $this->set(compact('interested_areas','current_submissions'));
         if($this->request->is('post')){
-            //debug($this->request->data);
             $assignments = $this->request->data['Assignment'];
             $count = 1;
             foreach($assignments as $assignment){
@@ -551,6 +550,41 @@ class StudentsController extends AppController {
     }
 
     public function my_cv_data_upl($id=null) {
+
+        $this->loadModel('Opportunity');
+        $this->loadModel('Assignment');
+        $this->loadModel('InterestedArea');
+
+        $current_submissions_pre = $this->Assignment->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'student_id' => $id
+                ),
+                'recursive' => 1,
+                'order' => 'Assignment.priority ASC'
+            )
+        );
+
+        $count = 0;
+        foreach($current_submissions_pre as $current_submission_pre){
+            $current_submissions[$count]['name'] = $current_submission_pre['InterestedArea']['name'];
+            $current_submissions[$count]['priority'] = $current_submission_pre['Assignment']['priority'];
+            $interested_area = $current_submission_pre['InterestedArea']['id'];
+            if(isset($interested_area)){
+                $company_list = $this->Opportunity->find(
+                    'all',
+                    array(
+                        'conditions' => array(
+                            'opportunies.interested_area_id	' => $current_submission_pre['Assignment']['id']
+                        )
+                    )
+                );
+
+            }
+            $count++;
+        }
+
         $current_student = $this->Auth->user();
         if (!$this->Student->exists($id)) {
             throw new NotFoundException(__('Invalid student'));
@@ -564,6 +598,8 @@ class StudentsController extends AppController {
         elseif($current_student['freeze_state']!=0) {
             $this->redirect(array('action' => 'my_profile'));
         }
+
+
     }
 
     public function freeze_unfreeze() {
