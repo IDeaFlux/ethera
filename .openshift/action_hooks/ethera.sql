@@ -151,12 +151,13 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
 (1, 'Admins', '2013-07-14 00:00:00', '2013-07-14 00:00:00'),
 (2, 'Career Guidance Unit ', '2013-07-14 00:00:00', '2013-07-14 00:00:00'),
-(4, 'Student', '2013-07-14 00:00:00', '2013-07-14 00:00:00');
+(4, 'Student', '2013-07-14 00:00:00', '2013-07-14 00:00:00'),
+(5, 'Organization', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 DROP TABLE IF EXISTS `interested_areas`;
 CREATE TABLE IF NOT EXISTS `interested_areas` (
@@ -261,11 +262,11 @@ CREATE TABLE IF NOT EXISTS `students` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `sms_num`, `email`, `password`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`) VALUES
-(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'tel:94771122336', 'udinnet@gmail.com', '8463bd09bf1a6867ae282a101f52aab0ef650a47', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 0, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 0, 9, 2, 'udithawijerathna', 1, 1, 1),
-(2, 'Krishantha', 'Sameera', 'Zoysa', '', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 0, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, 0, '', 2, 1, 2),
-(3, 'Amal', 'De', 'Silva', '', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '52093438-3310-44fe-9986-3169740d37dd', 0, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, 0, '', 4, 1, 3),
-(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'tel:94771122336', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '520da09d-12e0-431f-9007-1071740d37dd', 0, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 0, 0, 2, '', 1, 1, 1),
-(5, 'Sameera', 'Lakmal', 'Hokandara', '', '', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '525a8d68-d194-4537-a46b-039f740d37dd', 0, '056', 'M', '1988-04-08', 'abc', 'abc', 'Avissawella', 0, 0, 1, 2, '', 1, 1, 1);
+(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'tel:94771122336', 'udinnet@gmail.com', '8463bd09bf1a6867ae282a101f52aab0ef650a47', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 4, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 0, 9, 2, 'udithawijerathna', 1, 1, 1),
+(2, 'Krishantha', 'Sameera', 'Zoysa', '', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 4, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, 0, '', 2, 1, 2),
+(3, 'Amal', 'De', 'Silva', '', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '52093438-3310-44fe-9986-3169740d37dd', 4, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, 0, '', 4, 1, 3),
+(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'tel:94771122336', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '520da09d-12e0-431f-9007-1071740d37dd', 4, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 0, 0, 2, '', 1, 1, 1),
+(5, 'Sameera', 'Lakmal', 'Hokandara', '', '', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '525a8d68-d194-4537-a46b-039f740d37dd', 4, '056', 'M', '1988-04-08', 'abc', 'abc', 'Avissawella', 0, 0, 1, 2, '', 1, 1, 1);
 
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
@@ -352,11 +353,12 @@ CREATE TABLE IF NOT EXISTS `system_users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `first_name` (`first_name`,`last_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 INSERT INTO `system_users` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mobile`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `biography`, `designation`) VALUES
 (7, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'udithabnd@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5203508f-dc5c-4d78-9cd3-245e740d37dd', 1, 'Hii', 'Students'),
-(8, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'yohani.ysr@gmail.com', '5c4c6b7e3ccd612e84576cbc4f68a3ffe5e16ab9', '', '0000-00-00 00:00:00', '52035055-5c04-47b9-b283-0689740d37dd', 1, 'This is yohani', 'Student');
+(8, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'yohani.ysr@gmail.com', '5c4c6b7e3ccd612e84576cbc4f68a3ffe5e16ab9', '', '0000-00-00 00:00:00', '52035055-5c04-47b9-b283-0689740d37dd', 1, 'This is yohani', 'Student'),
+(9, 'WSO2', '', 'Inc', '', '', 'info@wso2.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '526b6b3e-1404-4c81-9f0d-0452740d37dd', 5, '', 'Organization');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
