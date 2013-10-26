@@ -598,6 +598,8 @@ class StudentsController extends AppController {
             }
             $count++;
         }
+
+        debug($company_list);
     }
 
     public function freeze_unfreeze() {
@@ -654,6 +656,28 @@ class StudentsController extends AppController {
 
         $batches = $this->Batch->find('list');
         $this->set('batches',$batches);
+    }
+
+    public function filter_by_name(){
+
+    }
+
+    public function get_students_by_name(){
+        if(!empty($this->request->data['Student']['search'])) {
+            $keyword = $this->request->data['Student']['search'];
+
+            $conditions = array('OR'=>array("Student.first_name LIKE '%$keyword%'","Student.middle_name LIKE '%$keyword%'", "Student.last_name LIKE '%$keyword%'")  );
+
+            $students = $this->Student->find(
+                'all',
+                array(
+                    'conditions' => $conditions,
+                    'recursive' => -1
+                )
+            );
+            $this->set('students',$students);
+        }
+        $this->layout = 'ajax';
     }
 
     public function beforeFilter(){
