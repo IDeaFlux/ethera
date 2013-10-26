@@ -72,8 +72,8 @@ class Organization extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Opportuny' => array(
-			'className' => 'Opportuny',
+		'Opportunity' => array(
+			'className' => 'Opportunity',
 			'foreignKey' => 'organization_id',
 			'dependent' => false,
 			'conditions' => '',

@@ -1,10 +1,10 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Add Opportuny'); ?>
+<?php $this->set('title', 'Add Opportunity'); ?>
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
 
-            <li><?php echo $this->Html->link(__('List Opportunies'), array('action' => 'index')); ?></li>
+            <li><?php echo $this->Html->link(__('List Opportunities'), array('action' => 'index')); ?></li>
             <li><?php echo $this->Html->link(__('List Interested Areas'), array('controller' => 'interested_areas', 'action' => 'index')); ?> </li>
             <li><?php echo $this->Html->link(__('New Interested Area'), array('controller' => 'interested_areas', 'action' => 'add')); ?> </li>
             <li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
@@ -15,7 +15,7 @@
     </div>
 
     <div class="span9">
-        <?php echo $this->Form->create('Opportuny', array(
+        <?php echo $this->Form->create('Opportunity', array(
             'novalidate' => true,
             'inputDefaults' => array(
                 'div' => 'control-group',
@@ -27,7 +27,7 @@
             'class' => 'well form-horizontal'
         )); ?>
             <fieldset>
-                <legend><?php echo __('Add Opportuny'); ?></legend>
+                <legend><?php echo __('Add Opportunity'); ?></legend>
             <?php
                 echo $this->Form->input('interested_area_id');
                 echo $this->Form->input('organization_id');

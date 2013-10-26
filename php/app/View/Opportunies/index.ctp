@@ -4,7 +4,7 @@
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-            <li><?php echo $this->Html->link(__('New Opportuny'), array('action' => 'add')); ?></li>
+            <li><?php echo $this->Html->link(__('New Opportunity'), array('action' => 'add')); ?></li>
             <li><?php echo $this->Html->link(__('List Interested Areas'), array('controller' => 'interested_areas', 'action' => 'index')); ?> </li>
             <li><?php echo $this->Html->link(__('New Interested Area'), array('controller' => 'interested_areas', 'action' => 'add')); ?> </li>
             <li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
@@ -25,25 +25,25 @@
                 <th><?php echo $this->Paginator->sort('special_request'); ?></th>
                 <th class="actions"><?php echo __('Actions'); ?></th>
         </tr>
-        <?php foreach ($opportunies as $opportuny): ?>
+        <?php foreach ($opportunities as $opportunity): ?>
         <tr>
-            <td><?php echo h($opportuny['Opportuny']['id']); ?>&nbsp;</td>
+            <td><?php echo h($opportunity['Opportunity']['id']); ?>&nbsp;</td>
             <td>
-                <?php echo $this->Html->link($opportuny['InterestedArea']['name'], array('controller' => 'interested_areas', 'action' => 'view', $opportuny['InterestedArea']['id'])); ?>
+                <?php echo $this->Html->link($opportunity['InterestedArea']['name'], array('controller' => 'interested_areas', 'action' => 'view', $opportunity['InterestedArea']['id'])); ?>
             </td>
             <td>
-                <?php echo $this->Html->link($opportuny['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $opportuny['Organization']['id'])); ?>
+                <?php echo $this->Html->link($opportunity['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $opportunity['Organization']['id'])); ?>
             </td>
             <td>
-                <?php echo $this->Html->link($opportuny['Batch']['academic_year'], array('controller' => 'batches', 'action' => 'view', $opportuny['Batch']['id'])); ?>
+                <?php echo $this->Html->link($opportunity['Batch']['academic_year'], array('controller' => 'batches', 'action' => 'view', $opportunity['Batch']['id'])); ?>
             </td>
-            <td><?php echo h($opportuny['Opportuny']['slots']); ?>&nbsp;</td>
-            <td><?php echo h($opportuny['Opportuny']['special_request']); ?>&nbsp;</td>
+            <td><?php echo h($opportunity['Opportunity']['slots']); ?>&nbsp;</td>
+            <td><?php echo h($opportunity['Opportunity']['special_request']); ?>&nbsp;</td>
             <td class="actions">
                 <div class="btn-group">
-                    <?php echo $this->Html->link(__('View'), array('action' => 'view', $opportuny['Opportuny']['id']),array('class' => 'btn')); ?>
-                    <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $opportuny['Opportuny']['id']),array('class' => 'btn')); ?>
-                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $opportuny['Opportuny']['id']),array('class' => 'btn'), null, __('Are you sure you want to delete # %s?', $opportuny['Opportuny']['id'])); ?>
+                    <?php echo $this->Html->link(__('View'), array('action' => 'view', $opportunity['Opportunity']['id']),array('class' => 'btn')); ?>
+                    <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $opportunity['Opportunity']['id']),array('class' => 'btn')); ?>
+                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $opportunity['Opportunity']['id']),array('class' => 'btn'), null, __('Are you sure you want to delete # %s?', $opportunity['Opportunity']['id'])); ?>
                 </div>
             </td>
         </tr>

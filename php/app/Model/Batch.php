@@ -24,8 +24,8 @@ class Batch extends AppModel {
 
 
 	public $hasMany = array(
-		'Opportuny' => array(
-			'className' => 'Opportuny',
+		'Opportunity' => array(
+			'className' => 'Opportunity',
 			'foreignKey' => 'batch_id',
 			'dependent' => false,
 			'conditions' => '',

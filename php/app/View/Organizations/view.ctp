@@ -133,13 +133,13 @@
 
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-            <li><?php echo $this->Html->link(__('New Opportuny'), array('controller' => 'opportunies', 'action' => 'add')); ?> </li>
+            <li><?php echo $this->Html->link(__('New Opportunity'), array('controller' => 'opportunities', 'action' => 'add')); ?> </li>
         </ul>
     </div>
 
     <div class="span9">
-        <h3><?php echo __('Related Opportunies'); ?></h3>
-        <?php if (!empty($organization['Opportuny'])): ?>
+        <h3><?php echo __('Related Opportunities'); ?></h3>
+        <?php if (!empty($organization['Opportunity'])): ?>
             <table cellpadding = "0" cellspacing = "0" class="table table-bordered table-hover">
             <tr>
                 <th><?php echo __('Id'); ?></th>
@@ -152,18 +152,18 @@
             </tr>
             <?php
                 $i = 0;
-                foreach ($organization['Opportuny'] as $opportuny): ?>
+                foreach ($organization['Opportunity'] as $opportunity): ?>
                 <tr>
-                    <td><?php echo $opportuny['id']; ?></td>
-                    <td><?php echo $opportuny['interested_area_id']; ?></td>
-                    <td><?php echo $opportuny['organization_id']; ?></td>
-                    <td><?php echo $opportuny['batch_id']; ?></td>
-                    <td><?php echo $opportuny['slots']; ?></td>
-                    <td><?php echo $opportuny['special_request']; ?></td>
+                    <td><?php echo $opportunity['id']; ?></td>
+                    <td><?php echo $opportunity['interested_area_id']; ?></td>
+                    <td><?php echo $opportunity['organization_id']; ?></td>
+                    <td><?php echo $opportunity['batch_id']; ?></td>
+                    <td><?php echo $opportunity['slots']; ?></td>
+                    <td><?php echo $opportunity['special_request']; ?></td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('View'), array('controller' => 'opportunies', 'action' => 'view', $opportuny['id'])); ?>
-                        <?php echo $this->Html->link(__('Edit'), array('controller' => 'opportunies', 'action' => 'edit', $opportuny['id'])); ?>
-                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'opportunies', 'action' => 'delete', $opportuny['id']), null, __('Are you sure you want to delete # %s?', $opportuny['id'])); ?>
+                        <?php echo $this->Html->link(__('View'), array('controller' => 'opportunities', 'action' => 'view', $opportunity['id'])); ?>
+                        <?php echo $this->Html->link(__('Edit'), array('controller' => 'opportunities', 'action' => 'edit', $opportunity['id'])); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'opportunities', 'action' => 'delete', $opportunity['id']), null, __('Are you sure you want to delete # %s?', $opportunity['id'])); ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

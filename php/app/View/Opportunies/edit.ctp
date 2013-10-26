@@ -1,12 +1,12 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Edit Oppotuny'); ?>
+<?php $this->set('title', 'Edit Opportunity'); ?>
 
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
 
-            <li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Opportuny.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Opportuny.id'))); ?></li>
-            <li><?php echo $this->Html->link(__('List Opportunies'), array('action' => 'index')); ?></li>
+            <li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Opportunity.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Opportunity.id'))); ?></li>
+            <li><?php echo $this->Html->link(__('List Opportunities'), array('action' => 'index')); ?></li>
             <li><?php echo $this->Html->link(__('List Interested Areas'), array('controller' => 'interested_areas', 'action' => 'index')); ?> </li>
             <li><?php echo $this->Html->link(__('New Interested Area'), array('controller' => 'interested_areas', 'action' => 'add')); ?> </li>
             <li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="span9">
-        <?php echo $this->Form->create('Opportuny', array(
+        <?php echo $this->Form->create('Opportunity', array(
             'novalidate' => true,
             'inputDefaults' => array(
                 'div' => 'control-group',
@@ -30,7 +30,7 @@
         )); ?>
 
             <fieldset>
-                <legend><?php echo __('Edit Opportuny'); ?></legend>
+                <legend><?php echo __('Edit Opportunity'); ?></legend>
             <?php
                 echo $this->Form->input('id');
                 echo $this->Form->input('interested_area_id');

@@ -47,8 +47,8 @@ class InterestedArea extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Opportuny' => array(
-			'className' => 'Opportuny',
+		'Opportunity' => array(
+			'className' => 'Opportunity',
 			'foreignKey' => 'interested_area_id',
 			'dependent' => false,
 			'conditions' => '',

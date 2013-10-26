@@ -35,7 +35,12 @@ CREATE TABLE IF NOT EXISTS `assignments` (
   `priority` int(1) NOT NULL,
   `state` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+INSERT INTO `assignments` (`id`, `interested_area_id`, `organization_id`, `student_id`, `priority`, `state`) VALUES
+(1, 1, 0, 5, 3, ''),
+(2, 2, 0, 5, 2, ''),
+(3, 3, 0, 5, 1, '');
 
 DROP TABLE IF EXISTS `batches`;
 CREATE TABLE IF NOT EXISTS `batches` (
@@ -62,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `batches_study_programs` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 INSERT INTO `batches_study_programs` (`id`, `batch_id`, `study_program_id`, `freeze_state`, `industry_ready`, `approval_phase`) VALUES
-(1, 1, 1, 0, 0, 0),
+(1, 1, 1, 0, 0, 2),
 (2, 1, 2, 0, 0, 1),
 (3, 2, 2, 0, 0, 0),
 (4, 2, 3, 0, 0, 0);
@@ -159,10 +164,14 @@ CREATE TABLE IF NOT EXISTS `interested_areas` (
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 INSERT INTO `interested_areas` (`id`, `name`, `description`) VALUES
-(1, 'Linux System Engineering', 'Redhat 6.0');
+(1, 'Linux System Engineering', 'Redhat 6.0'),
+(2, 'Networking', 'CISCO'),
+(3, 'Business Analysis', 'BA'),
+(4, 'Software Engineering', 'SDLC, Design Patterns'),
+(5, 'Fisheries', 'Aqua Culture');
 
 DROP TABLE IF EXISTS `notices`;
 CREATE TABLE IF NOT EXISTS `notices` (
@@ -184,8 +193,8 @@ INSERT INTO `notices` (`id`, `title`, `date_start`, `date_end`, `description`, `
 (45, 'Bravoooo it is completed', '2013-10-22 02:16:00', '2013-10-27 02:16:00', '', 0, 1, 7, 2, 'kfi6bpkeabn6ltjn4rdi06utro'),
 (47, 'Notice Demi', '2013-10-21 06:26:00', '2013-10-29 06:26:00', '', 0, 1, 7, 1, '66654hljdrq26a0cv0odc88i4s');
 
-DROP TABLE IF EXISTS `opportunies`;
-CREATE TABLE IF NOT EXISTS `opportunies` (
+DROP TABLE IF EXISTS `opportunities`;
+CREATE TABLE IF NOT EXISTS `opportunities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `interested_area_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
@@ -252,11 +261,11 @@ CREATE TABLE IF NOT EXISTS `students` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `sms_num`, `email`, `password`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`) VALUES
-(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'tel:94771122336', 'udinnet@gmail.com', '8463bd09bf1a6867ae282a101f52aab0ef650a47', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 0, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 0, 9, 1, 'udithawijerathna', 1, 1, 1),
+(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'tel:94771122336', 'udinnet@gmail.com', '8463bd09bf1a6867ae282a101f52aab0ef650a47', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 0, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 0, 9, 2, 'udithawijerathna', 1, 1, 1),
 (2, 'Krishantha', 'Sameera', 'Zoysa', '', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 0, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, 0, '', 2, 1, 2),
 (3, 'Amal', 'De', 'Silva', '', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '52093438-3310-44fe-9986-3169740d37dd', 0, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, 0, '', 4, 1, 3),
-(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'tel:94771122336', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '520da09d-12e0-431f-9007-1071740d37dd', 0, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 0, 0, 1, '', 1, 1, 1),
-(5, 'Sameera', 'Lakmal', 'Hokandara', '', '', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '525a8d68-d194-4537-a46b-039f740d37dd', 0, '056', 'M', '1988-04-08', 'abc', 'abc', 'Avissawella', 0, 0, 0, 1, '', 1, 1, 1);
+(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'tel:94771122336', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '520da09d-12e0-431f-9007-1071740d37dd', 0, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 0, 0, 2, '', 1, 1, 1),
+(5, 'Sameera', 'Lakmal', 'Hokandara', '', '', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '525a8d68-d194-4537-a46b-039f740d37dd', 0, '056', 'M', '1988-04-08', 'abc', 'abc', 'Avissawella', 0, 0, 1, 2, '', 1, 1, 1);
 
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
@@ -302,10 +311,14 @@ CREATE TABLE IF NOT EXISTS `study_programs_interested_areas` (
   `study_program_id` int(11) NOT NULL,
   `interested_area_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 INSERT INTO `study_programs_interested_areas` (`id`, `study_program_id`, `interested_area_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 2, 5);
 
 DROP TABLE IF EXISTS `subjects`;
 CREATE TABLE IF NOT EXISTS `subjects` (

@@ -43,11 +43,11 @@ class InterestedAreasController extends AppController {
 
         //to get realted opportunities
 
-        $this->loadModel('Opportuny');
-        $opportunity=$this->Opportuny->find('list',array('conditions'=>array(
-            'Opportuny.interested_area_id'=>$id,
+        $this->loadModel('Opportunity');
+        $opportunity=$this->Opportunity->find('list',array('conditions'=>array(
+            'Opportunity.interested_area_id'=>$id,
         )));
-        $this->set('opportuny',$opportunity);
+        $this->set('opportunity',$opportunity);
 	}
 
 /**

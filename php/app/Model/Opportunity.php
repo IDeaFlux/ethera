@@ -1,26 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Opportuny Model
- *
- * @property InterestedArea $InterestedArea
- * @property Organization $Organization
- * @property Batch $Batch
- */
-class Opportuny extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
+class Opportunity extends AppModel {
+
+
 	public $displayField = 'id';
 
-/**
- * Validation rules
- *
- * @var array
- */
+
 	public $validate = array(
 		'interested_area_id' => array(
 			'numeric' => array(

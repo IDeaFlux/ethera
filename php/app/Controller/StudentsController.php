@@ -551,6 +551,20 @@ class StudentsController extends AppController {
 
     public function my_cv_data_upl($id=null) {
 
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+        elseif($current_student['approval_phase'] != 2) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+        elseif($current_student['freeze_state']!=0) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+
         $this->loadModel('Opportunity');
         $this->loadModel('Assignment');
         $this->loadModel('InterestedArea');
@@ -572,11 +586,11 @@ class StudentsController extends AppController {
             $current_submissions[$count]['priority'] = $current_submission_pre['Assignment']['priority'];
             $interested_area = $current_submission_pre['InterestedArea']['id'];
             if(isset($interested_area)){
-                $company_list = $this->Opportunity->find(
+                $company_list[$count] = $this->Opportunity->find(
                     'all',
                     array(
                         'conditions' => array(
-                            'opportunies.interested_area_id	' => $current_submission_pre['Assignment']['id']
+                            'interested_area_id' => $current_submission_pre['InterestedArea']['id']
                         )
                     )
                 );
@@ -584,22 +598,6 @@ class StudentsController extends AppController {
             }
             $count++;
         }
-
-        $current_student = $this->Auth->user();
-        if (!$this->Student->exists($id)) {
-            throw new NotFoundException(__('Invalid student'));
-        }
-        elseif($id != $current_student['id']) {
-            $this->redirect(array('action' => 'my_profile'));
-        }
-        elseif($current_student['approval_phase'] != 2) {
-            $this->redirect(array('action' => 'my_profile'));
-        }
-        elseif($current_student['freeze_state']!=0) {
-            $this->redirect(array('action' => 'my_profile'));
-        }
-
-
     }
 
     public function freeze_unfreeze() {
