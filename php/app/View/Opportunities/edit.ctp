@@ -7,12 +7,6 @@
 
             <li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Opportunity.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Opportunity.id'))); ?></li>
             <li><?php echo $this->Html->link(__('List Opportunities'), array('action' => 'index')); ?></li>
-            <li><?php echo $this->Html->link(__('List Interested Areas'), array('controller' => 'interested_areas', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Interested Area'), array('controller' => 'interested_areas', 'action' => 'add')); ?> </li>
-            <li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Organization'), array('controller' => 'organizations', 'action' => 'add')); ?> </li>
-            <li><?php echo $this->Html->link(__('List Batches'), array('controller' => 'batches', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Batch'), array('controller' => 'batches', 'action' => 'add')); ?> </li>
         </ul>
     </div>
 
@@ -31,17 +25,25 @@
 
             <fieldset>
                 <legend><?php echo __('Edit Opportunity'); ?></legend>
-            <?php
-                echo $this->Form->input('id');
+                <?php
+                echo $this->Form->input('batch_id',array(
+                    'type' => 'select',
+                    'options'=>array($batch),
+                    'class' => 'span4',
+                    'label' => array(
+                        'text' => 'Batch',
+                        'selected'=>0,
+                    )
+                ));
+
                 echo $this->Form->input('interested_area_id');
                 echo $this->Form->input('organization_id');
-                echo $this->Form->input('batch_id');
                 echo $this->Form->input('slots');
-                echo $this->Form->input('special_request');
-            ?>
+                //echo $this->Form->input('special_request');
+                ?>
             </fieldset>
         <div class="form-actions">
-            <?php echo $this->Form->submit('Save',array(
+            <?php echo $this->Form->submit('Save Changes',array(
                'div'=>false,
                 'class'=>'btn btn_primary'
             ));
