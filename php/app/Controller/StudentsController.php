@@ -734,6 +734,37 @@ class StudentsController extends AppController {
         $this->layout = 'ajax';
     }
 
+    public function filter_by_academic_performance() {
+
+        $this->loadModel('Batch');
+        $this->loadModel('StudyProgram');
+        $this->loadModel('BatchesStudyProgram');
+
+        $batches = $this->Batch->find('list');
+        $init_batch = $this->Batch->find('first');
+
+
+        $study_programs_batches = $this->Batch->BatchesStudyProgram->find('all', array(
+            'conditions' => array('batch_id' => $init_batch['Batch']['id']),
+            'recursive' => -1
+        ));
+        if(!empty($study_programs_batches)){
+            foreach($study_programs_batches as $study_programs_batch){
+                $study_program_id = $study_programs_batch['BatchesStudyProgram']['study_program_id'];
+                $study_program_full = $this->StudyProgram->find('first',array(
+                    'conditions' => array('id' => $study_program_id),
+                    'recursive' => -1
+                ));
+                $studyPrograms[$study_program_id] = $study_program_full['StudyProgram']['program_code'];
+            };
+        }
+        else{
+            $studyPrograms = array();
+        }
+
+        $this->set(compact('studyPrograms', 'batches'));
+    }
+
     public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->loginAction = array(
