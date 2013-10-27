@@ -4,7 +4,7 @@
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-            <li><?php echo $this->Html->link(__('Students'), array('controller' => 'homes','action' => 'student_processing')); ?></li>
+            <li><?php echo $this->Html->link(__('Filters'), array('controller' => 'homes','action' => 'filters')); ?></li>
         </ul>
     </div>
     <div class="span9">
@@ -48,21 +48,9 @@
         ));
 
         ?>
-<!--        <div class="form-actions">-->
-<!--            --><?php //echo $this->Form->submit('Freeze/Unfreeze', array(
-//                'div' => false,
-//                'class' => 'btn btn-primary',
-//            )); ?>
-<!--        </div>-->
         <?php echo $this->Form->end(); ?>
     </div>
 </div>
 
-<div class="row">
-    <div class="span3">
-    </div>
-    <div class="span9">
-        <div class="well" id="results">
-        </div>
-    </div>
+<div class="row" id="results">
 </div>
