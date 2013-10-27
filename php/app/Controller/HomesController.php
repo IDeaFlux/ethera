@@ -22,6 +22,10 @@ class HomesController extends AppController {
 
     }
 
+    public function filters() {
+
+    }
+
     public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->allow(array('main','login'));

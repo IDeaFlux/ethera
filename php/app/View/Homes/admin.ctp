@@ -173,5 +173,19 @@
             );
             ?>
         </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-filter icon-4x\"></i></p>
+                <p class=\"text-center\">Filters</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'homes', 'action' => 'filters'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
     </ul>
 </div>
