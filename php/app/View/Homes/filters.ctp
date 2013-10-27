@@ -23,10 +23,10 @@
         <li class="span2">
             <?php
             $i = "<p class=\"text-center\"><i class=\"icon-filter icon-4x\"></i></p>
-                <p class=\"text-center\">Final Approval</p>";
+                <p class=\"text-center\">Search Students by Registration ID</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'students', 'action' => 'final_approval'),
+                array('controller' => 'students', 'action' => 'filter_by_id'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
