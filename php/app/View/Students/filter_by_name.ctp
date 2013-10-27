@@ -46,8 +46,8 @@
                 'text' => 'Search'
             )
         ));
-
         ?>
+        <span style="font-style: italic">Type a part of Student's name</span>
         <?php echo $this->Form->end(); ?>
     </div>
 </div>
