@@ -662,6 +662,60 @@ class StudentsController extends AppController {
 
     }
 
+    public function filter_by_id(){
+
+    }
+
+    public function get_students_by_reg_number(){
+        if(!empty($this->request->data['Student']['query'])){
+            $content = $this->request->data['Student']['query'];
+
+            $split = explode('/',$content);
+
+            if(sizeof($split) == 4) {
+                $reg_num_header =$split[0];
+                $batch = $split[1]."/".$split[2];
+                $reg_num = $split[3];
+
+                $this->loadModel('Student');
+                $this->loadModel('Batch');
+                $this->loadModel('RegistrationNumHeader');
+
+                $students = $this->Student->find(
+                    'all',
+                    array(
+                        'joins' => array(
+                            array(
+                                'table' => 'batches',
+                                'alias' => 'BatchJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                    "BatchJoin.academic_year LIKE '%$batch%'"
+                                )
+                            ),
+                            array(
+                                'table' => 'registration_num_headers',
+                                'alias' => 'RegistrationNumHeaderJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                    "RegistrationNumHeaderJoin.name" => $reg_num_header
+                                )
+                            )
+                        ),
+                        'fields' => array('Student.*'),
+                        'conditions' => array(
+                            "Student.reg_number LIKE '%$reg_num%'"
+                        )
+                    )
+                );
+
+                $this->set('students',$students);
+            }
+        }
+
+        $this->layout = 'ajax';
+    }
+
     public function get_students_by_name(){
         if(!empty($this->request->data['Student']['search'])) {
             $keyword = $this->request->data['Student']['search'];
