@@ -34,6 +34,20 @@
             );
             ?>
         </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-filter icon-4x\"></i></p>
+                <p class=\"text-center\">Filter Students by Academic Performance</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'students', 'action' => 'filter_by_academic_performance'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
     </ul>
 </div>
 
