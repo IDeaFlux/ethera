@@ -4,7 +4,7 @@
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-            <li><?php echo $this->Html->link(__('Students'), array('controller' => 'homes','action' => 'student_processing')); ?></li>
+            <li><?php echo $this->Html->link(__('Filters'), array('controller' => 'homes','action' => 'filters')); ?></li>
         </ul>
     </div>
     <div class="span9">
@@ -55,7 +55,10 @@
         ));
         ?>
         <div class="form-actions">
-            <button class="btn btn-primary" id="load_courses">Load Courses</button>
+            <?php echo $this->Form->submit('Load Courses', array(
+                'div' => false,
+                'class' => 'btn btn-primary',
+            )); ?>
         </div>
         <?php echo $this->Form->end(); ?>
     </div>
