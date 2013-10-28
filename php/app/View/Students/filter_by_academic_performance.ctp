@@ -14,7 +14,7 @@
                 'controller'=>'batches',
                 'action'=>'get_study_programs'
             ), array(
-                'update'=>'#BatchStudyProgram',
+                'update'=>'#StudentStudyProgram',
                 'async' => true,
                 'method' => 'post',
                 'dataExpression'=>true,
@@ -25,8 +25,9 @@
             ))
         );
         ?>
-        <?php echo $this->Form->create('Batch',array(
+        <?php echo $this->Form->create('Student',array(
             'novalidate' => true,
+            'action' => 'filter_by_academic_performance_course_select',
             'type'=>'file',
             'inputDefaults' => array(
                 'div' => 'control-group',
