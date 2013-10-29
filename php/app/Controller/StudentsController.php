@@ -765,6 +765,30 @@ class StudentsController extends AppController {
         $this->set(compact('studyPrograms', 'batches'));
     }
 
+    public function filter_by_academic_performance_course_select(){
+        if($this->request->is('post')) {
+            $this->loadModel('StudyProgramsCourseUnit');
+            $this->loadModel('CourseUnit');
+            $this->loadModel('Subject');
+
+            $study_program_id = $this->request->data['Student']['study_program'];
+            $courses = $this->StudyProgramsCourseUnit->find('all', array(
+                'conditions' => array(
+                    'study_program_id' => $study_program_id
+                ),
+                'recursive' => 1
+            ));
+
+            $subjects = $this->Subject->find('all', array(
+                'recursive' => -1,
+                )
+            );
+
+            $this->set('courses',$courses);
+            $this->set('subjects',$subjects);
+        }
+    }
+
     public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->loginAction = array(
