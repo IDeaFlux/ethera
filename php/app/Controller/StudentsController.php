@@ -786,7 +786,12 @@ class StudentsController extends AppController {
 
             $this->set('courses',$courses);
             $this->set('subjects',$subjects);
+            $this->set('batch',$this->request->data['Batch']['batch_id']);
+            $this->set('study_program',$this->request->data['Student']['study_program']);
         }
+    }
+
+    public function filter_by_academic_performance_course_select_filtering(){
     }
 
     public function beforeFilter(){
