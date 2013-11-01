@@ -1,5 +1,3 @@
-<?php //debug($courses); ?>
-<?php //debug($subjects); ?>
 <?php $this->layout = 'bootstrap2'; ?>
 <?php $this->set('title', 'Filter by Academic Performance'); ?>
 
@@ -10,8 +8,9 @@
         </ul>
     </div>
     <div class="span9">
-        <?php echo $this->Form->create('Batch',array(
+        <?php echo $this->Form->create('Student',array(
             'novalidate' => true,
+            'action' => 'filter_by_academic_performance_course_select_filtering',
             'type'=>'file',
             'inputDefaults' => array(
                 'div' => 'control-group',
@@ -51,7 +50,7 @@
                                     'data-original-title' => $course['CourseUnit']['name']
                                 )
                             );?>
-                            <a href="#" id="course<?php echo $count;?>"><?php echo $course['CourseUnit']['code'];?></a>
+                            <div id="course<?php echo $count;?>"><?php echo $course['CourseUnit']['code'];?></div>
                         </label>
                         <?php
                         $count++;
@@ -59,26 +58,27 @@
                     <?php endif; ?>
                 <?php endforeach ?>
             <?php endforeach ?>
-        <?php endif;?>
+        <?php
+        endif;
+        echo $this->Form->hidden('Batch.id',array('value'=>$batch));
+        echo $this->Form->hidden('StudyProgram.id',array('value'=>$study_program));
+        ?>
         <div class="form-actions">
-            <button class="btn btn-large" id="">Filter</button>
+            <?php echo $this->Form->submit('Filter', array(
+                'div' => false,
+                'class' => 'btn btn-primary',
+            )); ?>
         </div>
         <?php echo $this->Form->end(); ?>
     </div>
 </div>
 <script type="text/javascript">
-<!--    $(function ()-->
-<!--    {-->
-<!--    --><?php
-//    for($i=0;$i<$count;$i++):
-//    ?>
-<!--    $("#course--><?php //echo $i;?><!--").popover({trigger: 'hover'});-->
-<!--    --><?php //endfor; ?>
-<!--    });-->
-$(document).ready(function ()
-{
-    $("#course0").popover({trigger: 'hover',
-        html: true,
-        placement: 'right'});
-});
+    $(function ()
+    {
+    <?php
+    for($i=0;$i<$count;$i++):
+    ?>
+    $("#course<?php echo $i;?>").popover({trigger: 'hover'});
+    <?php endfor; ?>
+    });
 </script>
