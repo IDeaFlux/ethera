@@ -10,7 +10,8 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<?php
-    echo $this->Html->css('bootstrap-combined.min');
+    echo $this->Html->css('bootstrap.min');
+    echo $this->Html->css('bootstrap-responsive.min');
     echo $this->Html->css('font-awesome.min.css');
     echo $this->Html->css('smoothness/jquery-ui.min');
     echo $this->Html->script('jquery.min');
@@ -133,7 +134,7 @@
 
         <!-- Placed at the end of the document so the pages load faster -->
         <?php
-            echo $this->Html->script('jquery.min');
+            //echo $this->Html->script('jquery.min');
             echo $this->Html->script('jquery-ui.min');
             echo $this->Html->script('bootstrap.min');
             echo $this->Html->script('run_prettify');
