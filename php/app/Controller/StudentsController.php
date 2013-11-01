@@ -1,6 +1,8 @@
 <?php
 App::uses('AppController', 'Controller');
 App::uses('EtheraEmail','Lib');
+App::uses('GPA','Lib');
+App::uses('StudentManipulation','Lib');
 
 class StudentsController extends AppController {
 
@@ -792,6 +794,89 @@ class StudentsController extends AppController {
     }
 
     public function filter_by_academic_performance_course_select_filtering(){
+        $this->loadModel('Enrollment');
+        $this->loadModel('CourseUnit');
+
+        if($this->request->is('post')){
+            if((!empty($this->request->data['CourseUnit'])) && (!empty($this->request->data['Batch']['id'])) && (!empty($this->request->data['StudyProgram']['id']))){
+                $course_units = $this->request->data['CourseUnit'];
+
+                $students = $this->Student->find(
+                    'all',
+                    array(
+                        'recursive' => -1,
+                        'conditions' => array(
+                            'Student.batch_id' => $this->request->data['Batch']['id'],
+                            'Student.study_program_id' => $this->request->data['StudyProgram']['id']
+                        )
+                    )
+                );
+                $student_count = 0;
+                foreach($students as $student){
+                    $filtering_enrollments = array();
+
+                    $enrollments = $this->Enrollment->find(
+                        'all',
+                        array(
+                            'recursive' => -1,
+                            'conditions' => array(
+                                'Enrollment.student_id' => $student['Student']['id']
+                            )
+                        )
+                    );
+
+                    $course_count = 0;
+
+                    foreach($enrollments as $enrollment){
+                        foreach($course_units as $course_unit){
+                            if(($enrollment['Enrollment']['course_unit_id'] == $course_unit['id']) && (!empty($enrollment['Enrollment']['grade']))){
+                                $course_count++;
+                                $unit = $this->CourseUnit->find(
+                                    'first',
+                                    array(
+                                        'conditions' => array(
+                                            'CourseUnit.id' => $enrollment['Enrollment']['course_unit_id']
+                                        ),
+                                        'recursive' => -1
+                                    )
+                                );
+                                $enrollment['Enrollment']['course_unit'] = $unit;
+                                $filtering_enrollments[$course_count-1]= $enrollment;
+
+
+                            }
+                        }
+                    }
+
+                    if($course_count == sizeof($course_units)){
+                        $filtered_students[$student_count]['Student']['filter_gpa'] = GPA::calculate($filtering_enrollments);
+                        $filtered_students[$student_count]['Student']['id'] = $student['Student']['id'];
+                    }
+                    $student_count++;
+                }
+
+                if(!empty($filtered_students)){
+                    $filtered_student_count = 0;
+                    foreach($filtered_students as $filtered_student){
+                        $final_students[$filtered_student_count] = $this->Student->find(
+                            'first',
+                            array(
+                                'conditions' => array(
+                                    'Student.id' => $filtered_student['Student']['id']
+                                ),
+                                'recursive' => -1
+                            )
+                        );
+                        $final_students[$filtered_student_count]['GPA'] = $filtered_student['Student']['filter_gpa'];
+                        $filtered_student_count++;
+                    }
+                }
+            }
+            $students = StudentManipulation::gpa_sort($final_students);
+
+            $this->set('students',$students);
+            $this->set('return_data',$this->request->data);
+        }
     }
 
     public function beforeFilter(){
