@@ -2,8 +2,8 @@
 App::uses('Grading','Lib');
 
 class GPA{
-    public static function calculate($enrollments=null){
-        if($enrollments =! null){
+    public static function calculate($enrollments){
+        if(!empty($enrollments)){
             $cum_gpa = 0;
             $cum_credit =0;
 
