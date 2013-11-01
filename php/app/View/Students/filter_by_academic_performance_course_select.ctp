@@ -45,12 +45,9 @@
                                     'hiddenField' => false,
                                     'class' => array(null),
                                     'label'=>false,
-                                    'rel'=>'popover',
-                                    'data-content' => $course['CourseUnit']['syllabus'],
-                                    'data-original-title' => $course['CourseUnit']['name']
                                 )
                             );?>
-                            <div id="course<?php echo $count;?>"><?php echo $course['CourseUnit']['code'];?></div>
+                            <div id="course<?php echo $count;?>" rel="popover" data-content="<?php echo $course['CourseUnit']['syllabus'];?>" data-original-title="<?php echo $course['CourseUnit']['name'];?>"><?php echo $course['CourseUnit']['code'];?></div>
                         </label>
                         <?php
                         $count++;
