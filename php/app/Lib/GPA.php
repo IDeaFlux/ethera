@@ -12,7 +12,7 @@ class GPA{
                 $cum_credit = $cum_credit + $enrollment['Enrollment']['course_unit']['CourseUnit']['credits'];
             }
 
-            return $cum_gpa/$cum_credit;
+            return round($cum_gpa/$cum_credit,3);
         }
 
         else{
