@@ -879,6 +879,132 @@ class StudentsController extends AppController {
         }
     }
 
+    public function forgot_password() {
+        if($this->request->is('post')){
+            if(!empty($this->request->data)){
+                $post_email = $this->request->data['Student']['email'];
+                $student = $this->Student->find('first',array(
+                    'conditions' => array('Student.email' => $post_email),
+                    'recursive' => -1
+                ));
+                if(empty($student)){
+                    $this->Session->setFlash('The email you entered was invalid','error_flash');
+                    $this->redirect(array('controller'=>'students','action'=>'forgot_password'));
+                }
+                else{
+                    $student = $this->_generate_password_token($student);
+                    unset($student['Student']['password']);
+                    if($this->Student->save($student) && $this->_send_forgot_password_email($student['Student']['id'])){
+                        $this->Session->setFlash('Password reset instructions have been sent to your email address.
+You have 24 hours to complete the request.','success_flash');
+                        $this->redirect(array('controller'=>'students','action'=>'forgot_password'));
+                    }
+                }
+            }
+        }
+    }
+
+    public function reset_password_token($reset_password_token = null){
+        if(empty($this->request->data)){
+            $student = $this->Student->findByResetPasswordToken($reset_password_token);
+            if(!empty($student['Student']['reset_password_token']) && !empty($student['Student']['token_created_at']) && $this->_valid_token($student['Student']['token_created_at'])){
+                $this->set('token',$reset_password_token);
+                $_SESSION['token'] = $reset_password_token;
+            }
+            else{
+                $this->Session->setFlash('The password reset request has either expired or is invalid','error_flash');
+                $this->redirect(array('controller'=>'students','action'=>'login'));
+            }
+        }
+        else{
+            if ($this->request->data['Student']['reset_password_token'] != $_SESSION['token']) {
+                $this->Session->setflash('The password reset request has either expired or is invalid.','error_flash');
+                $this->redirect(array('controller'=>'students','action'=>'login'));
+            }
+
+            $student = $this->Student->findByResetPasswordToken($this->request->data['Student']['reset_password_token']);
+            $this->Student->id = $student['Student']['id'];
+            $this->request->data['Student']['id'] = $student['Student']['id'];
+
+            //debug($this->request->data);
+            $this->Student->set($this->request->data);
+
+            if ($this->Student->validates()) {
+                if($this->request->data['Student']['password'] == $this->request->data['Student']['password_confirmation']){
+                    $this->request->data['Student']['reset_password_token'] = $this->request->data['Student']['token_created_at'] = null;
+                    if($this->Student->save($this->request->data) && $this->_send_password_update_success_email($student['Student']['id'])){
+                        unset($_SESSION['token']);
+                        $this->Session->setflash('Your password was changed successfully. Please login to continue.','success_flash');
+                        $this->redirect(array('controller'=>'students','action'=>'login'));
+                    }
+                }
+                else{
+                    $this->Session->setflash('Two passwords does not match, please try again','error_flash');
+                }
+            }
+        }
+    }
+
+    protected function _generate_password_token($user){
+        if (empty($user)) {
+            return null;
+        }
+
+        // Generate a random string 100 chars in length.
+        $token = "";
+        for ($i = 0; $i < 100; $i++) {
+            $d = rand(1, 100000) % 2;
+            $d ? $token .= chr(rand(33,79)) : $token .= chr(rand(80,126));
+        }
+
+        (rand(1, 100000) % 2) ? $token = strrev($token) : $token = $token;
+
+        // Generate hash of random string
+        $hash = Security::hash($token, 'sha256', true);;
+        for ($i = 0; $i < 20; $i++) {
+            $hash = Security::hash($hash, 'sha256', true);
+        }
+
+        $user['Student']['reset_password_token'] = $hash;
+        $user['Student']['token_created_at'] = date('Y-m-d H:i:s');
+
+        return $user;
+    }
+
+    protected function _valid_token($token_created_at){
+        $expired = strtotime($token_created_at) + 86400;
+        $time = strtotime("now");
+        if ($time < $expired) {
+            return true;
+        }
+        return false;
+    }
+
+    protected function _send_forgot_password_email($id = null){
+        if (!empty($id)) {
+            $this->Student->id = $id;
+            $Student = $this->Student->read();
+            $url = "Hi, Please use this URL to reset your password. ".'http://' . env('SERVER_NAME') .Router::url('/'). 'students/reset_password_token/' . $Student['Student']['reset_password_token'];
+
+            EtheraEmail::mailer($Student['Student']['email'],'Password Reset Request - DO NOT REPLY',$url);
+
+            return true;
+        }
+        return false;
+    }
+
+    protected function _send_password_update_success_email($id = null){
+        if (!empty($id)) {
+            $this->Student->id = $id;
+            $Student = $this->Student->read();
+
+            EtheraEmail::mailer($Student['Student']['email'],'Password Update - DO NOT REPLY','Hi, Password Successfully Updated. Please try to login.');
+
+            return true;
+        }
+        return false;
+    }
+
     public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->loginAction = array(
@@ -893,6 +1019,6 @@ class StudentsController extends AppController {
             'controller'=>'homes',
             'action'=>'main'
         );
-        $this->Auth->allow('register');
+        $this->Auth->allow(array('forgot_password','reset_password_token','register'));
     }
 }
