@@ -20,14 +20,6 @@ class Student extends AppModel {
 			),
 		),
 		'middle_name' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => '',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false,
-				//'on' => 'create',
-			),
 		),
 		'last_name' => array(
 			'notempty' => array(
