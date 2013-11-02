@@ -13,6 +13,6 @@ echo $this->Form->button('Login', array(
     'class' => 'btn btn-primary'
 ));
 echo $this->Form->end();
-echo $this->Html->link('Forgot Password',array('controller' => 'system_users','action'=>'forgot_password'));
+echo $this->Html->link('Forgot Password',array('controller' => 'students','action'=>'forgot_password'));
 ?>
 </center>
