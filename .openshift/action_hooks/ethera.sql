@@ -84,14 +84,17 @@ CREATE TABLE IF NOT EXISTS `course_units` (
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `code` (`code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 INSERT INTO `course_units` (`id`, `code`, `name`, `credits`, `level`, `syllabus`, `subject_id`) VALUES
-(1, 'ICT1402', 'Introduction to Programming', 4, 1, 'Techniques of Problem solving: Algorithm, Flowchart and Pseudo codes. Introduction of C++\r\nProgramming, Fundamentals of C++ Programming, Structure of a C++ Program, Input / out put \r\nStreams, Variable declaration, Arithmetic Operations, Relational Operations, Logical \r\nOperations, Control Structures: If / Else, While repetition, For repetition, Switch multiple \r\nselection, Do / while, Break and Continue, Functions, scope of variable and Parameters, \r\nRecursion, Arrays, Records. Object Oriented Concepts: Classes and Objects, Inheritance, \r\nEncapsulation, Polymorphism, Linked list Class, String class etc. ', 14),
+(1, 'ICT1402', 'Introduction to Programming', 4, 1, 'Techniques of Problem solving: Algorithm, Flowchart and Pseudo codes. Introduction of C++\r\nProgramming, Fundamentals of C++ Programming, Structure of a C++ Program, Input / out put ', 14),
 (2, 'ICT1404', 'Mathematics for Computing', 4, 1, 'Differential Calculus: Limits and Continuity, differential coefficients, Mean Value Theorem, \r\nTaylor’s Theorem, Integration, Definite integrals, Polynomial interpolation. Linear Algebra: \r\nMatrices, Matrix operations, system of equations. Coordinate Geometry: Coordinates, 2D and \r\n3D coordinate transformation Equation of line, circle, etc. Basic Statistics: Analysis and \r\npresentation data, Probability Distribution, Regression, Correlation. ', 14),
 (3, 'ICT1308', 'Operating Systems', 3, 1, 'Introduction to operating systems.', 14),
-(4, 'ICT2042', 'Software Engineering', 4, 2, 'Scope of Software Engineering: Software crisis, Software engineering objectives, \r\nObject – oriented paradigm. \r\nSoftware Life Cycle Models: Build-and-Fix model, Water fall model, Object-oriented life \r\ncycle model, Comparison of life-Cycle models, \r\nTesting: Quality issues, Non execution - based testing, Execution - based testing, Correctness \r\nproofs, Testing distributed and real time software. Introduction to Objects: Models, \r\nCohesion, Coupling Data Encapsulation, Abstract data types, Information hiding inheritance, \r\nPolymorphism and dynamic binding, Reusability, Portability and interpretability. Planning \r\nand estimating: planning the software process, Estimating duration and cost. Requirement \r\nSpecification: Requirement analysis, Specification documents. Object – Oriented Analysis:\r\nUse – Case modeling, Class modeling, Dynamic modeling. Object-Oriented Design: \r\nSequence diagram, Collaboration diagram and detailed class diagram, Implementation, \r\nintegration and maintenance, Introduction to Computer assisted software engineering (CASE). \r\nSoftware Engineering Project : Students will undertake a small project and submit a project \r\nreport using software engineering principles and do a presentation. ', 14),
-(5, 'ICT3301', 'Human Computer Interaction', 3, 3, 'About HCI', 14);
+(4, 'ICT2042', 'Software Engineering', 4, 2, 'Scope of Software Engineering: Software crisis, Software engineering objectives, \r\nObject – oriented paradigm. \r\nSoftware Life Cycle Models: Build-and-Fix model, Water fall model, Object-oriented life \r\ncycle model, Comparison of life-Cycle models, \r\nTesting: Quality issues, Non execution - based testing, Execution - based testing, Correctness \r\nproofs', 14),
+(5, 'ICT3301', 'Human Computer Interaction', 3, 3, 'About HCI', 14),
+(6, 'ICT1305', 'Data Structures', 3, 1, 'Design of Data Structures.', 14),
+(7, 'ICT3411', 'Third Year Project', 4, 3, 'This is the third year project', 14),
+(8, 'CMP2201', 'Ethnic and Social Haromony', 2, 2, 'Ethnic and social harmony', 16);
 
 DROP TABLE IF EXISTS `cvs`;
 CREATE TABLE IF NOT EXISTS `cvs` (
@@ -110,19 +113,23 @@ CREATE TABLE IF NOT EXISTS `enrollments` (
   `student_id` int(11) NOT NULL,
   `grade` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 INSERT INTO `enrollments` (`id`, `course_unit_id`, `student_id`, `grade`) VALUES
 (6, 1, 1, 'A+'),
 (7, 2, 1, 'B+'),
-(8, 3, 1, ''),
-(9, 4, 1, 'C'),
+(8, 3, 1, 'A+'),
+(9, 4, 1, 'A+'),
 (10, 5, 1, 'A+'),
-(11, 1, 4, ''),
-(12, 2, 4, ''),
-(13, 1, 5, ''),
-(14, 2, 5, ''),
-(15, 3, 5, '');
+(11, 1, 4, 'A+'),
+(12, 2, 4, 'A+'),
+(13, 1, 5, 'C'),
+(14, 2, 5, 'C+'),
+(15, 3, 5, 'B+'),
+(16, 6, 1, 'A+'),
+(17, 4, 4, 'A-'),
+(18, 4, 5, 'B'),
+(19, 3, 4, 'B-');
 
 DROP TABLE IF EXISTS `extra_activities`;
 CREATE TABLE IF NOT EXISTS `extra_activities` (
@@ -241,6 +248,8 @@ CREATE TABLE IF NOT EXISTS `students` (
   `sms_num` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(50) NOT NULL,
+  `reset_password_token` varchar(255) NOT NULL,
+  `token_created_at` datetime NOT NULL,
   `photo` varchar(255) NOT NULL,
   `group_id` int(11) NOT NULL,
   `reg_number` varchar(20) NOT NULL,
@@ -257,22 +266,24 @@ CREATE TABLE IF NOT EXISTS `students` (
   `study_program_id` int(11) NOT NULL,
   `batch_id` int(11) NOT NULL,
   `registration_num_header_id` int(11) NOT NULL,
+  `final_mark` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `first_name` (`first_name`,`last_name`,`reg_number`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
-INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `sms_num`, `email`, `password`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`) VALUES
-(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'tel:94771122336', 'udinnet@gmail.com', '8463bd09bf1a6867ae282a101f52aab0ef650a47', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 4, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 0, 9, 2, 'udithawijerathna', 1, 1, 1),
-(2, 'Krishantha', 'Sameera', 'Zoysa', '', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 4, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, 0, '', 2, 1, 2),
-(3, 'Amal', 'De', 'Silva', '', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '52093438-3310-44fe-9986-3169740d37dd', 4, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, 0, '', 4, 1, 3),
-(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'tel:94771122336', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '520da09d-12e0-431f-9007-1071740d37dd', 4, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 0, 0, 2, '', 1, 1, 1),
-(5, 'Sameera', 'Lakmal', 'Hokandara', '', '', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '525a8d68-d194-4537-a46b-039f740d37dd', 4, '056', 'M', '1988-04-08', 'abc', 'abc', 'Avissawella', 0, 0, 1, 2, '', 1, 1, 1);
+INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `final_mark`) VALUES
+(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'tel:94771122336', 'udinnet@gmail.com', '8463bd09bf1a6867ae282a101f52aab0ef650a47', '', '0000-00-00 00:00:00', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 4, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 0, 9, 2, 'udithawijerathna', 1, 1, 1, 0),
+(2, 'Krishantha', 'Sameera', 'Zoysa', '', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 4, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, 0, '', 2, 1, 2, 0),
+(3, 'Amal', 'De', 'Silva', '', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '52093438-3310-44fe-9986-3169740d37dd', 4, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, 0, '', 4, 1, 3, 0),
+(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'tel:94771122336', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520da09d-12e0-431f-9007-1071740d37dd', 4, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 0, 0, 2, '', 1, 1, 1, 0),
+(5, 'Sameera', 'Lakmal', 'Hokandara', '', '', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '525a8d68-d194-4537-a46b-039f740d37dd', 4, '056', 'M', '1988-04-08', 'abc', 'abc', 'Avissawella', 0, 0, 1, 2, '', 1, 1, 1, 0);
 
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `extra_activity_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
   `mark` int(3) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -297,14 +308,20 @@ CREATE TABLE IF NOT EXISTS `study_programs_course_units` (
   `study_program_id` int(11) NOT NULL,
   `course_unit_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 INSERT INTO `study_programs_course_units` (`id`, `study_program_id`, `course_unit_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
 (4, 1, 4),
-(5, 1, 5);
+(5, 1, 5),
+(6, 1, 6),
+(7, 1, 7),
+(8, 1, 8),
+(9, 2, 8),
+(10, 3, 8),
+(11, 4, 8);
 
 DROP TABLE IF EXISTS `study_programs_interested_areas`;
 CREATE TABLE IF NOT EXISTS `study_programs_interested_areas` (
@@ -328,11 +345,12 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `description` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 INSERT INTO `subjects` (`id`, `name`, `description`) VALUES
 (14, 'ICT', 'Information & Communication Technology '),
-(15, 'MAA', 'Mathematics Applied');
+(15, 'MAA', 'Mathematics Applied'),
+(16, 'CMP', 'Compulsory');
 
 DROP TABLE IF EXISTS `system_users`;
 CREATE TABLE IF NOT EXISTS `system_users` (
