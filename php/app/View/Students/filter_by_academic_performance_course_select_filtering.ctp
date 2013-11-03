@@ -13,6 +13,7 @@
         <button class="btn btn-large" id="load_enrollments" onclick="goBack()">Go Back to Filter Subject Selection</button>
         <div class="well">
             <legend><?php echo __('Search Results'); ?></legend>
+            <?php if(!empty($students)): ?>
             <table cellpadding="0" cellspacing="0" class="table table-bordered">
                 <tr>
                     <th>ID</th>
@@ -33,6 +34,9 @@
                     </tr>
                 <?php endforeach;?>
             </table>
+            <?php else:?>
+                <span style="font-style: italic">Your filter found No Students</span>
+            <?php endif;?>
         </div>
     </div>
 </div>
