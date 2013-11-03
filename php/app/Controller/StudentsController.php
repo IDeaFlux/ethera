@@ -540,6 +540,7 @@ class StudentsController extends AppController {
                 }
                 $count++;
             }
+
             if($this->Assignment->saveAll($data)) {
                 $this->Session->setFlash(__('Your CV Data updated'),'success_flash');
                 $this->redirect(array('action' => 'my_profile'));
@@ -879,6 +880,62 @@ class StudentsController extends AppController {
 
             $this->set('return_data',$this->request->data);
         }
+    }
+
+    public function industry_ready(){
+        $this->loadModel('BatchesStudyProgram');
+        $this->loadModel('Batch');
+
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+
+            $batch_study_program = $this->BatchesStudyProgram->find(
+                'first',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );
+
+            $students = $this->Student->find(
+                'all',
+                array(
+                    'conditions' => array(
+                        'batch_id' => $data['Batch']['batch_id'],
+                        'study_program_id' => $data['Batch']['study_program']
+                    ),
+                    'recursive' => -1
+                )
+            );
+
+            foreach($students as $student){
+                $student_save['Student']['id'] = $student['Student']['id'];
+                $student_save['Student']['industry_ready'] = $data['Batch']['industry_ready'];
+
+                if($this->Student->save($student_save)){
+                    continue;
+                }
+                else{
+                    $this->Session->setFlash(__('Could not update. Please, try again.'));
+                    break;
+                }
+            }
+
+            $save_data['BatchesStudyProgram']['id'] = $batch_study_program['BatchesStudyProgram']['id'];
+            $save_data['BatchesStudyProgram']['industry_ready'] = $data['Batch']['industry_ready'];
+            if ($this->BatchesStudyProgram->save($save_data)) {
+                $this->Session->setFlash(__('Public Readiness State Updated'),'success_flash');
+                $this->redirect(array('action' => 'industry_ready'));
+            } else {
+                $this->Session->setFlash(__('Could not update. Please, try again.'));
+            }
+        }
+
+        $batches = $this->Batch->find('list');
+        $this->set('batches',$batches);
     }
 
     public function forgot_password() {
