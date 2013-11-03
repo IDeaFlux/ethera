@@ -872,9 +872,11 @@ class StudentsController extends AppController {
                     }
                 }
             }
-            $students = StudentManipulation::gpa_sort($final_students);
+            if(!empty($final_students)){
+                $students = StudentManipulation::gpa_sort($final_students);
+                $this->set('students',$students);
+            }
 
-            $this->set('students',$students);
             $this->set('return_data',$this->request->data);
         }
     }
