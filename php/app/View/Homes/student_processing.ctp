@@ -146,11 +146,11 @@
         </li>
         <li class="span2">
             <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-lock icon-4x\"></i></p>
-                <p class=\"text-center\">Freeze Unfreeze</p>";
+            $i = "<p class=\"text-center\"><i class=\"icon-truck icon-4x\"></i></p>
+                <p class=\"text-center\">Public Ready Students</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'students', 'action' => 'freeze_unfreeze'),
+                array('controller' => 'students', 'action' => 'industry_ready'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
