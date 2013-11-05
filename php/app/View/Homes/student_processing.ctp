@@ -144,5 +144,19 @@
             );
             ?>
         </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-lock icon-4x\"></i></p>
+                <p class=\"text-center\">Freeze Unfreeze</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'students', 'action' => 'freeze_unfreeze'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
     </ul>
 </div>
