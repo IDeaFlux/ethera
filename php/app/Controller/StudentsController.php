@@ -541,7 +541,13 @@ class StudentsController extends AppController {
                 $count++;
             }
 
-            if($this->Assignment->saveAll($data)) {
+            if($id){
+                $std['Student']['id'] = $id;
+                $std['Student']['approved_state'] = 2;
+            }
+
+            debug($data);
+            if(($this->Assignment->saveAll($data))&&($this->Student->saveAll($std))) {
                 $this->Session->setFlash(__('Your CV Data updated'),'success_flash');
                 $this->redirect(array('action' => 'my_profile'));
             }
