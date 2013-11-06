@@ -128,8 +128,9 @@
 
         // echo $this->Form->input('system_user');
            // echo $authUser;
+        $articles[0] = 'Select an Article';
             echo $this->Form->input('article_id',array(
-                'options'=>array('Select an Article',$articles),
+                'options'=>$articles,
                 'selected'=>0,
             ));
 
