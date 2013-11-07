@@ -28,8 +28,11 @@
 <!--                          <iframe src="https://www.google.com/calendar/embed?showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=360&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=8hnnp6ndfkvh6q6mprsslh8uds%40group.calendar.google.com&amp;color=%232F6309&amp;ctz=Asia%2FColombo" style=" border-width:0 " width="360" height="360" frameborder="0" scrolling="no">
                             </iframe>  -->
 
-<!-- Final calendar for ETHERA events -->
-                            <iframe src="https://www.google.com/calendar/embed?src=84175rm5je1sfg2oafoufvhsjs%40group.calendar.google.com&ctz=Asia/Colombo" style="border: 0" width="360" height="360" frameborder="0" scrolling="no"></iframe>
+                            <!-- yohani.ysr calendar for ETHERA events -->
+<!--                            <iframe src="https://www.google.com/calendar/embed?src=84175rm5je1sfg2oafoufvhsjs%40group.calendar.google.com&ctz=Asia/Colombo" style="border: 0" width="360" height="360" frameborder="0" scrolling="no">  --> <!-- </iframe> -->
+
+                            <!-- Final calendar for ETHERA events -->
+                            <iframe src="https://www.google.com/calendar/embed?src=15642bevcork1use0l1qokb0vs%40group.calendar.google.com&ctz=Asia/Colombo" style="border: 0" width="360" height="360" frameborder="0" scrolling="no"></iframe>
                         </div>
                     </div>
                     <div class="span4">
