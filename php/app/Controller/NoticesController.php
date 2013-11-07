@@ -289,10 +289,17 @@ class NoticesController extends AppController {
             //$this->autoRender = false;
             $tokenURL = 'https://accounts.google.com/o/oauth2/token';
             $postData = array(
-                'client_secret'=>'fqkcG3LiI7NH3QhQ-tCOtgVG',
+
+                //reference to yohani.ysr calendar
+//                'client_secret'=>'fqkcG3LiI7NH3QhQ-tCOtgVG',
+//                'grant_type'=>'refresh_token',
+//                'refresh_token'=>'1/HneWiwqvhClUi80aa-c3nwtzpNizd0seiq8K7yny0yM',
+//                'client_id'=>'1077896430665-r2m8jhs76tehuccralfjd688vpfcdr9m.apps.googleusercontent.com'
+
+                'client_secret'=>'Yiyth4xAHIV4L6vtrKPnHGiy',
                 'grant_type'=>'refresh_token',
-                'refresh_token'=>'1/HneWiwqvhClUi80aa-c3nwtzpNizd0seiq8K7yny0yM',
-                'client_id'=>'1077896430665-r2m8jhs76tehuccralfjd688vpfcdr9m.apps.googleusercontent.com'
+                'refresh_token'=>'1/GYcsktptDOLESpblJlR62bg0AIxPTbkMSKGy6r2tLPw',
+                'client_id'=>'436819971634.apps.googleusercontent.com'
             );
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $tokenURL);
@@ -359,8 +366,14 @@ class NoticesController extends AppController {
 
     // Create/Post an Event in the Calendar
     function send_post_request($start_date,$end_date,$title){
-        $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
-        $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+        //refrenece to yohani.ysr calendar
+       // $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
+        //$cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+
+        $APIKEY='AIzaSyBBx-9dvzFkL4-uAj-yLjEPQmCtu6nM9bE';
+        $cal='15642bevcork1use0l1qokb0vs@group.calendar.google.com';
+
+
         $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&fields=id&key=' . $APIKEY;
 
         //$auth = json_decode($_SESSION['oauth_access_token'],true);
@@ -420,8 +433,13 @@ JSON;
     // Delete an event in the Calendar
 
 function delete_event($eventId){
-    $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
-    $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+    $APIKEY='AIzaSyBBx-9dvzFkL4-uAj-yLjEPQmCtu6nM9bE';
+    $cal='15642bevcork1use0l1qokb0vs@group.calendar.google.com';
+
+    //refrenece to yohani.ysr calendar
+//    $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
+//    $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+
     $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events/'.$eventId.'?&key=' . $APIKEY;
 
     //$auth = json_decode($_SESSION['oauth_access_token'],true);
@@ -456,8 +474,14 @@ function delete_event($eventId){
     // Return the Calendar ID function
 
     function list_events(){
-        $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
-        $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+
+        $APIKEY='AIzaSyBBx-9dvzFkL4-uAj-yLjEPQmCtu6nM9bE';
+        $cal='15642bevcork1use0l1qokb0vs@group.calendar.google.com';
+
+        //refrenece to yohani.ysr calendar
+        //$APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
+        //$cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+
         $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events/?fields=items%2Fid&key='. $APIKEY;
 
 
@@ -494,8 +518,12 @@ function delete_event($eventId){
     //Update Event in Google Calendar
 
     function update_event($start_date,$end_date,$title,$eventId){
-        $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
-        $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
+        $APIKEY='AIzaSyBBx-9dvzFkL4-uAj-yLjEPQmCtu6nM9bE';
+        $cal='15642bevcork1use0l1qokb0vs@group.calendar.google.com';
+
+// refrence to yohani.ysr calendar
+//        $APIKEY='AIzaSyBfLo0ws22tbW8I5r3ctNcRHsTuXEHIABI';
+//        $cal='84175rm5je1sfg2oafoufvhsjs@group.calendar.google.com';
         // $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY;
         $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events/'. $eventId .'?fields=id&key=' . $APIKEY;
 
