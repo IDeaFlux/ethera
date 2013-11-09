@@ -31,20 +31,4 @@ class Assignment extends AppModel {
 		)
 	);
 
-	public $hasMany = array(
-		'Cv' => array(
-			'className' => 'Cv',
-			'foreignKey' => 'assignment_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
-
 }
