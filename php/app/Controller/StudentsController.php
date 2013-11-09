@@ -504,6 +504,7 @@ class StudentsController extends AppController {
 
         $this->loadModel('Assignment');
         $this->loadModel('InterestedArea');
+        $this->loadModel('Cv');
 
         $student = $this->Student->find(
             'first', array(
@@ -551,14 +552,23 @@ class StudentsController extends AppController {
 
         $this->set(compact('interested_areas','current_submissions'));
         if($this->request->is('post')){
+            debug($this->request->data);
             $assignments = $this->request->data['Assignment'];
             $count = 1;
             foreach($assignments as $assignment){
-                $data[$count-1]['Assignment']['interested_area_id'] = $assignment['interested_area_id'];
-                $data[$count-1]['Assignment']['student_id'] = $id;
-                $data[$count-1]['Assignment']['priority'] = $count;
-                if(!empty($current_submissions_pre[$count-1]['Assignment']['priority']) && $current_submissions_pre[$count-1]['Assignment']['priority'] == $count){
-                    $data[$count-1]['Assignment']['id'] = $current_submissions_pre[$count-1]['Assignment']['id'];
+                if(!empty($assignment['interested_area_id'])){
+                    $data[$count-1]['Assignment']['interested_area_id'] = $assignment['interested_area_id'];
+                    $data[$count-1]['Assignment']['student_id'] = $id;
+                    $data[$count-1]['Assignment']['priority'] = $count;
+                    if(!empty($current_submissions_pre[$count-1]['Assignment']['priority']) && $current_submissions_pre[$count-1]['Assignment']['priority'] == $count){
+                        $data[$count-1]['Assignment']['id'] = $current_submissions_pre[$count-1]['Assignment']['id'];
+                    }
+                }
+                else{
+                    if(!empty($current_submissions_pre[$count-1]['Assignment']['priority']) && $current_submissions_pre[$count-1]['Assignment']['priority'] == $count){
+                        $this->Assignment->id = $current_submissions_pre[$count-1]['Assignment']['id'];
+                        $this->Assignment->delete();
+                    }
                 }
                 $count++;
             }
@@ -568,14 +578,16 @@ class StudentsController extends AppController {
                 $std['Student']['approved_state'] = 2;
             }
 
-            debug($data);
-            if(($this->Assignment->saveAll($data))&&($this->Student->saveAll($std))) {
+            $cv = $this->request->data['Cv'];
+            $cv['Student']['id'] = $id;
+
+            if(($this->Assignment->saveAll($data))&&($this->Student->saveAll($std))&&$this->Cv->sendData($cv)) {
                 $this->Session->setFlash(__('Your CV Data updated'),'success_flash');
-                $this->redirect(array('action' => 'my_profile'));
+                //$this->redirect(array('action' => 'my_profile'));
             }
             else {
                 $this->Session->setFlash(__('Your CV Data update failed'),'error_flash');
-                $this->redirect(array('action' => 'my_profile'));
+                //$this->redirect(array('action' => 'my_profile'));
             }
         }
     }
@@ -630,7 +642,7 @@ class StudentsController extends AppController {
             $count++;
         }
 
-        debug($company_list);
+        //debug($company_list);
     }
 
     public function freeze_unfreeze() {
