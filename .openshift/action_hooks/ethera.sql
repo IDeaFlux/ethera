@@ -35,12 +35,11 @@ CREATE TABLE IF NOT EXISTS `assignments` (
   `priority` int(1) NOT NULL,
   `state` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 INSERT INTO `assignments` (`id`, `interested_area_id`, `organization_id`, `student_id`, `priority`, `state`) VALUES
-(1, 1, 0, 5, 3, ''),
-(2, 3, 0, 5, 2, ''),
-(3, 2, 0, 5, 1, '');
+(5, 2, 0, 5, 2, ''),
+(6, 1, 0, 5, 1, '');
 
 DROP TABLE IF EXISTS `batches`;
 CREATE TABLE IF NOT EXISTS `batches` (
@@ -101,11 +100,14 @@ DROP TABLE IF EXISTS `cvs`;
 CREATE TABLE IF NOT EXISTS `cvs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
-  `assignment_id` int(11) NOT NULL,
   `reviewed_state` varchar(255) NOT NULL,
   `upload_time` datetime NOT NULL,
+  `file_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+INSERT INTO `cvs` (`id`, `student_id`, `reviewed_state`, `upload_time`, `file_name`) VALUES
+(2, 5, '0', '2013-11-09 23:03:26', '527ebf3e-ca94-4ae7-ad14-3cc0740d37dd.pdf');
 
 DROP TABLE IF EXISTS `enrollments`;
 CREATE TABLE IF NOT EXISTS `enrollments` (
