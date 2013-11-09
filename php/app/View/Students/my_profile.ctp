@@ -24,7 +24,7 @@
                 <p class=\"text-center\">Edit My Password</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'students', 'action' => 'edit_password'),
+                array('controller' => 'students', 'action' => 'edit_my_password',$student),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
