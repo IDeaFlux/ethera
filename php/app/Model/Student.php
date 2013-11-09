@@ -325,6 +325,34 @@ class Student extends AppModel {
         }
     }
 
+
+    public function savePassword($data){
+
+        $student = $this->findById($data['Student']['id']);
+        $current_password_hashed = AuthComponent::password($data['Student']['current_password']);
+
+        if($student['Student']['password'] == $current_password_hashed){
+            if($data['Student']['new_password'] == $data['Student']['repeat_new_password']){
+                $student_save['Student']['id'] = $data['Student']['id'];
+                $student_save['Student']['password'] = $data['Student']['new_password'];
+                if($this->save($student_save)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                $this->invalidate('repeat_new_password','Your new password did not match');
+                return false;
+            }
+        }
+        else{
+            $this->invalidate('current_password','Wrong current password');
+            return false;
+        }
+    }
+
     public function beforeSave($options=array()) {
         if (isset($this->data['Student']['password'])) {
             $this->data['Student']['password'] = AuthComponent::password($this->data['Student']['password']);
