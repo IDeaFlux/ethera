@@ -27,6 +27,7 @@
         echo $this->Form->input('Assignment.0.interested_area_id',array(
             'type' => 'select',
             'options' => $interested_areas,
+            'empty' => '(choose one)',
             'class' => 'span4',
             'label' => array(
                 'text' => 'Interested Area'
@@ -38,6 +39,7 @@
         echo $this->Form->input('Assignment.1.interested_area_id',array(
             'type' => 'select',
             'options' => $interested_areas,
+            'empty' => '(choose one)',
             'class' => 'span4',
             'label' => array(
                 'text' => 'Interested Area'
@@ -49,11 +51,22 @@
         echo $this->Form->input('Assignment.2.interested_area_id',array(
             'type' => 'select',
             'options' => $interested_areas,
+            'empty' => '(choose one)',
             'class' => 'span4',
             'label' => array(
                 'text' => 'Interested Area'
             )
         ));
+        ?>
+        <legend><?php echo __('<span style="font-size: 18px">CV Uploading</span>'); ?></legend>
+        <?php
+        echo $this->Form->input('Cv.cv',
+            array(
+                'type'=>'file',
+                'label' => array(
+                    'text' => 'Upload your CV'
+                )
+            ));
         ?>
         <div class="form-actions">
             <?php echo $this->Form->submit('Submit My Choice', array(
