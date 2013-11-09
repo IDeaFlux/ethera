@@ -451,7 +451,7 @@ class StudentsController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Student->save($this->request->data)) {
                 $this->Session->setFlash(__('The student data has been updated'));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'my_profile'));
             } else {
                 $this->Session->setFlash(__('The student could not be saved. Please, try again.'));
             }
@@ -460,6 +460,28 @@ class StudentsController extends AppController {
             $this->request->data = $this->Student->find('first', $options);
         }
 
+    }
+
+    public function edit_my_password($id=null){
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+
+        if($this->request->is('post')||$this->request->is('put')){
+            if($this->Student->savePassword($this->request->data)){
+                $this->Session->setFlash(__('Your password has been updated'),'success_flash');
+                $this->redirect(array('action' => 'my_profile'));
+            }
+            else {
+                $this->Session->setFlash(__('The new password could not be saved. Please, try again.'),'error_flash');
+            }
+        }
+
+        $this->set('id',$id);
     }
 
     public function my_cv_data($id=null) {
