@@ -66,6 +66,9 @@
             )
         ));
         ?>
+        <span class="span7" style="font-size: 11px">Use the username part of your LinkedIn public profile URL. If you don't have a public profile username, <a href="http://help.linkedin.com/app/answers/detail/a_id/87">create one</a></span>
+        <br />
+        <span class="span7" style="font-size: 11px">Example: http://www.linkedin.com/in/<span style="font-weight: bolder">john</span></span>
         <div class="form-actions">
             <?php echo $this->Form->submit('Save', array(
                 'div' => false,
