@@ -41,24 +41,30 @@ class Cv extends AppModel {
         $file = $data['cv'];
 
         if($file['error'] === UPLOAD_ERR_OK) {
-            $folderName = APP.'webroot'.DS.'uploads'.DS.'cvs';
-            $folder = new Folder($folderName, true, 0777);
+            if($file['type'] == 'application/pdf') {
+                $folderName = APP.'webroot'.DS.'uploads'.DS.'cvs';
+                $folder = new Folder($folderName, true, 0777);
 
-            if($id!=null){
-                if((file_exists($folderName.DS.$id))){
-                    chmod($folderName.DS.$id,0755);
-                    unlink($folderName.DS.$id);
+                if($id!=null){
+                    if((file_exists($folderName.DS.$id))){
+                        chmod($folderName.DS.$id,0755);
+                        unlink($folderName.DS.$id);
+                    }
+                }
+
+                $file_name = String::uuid();
+
+                if(move_uploaded_file($file['tmp_name'], $folderName.DS.$file_name.'.pdf')) {
+
+                    return $file_name.'.pdf';
                 }
             }
-
-            $file_name = String::uuid();
-
-            if(move_uploaded_file($file['tmp_name'], $folderName.DS.$file_name.'.pdf')) {
-
-                return $file_name.'.pdf';
+            else{
+                $this->invalidate('cv','Invalid file uploaded');
+                return false;
             }
         }
-        $this->invalidate('photo','Photo upload error');
+        $this->invalidate('cv','CV upload error');
         return false;
     }
 
