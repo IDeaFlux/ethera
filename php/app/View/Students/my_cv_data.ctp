@@ -63,11 +63,13 @@
         echo $this->Form->input('Cv.cv',
             array(
                 'type'=>'file',
+                'accept'=>'application/pdf',
                 'label' => array(
                     'text' => 'Upload your CV'
                 )
             ));
         ?>
+        <span class="span7" style="font-size: 11px">This system only accepts PDF (*.pdf) files</span>
         <div class="form-actions">
             <?php echo $this->Form->submit('Submit My Choice', array(
                 'div' => false,
