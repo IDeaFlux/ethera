@@ -578,10 +578,7 @@ class StudentsController extends AppController {
                 $std['Student']['approved_state'] = 2;
             }
 
-            $cv = $this->request->data['Cv'];
-            $cv['Student']['id'] = $id;
-
-            if(($this->Assignment->saveAll($data))&&($this->Student->saveAll($std))&&$this->Cv->sendData($cv)) {
+            if(($this->Assignment->saveAll($data))&&($this->Student->saveAll($std))) {
                 $this->Session->setFlash(__('Your CV Data updated'),'success_flash');
                 //$this->redirect(array('action' => 'my_profile'));
             }

@@ -1,29 +1,14 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Cvs Controller
- *
- * @property Cv $Cv
- */
+
 class CvsController extends AppController {
 
-/**
- * index method
- *
- * @return void
- */
+
 	public function index() {
 		$this->Cv->recursive = 0;
 		$this->set('cvs', $this->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function view($id = null) {
 		if (!$this->Cv->exists($id)) {
 			throw new NotFoundException(__('Invalid cv'));
@@ -32,11 +17,7 @@ class CvsController extends AppController {
 		$this->set('cv', $this->Cv->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Cv->create();
@@ -53,13 +34,6 @@ class CvsController extends AppController {
 		$this->set(compact('students'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function edit($id = null) {
 		if (!$this->Cv->exists($id)) {
 			throw new NotFoundException(__('Invalid cv'),'error_flash');
@@ -79,13 +53,6 @@ class CvsController extends AppController {
 		$this->set(compact('students'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function delete($id = null) {
 		$this->Cv->id = $id;
 		if (!$this->Cv->exists()) {
@@ -99,4 +66,24 @@ class CvsController extends AppController {
 		$this->Session->setFlash(__('Cv was not deleted'),'info_flash');
 		$this->redirect(array('action' => 'index'));
 	}
+
+    public function upload_cv_init(){
+        $this->loadModel('Student');
+        $current_student = $this->Auth->user();
+
+        if($this->request->is('post')||$this->request->is('put')){
+            $id = $current_student['id'];
+            $cv = $this->request->data['Cv'];
+            $cv['Student']['id'] = $id;
+
+            if($this->Cv->sendData($cv)){
+                $this->Session->setFlash(__('Your CV upload successful'),'success_flash');
+                $this->redirect(array('controller'=>'students','action'=>'my_cv_data',$id));
+            }
+            else {
+                $this->Session->setFlash(__('Your CV upload attempt failed, please try again'),'error_flash');
+                $this->redirect(array('controller'=>'students','action' =>'my_cv_data',$id));
+            }
+        }
+    }
 }
