@@ -62,5 +62,21 @@
             );
             ?>
         </li>
+        <?php if($enable == 1): ?>
+            <li class="span2">
+                <?php
+                $i = "<p class=\"text-center\"><i class=\"icon-archive icon-4x\"></i></p>
+                <p class=\"text-center\">CV Manager</p>";
+                echo $this->Html->link(
+                    $i,
+                    array('controller' => 'cvs', 'action' => 'cv_manager',$student),
+                    array(
+                        'class' => 'thumbnail',
+                        'escape' => false
+                    )
+                );
+                ?>
+            </li>
+        <?php endif ?>
     </ul>
 </div>
