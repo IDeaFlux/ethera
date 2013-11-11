@@ -111,12 +111,16 @@
                     <th>Priority</th>
                     <th>Interested Area</th>
                 </tr>
+                <?php if(!empty($current_submissions)): ?>
                 <?php foreach($current_submissions as $current_submission): ?>
                     <tr>
                         <td><?php echo $current_submission['priority']?></td>
                         <td><?php echo $current_submission['name']?></td>
                     </tr>
-                <?php endforeach;?>
+                <?php
+                endforeach;
+                endif;
+                ?>
             </table>
         </div>
     </div>
