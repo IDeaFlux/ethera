@@ -86,4 +86,79 @@ class CvsController extends AppController {
             }
         }
     }
+
+    public function cv_manager($id=null){
+        $this->loadModel('Student');
+
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'),'error_flash');
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('controller'=>'students','action' => 'my_profile'));
+        }
+        elseif(($current_student['approval_phase'] != 1)&&($current_student['approval_phase'] != 2)) {
+            $this->redirect(array('controller'=>'students','action' => 'my_profile'));
+        }
+        elseif($current_student['freeze_state']!=0) {
+            $this->redirect(array('controller'=>'students','action' => 'my_profile'));
+        }
+
+        $cvs_of_student = $this->Cv->find('all',
+            array(
+                'conditions'=>array(
+                    'Cv.student_id' => $id
+                ),
+                'recursive'=>0
+            )
+        );
+        $this->set('cvs',$cvs_of_student);
+    }
+
+    public function set_active_cv($id=null){
+        $this->Cv->id = $id;
+        if (!$this->Cv->exists()) {
+            throw new NotFoundException(__('Invalid CV'),'error_flash');
+        }
+
+        $this->request->onlyAllow('post');
+        $cv_primary = $this->Cv->findById($id);
+        $student_id = $cv_primary['Student']['id'];
+        $cvs_of_student = $this->Cv->find('all',
+            array(
+                'conditions'=>array(
+                    'Cv.student_id' => $student_id
+                ),
+                'recursive'=>-1
+            )
+        );
+
+        $count = 0;
+        $save_data = array();
+
+        foreach($cvs_of_student as $cv){
+            if($cv['Cv']['id'] != $cv_primary['Cv']['id']){
+                if($cv['Cv']['current']!=0){
+                    $save_data[$count]['Cv']['id'] = $cv['Cv']['id'];
+                    $save_data[$count]['Cv']['current'] = 0;
+                    $count++;
+                }
+            }
+            else{
+                if($cv['Cv']['current']!=1){
+                    $save_data[$count]['Cv']['id'] = $cv['Cv']['id'];
+                    $save_data[$count]['Cv']['current'] = 1;
+                    $count++;
+                }
+            }
+        }
+
+        if ($this->Cv->saveAll($save_data)) {
+            $this->Session->setFlash(__('The CV has been set as active'),'success_flash');
+            $this->redirect(array('action' => 'cv_manager',$student_id));
+        } else {
+            $this->Session->setFlash(__('Could not set this CV active. Please, try again.'),'error_flash');
+            $this->redirect(array('action' => 'cv_manager',$student_id));
+        }
+    }
 }
