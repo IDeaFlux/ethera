@@ -38,52 +38,6 @@
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-            <li><?php echo $this->Html->link(__('New Assignment'), array('controller' => 'assignments', 'action' => 'add')); ?> </li>
-        </ul>
-    </div>
-
-    <div class="span9">
-        <h3><?php echo __('Related Assignments'); ?></h3>
-        <?php if (!empty($interestedArea['Assignment'])): ?>
-        <table cellpadding = "0" cellspacing = "0" class="table table-bordered table-hover">
-        <tr>
-            <th><?php echo __('Id'); ?></th>
-            <th><?php echo __('Interested Area Id'); ?></th>
-            <th><?php echo __('Organization Id'); ?></th>
-            <th><?php echo __('Student Id'); ?></th>
-            <th><?php echo __('Priority'); ?></th>
-            <th><?php echo __('State'); ?></th>
-            <th class="actions"><?php echo __('Actions'); ?></th>
-        </tr>
-        <?php
-            $i = 0;
-            foreach ($interestedArea['Assignment'] as $assignment): ?>
-            <tr>
-                <td><?php echo $assignment['id']; ?></td>
-                <td><?php echo $assignment['interested_area_id']; ?></td>
-                <td><?php echo $assignment['organization_id']; ?></td>
-                <td><?php echo $assignment['student_id']; ?></td>
-                <td><?php echo $assignment['priority']; ?></td>
-                <td><?php echo $assignment['state']; ?></td>
-                <td class="actions">
-                    <div class="btn-group">
-                        <button class="btn"><?php echo $this->Html->link(__('View'), array('controller' => 'assignments', 'action' => 'view', $assignment['id'])); ?></button>
-                        <button class="btn"><?php echo $this->Html->link(__('Edit'), array('controller' => 'assignments', 'action' => 'edit', $assignment['id'])); ?></button>
-                        <button class="btn"><?php echo $this->Form->postLink(__('Delete'), array('controller' => 'assignments', 'action' => 'delete', $assignment['id']), null, __('Are you sure you want to delete # %s?', $assignment['id'])); ?></button>
-                    </div>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
-</div>
-
-<hr/>
-
-<div class="row">
-    <div class="span3">
-        <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('New Opportunity'), array('controller' => 'opportunities', 'action' => 'add')); ?> </li>
         </ul>
     </div>
