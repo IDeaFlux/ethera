@@ -70,12 +70,13 @@ class Cv extends AppModel {
 
     public function sendData($file) {
         $save_data['Cv']['upload_time'] = strftime("%Y-%m-%d %H:%M:%S", time());
-        $save_data['Cv']['reviewed_state'] = 0;
+        $save_data['Cv']['current'] = 0;
         $save_data['Cv']['student_id'] = $file['Student']['id'];
 
         $this->create($save_data);
         if($save_data['Cv']['file_name'] = $this->uploadCv($file,null))
         {
+            $save_data['Cv']['file_size'] = $file['cv']['size'];
             return $this->save($save_data);
         }
         else{
