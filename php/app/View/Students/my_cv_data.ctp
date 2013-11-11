@@ -58,9 +58,29 @@
             )
         ));
         ?>
+        <div class="form-actions">
+            <?php echo $this->Form->submit('Submit My Choice', array(
+                'div' => false,
+                'class' => 'btn btn-primary',
+            )); ?>
+        </div>
+        <?php echo $this->Form->end(); ?>
+        <?php echo $this->Form->create('Cv',array(
+            'novalidate' => true,
+            'type'=>'file',
+            'inputDefaults' => array(
+                'div' => 'control-group',
+                'label' => array(
+                    'class' => 'control-label'
+                ),
+                'wrapInput' => 'controls'
+            ),
+            'class' => 'well form-horizontal',
+            'action' => 'upload_cv_init'
+        )); ?>
         <legend><?php echo __('<span style="font-size: 18px">CV Uploading</span>'); ?></legend>
         <?php
-        echo $this->Form->input('Cv.cv',
+        echo $this->Form->input('cv',
             array(
                 'type'=>'file',
                 'accept'=>'application/pdf',
@@ -70,11 +90,12 @@
             ));
         ?>
         <span class="span7" style="font-size: 11px">This system only accepts PDF (*.pdf) files</span>
+
         <div class="form-actions">
-            <?php echo $this->Form->submit('Submit My Choice', array(
+            <?php echo $this->Form->submit('Upload', array(
                 'div' => false,
                 'class' => 'btn btn-primary',
-            )); ?>
+            ));?>
         </div>
         <?php echo $this->Form->end(); ?>
     </div>
