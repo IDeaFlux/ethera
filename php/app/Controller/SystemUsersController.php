@@ -45,7 +45,7 @@ class SystemUsersController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->SystemUser->updateData($this->request->data)) {
 				$this->Session->setFlash(__('The system user has been saved'),'success_flash');
-				//$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The system user could not be saved. Please, try again.'),'error_flash');
 			}
