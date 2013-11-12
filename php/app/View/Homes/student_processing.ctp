@@ -26,7 +26,7 @@
                 <p class=\"text-center\">List Students</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'students', 'action' => 'index'),
+                array('controller' => 'students', 'action' => 'list_students'),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
