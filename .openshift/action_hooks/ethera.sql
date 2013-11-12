@@ -35,11 +35,10 @@ CREATE TABLE IF NOT EXISTS `assignments` (
   `priority` int(1) NOT NULL,
   `state` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 INSERT INTO `assignments` (`id`, `interested_area_id`, `organization_id`, `student_id`, `priority`, `state`) VALUES
-(5, 2, 0, 5, 2, ''),
-(6, 1, 0, 5, 1, '');
+(9, 2, 0, 5, 1, '');
 
 DROP TABLE IF EXISTS `batches`;
 CREATE TABLE IF NOT EXISTS `batches` (
@@ -100,14 +99,19 @@ DROP TABLE IF EXISTS `cvs`;
 CREATE TABLE IF NOT EXISTS `cvs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
-  `reviewed_state` varchar(255) NOT NULL,
+  `current` int(1) NOT NULL,
   `upload_time` datetime NOT NULL,
   `file_name` varchar(255) NOT NULL,
+  `file_size` int(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
-INSERT INTO `cvs` (`id`, `student_id`, `reviewed_state`, `upload_time`, `file_name`) VALUES
-(2, 5, '0', '2013-11-09 23:03:26', '527ebf3e-ca94-4ae7-ad14-3cc0740d37dd.pdf');
+INSERT INTO `cvs` (`id`, `student_id`, `current`, `upload_time`, `file_name`, `file_size`) VALUES
+(2, 5, 1, '2013-11-11 11:34:58', '5280c0e2-a1e4-49ce-afdd-1db2740d37dd.pdf', 136401),
+(3, 5, 0, '2013-11-11 11:35:07', '5280c0eb-20a4-4fc8-895a-037f740d37dd.pdf', 122157),
+(4, 5, 0, '2013-11-11 18:19:38', '52811fba-2e84-467f-9392-03ef740d37dd.pdf', 52534),
+(5, 5, 0, '2013-11-11 18:19:45', '52811fc1-ede0-4983-a006-03f0740d37dd.pdf', 112646),
+(6, 5, 0, '2013-11-11 18:19:52', '52811fc8-2264-4021-b0f5-1031740d37dd.pdf', 179471);
 
 DROP TABLE IF EXISTS `enrollments`;
 CREATE TABLE IF NOT EXISTS `enrollments` (
@@ -199,11 +203,12 @@ CREATE TABLE IF NOT EXISTS `notices` (
   `event_id` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `title` (`title`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 INSERT INTO `notices` (`id`, `title`, `date_start`, `date_end`, `description`, `published_state`, `published_to_cal`, `system_user_id`, `article_id`, `event_id`) VALUES
 (45, 'Bravoooo it is completed', '2013-10-22 02:16:00', '2013-10-27 02:16:00', '', 0, 1, 7, 2, 'kfi6bpkeabn6ltjn4rdi06utro'),
-(47, 'Notice Demi', '2013-10-21 06:26:00', '2013-10-29 06:26:00', '', 0, 1, 7, 1, '66654hljdrq26a0cv0odc88i4s');
+(47, 'Notice Demi', '2013-10-21 06:26:00', '2013-10-29 06:26:00', '', 0, 1, 7, 1, '66654hljdrq26a0cv0odc88i4s'),
+(48, 'Demo Event', '2013-12-10 09:00:00', '2013-12-10 14:00:00', 'This is a demo event', 1, 1, 7, 0, 'bmd7jr4r46hgo0ras2vmi0mhnk');
 
 DROP TABLE IF EXISTS `opportunities`;
 CREATE TABLE IF NOT EXISTS `opportunities` (
@@ -277,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `bio`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `final_mark`) VALUES
-(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', '', 'tel:94771122336', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 4, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 1, 9, 1, 'udithawijerathna', 1, 1, 1, 0),
+(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', '', 'tel:94771122336', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 4, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 1, 1, 1, 'udithawijerathna', 1, 1, 1, 0),
 (2, 'Krishantha', 'Sameera', 'Zoysa', '', '', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 4, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, 0, '', 2, 1, 2, 0),
 (3, 'Amal', 'De', 'Silva', '', '', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '52093438-3310-44fe-9986-3169740d37dd', 4, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, 0, '', 4, 1, 3, 0),
 (4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', '', 'tel:94771122336', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520da09d-12e0-431f-9007-1071740d37dd', 4, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 1, 0, 1, '', 1, 1, 1, 0),
