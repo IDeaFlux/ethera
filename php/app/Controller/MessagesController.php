@@ -233,7 +233,7 @@ class MessagesController extends AppController {
                 $save_data['Student']['sms_num'] = $number;
                 if(!empty($save_data['Student']['id'])){
                     $this->Student->save($save_data);
-                    $responseMsg ="Successfully registered. Your number is : ".$number;
+                    $responseMsg ="Successfully registered! Your student id : ".$student_found['Student']['id'].". ETHERA will now send you update about your progress";
                 }
                 else {
                     $responseMsg ="Error : Your are not registered to the system. Go to Ethera official web site for registration";
@@ -272,21 +272,16 @@ class MessagesController extends AppController {
             $sender = new SmsSender("http://api.dialog.lk:8080/sms/send");
 
             $applicationId = "APP_004150";
-            //$applicationId = "APP_000001";
             $encoding = "0";
             $version =  "1.0";
             $password = "3ae55013184a19dcb55c137afa053d19";
-            //$password = "password";
-            //$sourceAddress = "77188";
             $sourceAddress = "ETHERA";
             $deliveryStatusRequest = "0";
             $charging_amount = ":1";
-            //$destinationAddresses = array("tel:94771122336");
             $destinationAddresses = array($address);
             $binary_header = "";
 
             $res = $sender->sms($responseMsg, $destinationAddresses, $password, $applicationId, $sourceAddress, $deliveryStatusRequest, $charging_amount, $encoding, $version, $binary_header);
-            $this->log($res);
         }
 
         catch (SmsException $ex){
