@@ -84,9 +84,9 @@ class SmsSender{
 
     private function handleResponse($resp){
         if ($resp == "") {
-            CakeLog::write('debug','1');
-            throw new SmsException
-            ("Server URL is invalid", '500');
+            echo "Test return";
+//            throw new SmsException
+//            ("Server URL is invalid", '500');
         } else {
             echo $resp;
         }
