@@ -282,7 +282,7 @@ class MessagesController extends AppController {
             $deliveryStatusRequest = "0";
             $charging_amount = ":1";
             //$destinationAddresses = array("tel:94771122336");
-            $destinationAddresses = array("tel:AZ110wuH3dKJk9XiiQgRfErwiYJocfO9wi8AZ");
+            $destinationAddresses = array($address);
             $binary_header = "";
 
             $res = $sender->sms($responseMsg, $destinationAddresses, $password, $applicationId, $sourceAddress, $deliveryStatusRequest, $charging_amount, $encoding, $version, $binary_header);
