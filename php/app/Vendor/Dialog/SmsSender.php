@@ -84,11 +84,11 @@ class SmsSender{
 
     private function handleResponse($resp){
         if ($resp == "") {
-            echo "Test return";
+            return "Test return";
 //            throw new SmsException
 //            ("Server URL is invalid", '500');
         } else {
-            echo $resp;
+            return $resp;
         }
     }
 
