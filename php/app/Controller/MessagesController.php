@@ -264,6 +264,7 @@ class MessagesController extends AppController {
             $encoding = $receiver->getEncoding(); // get the encoding value
             $version = $receiver->getVersion(); // get the version
 
+            $this->log($content,'debug');
 
             $split = explode('/', $content);
 
