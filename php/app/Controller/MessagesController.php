@@ -271,11 +271,14 @@ class MessagesController extends AppController {
 
             $sender = new SmsSender("https://localhost:7443/sms/send");
 
-            $applicationId = "APP_004150";
+            //$applicationId = "APP_004150";
+            $applicationId = "APP_000001";
             $encoding = "0";
             $version =  "1.0";
-            $password = "3ae55013184a19dcb55c137afa053d19";
-            $sourceAddress = "77188";
+            //$password = "3ae55013184a19dcb55c137afa053d19";
+            $password = "password";
+//            $sourceAddress = "77188";
+            $sourceAddress = "77000";
             $deliveryStatusRequest = "0";
             $charging_amount = ":15.75";
             $destinationAddresses = array("tel:94771122336");
