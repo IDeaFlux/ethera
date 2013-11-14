@@ -277,8 +277,8 @@ class MessagesController extends AppController {
             $version =  "1.0";
             $password = "3ae55013184a19dcb55c137afa053d19";
             //$password = "password";
-            $sourceAddress = "77188";
-            //$sourceAddress = "77000";
+            //$sourceAddress = "77188";
+            $sourceAddress = "ETHERA";
             $deliveryStatusRequest = "0";
             $charging_amount = ":1";
             //$destinationAddresses = array("tel:94771122336");
