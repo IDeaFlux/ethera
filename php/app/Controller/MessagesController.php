@@ -233,7 +233,7 @@ class MessagesController extends AppController {
                 $save_data['Student']['sms_num'] = $number;
                 if(!empty($save_data['Student']['id'])){
                     $this->Student->save($save_data);
-                    $responseMsg ="Successfully registered! Your student id : ".$student_found['Student']['id'].". ETHERA will now send you update about your progress";
+                    $responseMsg ="Thank you ".$student_found['Student']['last_name']." for registering on ETHERA RUSL. Your student id is : ".$student_found['Student']['id'];
                 }
                 else {
                     $responseMsg ="Error : Your are not registered to the system. Go to Ethera official web site for registration";
