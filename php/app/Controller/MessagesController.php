@@ -269,7 +269,7 @@ class MessagesController extends AppController {
 
             $responseMsg = $this->_save_sms_user($split2,$address);
 
-            $sender = new SmsSender("http://api.dialog.lk:8080");
+            $sender = new SmsSender("api.dialog.lk:8080");
 
             $applicationId = "APP_004150";
             //$applicationId = "APP_000001";
