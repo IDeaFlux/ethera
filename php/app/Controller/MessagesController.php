@@ -208,6 +208,16 @@ class MessagesController extends AppController {
                 )
             );
 
+            $same_number_found = $this->Student->find(
+                'all',
+                array(
+                    'conditions' => array(
+                        'sms_num' => $number,
+                    ),
+                    'recursive' => -1
+                )
+            );
+
             $student_found = $this->Student->find(
                 'first',
                 array(
@@ -228,17 +238,25 @@ class MessagesController extends AppController {
 
 
             if((!empty($batch_found))||(!empty($student_found))){
-
-                $save_data['Student']['id'] = $student_found['Student']['id'];
-                $save_data['Student']['sms_num'] = $number;
-                if(!empty($save_data['Student']['id'])){
-                    $this->Student->save($save_data);
-                    $responseMsg ="Thank you ".$student_found['Student']['last_name']." for registering on ETHERA RUSL. Your student id is : ".$student_found['Student']['id'];
+                if(!empty($same_number_found)){
+                    $responseMsg ="Error: The number you trying to register is already occupied.";
                 }
                 else {
-                    $responseMsg ="Error : Your are not registered to the system. Go to Ethera official web site for registration";
+                    if($student_found['Student']['approved_state'] == 0 || $student_found['Student']['approved_state'] == 9){
+                        $responseMsg ="Error : Your are still not got approved as a student in the system. Please wait for the approval.";
+                    }
+                    else{
+                        $save_data['Student']['id'] = $student_found['Student']['id'];
+                        $save_data['Student']['sms_num'] = $number;
+                        if(!empty($save_data['Student']['id'])){
+                            $this->Student->save($save_data);
+                            $responseMsg ="Thank you ".$student_found['Student']['last_name']." for registering on ETHERA RUSL. Your student id is : ".$student_found['Student']['id'];
+                        }
+                        else {
+                            $responseMsg ="Error : Your are not registered to the system. Go to Ethera official web site for registration";
+                        }
+                    }
                 }
-
             }
             else{
                 $responseMsg ="Error : Your student registration number is invalid. The correct format is XXX/XXXX/XXXX/XXX";
