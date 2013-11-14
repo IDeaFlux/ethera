@@ -269,19 +269,20 @@ class MessagesController extends AppController {
 
             $responseMsg = $this->_save_sms_user($split,$address);
 
-            $sender = new SmsSender("https://localhost:7443/sms/send");
+            $sender = new SmsSender("http://api.dialog.lk:8080");
 
-            //$applicationId = "APP_004150";
-            $applicationId = "APP_000001";
+            $applicationId = "APP_004150";
+            //$applicationId = "APP_000001";
             $encoding = "0";
             $version =  "1.0";
-            //$password = "3ae55013184a19dcb55c137afa053d19";
-            $password = "password";
-//            $sourceAddress = "77188";
-            $sourceAddress = "77000";
+            $password = "3ae55013184a19dcb55c137afa053d19";
+            //$password = "password";
+            $sourceAddress = "77188";
+            //$sourceAddress = "77000";
             $deliveryStatusRequest = "0";
-            $charging_amount = ":15.75";
-            $destinationAddresses = array("tel:94771122336");
+            $charging_amount = ":1";
+            //$destinationAddresses = array("tel:94771122336");
+            $destinationAddresses = array($address);
             $binary_header = "";
 
             $res = $sender->sms($responseMsg, $destinationAddresses, $password, $applicationId, $sourceAddress, $deliveryStatusRequest, $charging_amount, $encoding, $version, $binary_header);
