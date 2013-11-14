@@ -73,7 +73,8 @@ class SmsSender{
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $res = curl_exec($ch);
         curl_close($ch);
-        return $this->handleResponse($res);
+        //return $this->handleResponse($res);
+        return $res;
     }
 
     /*
@@ -84,9 +85,8 @@ class SmsSender{
 
     private function handleResponse($resp){
         if ($resp == "") {
-            return "Test return";
-//            throw new SmsException
-//            ("Server URL is invalid", '500');
+            throw new SmsException
+            ("Server URL is invalid", '500');
         } else {
             return $resp;
         }
