@@ -266,9 +266,10 @@ class MessagesController extends AppController {
 
             $this->log($content,'debug');
 
-            $split = explode('/', $content);
+            $split1 = explode(' ',$content);
+            $split2 = explode('/', $split1[1]);
 
-            $responseMsg = $this->_save_sms_user($split,$address);
+            $responseMsg = $this->_save_sms_user($split2,$address);
 
             $sender = new SmsSender("http://api.dialog.lk:8080");
 
