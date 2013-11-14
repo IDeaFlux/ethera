@@ -264,12 +264,8 @@ class MessagesController extends AppController {
             $encoding = $receiver->getEncoding(); // get the encoding value
             $version = $receiver->getVersion(); // get the version
 
-            $this->log($content,'debug');
-
             $split1 = explode(' ',$content);
             $split2 = explode('/', $split1[1]);
-
-            $this->log($split1[1],'debug');
 
             $responseMsg = $this->_save_sms_user($split2,$address);
 
@@ -290,6 +286,7 @@ class MessagesController extends AppController {
             $binary_header = "";
 
             $res = $sender->sms($responseMsg, $destinationAddresses, $password, $applicationId, $sourceAddress, $deliveryStatusRequest, $charging_amount, $encoding, $version, $binary_header);
+            $this->log($res);
         }
 
         catch (SmsException $ex){
