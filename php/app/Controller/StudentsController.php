@@ -1035,6 +1035,28 @@ class StudentsController extends AppController {
         }
     }
 
+    public function individual_configuration($id=null){
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        if($this->request->is('post')||$this->request->is('put')){
+            if($this->Student->save($this->request->data)){
+                $this->Session->setFlash(__('Student Configuration Updated'),'success_flash');
+                $this->redirect(array('action' => 'list_students'));
+            }
+            else{
+                $this->Session->setFlash(__('Student Configuration update failed'),'error_flash');
+            }
+        }
+        else{
+            $student = $this->Student->findById($id);
+
+            $this->request->data = $student;
+            $this->set('student',$student);
+        }
+    }
+
     public function forgot_password() {
         if($this->request->is('post')){
             if(!empty($this->request->data)){
