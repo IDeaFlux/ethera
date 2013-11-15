@@ -33,7 +33,20 @@ class StudyProgram extends AppModel {
 		),
         'BatchesStudyProgram' => array(
             'className' => 'BatchesStudyProgram',
-            'foreignKey' => 'batch_id',
+            'foreignKey' => 'study_program_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ),
+        'Opportunity' => array(
+            'className' => 'Opportunity',
+            'foreignKey' => 'study_program_id',
             'dependent' => false,
             'conditions' => '',
             'fields' => '',

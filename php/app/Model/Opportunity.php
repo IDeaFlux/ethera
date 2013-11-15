@@ -78,6 +78,13 @@ class Opportunity extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+        'StudyProgram' => array(
+            'className' => 'StudyProgram',
+            'foreignKey' => 'study_program_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
 	);
 }
