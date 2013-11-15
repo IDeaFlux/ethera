@@ -7,7 +7,23 @@
             <li><?php echo $this->Html->link(__('List Opportunities'), array('action' => 'index')); ?></li>
         </ul>
     </div>
-
+    <?php
+    $this->Js->get('#OpportunityBatchId')->event('click',
+        $this->Js->request(array(
+            'controller'=>'batches',
+            'action'=>'get_study_programs_for_opportunities'
+        ), array(
+            'update'=>'#OpportunityStudyProgram',
+            'async' => true,
+            'method' => 'post',
+            'dataExpression'=>true,
+            'data'=> $this->Js->serializeForm(array(
+                'isForm' => true,
+                'inline' => true
+            ))
+        ))
+    );
+    ?>
     <div class="span9">
         <?php echo $this->Form->create('Opportunity', array(
             'novalidate' => true,
@@ -23,20 +39,26 @@
             <fieldset>
                 <legend><?php echo __('Add Opportunity'); ?></legend>
             <?php
-                echo $this->Form->input('batch_id',array(
-                    'type' => 'select',
-                    'options'=>array($batch),
-                    'class' => 'span4',
-                    'label' => array(
-                        'text' => 'Batch',
-                        'selected'=>0,
-                    )
-                ));
-
-                echo $this->Form->input('interested_area_id');
-                echo $this->Form->input('organization_id');
-                echo $this->Form->input('slots');
-                //echo $this->Form->input('special_request');
+            echo $this->Form->input('batch_id',array(
+                'type' => 'select',
+                'options'=>array($batch),
+                'class' => 'span4',
+                'label' => array(
+                    'text' => 'Batch',
+                    'selected'=>0,
+                )
+            ));
+            echo $this->Form->input('study_program',array(
+                'type' => 'select',
+                'class' => 'span4',
+                'label' => array(
+                    'text' => 'Study Program'
+                )
+            ));
+            echo $this->Form->input('interested_area_id');
+            echo $this->Form->input('organization_id');
+            echo $this->Form->input('slots');
+            //echo $this->Form->input('special_request');
             ?>
             </fieldset>
             <div class="form-actions">
