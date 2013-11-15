@@ -291,11 +291,15 @@ class StudentsController extends AppController {
             $this->redirect(array('action' => 'reg_approval'));
         }
     }
+
     public function init_approval(){
         $this->Paginator->settings = array(
             'conditions' => array(
-                'approved_state' => 2 // Not approved from initial approval
-                ),
+                'OR' => array(
+                    array('approved_state' => 2), // Not approved from init
+                    array('approved_state' => 8)  // Denied
+                )
+            ),
             'limit' => 20
         );
         $initial_ready_students = $this->Paginator->paginate('Student');
@@ -320,15 +324,52 @@ class StudentsController extends AppController {
         }
     }
 
+    public function init_approval_disapprove($id=null){
+        $this->Student->id = $id;
+        if (!$this->Student->exists()) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        $this->request->onlyAllow('post');
+        $data['Student']['id'] = $id;
+        $data['Student']['approved_state'] = 8;
+        if ($this->Student->save($data)) {
+            $this->Session->setFlash(__('The student has been disapproved'),'success_flash');
+            $this->redirect(array('action' => 'init_approval'));
+        } else {
+            $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
+            $this->redirect(array('action' => 'init_approval'));
+        }
+    }
+
     public function final_approval(){
         $this->Paginator->settings = array(
             'conditions' => array(
-                'approved_state' => 4 // Not approved from final approval
+                'OR' => array(
+                    array('approved_state' => 4), // Not approved from final
+                    array('approved_state' => 7)  // Denied
+                )
             ),
             'limit' => 20
         );
         $final_ready_students = $this->Paginator->paginate('Student');
         $this->set('students',$final_ready_students);
+    }
+
+    public function final_approval_disapprove($id=null){
+        $this->Student->id = $id;
+        if (!$this->Student->exists()) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        $this->request->onlyAllow('post');
+        $data['Student']['id'] = $id;
+        $data['Student']['approved_state'] = 7;
+        if ($this->Student->save($data)) {
+            $this->Session->setFlash(__('The student has been disapproved'),'success_flash');
+            $this->redirect(array('action' => 'final_approval'));
+        } else {
+            $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
+            $this->redirect(array('action' => 'final_approval'));
+        }
     }
 
     public function final_approval_approve($id=null){

@@ -28,12 +28,16 @@
                         if($student['Student']['approved_state'] == 2){
                             echo "<span style='color: yellow; font-weight: bold'>Unapproved</span>";
                         }
+                        else if($student['Student']['approved_state'] == 8){
+                            echo "<span style='color: red; font-weight: bold'>Declined</span>";
+                        }
                         ?>
                     </td>
                     <td class="actions">
                         <div class="btn-group">
                             <?php echo $this->Html->link(__('View'), array('action' => 'view', $student['Student']['id']),array('class' => 'btn')); ?>
                             <?php echo $this->Form->postLink(__('Approve'), array('action' => 'init_approval_approve', $student['Student']['id']), array('class' => 'btn'), __('Are you want to approve # %s? By this approval, this student profile will be available to view in public', $student['Student']['id'])); ?>
+                            <?php echo $this->Form->postLink(__('Disapprove'), array('action' => 'init_approval_disapprove', $student['Student']['id']), array('class' => 'btn'), __('Are you sure you want to disapprove # %s?', $student['Student']['id'])); ?>
                         </div>
                     </td>
                 </tr>
