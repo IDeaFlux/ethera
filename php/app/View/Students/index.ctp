@@ -70,7 +70,6 @@
             <div class="btn-group">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $student['Student']['id']),array('class' => 'btn')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $student['Student']['id']),array('class' => 'btn')); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $student['Student']['id']), array('class' => 'btn'), __('Are you sure you want to delete # %s?', $student['Student']['id'])); ?>
 		    </div>
         </td>
 	</tr>
