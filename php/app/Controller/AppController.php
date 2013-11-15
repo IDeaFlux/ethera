@@ -5,7 +5,7 @@ App::uses('StudentAuthenticate', 'Controller/Component/Auth');
 App::uses('SystemUserAuthenticate', 'Controller/Component/Auth');
 
 class AppController extends Controller {
-    public $components = array('DebugKit.Toolbar','Session',//'Auth'=>array(
+    public $components = array('DebugKit.Toolbar','RequestHandler','Session',//'Auth'=>array(
 //        'authenticate' => array(
 //            'Form' => array(
 //                'userModel' => 'SystemUser',
