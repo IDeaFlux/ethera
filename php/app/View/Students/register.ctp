@@ -98,7 +98,8 @@
                 'class' => 'span6'
             ));
             echo $this->Form->input('password',array(
-                'class' => 'span6'
+                'class' => 'span6',
+                'value' => ''
             ));
             echo $this->Form->input('photo',array('type'=>'file'));
             echo $this->Form->input('address1',array(
