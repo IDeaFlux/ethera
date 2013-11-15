@@ -32,7 +32,14 @@
             'options' => array(
                 1 => 'On',
                 0 => 'Off'
-            )
+            ),
+            'default' => 0
+        ));
+        echo $this->Form->input('BatchesStudyProgram.study_program_id',array(
+            'type' => 'select',
+            'multiple' => true,
+            'options' => $study_programs,
+            'class' => 'span6'
         ));
         ?>
         <div class="form-actions">

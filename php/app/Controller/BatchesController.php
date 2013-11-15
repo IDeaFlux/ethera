@@ -21,14 +21,28 @@ class BatchesController extends AppController {
 
 	public function add() {
 		if ($this->request->is('post')) {
+
+            $batches_study_programs = $this->request->data['BatchesStudyProgram']['study_program_id'];
+            $count = 0;
+            if(!empty($batches_study_programs)){
+                foreach($batches_study_programs as $batches_study_program){
+                    $data[$count]['study_program_id'] =  $batches_study_program;
+                    $count++;
+                }
+                $this->request->data['BatchesStudyProgram'] = $data;
+            }
+
 			$this->Batch->create();
-			if ($this->Batch->save($this->request->data)) {
+			if ($this->Batch->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The batch has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The batch could not be saved. Please, try again.'),'error_flash');
 			}
 		}
+
+        $this->loadModel('StudyProgram');
+        $this->set('study_programs',$this->StudyProgram->find('list'));
 	}
 
 
