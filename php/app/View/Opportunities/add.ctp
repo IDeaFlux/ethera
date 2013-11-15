@@ -13,7 +13,7 @@
             'controller'=>'batches',
             'action'=>'get_study_programs_for_opportunities'
         ), array(
-            'update'=>'#OpportunityStudyProgram',
+            'update'=>'#OpportunityStudyProgramId',
             'async' => true,
             'method' => 'post',
             'dataExpression'=>true,
@@ -48,7 +48,7 @@
                     'selected'=>0,
                 )
             ));
-            echo $this->Form->input('study_program',array(
+            echo $this->Form->input('study_program_id',array(
                 'type' => 'select',
                 'class' => 'span4',
                 'label' => array(
