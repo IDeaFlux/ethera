@@ -187,5 +187,19 @@
             );
             ?>
         </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-flag icon-4x\"></i></p>
+                <p class=\"text-center\">Opportunities</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'opportunities', 'action' => 'index'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
     </ul>
 </div>
