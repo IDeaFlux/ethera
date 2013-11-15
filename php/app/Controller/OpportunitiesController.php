@@ -26,25 +26,26 @@ class OpportunitiesController extends AppController {
         $this->loadModel('Batch');
 
         $industry_ready=$this->BatchesStudyProgram->find(
-            'first',
+            'all',
             array(
                 'conditions' => array(
                 'BatchesStudyProgram.industry_ready' => 1
             ),
+                'fields' => 'DISTINCT BatchesStudyProgram.batch_id'
             ));
 
-        $batch=$industry_ready['Batch']['academic_year'];
-        $this->set('batch',$batch);
+        if(!empty($industry_ready)){
+            foreach($industry_ready as $batch){
+                $data = $this->Batch->findById($batch['BatchesStudyProgram']['batch_id']);
+                $batch_data[$batch['BatchesStudyProgram']['batch_id']] = $data['Batch']['academic_year'];
+            }
+        }
 
-        $batchId=$industry_ready['BatchesStudyProgram']['batch_id'];
+        $this->set('batch',$batch_data);
 
-        //$batch_id=$batch['Batch']['id'];
-
-        debug($industry_ready);
 		if ($this->request->is('post')) {
 			$this->Opportunity->create();
 			if ($this->Opportunity->save($this->request->data)) {
-                $this->Opportunity->saveField('batch_id',$batchId);
 				$this->Session->setFlash(__('The opportunity has been saved'),'success_flash');
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -53,7 +54,6 @@ class OpportunitiesController extends AppController {
 		}
 		$interestedAreas = $this->Opportunity->InterestedArea->find('list');
 		$organizations = $this->Opportunity->Organization->find('list');
-		//$batches = $this->Opportunity->Batch->find('list');
 		$this->set(compact('interestedAreas', 'organizations', 'batches'));
 	}
 
