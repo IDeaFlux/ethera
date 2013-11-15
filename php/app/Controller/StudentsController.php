@@ -322,7 +322,7 @@ class StudentsController extends AppController {
     public function final_approval(){
         $this->Paginator->settings = array(
             'conditions' => array(
-                'approved_state' => 4 // Not approved from initial approval
+                'approved_state' => 4 // Not approved from final approval
             ),
             'limit' => 20
         );
@@ -552,7 +552,6 @@ class StudentsController extends AppController {
 
         $this->set(compact('interested_areas','current_submissions'));
         if($this->request->is('post')){
-            debug($this->request->data);
             $assignments = $this->request->data['Assignment'];
             $count = 1;
             foreach($assignments as $assignment){
@@ -580,11 +579,11 @@ class StudentsController extends AppController {
 
             if(($this->Assignment->saveAll($data))&&($this->Student->saveAll($std))) {
                 $this->Session->setFlash(__('Your CV Data updated'),'success_flash');
-                //$this->redirect(array('action' => 'my_profile'));
+                $this->redirect(array('action' => 'my_profile'));
             }
             else {
                 $this->Session->setFlash(__('Your CV Data update failed'),'error_flash');
-                //$this->redirect(array('action' => 'my_profile'));
+                $this->redirect(array('action' => 'my_profile'));
             }
         }
     }
@@ -605,6 +604,7 @@ class StudentsController extends AppController {
             $this->redirect(array('action' => 'my_profile'));
         }
 
+        $this->loadModel('Organization');
         $this->loadModel('Opportunity');
         $this->loadModel('Assignment');
         $this->loadModel('InterestedArea');
@@ -620,26 +620,92 @@ class StudentsController extends AppController {
             )
         );
 
-        $count = 0;
-        foreach($current_submissions_pre as $current_submission_pre){
-            $current_submissions[$count]['name'] = $current_submission_pre['InterestedArea']['name'];
-            $current_submissions[$count]['priority'] = $current_submission_pre['Assignment']['priority'];
-            $interested_area = $current_submission_pre['InterestedArea']['id'];
-            if(isset($interested_area)){
-                $company_list[$count] = $this->Opportunity->find(
-                    'all',
-                    array(
-                        'conditions' => array(
-                            'interested_area_id' => $current_submission_pre['InterestedArea']['id']
-                        )
-                    )
-                );
-
+        if($this->request->is('post') && !empty($id)){
+            if($id){
+                $std['Student']['id'] = $id;
+                $std['Student']['approved_state'] = 4;
             }
-            $count++;
+
+            $assignments = $this->request->data['Assignment'];
+
+            $count = 0;
+            foreach($assignments as $assignment){
+                $data[$count]['Assignment']['id'] = $assignment['id'];
+                $data[$count]['Assignment']['organization_id'] = $assignment['organization_id'];
+                $count++;
+            }
+
+            if(($this->Assignment->saveAll($data))&&($this->Student->saveAll($std))) {
+                $this->Session->setFlash(__('Your CV Data updated'),'success_flash');
+                $this->redirect(array('action' => 'my_profile'));
+            }
+            else {
+                $this->Session->setFlash(__('Your CV Data update failed'),'error_flash');
+                $this->redirect(array('action' => 'my_profile'));
+            }
         }
 
-        //debug($company_list);
+        if(!empty($current_submissions_pre)){
+            $count = 0;
+            foreach($current_submissions_pre as $current_submission_pre){
+                $priority = $current_submission_pre['Assignment']['priority'];
+
+                for($i=1;$i<=3;$i++){
+                    if($priority == $i){
+                        ${'opp_list_'.$i} = $this->Opportunity->find('list',array(
+                            'conditions' => array(
+                                'batch_id' => $current_submission_pre['Student']['batch_id'],
+                                'interested_area_id' => $current_submission_pre['Assignment']['interested_area_id'],
+                                'study_program_id' => $current_submission_pre['Student']['study_program_id']
+                            ),
+                            'fields' => 'Opportunity.organization_id'
+                        ));
+                        if(${'opp_list_'.$i}){
+                            ${'org_list_'.$i} = $this->Organization->find(
+                                'list',
+                                array(
+                                    'conditions' => array(
+                                        'Organization.id' => ${'opp_list_'.$i}
+                                    )
+                                )
+                            );
+                        }
+                    }
+                }
+
+                $current_submissions[$count]['name'] = $current_submission_pre['InterestedArea']['name'];
+                $current_submissions[$count]['priority'] = $current_submission_pre['Assignment']['priority'];
+                if(!empty($current_submission_pre['Assignment']['organization_id'])){
+                    $org = $this->Organization->findById($current_submission_pre['Assignment']['organization_id']);
+                    $current_submissions[$count]['organization'] = $org['Organization']['name'];
+                }
+                else{
+                    $current_submissions[$count]['organization'] = '';
+                }
+
+                for($i=1;$i<=3;$i++){
+                    if($priority == $i){
+                        ${'current_submissions_p_'.$i}['id'] = $current_submission_pre['Assignment']['id'];
+                        ${'current_submissions_p_'.$i}['name'] = $current_submission_pre['InterestedArea']['name'];
+                        ${'current_submissions_p_'.$i}['priority'] = $current_submission_pre['Assignment']['priority'];
+                    }
+                }
+                $count++;
+            }
+
+            for($i=1;$i<=3;$i++){
+                if(!empty(${'org_list_'.$i})){
+                    $this->set('org_list_'.$i,${'org_list_'.$i});
+                }
+                if(!empty(${'current_submissions_p_'.$i})){
+                    $this->set('current_submissions_p_'.$i,${'current_submissions_p_'.$i});
+                }
+            }
+
+            if(!empty($current_submissions)){
+                $this->set('current_submissions',$current_submissions);
+            }
+        }
     }
 
     public function freeze_unfreeze() {
