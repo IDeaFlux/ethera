@@ -8,20 +8,6 @@
     <ul class="thumbnails">
         <li class="span2">
             <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-plus icon-4x\"></i></p>
-                <p class=\"text-center\">Add Student</p>";
-            echo $this->Html->link(
-                $i,
-                array('controller' => 'students', 'action' => 'add'),
-                array(
-                    'class' => 'thumbnail',
-                    'escape' => false
-                )
-            );
-            ?>
-        </li>
-        <li class="span2">
-            <?php
             $i = "<p class=\"text-center\"><i class=\"icon-list icon-4x\"></i></p>
                 <p class=\"text-center\">List Students</p>";
             echo $this->Html->link(
