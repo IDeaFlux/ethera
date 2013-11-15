@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="span12">
-        <h2><?php echo __('Final Student Approval for Public appearance'); ?></h2>
+        <h2><?php echo __('Final Student Approval prior to Calculation'); ?></h2>
         <table cellpadding="0" cellspacing="0" class="table table-hover">
             <tr>
                 <th><?php echo $this->Paginator->sort('id'); ?></th>
