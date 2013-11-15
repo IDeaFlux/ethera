@@ -47,11 +47,12 @@ CREATE TABLE IF NOT EXISTS `batches` (
   `registration_state` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `academic_year` (`academic_year`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 INSERT INTO `batches` (`id`, `academic_year`, `registration_state`) VALUES
 (1, '2008/2009', 0),
-(2, '2009/2010', 1);
+(2, '2009/2010', 1),
+(8, '2011/2012', 0);
 
 DROP TABLE IF EXISTS `batches_study_programs`;
 CREATE TABLE IF NOT EXISTS `batches_study_programs` (
@@ -62,13 +63,17 @@ CREATE TABLE IF NOT EXISTS `batches_study_programs` (
   `industry_ready` int(1) NOT NULL,
   `approval_phase` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 INSERT INTO `batches_study_programs` (`id`, `batch_id`, `study_program_id`, `freeze_state`, `industry_ready`, `approval_phase`) VALUES
-(1, 1, 1, 0, 1, 1),
-(2, 1, 2, 0, 0, 1),
-(3, 2, 2, 0, 0, 0),
-(4, 2, 3, 0, 0, 0);
+(1, 1, 1, 0, 1, 2),
+(2, 1, 2, 0, 1, 1),
+(3, 2, 2, 0, 1, 0),
+(4, 2, 3, 0, 0, 0),
+(8, 8, 1, 0, 0, 0),
+(9, 8, 2, 0, 0, 0),
+(10, 8, 3, 0, 0, 0),
+(11, 8, 4, 0, 0, 0);
 
 DROP TABLE IF EXISTS `course_units`;
 CREATE TABLE IF NOT EXISTS `course_units` (
@@ -216,10 +221,14 @@ CREATE TABLE IF NOT EXISTS `opportunities` (
   `interested_area_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
   `batch_id` int(11) NOT NULL,
+  `study_program_id` int(11) NOT NULL,
   `slots` int(3) NOT NULL,
   `special_request` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `opportunities` (`id`, `interested_area_id`, `organization_id`, `batch_id`, `study_program_id`, `slots`, `special_request`) VALUES
+(1, 1, 1, 1, 0, 5, '');
 
 DROP TABLE IF EXISTS `organizations`;
 CREATE TABLE IF NOT EXISTS `organizations` (
@@ -232,7 +241,10 @@ CREATE TABLE IF NOT EXISTS `organizations` (
   `profile` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `organizations` (`id`, `organization_user_id`, `name`, `address`, `email`, `logo`, `profile`) VALUES
+(1, 5, 'WSO2', 'Kollupitiya', 'info@wso2.com', '', 'Founded in August 2005, WSO2 is a global enterprise middleware corporation with offices in USA, UK and Sri Lanka. Providing the only complete open source middleware platform, WSO2 is revolutionizing the industry by putting traditional middleware on a diet and introducing lean, powerful and flexible solutions to address the 21st century enterprise challenges.');
 
 DROP TABLE IF EXISTS `registration_num_headers`;
 CREATE TABLE IF NOT EXISTS `registration_num_headers` (
@@ -282,13 +294,13 @@ CREATE TABLE IF NOT EXISTS `students` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `bio`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `final_mark`) VALUES
-(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 4, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 1, 1, 1, 'udithawijerathna', 1, 1, 1, 0),
+(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 4, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 1, 1, 2, 'udithawijerathna', 1, 1, 1, 0),
 (2, 'Krishantha', 'Sameera', 'Zoysa', '', '', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 4, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, 0, '', 2, 1, 2, 0),
 (3, 'Amal', 'De', 'Silva', '', '', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '52093438-3310-44fe-9986-3169740d37dd', 4, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, 0, '', 4, 1, 3, 0),
-(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', '', '', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520da09d-12e0-431f-9007-1071740d37dd', 4, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 1, 0, 1, '', 1, 1, 1, 0),
-(5, 'Sameera', 'Lakmal', 'Hokandara', '', '', '', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '525a8d68-d194-4537-a46b-039f740d37dd', 4, '056', 'M', '1988-04-08', 'abc', 'abc', 'Avissawella', 0, 1, 2, 1, '', 1, 1, 1, 0),
-(6, 'Ishani', 'Thilanaka', 'Gunawardhana', '0417911670', '0777491374', '', 'tel:AZ110wuH3dKJk9XgAQmKS_kuxd8sLarAg2rPf', 'ishanigunawardhana@gmail.com', '5b709862e79f6bdd637ae97c2727ad5d9c645768', '', '0000-00-00 00:00:00', '5284fbf3-f0d0-4ebd-87f7-4f567f0d0601', 4, '032', 'F', '1988-02-24', 'Udahagedara', 'Vilayaya', 'Dampahala', 0, 0, 1, 0, 'igunawardhana', 1, 1, 1, 0),
-(7, 'Shayamali', 'Dulangika', 'Bamunu Achchi', '0332281932', '0716479141', '', '', 'shayamalidulz@gmail.com', '8332ec2bcaf64b646aa9a8c6d01a3305a97852eb', '', '0000-00-00 00:00:00', '5285071c-721c-44ef-a5c4-4ca67f0d0601', 4, '007', 'F', '1988-12-16', '139/A/3', 'Hospital Road ,Wathupitiwala', 'Nittambuwa', 0, 0, 1, 0, 'shayamali', 1, 1, 1, 0);
+(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', '', '', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520da09d-12e0-431f-9007-1071740d37dd', 4, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 1, 0, 2, 'yohani', 1, 1, 1, 0),
+(5, 'Sameera', 'Lakmal', 'Hokandara', '', '', '', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '525a8d68-d194-4537-a46b-039f740d37dd', 4, '056', 'M', '1988-04-08', 'abc', 'abc', 'Avissawella', 0, 1, 2, 2, '', 1, 1, 1, 0),
+(6, 'Ishani', 'Thilanaka', 'Gunawardhana', '0417911670', '0777491374', '', 'tel:AZ110wuH3dKJk9XgAQmKS_kuxd8sLarAg2rPf', 'ishanigunawardhana@gmail.com', '5b709862e79f6bdd637ae97c2727ad5d9c645768', '', '0000-00-00 00:00:00', '5284fbf3-f0d0-4ebd-87f7-4f567f0d0601', 4, '032', 'F', '1988-02-24', 'Udahagedara', 'Vilayaya', 'Dampahala', 0, 0, 1, 2, 'igunawardhana', 1, 1, 1, 0),
+(7, 'Shayamali', 'Dulangika', 'Bamunu Achchi', '0332281932', '0716479141', '', '', 'shayamalidulz@gmail.com', '8332ec2bcaf64b646aa9a8c6d01a3305a97852eb', '', '0000-00-00 00:00:00', '5285071c-721c-44ef-a5c4-4ca67f0d0601', 4, '007', 'F', '1988-12-16', '139/A/3', 'Hospital Road ,Wathupitiwala', 'Nittambuwa', 0, 0, 1, 2, 'shayamali', 1, 1, 1, 0);
 
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
