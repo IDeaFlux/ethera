@@ -310,6 +310,7 @@ class StudentsController extends AppController {
         $this->request->onlyAllow('post');
         $data['Student']['id'] = $id;
         $data['Student']['approved_state'] = 3;
+        $data['Student']['industry_ready'] = 1;
         if ($this->Student->save($data)) {
             $this->Session->setFlash(__('The student has been approved'),'success_flash');
             $this->redirect(array('action' => 'init_approval'));
