@@ -1165,6 +1165,72 @@ class StudentsController extends AppController {
         }
     }
 
+    public function my_extra_activities($id=null) {
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+        elseif($current_student['freeze_state']!=0) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+
+        if($this->request->is('post')){
+            debug($this->request->data);
+            $this->loadModel('StudentsExtraActivity');
+
+            $this->StudentsExtraActivity->create();
+            $data = $this->request->data;
+            $data_sea = $data['StudentsExtraActivity'];
+            $count = 0;
+            foreach ($data_sea as $record){
+                if($record['comment'] == ''){
+                    unset($data['StudentsExtraActivity'][$count]);
+                }
+                $count++;
+            }
+
+            $data = $data['StudentsExtraActivity'];
+
+            $count = 0;
+            foreach($data as $record){
+                if(!empty($record['id'])){
+                    $data_save[$count]['StudentsExtraActivity']['id'] = $record['id'];
+                }
+                $data_save[$count]['StudentsExtraActivity']['student_id'] = $record['student_id'];
+                $data_save[$count]['StudentsExtraActivity']['extra_activity_id'] = $record['extra_activity_id'];
+                $data_save[$count]['StudentsExtraActivity']['comment'] = $record['comment'];
+                $count++;
+            }
+
+
+            if($this->StudentsExtraActivity->saveAll($data_save)){
+                $this->Session->setFlash(__('Your Extra Activity details updated'),'success_flash');
+                $this->redirect(array('action' => 'my_profile'));
+            }
+            else{
+                $this->Session->setFlash(__('Your Extra Activity details update failed'),'error_flash');
+            }
+        }
+
+        $this->loadModel('StudentsExtraActivity');
+        $this->loadModel('ExtraActivity');
+
+        $student_extra_activities = $this->StudentsExtraActivity->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'student_id' => $id
+                )
+            )
+        );
+        $extra_activities = $this->ExtraActivity->find('all');
+        $student = $current_student;
+        $this->set(compact('extra_activities','student','student_extra_activities'));
+    }
+
     public function forgot_password() {
         if($this->request->is('post')){
             if(!empty($this->request->data)){
