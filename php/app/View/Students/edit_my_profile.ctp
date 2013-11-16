@@ -28,7 +28,10 @@
         echo $this->Form->input('phone_home',array(
             'class' => 'span4'
         ));
-        echo $this->Form->input('phone_mobile',array(
+        echo $this->Form->input('phone_mob',array(
+            'class' => 'span4'
+        ));
+        echo $this->Form->input('bio',array(
             'class' => 'span4'
         ));
         echo $this->Form->input('email',array(
