@@ -492,10 +492,10 @@ class StudentsController extends AppController {
 
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Student->save($this->request->data)) {
-                $this->Session->setFlash(__('The student data has been updated'));
+                $this->Session->setFlash(__('The student data has been updated'),'success_flash');
                 $this->redirect(array('action' => 'my_profile'));
             } else {
-                $this->Session->setFlash(__('The student could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
             }
         } else {
             $options = array('conditions' => array('Student.' . $this->Student->primaryKey => $id));
@@ -986,7 +986,7 @@ class StudentsController extends AppController {
                                         'recursive' => -1
                                     )
                                 );
-                                $enrollment['Enrollment']['course_unit'] = $unit;
+                                $enrollment['Enrollment']['CourseUnit'] = $unit['CourseUnit'];
                                 $filtering_enrollments[$course_count-1]= $enrollment;
 
 
@@ -1254,19 +1254,47 @@ class StudentsController extends AppController {
     }
 
     public function view_admin($id=null){
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        $student = $this->Student->find('first',array('conditions'=>array('Student.id'=>$id),'recursive'=>'2'));
+//        debug($student);
 
+        $enrollments = $student['Enrollment'];
+
+        $count = 0;
+        foreach($enrollments as $enrollment){
+            $gpa_enrollments[$count]['Enrollment'] = $enrollment;
+            $count++;
+        }
+        $gpa = GPA::calculate($gpa_enrollments);
+
+        $this->set('student',$student);
+        $this->set('gpa',$gpa);
     }
 
     public function view_industry($id=null){
-
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        $student = $this->Student->findById($id);
+        $this->set('student',$student);
     }
 
     public function view_student($id=null){
-
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        $student = $this->Student->findById($id);
+        $this->set('student',$student);
     }
 
     public function view_public($id=null){
-
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        $student = $this->Student->findById($id);
+        $this->set('student',$student);
     }
 
     public function forgot_password() {
@@ -1409,6 +1437,6 @@ You have 24 hours to complete the request.','success_flash');
             'controller'=>'homes',
             'action'=>'main'
         );
-        $this->Auth->allow(array('forgot_password','reset_password_token','register','student_profile_router'));
+        $this->Auth->allow(array('forgot_password','reset_password_token','register','student_profile_router','view_public'));
     }
 }
