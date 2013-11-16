@@ -201,5 +201,19 @@
             );
             ?>
         </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-camera icon-4x\"></i></p>
+                <p class=\"text-center\">Extra Activity Categories</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'extra_activities', 'action' => 'index'),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
     </ul>
 </div>
