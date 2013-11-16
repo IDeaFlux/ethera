@@ -1231,6 +1231,44 @@ class StudentsController extends AppController {
         $this->set(compact('extra_activities','student','student_extra_activities'));
     }
 
+    public function student_profile_router($id=null){
+        $user = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+
+        if(!empty($user)){
+            if($user['group_id']==1||$user['group_id']==2){
+                $this->redirect(array('action' => 'view_admin',$id));
+            }
+            if($user['group_id']==5){
+                $this->redirect(array('action' => 'view_industry',$id));
+            }
+            if($user['group_id']==4){
+                $this->redirect(array('action' => 'view_student',$id));
+            }
+        }
+        else{
+            $this->redirect(array('action' => 'view_public',$id));
+        }
+    }
+
+    public function view_admin($id=null){
+
+    }
+
+    public function view_industry($id=null){
+
+    }
+
+    public function view_student($id=null){
+
+    }
+
+    public function view_public($id=null){
+
+    }
+
     public function forgot_password() {
         if($this->request->is('post')){
             if(!empty($this->request->data)){
@@ -1371,6 +1409,6 @@ You have 24 hours to complete the request.','success_flash');
             'controller'=>'homes',
             'action'=>'main'
         );
-        $this->Auth->allow(array('forgot_password','reset_password_token','register'));
+        $this->Auth->allow(array('forgot_password','reset_password_token','register','student_profile_router'));
     }
 }
