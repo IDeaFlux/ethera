@@ -60,5 +60,23 @@ class Convention{
             }
         }
     }
+
+    public static function approval_phase_stat($digit=null){
+        if(!empty($digit)){
+            switch ($digit) {
+                case 0:
+                    return "Registered";
+                    break;
+                case 1:
+                    return "Interested Area Submission";
+                    break;
+                case 2:
+                    return "Organization Submission";
+                    break;
+                default:
+                    return null;
+            }
+        }
+    }
 }
 ?>
