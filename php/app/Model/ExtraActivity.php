@@ -49,10 +49,11 @@ class ExtraActivity extends AppModel {
  *
  * @var array
  */
+
 	public $hasMany = array(
-		'students_extra_activities' => array(
-			'className' => 'students_extra_activities',
-			'foreignKey' => 'id',
+		'StudentsExtraActivity' => array(
+			'className' => 'StudentsExtraActivity',
+			'foreignKey' => 'extra_activity_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
