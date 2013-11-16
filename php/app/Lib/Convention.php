@@ -78,5 +78,17 @@ class Convention{
             }
         }
     }
+
+    public static function weight_value($flag=null){
+        //Always $WE+$WG == 1
+        $WG = 0.7;
+        $WE = 0.3;
+        if($flag=='WG'){ //GPA Weight
+            return $WG;
+        }
+        if($flag=='WE'){ //Extra Activity Weight
+            return $WE;
+        }
+    }
 }
 ?>
