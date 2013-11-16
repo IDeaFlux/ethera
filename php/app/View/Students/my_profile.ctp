@@ -54,7 +54,7 @@
                 <p class=\"text-center\">My Extra Activities</p>";
             echo $this->Html->link(
                 $i,
-                array('controller' => 'students', 'action' => 'my_extra_activities'),
+                array('controller' => 'students', 'action' => 'my_extra_activities',$student),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
