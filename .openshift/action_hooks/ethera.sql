@@ -35,10 +35,12 @@ CREATE TABLE IF NOT EXISTS `assignments` (
   `priority` int(1) NOT NULL,
   `state` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 INSERT INTO `assignments` (`id`, `interested_area_id`, `organization_id`, `student_id`, `priority`, `state`) VALUES
-(9, 2, 0, 5, 1, '');
+(9, 1, 1, 5, 1, ''),
+(10, 2, 3, 5, 2, ''),
+(12, 3, 0, 5, 3, '');
 
 DROP TABLE IF EXISTS `batches`;
 CREATE TABLE IF NOT EXISTS `batches` (
@@ -67,8 +69,8 @@ CREATE TABLE IF NOT EXISTS `batches_study_programs` (
 
 INSERT INTO `batches_study_programs` (`id`, `batch_id`, `study_program_id`, `freeze_state`, `industry_ready`, `approval_phase`) VALUES
 (1, 1, 1, 0, 1, 2),
-(2, 1, 2, 0, 1, 1),
-(3, 2, 2, 0, 1, 0),
+(2, 1, 2, 0, 0, 1),
+(3, 2, 2, 0, 0, 0),
 (4, 2, 3, 0, 0, 0),
 (8, 8, 1, 0, 0, 0),
 (9, 8, 2, 0, 0, 0),
@@ -109,14 +111,15 @@ CREATE TABLE IF NOT EXISTS `cvs` (
   `file_name` varchar(255) NOT NULL,
   `file_size` int(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 INSERT INTO `cvs` (`id`, `student_id`, `current`, `upload_time`, `file_name`, `file_size`) VALUES
 (2, 5, 0, '2013-11-11 11:34:58', '5280c0e2-a1e4-49ce-afdd-1db2740d37dd.pdf', 136401),
 (3, 5, 0, '2013-11-11 11:35:07', '5280c0eb-20a4-4fc8-895a-037f740d37dd.pdf', 122157),
 (4, 5, 0, '2013-11-11 18:19:38', '52811fba-2e84-467f-9392-03ef740d37dd.pdf', 52534),
 (5, 5, 1, '2013-11-11 18:19:45', '52811fc1-ede0-4983-a006-03f0740d37dd.pdf', 112646),
-(6, 5, 0, '2013-11-11 18:19:52', '52811fc8-2264-4021-b0f5-1031740d37dd.pdf', 179471);
+(6, 5, 0, '2013-11-11 18:19:52', '52811fc8-2264-4021-b0f5-1031740d37dd.pdf', 179471),
+(7, 5, 0, '2013-11-15 20:08:31', '52867f3f-04f4-4cc4-8529-0388740d37dd.pdf', 179471);
 
 DROP TABLE IF EXISTS `enrollments`;
 CREATE TABLE IF NOT EXISTS `enrollments` (
@@ -125,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `enrollments` (
   `student_id` int(11) NOT NULL,
   `grade` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 INSERT INTO `enrollments` (`id`, `course_unit_id`, `student_id`, `grade`) VALUES
 (6, 1, 1, 'A+'),
@@ -142,7 +145,10 @@ INSERT INTO `enrollments` (`id`, `course_unit_id`, `student_id`, `grade`) VALUES
 (17, 4, 4, 'A-'),
 (18, 4, 5, 'B'),
 (19, 3, 4, 'B-'),
-(20, 9, 4, 'A');
+(20, 9, 4, 'A'),
+(21, 5, 5, 'A'),
+(22, 6, 5, 'B'),
+(23, 9, 5, 'C');
 
 DROP TABLE IF EXISTS `extra_activities`;
 CREATE TABLE IF NOT EXISTS `extra_activities` (
@@ -151,7 +157,13 @@ CREATE TABLE IF NOT EXISTS `extra_activities` (
   `act_category_description` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+INSERT INTO `extra_activities` (`id`, `name`, `act_category_description`) VALUES
+(1, 'Sports', 'Add details about sports\r\n'),
+(2, 'Positions', 'Positions hold.'),
+(3, 'Certifications and Awards', 'Any Certifications & Awards received.'),
+(4, 'Other', 'Other extra activites.');
 
 DROP TABLE IF EXISTS `feedbacks`;
 CREATE TABLE IF NOT EXISTS `feedbacks` (
@@ -185,14 +197,15 @@ CREATE TABLE IF NOT EXISTS `interested_areas` (
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 INSERT INTO `interested_areas` (`id`, `name`, `description`) VALUES
 (1, 'Linux System Engineering', 'Redhat 6.0'),
 (2, 'Networking', 'CISCO'),
 (3, 'Business Analysis', 'BA'),
 (4, 'Software Engineering', 'SDLC, Design Patterns'),
-(5, 'Fisheries', 'Aqua Culture');
+(5, 'Fisheries', 'Aqua Culture'),
+(6, 'Android Developer/Software Engineer ', 'A person who develop android apps.');
 
 DROP TABLE IF EXISTS `notices`;
 CREATE TABLE IF NOT EXISTS `notices` (
@@ -225,10 +238,13 @@ CREATE TABLE IF NOT EXISTS `opportunities` (
   `slots` int(3) NOT NULL,
   `special_request` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 INSERT INTO `opportunities` (`id`, `interested_area_id`, `organization_id`, `batch_id`, `study_program_id`, `slots`, `special_request`) VALUES
-(1, 1, 1, 1, 0, 5, '');
+(1, 1, 1, 1, 1, 5, ''),
+(4, 2, 2, 1, 1, 5, ''),
+(5, 2, 1, 1, 1, 2, ''),
+(6, 2, 3, 1, 1, 3, '');
 
 DROP TABLE IF EXISTS `organizations`;
 CREATE TABLE IF NOT EXISTS `organizations` (
@@ -241,10 +257,12 @@ CREATE TABLE IF NOT EXISTS `organizations` (
   `profile` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 INSERT INTO `organizations` (`id`, `organization_user_id`, `name`, `address`, `email`, `logo`, `profile`) VALUES
-(1, 5, 'WSO2', 'Kollupitiya', 'info@wso2.com', '', 'Founded in August 2005, WSO2 is a global enterprise middleware corporation with offices in USA, UK and Sri Lanka. Providing the only complete open source middleware platform, WSO2 is revolutionizing the industry by putting traditional middleware on a diet and introducing lean, powerful and flexible solutions to address the 21st century enterprise challenges.');
+(1, 5, 'WSO2', 'Kollupitiya', 'info@wso2.com', '', 'Founded in August 2005, WSO2 is a global enterprise middleware corporation with offices in USA, UK and Sri Lanka. Providing the only complete open source middleware platform, WSO2 is revolutionizing the industry by putting traditional middleware on a diet and introducing lean, powerful and flexible solutions to address the 21st century enterprise challenges.'),
+(2, 5, 'Virtusa', 'Dematagoda', 'info@virtusa.com', '', 'Virtusa provides a broad range of IT consulting, systems implementation and application outsourcing services through an optimized global delivery model. Through our industry leading platforming process, Virtusa focuses on delivering business results by modernizing, rationalizing and consolidating the critical applications that support our clients'' core business processes. We employ advanced processes like Agile to insure the right system is delivered the first time. This approach enables Virtusa to serve industry leaders as they seek to improve their customers'' experience, expand market reach, improve time to market and lower costs.'),
+(3, 5, 'IFS', 'Wellawaththa', 'info@ifsworld.com', '', 'IFS AB is a global enterprise software company headquartered in Linköping, Sweden with 50 offices around the world. IFS provides a component-based extended ERP suite built on SOA technology.');
 
 DROP TABLE IF EXISTS `registration_num_headers`;
 CREATE TABLE IF NOT EXISTS `registration_num_headers` (
@@ -294,11 +312,11 @@ CREATE TABLE IF NOT EXISTS `students` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `bio`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `final_mark`) VALUES
-(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 4, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 1, 1, 2, 'udithawijerathna', 1, 1, 1, 0),
+(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 4, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 1, 1, 2, 'udithawijerathna', 1, 1, 1, 0),
 (2, 'Krishantha', 'Sameera', 'Zoysa', '', '', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 4, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, 0, '', 2, 1, 2, 0),
 (3, 'Amal', 'De', 'Silva', '', '', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '52093438-3310-44fe-9986-3169740d37dd', 4, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, 0, '', 4, 1, 3, 0),
 (4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', '', '', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520da09d-12e0-431f-9007-1071740d37dd', 4, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 1, 0, 2, 'yohani', 1, 1, 1, 0),
-(5, 'Sameera', 'Lakmal', 'Hokandara', '', '', '', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '525a8d68-d194-4537-a46b-039f740d37dd', 4, '056', 'M', '1988-04-08', 'abc', 'abc', 'Avissawella', 0, 1, 2, 2, '', 1, 1, 1, 0),
+(5, 'Sameera', 'Lakmal', 'Hokandara', '0372243234', '0772315516', 'He is an ICT Undergraduate from University of Rajarata. Also he gives his contribution to FOSS related works in Sri Lanka and Internationally. He is very much interested Python,Ruby on Rail and Linux Device Driver development. Uses Qt and GTK+ development toolkits for C++ development. Loves to collect informations & pictures related to diesel locomotives as a hobby. ', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '525a8d68-d194-4537-a46b-039f740d37dd', 4, '056', 'M', '1988-04-08', 'No22', 'Aradhana Kanda', 'Avissawella', 0, 1, 4, 2, 'udithawijerathna', 1, 1, 1, 0),
 (6, 'Ishani', 'Thilanaka', 'Gunawardhana', '0417911670', '0777491374', '', 'tel:AZ110wuH3dKJk9XgAQmKS_kuxd8sLarAg2rPf', 'ishanigunawardhana@gmail.com', '5b709862e79f6bdd637ae97c2727ad5d9c645768', '', '0000-00-00 00:00:00', '5284fbf3-f0d0-4ebd-87f7-4f567f0d0601', 4, '032', 'F', '1988-02-24', 'Udahagedara', 'Vilayaya', 'Dampahala', 0, 0, 1, 2, 'igunawardhana', 1, 1, 1, 0),
 (7, 'Shayamali', 'Dulangika', 'Bamunu Achchi', '0332281932', '0716479141', '', '', 'shayamalidulz@gmail.com', '8332ec2bcaf64b646aa9a8c6d01a3305a97852eb', '', '0000-00-00 00:00:00', '5285071c-721c-44ef-a5c4-4ca67f0d0601', 4, '007', 'F', '1988-12-16', '139/A/3', 'Hospital Road ,Wathupitiwala', 'Nittambuwa', 0, 0, 1, 2, 'shayamali', 1, 1, 1, 0);
 
@@ -308,9 +326,14 @@ CREATE TABLE IF NOT EXISTS `students_extra_activities` (
   `extra_activity_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `comment` text NOT NULL,
-  `mark` int(3) NOT NULL,
+  `mark` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+INSERT INTO `students_extra_activities` (`id`, `extra_activity_id`, `student_id`, `comment`, `mark`) VALUES
+(1, 1, 5, 'Football', 1),
+(2, 2, 5, 'Chair Person of ARICT', 1.7),
+(3, 3, 5, 'RHCE, RHCSA, RHCVA', 1.7);
 
 DROP TABLE IF EXISTS `study_programs`;
 CREATE TABLE IF NOT EXISTS `study_programs` (
@@ -357,14 +380,15 @@ CREATE TABLE IF NOT EXISTS `study_programs_interested_areas` (
   `study_program_id` int(11) NOT NULL,
   `interested_area_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 INSERT INTO `study_programs_interested_areas` (`id`, `study_program_id`, `interested_area_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
 (4, 1, 4),
-(5, 2, 5);
+(5, 2, 5),
+(6, 1, 6);
 
 DROP TABLE IF EXISTS `subjects`;
 CREATE TABLE IF NOT EXISTS `subjects` (
@@ -399,12 +423,14 @@ CREATE TABLE IF NOT EXISTS `system_users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `first_name` (`first_name`,`last_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 INSERT INTO `system_users` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mobile`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `biography`, `designation`) VALUES
 (7, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', 'udithabnd@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5203508f-dc5c-4d78-9cd3-245e740d37dd', 1, 'Hii', 'Students'),
 (8, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', 'yohani.ysr@gmail.com', '5c4c6b7e3ccd612e84576cbc4f68a3ffe5e16ab9', '', '0000-00-00 00:00:00', '52035055-5c04-47b9-b283-0689740d37dd', 1, 'This is yohani', 'Student'),
-(9, 'WSO2', '', 'Inc', '', '', 'info@wso2.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '526b6b3e-1404-4c81-9f0d-0452740d37dd', 5, '', 'Organization');
+(9, 'WSO2', '', 'Inc', '', '', 'info@wso2.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '526b6b3e-1404-4c81-9f0d-0452740d37dd', 5, '', 'Organization'),
+(10, 'Virtusa', '', '(pvt) Limited', '', '', 'info@virtusa.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '52864a64-b128-4f3b-8aff-103f740d37dd', 5, '', 'Company'),
+(11, 'IFS', '', 'Inc', '', '', 'info@ifsworld.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '52865fa8-8e34-46bc-9177-685d740d37dd', 5, 'IFS AB is a global enterprise software company headquartered in Linköping, Sweden with 50 offices around the world. IFS provides a component-based extended ERP suite built on SOA technology.', 'Company');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
