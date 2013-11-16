@@ -1,7 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
 App::uses('EtheraEmail','Lib');
-App::uses('GPA','Lib');
+App::uses('Calculate','Lib');
 App::uses('StudentManipulation','Lib');
 
 class StudentsController extends AppController {
@@ -995,7 +995,7 @@ class StudentsController extends AppController {
                     }
 
                     if($course_count == sizeof($course_units)){
-                        $filtered_students[$student_count]['Student']['filter_gpa'] = GPA::calculate($filtering_enrollments);
+                        $filtered_students[$student_count]['Student']['filter_gpa'] = Calculate::GPA($filtering_enrollments);
                         $filtered_students[$student_count]['Student']['id'] = $student['Student']['id'];
                     }
                     $student_count++;
@@ -1260,17 +1260,26 @@ class StudentsController extends AppController {
         $student = $this->Student->find('first',array('conditions'=>array('Student.id'=>$id),'recursive'=>'2'));
 //        debug($student);
 
+        //setting GPA
         $enrollments = $student['Enrollment'];
-
         $count = 0;
         foreach($enrollments as $enrollment){
             $gpa_enrollments[$count]['Enrollment'] = $enrollment;
             $count++;
         }
-        $gpa = GPA::calculate($gpa_enrollments);
+        $gpa = Calculate::GPA($gpa_enrollments);
+
+        //Setting Extra Activities
+        $extra_activities = $student['StudentsExtraActivity'];
+        $ea_value = Calculate::ExtraActivities($extra_activities);
+
+        //Setting Final Value
+        $final_value = Calculate::FinalMark($gpa,$ea_value);
 
         $this->set('student',$student);
         $this->set('gpa',$gpa);
+        $this->set('ea_value',$ea_value);
+        $this->set('final_value',$final_value);
     }
 
     public function view_industry($id=null){
@@ -1296,6 +1305,50 @@ class StudentsController extends AppController {
         $student = $this->Student->findById($id);
         $this->set('student',$student);
     }
+
+    public function extra_activity_marks($id=null){
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+
+        if($this->request->is('post')){
+            $this->loadModel('StudentsExtraActivity');
+
+            $data = $this->request->data['StudentsExtraActivity'];
+
+            $count = 0;
+            foreach($data as $record){
+                $data_save[$count]['StudentsExtraActivity']['id'] = $record['id'];
+                $data_save[$count]['StudentsExtraActivity']['mark'] = $record['mark'];
+                $count++;
+            }
+
+            if($this->StudentsExtraActivity->saveAll($data_save)){
+                $this->Session->setFlash(__('Extra Activity details updated'),'success_flash');
+                $this->redirect(array('action' => 'student_profile_router',$id));
+            }
+            else{
+                $this->Session->setFlash(__('Extra Activity details update failed'),'error_flash');
+            }
+        }
+
+        $this->loadModel('StudentsExtraActivity');
+        $this->loadModel('ExtraActivity');
+
+        $student = $this->Student->findById($id);
+        $student_extra_activities = $this->StudentsExtraActivity->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'student_id' => $id
+                )
+            )
+        );
+        $extra_activities = $this->ExtraActivity->find('all');
+
+        $this->set(compact('extra_activities','student','student_extra_activities'));
+    }
+
 
     public function forgot_password() {
         if($this->request->is('post')){
