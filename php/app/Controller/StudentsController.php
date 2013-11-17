@@ -1407,45 +1407,166 @@ class StudentsController extends AppController {
                 if(!empty($students)){
                     $student_count = 0;
                     foreach($students as $student){
-                        //GPA
-                        $enrollments = $student['Enrollment'];
 
-                        if(!empty($enrollments)){
-                            $count = 0;
-                            foreach($enrollments as $enrollment){
-                                $gpa_enrollments[$count]['Enrollment'] = $enrollment;
-                                $count++;
+                        if($student['Student']['approved_state']==5){
+
+                            //GPA
+                            $enrollments = $student['Enrollment'];
+
+                            if(!empty($enrollments)){
+                                $count = 0;
+                                foreach($enrollments as $enrollment){
+                                    $gpa_enrollments[$count]['Enrollment'] = $enrollment;
+                                    $count++;
+                                }
+
+                                $gpa = Calculate::GPA($gpa_enrollments);
                             }
 
-                            $gpa = Calculate::GPA($gpa_enrollments);
-                        }
+                            //EA
+                            $extra_activities = $student['StudentsExtraActivity'];
+                            if(!empty($extra_activities)){
+                                $ea_value = Calculate::ExtraActivities($extra_activities);
+                            }
 
-                        //EA
-                        $extra_activities = $student['StudentsExtraActivity'];
-                        if(!empty($extra_activities)){
-                            $ea_value = Calculate::ExtraActivities($extra_activities);
-                        }
+                            //Overall
+                            if(!empty($gpa)&&!empty($ea_value)){
+                                $final_value = Calculate::FinalMark($gpa,$ea_value);
+                            }
 
-                        //Overall
-                        if(!empty($gpa)&&!empty($ea_value)){
-                            $final_value = Calculate::FinalMark($gpa,$ea_value);
-                        }
+                            if(!empty($final_value)){
+                                $students_selected_to_sort_asc[$student_count]['id'] = $student['Student']['id'];
+                                $students_selected_to_sort_asc[$student_count]['GPA'] = $final_value;
+                            }
 
-                        if(!empty($final_value)){
-                            $students_selected_to_sort_asc[$student_count]['id'] = $student['Student']['id'];
-                            $students_selected_to_sort_asc[$student_count]['GPA'] = $final_value;
+                            $student_count++;
                         }
-                        //do in 1hr
-                        $student_count++;
                     }
-                    debug($students_selected_to_sort_asc);
+
                     $students_sorted_asc = StudentManipulation::gpa_sort($students_selected_to_sort_asc);
-                    debug($students_sorted_asc);
+
+                    $students_after_algorithm_run = array();
+                    $final_students_count = 0;
+
+                    //debug($students_sorted_asc);
+                    if(!empty($students_sorted_asc)){
+                        $this->loadModel('Organization');
+                        $this->loadModel('Opportunity');
+                        $this->loadModel('Assignment');
+                        $this->loadModel('InterestedArea');
+
+                        foreach($students_sorted_asc as $student_sorted){
+                            $assignments_for_student = $this->Assignment->find(
+                                'all',
+                                array(
+                                    'conditions' => array(
+                                        'student_id' => $student_sorted['id']
+                                    ),
+                                    'recursive' => 2,
+                                    'order' => 'Assignment.priority ASC'
+                                )
+                            );
+
+                            $student_sorted_full_details = $this->Student->findById($student_sorted['id']);
+
+                            //debug($student_sorted_full_details);
+                            //debug($assignments_for_student);
+
+                            if(!empty($assignments_for_student)&&($student_sorted_full_details['Student']['processing_state']==0||$student_sorted_full_details['Student']['processing_state']==9)){
+
+                                $student_sorted['never_consider_this_student_for_next_assignment']=0;
+
+                                foreach($assignments_for_student as $assignment){ //Level of checking assignment 1 by 1
+                                    //debug($assignment);
+
+                                    if($student_sorted['never_consider_this_student_for_next_assignment']!=1){
+
+                                        if($assignment['Assignment']['state']==2||$assignment['Assignment']['state']==9||$assignment['Assignment']['state']==8){
+                                            $applicable_organization = $assignment['Organization'];
+
+                                            if(!empty($applicable_organization)){
+                                                //debug($applicable_organization);
+
+                                                $opportunities_given_by_org = $applicable_organization['Opportunity'];
+                                                if(!empty($opportunities_given_by_org)){
+                                                    foreach($opportunities_given_by_org as $opportunity){
+                                                        //debug($opportunity);
+
+                                                        if(
+                                                            ($opportunity['batch_id']==$student_sorted_full_details['Student']['batch_id'])
+                                                            &&
+                                                            ($opportunity['study_program_id']==$student_sorted_full_details['Student']['study_program_id'])
+                                                            &&
+                                                            ($opportunity['interested_area_id']==$assignment['Assignment']['interested_area_id'])
+                                                            &&
+                                                            ($opportunity['slots']>0)
+                                                        )
+                                                        {
+                                                            if(($opportunity['slots']>$opportunity['consumed_slots'])){
+                                                                $assignment_to_update['Assignment']['id'] = $assignment['Assignment']['id'];
+                                                                $assignment_to_update['Assignment']['state'] = 3;
+
+                                                                if($this->Assignment->save($assignment_to_update)){
+                                                                    $assignment_to_update = array();
+                                                                    $opportunity_to_update['Opportunity']['id'] = $opportunity['id'];
+                                                                    $opportunity_to_update['Opportunity']['consumed_slots'] = $opportunity['consumed_slots']+1;
+
+                                                                    if($this->Opportunity->save($opportunity_to_update)){
+                                                                        $opportunity_to_update = array();
+                                                                        $student_sorted['never_consider_this_student_for_next_assignment']=1;
+                                                                        $students_after_algorithm_run[$final_students_count]['Student']['id'] = $student_sorted['id'];
+                                                                        $final_students_count++;
+                                                                    }
+                                                                }
+                                                            }
+                                                            else{
+                                                                $assignment_to_update['Assignment']['id'] = $assignment['Assignment']['id'];
+                                                                $assignment_to_update['Assignment']['state'] = 9;
+
+                                                                $this->Assignment->save($assignment_to_update);
+                                                                $assignment_to_update = array();
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if($student_sorted['never_consider_this_student_for_next_assignment']==0){
+                                    $student_to_update['Student']['id'] = $student_sorted['id'];
+                                    $student_to_update['Student']['processing_state'] = 9;
+
+                                    $this->Student->save($student_to_update);
+                                }
+                                elseif($student_sorted['never_consider_this_student_for_next_assignment']==1){
+                                    $student_to_update['Student']['id'] = $student_sorted['id'];
+                                    $student_to_update['Student']['processing_state'] = 1;
+
+                                    $this->Student->save($student_to_update);
+                                }
+                            }
+                        }
+                    }
+                    $students_to_set = array();
+                    $set_count = 0;
+                    if(!empty($students_after_algorithm_run)){
+                        foreach($students_after_algorithm_run as $student_final){
+                            $students_to_set[$set_count] = $this->Student->find('first',array('conditions'=>array('Student.id'=>$student_final['Student']['id']),'recursive'=>2));
+                            $set_count++;
+                        }
+                    }
+
+                    $this->set('students',$students_to_set);
                 }
             }
             else{
                 $this->redirect(array('action' => 'select_processing_set'));
             }
+        }
+        else{
+            $this->redirect(array('action' => 'select_processing_set'));
         }
     }
 
