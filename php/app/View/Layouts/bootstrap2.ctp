@@ -96,7 +96,7 @@
                             <li><?php echo $this->Html->link('Register', array('controller'=>'students','action'=>'register'));?></li>
                             <li class="divider-vertical"></li>
                             <li><?php if($logged_in && $current_user['group_id']!=4):?>
-                            <?php echo $this->Html->link('Backend', array('controller'=>'homes','action'=>'admin'));?></li>
+                            <?php echo $this->Html->link('Backend', array('controller'=>'homes','action'=>'backend_router'));?></li>
                             <li class="divider-vertical"></li>
                             <?php endif; ?>
                             <li><?php if($logged_in && $current_user['group_id']==4):?>
