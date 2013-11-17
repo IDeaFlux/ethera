@@ -38,22 +38,22 @@ CREATE TABLE IF NOT EXISTS `assignments` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 INSERT INTO `assignments` (`id`, `interested_area_id`, `organization_id`, `student_id`, `priority`, `state`) VALUES
-(13, 4, 1, 8, 1, 2),
+(13, 4, 1, 8, 1, 3),
 (14, 4, 2, 8, 2, 2),
 (15, 1, 1, 8, 3, 2),
-(16, 2, 2, 13, 1, 2),
-(17, 3, 2, 13, 2, 2),
+(16, 2, 2, 13, 1, 9),
+(17, 3, 2, 13, 2, 3),
 (18, 1, 1, 13, 3, 2),
-(19, 2, 2, 10, 1, 2),
+(19, 2, 2, 10, 1, 3),
 (20, 2, 2, 10, 2, 2),
 (21, 3, 2, 10, 3, 2),
-(22, 4, 3, 9, 1, 2),
+(22, 4, 3, 9, 1, 3),
 (23, 6, 0, 9, 2, 1),
 (24, 2, 2, 9, 3, 2),
-(25, 4, 1, 12, 1, 2),
+(25, 4, 1, 12, 1, 3),
 (26, 4, 2, 12, 2, 2),
 (27, 4, 3, 12, 3, 2),
-(28, 1, 1, 11, 1, 2),
+(28, 1, 1, 11, 1, 3),
 (29, 4, 3, 11, 2, 2),
 (30, 3, 2, 11, 3, 2);
 
@@ -214,13 +214,14 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
 (1, 'Admins', '2013-07-14 00:00:00', '2013-07-14 00:00:00'),
 (2, 'Career Guidance Unit ', '2013-07-14 00:00:00', '2013-07-14 00:00:00'),
 (4, 'Student', '2013-07-14 00:00:00', '2013-07-14 00:00:00'),
-(5, 'Organization', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(5, 'Organization', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 'AR Office', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 DROP TABLE IF EXISTS `interested_areas`;
 CREATE TABLE IF NOT EXISTS `interested_areas` (
@@ -270,15 +271,15 @@ CREATE TABLE IF NOT EXISTS `opportunities` (
   `consumed_slots` int(3) NOT NULL,
   `special_request` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 INSERT INTO `opportunities` (`id`, `interested_area_id`, `organization_id`, `batch_id`, `study_program_id`, `slots`, `consumed_slots`, `special_request`) VALUES
-(7, 4, 1, 9, 1, 2, 0, ''),
-(8, 2, 2, 9, 1, 1, 0, ''),
-(9, 4, 3, 9, 1, 2, 0, ''),
+(7, 4, 1, 9, 1, 2, 2, ''),
+(8, 2, 2, 9, 1, 1, 1, ''),
+(9, 4, 3, 9, 1, 2, 1, ''),
 (10, 4, 2, 9, 1, 1, 0, ''),
-(11, 3, 2, 9, 1, 1, 0, ''),
-(12, 1, 1, 9, 1, 2, 0, '');
+(11, 3, 2, 9, 1, 1, 1, ''),
+(12, 1, 1, 9, 1, 2, 1, '');
 
 DROP TABLE IF EXISTS `organizations`;
 CREATE TABLE IF NOT EXISTS `organizations` (
@@ -294,9 +295,9 @@ CREATE TABLE IF NOT EXISTS `organizations` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 INSERT INTO `organizations` (`id`, `organization_user_id`, `name`, `address`, `email`, `logo`, `profile`) VALUES
-(1, 5, 'WSO2', 'Kollupitiya', 'info@wso2.com', '', 'Founded in August 2005, WSO2 is a global enterprise middleware corporation with offices in USA, UK and Sri Lanka. Providing the only complete open source middleware platform, WSO2 is revolutionizing the industry by putting traditional middleware on a diet and introducing lean, powerful and flexible solutions to address the 21st century enterprise challenges.'),
-(2, 5, 'Virtusa', 'Dematagoda', 'info@virtusa.com', '', 'Virtusa provides a broad range of IT consulting, systems implementation and application outsourcing services through an optimized global delivery model. Through our industry leading platforming process, Virtusa focuses on delivering business results by modernizing, rationalizing and consolidating the critical applications that support our clients'' core business processes. We employ advanced processes like Agile to insure the right system is delivered the first time. This approach enables Virtusa to serve industry leaders as they seek to improve their customers'' experience, expand market reach, improve time to market and lower costs.'),
-(3, 5, 'IFS', 'Wellawaththa', 'info@ifsworld.com', '', 'IFS AB is a global enterprise software company headquartered in Linköping, Sweden with 50 offices around the world. IFS provides a component-based extended ERP suite built on SOA technology.');
+(1, 9, 'WSO2', 'Kollupitiya', 'info@wso2.com', '', 'Founded in August 2005, WSO2 is a global enterprise middleware corporation with offices in USA, UK and Sri Lanka. Providing the only complete open source middleware platform, WSO2 is revolutionizing the industry by putting traditional middleware on a diet and introducing lean, powerful and flexible solutions to address the 21st century enterprise challenges.'),
+(2, 10, 'Virtusa', 'Dematagoda', 'info@virtusa.com', '', 'Virtusa provides a broad range of IT consulting, systems implementation and application outsourcing services through an optimized global delivery model. Through our industry leading platforming process, Virtusa focuses on delivering business results by modernizing, rationalizing and consolidating the critical applications that support our clients'' core business processes. We employ advanced processes like Agile to insure the right system is delivered the first time. This approach enables Virtusa to serve industry leaders as they seek to improve their customers'' experience, expand market reach, improve time to market and lower costs.'),
+(3, 11, 'IFS', 'Wellawaththa', 'info@ifsworld.com', '', 'IFS AB is a global enterprise software company headquartered in Linköping, Sweden with 50 offices around the world. IFS provides a component-based extended ERP suite built on SOA technology.');
 
 DROP TABLE IF EXISTS `registration_num_headers`;
 CREATE TABLE IF NOT EXISTS `registration_num_headers` (
@@ -309,6 +310,16 @@ INSERT INTO `registration_num_headers` (`id`, `name`) VALUES
 (1, 'ICT'),
 (2, 'AS'),
 (3, 'HPT');
+
+DROP TABLE IF EXISTS `special_opportunities`;
+CREATE TABLE IF NOT EXISTS `special_opportunities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL,
+  `organization_id` int(11) NOT NULL,
+  `interested_area_id` int(11) NOT NULL,
+  `state` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
@@ -340,18 +351,18 @@ CREATE TABLE IF NOT EXISTS `students` (
   `study_program_id` int(11) NOT NULL,
   `batch_id` int(11) NOT NULL,
   `registration_num_header_id` int(11) NOT NULL,
-  `final_mark` int(11) NOT NULL,
+  `processing_state` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `first_name` (`first_name`,`last_name`,`reg_number`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
-INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `bio`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `final_mark`) VALUES
-(8, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f5fe-0bb8-4818-ac03-4675740d37dd', 4, '047', 'M', '1988-04-08', 'No21', 'Keselwathugoda', 'Dewalegama', 1, 1, 4, 2, 'udithawijerathna', 1, 9, 1, 0),
-(9, 'Yohani', 'Shayamindi', 'Ranasinghe', '0372250520', '0718371272', '', '', 'yohani.ysr@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f6cf-94d4-4240-8844-4677740d37dd', 4, '019', 'F', '1988-11-01', 'N.01', 'Dehelgamuwa', 'Ibbagamuwa', 1, 1, 4, 2, 'yohani', 1, 9, 1, 0),
-(10, 'Sameera', 'Lakmal', 'Hokandara', '0342243222', '0779951123', '', '', 'cham.lakmal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f86e-23d0-4c12-b8cb-46de740d37dd', 4, '056', 'M', '1987-11-11', 'No.23', 'Aradhana Kanda', 'Avissawella', 1, 1, 4, 2, '', 1, 9, 1, 0),
-(11, 'Shayamali', 'Dulangika', 'Bamunuarachchi', '', '', '', '', 'shayamalidulz@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f9de-0358-4932-b49b-46e0740d37dd', 4, '007', 'M', '1988-05-11', 'No. 22/5', 'Hospital Road', 'Wathupitiwala', 1, 1, 4, 2, 'shayamali', 1, 9, 1, 0),
-(12, 'Ishani', 'Thilanka', 'Gunawardhana', '', '', '', '', 'ishanigunawardhana@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287fb46-c364-4ee2-8d74-46e2740d37dd', 4, '032', 'F', '1988-05-11', 'Udahagedara', 'Vilayaya', 'Dampahala', 1, 1, 4, 2, 'igunawardhana', 1, 9, 1, 0),
-(13, 'Krishantha', 'Madhusanka', 'Jayasinghe', '', '', '', '', 'krishmadusanka1988@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287fbe1-563c-41ae-a811-4679740d37dd', 4, '029', 'M', '1988-03-16', 'No. 255/44', 'Makola North', 'Makola', 1, 1, 4, 2, '', 1, 9, 1, 0);
+INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `bio`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `processing_state`) VALUES
+(8, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f5fe-0bb8-4818-ac03-4675740d37dd', 4, '047', 'M', '1988-04-08', 'No21', 'Keselwathugoda', 'Dewalegama', 1, 1, 5, 2, 'udithawijerathna', 1, 9, 1, 1),
+(9, 'Yohani', 'Shayamindi', 'Ranasinghe', '0372250520', '0718371272', '', '', 'yohani.ysr@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f6cf-94d4-4240-8844-4677740d37dd', 4, '019', 'F', '1988-11-01', 'N.01', 'Dehelgamuwa', 'Ibbagamuwa', 1, 1, 5, 2, 'yohani', 1, 9, 1, 1),
+(10, 'Sameera', 'Lakmal', 'Hokandara', '0342243222', '0779951123', '', '', 'cham.lakmal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f86e-23d0-4c12-b8cb-46de740d37dd', 4, '056', 'M', '1987-11-11', 'No.23', 'Aradhana Kanda', 'Avissawella', 1, 1, 5, 2, '', 1, 9, 1, 1),
+(11, 'Shayamali', 'Dulangika', 'Bamunuarachchi', '', '', '', '', 'shayamalidulz@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f9de-0358-4932-b49b-46e0740d37dd', 4, '007', 'M', '1988-05-11', 'No. 22/5', 'Hospital Road', 'Wathupitiwala', 1, 1, 5, 2, 'shayamali', 1, 9, 1, 1),
+(12, 'Ishani', 'Thilanka', 'Gunawardhana', '', '', '', '', 'ishanigunawardhana@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287fb46-c364-4ee2-8d74-46e2740d37dd', 4, '032', 'F', '1988-05-11', 'Udahagedara', 'Vilayaya', 'Dampahala', 1, 1, 5, 2, 'igunawardhana', 1, 9, 1, 1),
+(13, 'Krishantha', 'Madhusanka', 'Jayasinghe', '', '', '', '', 'krishmadusanka1988@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287fbe1-563c-41ae-a811-4679740d37dd', 4, '029', 'M', '1988-03-16', 'No. 255/44', 'Makola North', 'Makola', 1, 1, 5, 2, '', 1, 9, 1, 1);
 
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
