@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `assignments` (
   `priority` int(1) NOT NULL,
   `state` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
 INSERT INTO `assignments` (`id`, `interested_area_id`, `organization_id`, `student_id`, `priority`, `state`) VALUES
 (13, 4, 1, 8, 1, 3),
@@ -316,10 +316,14 @@ CREATE TABLE IF NOT EXISTS `special_opportunities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
-  `interested_area_id` int(11) NOT NULL,
+  `assignment_id` int(11) NOT NULL,
   `state` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+INSERT INTO `special_opportunities` (`id`, `student_id`, `organization_id`, `assignment_id`, `state`) VALUES
+(2, 8, 1, 15, 0),
+(3, 8, 2, 14, 0);
 
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
