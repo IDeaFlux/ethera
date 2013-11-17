@@ -6,11 +6,25 @@
     <ul class="thumbnails">
         <li class="span2">
             <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-male icon-4x\"></i></p>
+            $i = "<p class=\"text-center\"><i class=\"icon-edit icon-4x\"></i></p>
                 <p class=\"text-center\">Edit My Profile</p>";
             echo $this->Html->link(
                 $i,
                 array('controller' => 'students', 'action' => 'edit_my_profile',$student),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-suitcase icon-4x\"></i></p>
+                <p class=\"text-center\">View My Profile</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'students', 'action' => 'student_profile_router',$student),
                 array(
                     'class' => 'thumbnail',
                     'escape' => false
