@@ -29,7 +29,6 @@
                     <td class="actions">
                         <div class="btn-group">
                             <?php echo $this->Html->link(__('View'), array('action' => 'view', $student['Student']['id']),array('class' => 'btn')); ?>
-                            <?php echo $this->Form->postLink(__('Approve'), array('action' => 'init_approval_approve', $student['Student']['id']), array('class' => 'btn'), __('Are you want to approve # %s?', $student['Student']['id'])); ?>
                             <?php echo $this->Html->link(__('Configurations'), array('action' => 'individual_configuration', $student['Student']['id']),array('class' => 'btn')); ?>
                         </div>
                     </td>

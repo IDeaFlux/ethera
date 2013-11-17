@@ -4,7 +4,7 @@
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-            <li><?php echo $this->Html->link(__('Students'), array('action' => 'index')); ?></li>
+            <li><?php echo $this->Html->link(__('Student Processing'), array('controller' => 'homes','action' => 'student_processing')); ?></li>
         </ul>
     </div>
     <div class="span9">

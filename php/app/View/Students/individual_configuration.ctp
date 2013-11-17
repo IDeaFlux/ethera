@@ -49,6 +49,14 @@
                 2 => "Final Choices (3) with CV and Companies"
             ),
         ));
+        echo $this->Form->input('processing_state',array(
+            'class' => 'span6',
+            'options'=> array(
+                0 => "Not Processed",
+                1 => "Processed and Got Selected",
+                9 => "Processed but NOT Got Selected"
+            ),
+        ));
         echo $this->Form->hidden('Student.id');
         ?>
 
