@@ -265,7 +265,20 @@ class Student extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+		),
+        'SpecialOpportunity' => array(
+            'className' => 'SpecialOpportunity',
+            'foreignKey' => 'student_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        )
 	);
 
     public function uploadFile($id=null) {
