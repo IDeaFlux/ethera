@@ -106,6 +106,24 @@ class Convention{
         }
     }
 
+    public static function processing_state($digit=null){
+        if(!empty($digit)){
+            switch ($digit) {
+                case 0:
+                    return "Not Processed";
+                    break;
+                case 1:
+                    return "Processed and Got Selected";
+                    break;
+                case 9:
+                    return "Processed but NOT Got Selected";
+                    break;
+                default:
+                    return null;
+            }
+        }
+    }
+
     public static function weight_value($flag=null){
         //Always $WE+$WG == 1
         $WG = 0.7;
