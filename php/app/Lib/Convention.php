@@ -79,6 +79,33 @@ class Convention{
         }
     }
 
+    public static function assignment_state($digit=null){
+        if(!empty($digit)){
+            switch ($digit) {
+                case 0:
+                    return "N/A";
+                    break;
+                case 1:
+                    return "Submitted Interested Area";
+                    break;
+                case 2:
+                    return "Submitted Organization";
+                    break;
+                case 3:
+                    return "Selected for Interviews";
+                    break;
+                case 4:
+                    return "Interview Passed";
+                    break;
+                case 5:
+                    return "Interview Failed";
+                    break;
+                default:
+                    return null;
+            }
+        }
+    }
+
     public static function weight_value($flag=null){
         //Always $WE+$WG == 1
         $WG = 0.7;
