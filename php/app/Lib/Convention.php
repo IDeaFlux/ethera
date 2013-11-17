@@ -97,8 +97,11 @@ class Convention{
                 case 4:
                     return "Interview Passed";
                     break;
-                case 5:
+                case 8:
                     return "Interview Failed";
+                    break;
+                case 9:
+                    return "No Opportunity Found";
                     break;
                 default:
                     return null;
