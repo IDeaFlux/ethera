@@ -77,7 +77,7 @@ class SystemUsersController extends AppController {
         if($this->request->is('post')){
             if($this->Auth->login()){
                 //$this->redirect($this->Auth->redirectUrl());
-                $this->redirect(array('controller'=>'homes','action'=>'admin'));
+                $this->redirect(array('controller'=>'homes','action'=>'backend_router'));
             }
             else{
                 $this->Session->setFlash('Your email & password combination is incorrect','error_flash');
@@ -222,7 +222,7 @@ You have 24 hours to complete the request.','success_flash');
         );
         $this->Auth->loginRedirect = array(
             'controller'=>'homes',
-            'action'=>'admin'
+            'action'=>'backend_router'
         );
         $this->Auth->logoutRedirect = array(
             'controller'=>'homes',
