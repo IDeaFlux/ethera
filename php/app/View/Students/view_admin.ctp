@@ -140,6 +140,7 @@
                                     <th>Priority</th>
                                     <th>Interested Area</th>
                                     <th>Organization</th>
+                                    <th>State</th>
                                 </tr>
                                 <?php
                                 $assignments = $student['Assignment'];
@@ -151,6 +152,7 @@
                                     <td><?php if(!empty($assignment['priority'])){echo $assignment['priority'];} ?></td>
                                     <td><?php if(!empty($assignment['InterestedArea']['name'])){echo $assignment['InterestedArea']['name'];} ?></td>
                                     <td><?php if(!empty($assignment['Organization']['name'])){echo $assignment['Organization']['name'];} ?></td>
+                                    <td><?php if(!empty($assignment['state'])){echo Convention::assignment_state($assignment['state']);} ?></td>
                                 </tr>
                                 <?php
                                 endforeach;
