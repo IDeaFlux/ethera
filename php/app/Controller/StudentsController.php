@@ -601,6 +601,7 @@ class StudentsController extends AppController {
                     $data[$count-1]['Assignment']['interested_area_id'] = $assignment['interested_area_id'];
                     $data[$count-1]['Assignment']['student_id'] = $id;
                     $data[$count-1]['Assignment']['priority'] = $count;
+                    $data[$count-1]['Assignment']['state'] = 1;
                     if(!empty($current_submissions_pre[$count-1]['Assignment']['priority']) && $current_submissions_pre[$count-1]['Assignment']['priority'] == $count){
                         $data[$count-1]['Assignment']['id'] = $current_submissions_pre[$count-1]['Assignment']['id'];
                     }
@@ -674,6 +675,12 @@ class StudentsController extends AppController {
             foreach($assignments as $assignment){
                 $data[$count]['Assignment']['id'] = $assignment['id'];
                 $data[$count]['Assignment']['organization_id'] = $assignment['organization_id'];
+                if($assignment['organization_id']==''){
+                    $data[$count]['Assignment']['state'] = 1;
+                }
+                else{
+                    $data[$count]['Assignment']['state'] = 2;
+                }
                 $count++;
             }
 
@@ -1056,18 +1063,18 @@ class StudentsController extends AppController {
                 )
             );
 
-            foreach($students as $student){
-                $student_save['Student']['id'] = $student['Student']['id'];
-                $student_save['Student']['industry_ready'] = $data['Batch']['industry_ready'];
-
-                if($this->Student->save($student_save)){
-                    continue;
-                }
-                else{
-                    $this->Session->setFlash(__('Could not update. Please, try again.'));
-                    break;
-                }
-            }
+//            foreach($students as $student){
+//                $student_save['Student']['id'] = $student['Student']['id'];
+//                $student_save['Student']['industry_ready'] = $data['Batch']['industry_ready'];
+//
+//                if($this->Student->save($student_save)){
+//                    continue;
+//                }
+//                else{
+//                    $this->Session->setFlash(__('Could not update. Please, try again.'));
+//                    break;
+//                }
+//            }
 
             $save_data['BatchesStudyProgram']['id'] = $batch_study_program['BatchesStudyProgram']['id'];
             $save_data['BatchesStudyProgram']['industry_ready'] = $data['Batch']['industry_ready'];
@@ -1349,6 +1356,98 @@ class StudentsController extends AppController {
         $this->set(compact('extra_activities','student','student_extra_activities'));
     }
 
+    //Start of Algorithmic Processing
+    public function select_processing_set() {
+        $this->loadModel('Batch');
+        $this->loadModel('StudyProgram');
+        $this->loadModel('BatchesStudyProgram');
+
+        $batches = $this->Batch->find('list');
+        $init_batch = $this->Batch->find('first');
+
+
+        $study_programs_batches = $this->Batch->BatchesStudyProgram->find('all', array(
+            'conditions' => array('batch_id' => $init_batch['Batch']['id']),
+            'recursive' => -1
+        ));
+        if(!empty($study_programs_batches)){
+            foreach($study_programs_batches as $study_programs_batch){
+                $study_program_id = $study_programs_batch['BatchesStudyProgram']['study_program_id'];
+                $study_program_full = $this->StudyProgram->find('first',array(
+                    'conditions' => array('id' => $study_program_id),
+                    'recursive' => -1
+                ));
+                $studyPrograms[$study_program_id] = $study_program_full['StudyProgram']['program_code'];
+            };
+        }
+        else{
+            $studyPrograms = array();
+        }
+
+        $this->set(compact('studyPrograms', 'batches'));
+    }
+
+    public function processing(){
+        if($this->request->is('post')){
+            if(!empty($this->request->data)){
+                $batch_id = $this->request->data['Batch']['batch_id'];
+                $study_program_id = $this->request->data['Student']['study_program'];
+
+                $students = $this->Student->find(
+                    'all',
+                    array(
+                        'conditions' => array(
+                            'Student.batch_id' => $batch_id,
+                            'Student.study_program_id' => $study_program_id,
+                        ),
+                        'recursive' => 2
+                    )
+                );
+
+                if(!empty($students)){
+                    $student_count = 0;
+                    foreach($students as $student){
+                        //GPA
+                        $enrollments = $student['Enrollment'];
+
+                        if(!empty($enrollments)){
+                            $count = 0;
+                            foreach($enrollments as $enrollment){
+                                $gpa_enrollments[$count]['Enrollment'] = $enrollment;
+                                $count++;
+                            }
+
+                            $gpa = Calculate::GPA($gpa_enrollments);
+                        }
+
+                        //EA
+                        $extra_activities = $student['StudentsExtraActivity'];
+                        if(!empty($extra_activities)){
+                            $ea_value = Calculate::ExtraActivities($extra_activities);
+                        }
+
+                        //Overall
+                        if(!empty($gpa)&&!empty($ea_value)){
+                            $final_value = Calculate::FinalMark($gpa,$ea_value);
+                        }
+
+                        if(!empty($final_value)){
+                            $students_selected_to_sort_asc[$student_count]['id'] = $student['Student']['id'];
+                            $students_selected_to_sort_asc[$student_count]['GPA'] = $final_value;
+                        }
+                        //do in 1hr
+                        $student_count++;
+                    }
+                    debug($students_selected_to_sort_asc);
+                    $students_sorted_asc = StudentManipulation::gpa_sort($students_selected_to_sort_asc);
+                    debug($students_sorted_asc);
+                }
+            }
+            else{
+                $this->redirect(array('action' => 'select_processing_set'));
+            }
+        }
+    }
 
     public function forgot_password() {
         if($this->request->is('post')){
