@@ -16,6 +16,56 @@ class HomesController extends AppController {
 
     public function student() {
 
+        //Special Opportunities-------------------------------------------------------------
+        $user = $this->Auth->user();
+        $this->loadModel('SpecialOpportunity');
+        $accepted = false;
+        $no_sp_ops = false;
+
+        $special_ops = $this->SpecialOpportunity->find(
+            'all',
+            array(
+                'conditions'=>array(
+                    'SpecialOpportunity.student_id'=>$user['id']
+                ),
+                'recursive'=>1
+            )
+        );
+
+        if(!empty($special_ops)){
+            foreach($special_ops as $special_op){
+                if($special_op['SpecialOpportunity']['state']==1){
+                    $accepted = true;
+                    break;
+                }
+            }
+        }
+        else{
+            $no_sp_ops = true;
+        }
+
+        $this->set('no_sp_ops',$no_sp_ops);
+        $this->set('accepted',$accepted);
+        $this->set('user',$user);
+        //-------------------------------------------------------------------------------------
+
+        //Interview Status Update
+        $this->loadModel('Student');
+        $have_interview = false;
+        $student = $this->Student->find('first',array('conditions'=>array('Student.id'=>$user['id']),'recursive'=>2));
+
+        $assignments = $student['Assignment'];
+
+        if(!empty($assignments)){
+            foreach($assignments as $assignment){
+                if($assignment['state']==3){
+                    $have_interview = true;
+                    break;
+                }
+            }
+        }
+
+        $this->set('have_interview',$have_interview);
     }
 
     public function login() {
@@ -49,16 +99,14 @@ class HomesController extends AppController {
             if($user['group_id']==2){
                 $this->redirect(array('action' => 'cgu'));
             }
+            if($user['group_id']==4){
+                $this->redirect(array('action' => 'student'));
+            }
             if($user['group_id']==5){
                 $this->redirect(array('action' => 'organization'));
             }
             if($user['group_id']==6){
                 $this->redirect(array('action' => 'ar'));
-            }
-            if($user['group_id']==4){
-                $this->loadModel('Student');
-                $this->Session->setFlash('You are not authorized to access that page','error_flash');
-                $this->redirect($this->Auth->logout());
             }
         }
         else{
