@@ -16,7 +16,7 @@
                         <td><?php echo $student['Student']['first_name']?></td>
                         <td class="actions">
                             <div class="btn-group">
-                                <?php echo $this->Html->link(__('Load Profile'), array('action' => 'view', $student['Student']['id']),array('class' => 'btn')); ?>
+                                <?php echo $this->Html->link(__('Load Profile'), array('action' => 'student_profile_router', $student['Student']['id']),array('class' => 'btn')); ?>
                             </div>
                         </td>
                     </tr>

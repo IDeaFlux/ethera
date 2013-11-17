@@ -1293,24 +1293,87 @@ class StudentsController extends AppController {
         if (!$this->Student->exists($id)) {
             throw new NotFoundException(__('Invalid student'));
         }
-        $student = $this->Student->findById($id);
+        $student = $this->Student->find('first',array('conditions'=>array('Student.id'=>$id),'recursive'=>'2'));
+//        debug($student);
+
+        //setting GPA
+        $enrollments = $student['Enrollment'];
+        $count = 0;
+        foreach($enrollments as $enrollment){
+            $gpa_enrollments[$count]['Enrollment'] = $enrollment;
+            $count++;
+        }
+        $gpa = Calculate::GPA($gpa_enrollments);
+
+        //Setting Extra Activities
+        $extra_activities = $student['StudentsExtraActivity'];
+        $ea_value = Calculate::ExtraActivities($extra_activities);
+
+        //Setting Final Value
+        $final_value = Calculate::FinalMark($gpa,$ea_value);
+
         $this->set('student',$student);
+        $this->set('gpa',$gpa);
+        $this->set('ea_value',$ea_value);
+        $this->set('final_value',$final_value);
     }
 
     public function view_student($id=null){
         if (!$this->Student->exists($id)) {
             throw new NotFoundException(__('Invalid student'));
         }
-        $student = $this->Student->findById($id);
+        $student = $this->Student->find('first',array('conditions'=>array('Student.id'=>$id),'recursive'=>'2'));
+//        debug($student);
+
+        //setting GPA
+        $enrollments = $student['Enrollment'];
+        $count = 0;
+        foreach($enrollments as $enrollment){
+            $gpa_enrollments[$count]['Enrollment'] = $enrollment;
+            $count++;
+        }
+        $gpa = Calculate::GPA($gpa_enrollments);
+
+        //Setting Extra Activities
+        $extra_activities = $student['StudentsExtraActivity'];
+        $ea_value = Calculate::ExtraActivities($extra_activities);
+
+        //Setting Final Value
+        $final_value = Calculate::FinalMark($gpa,$ea_value);
+
         $this->set('student',$student);
+        $this->set('gpa',$gpa);
+        $this->set('ea_value',$ea_value);
+        $this->set('final_value',$final_value);
     }
 
     public function view_public($id=null){
         if (!$this->Student->exists($id)) {
             throw new NotFoundException(__('Invalid student'));
         }
-        $student = $this->Student->findById($id);
+        $student = $this->Student->find('first',array('conditions'=>array('Student.id'=>$id),'recursive'=>'2'));
+//        debug($student);
+
+        //setting GPA
+        $enrollments = $student['Enrollment'];
+        $count = 0;
+        foreach($enrollments as $enrollment){
+            $gpa_enrollments[$count]['Enrollment'] = $enrollment;
+            $count++;
+        }
+        $gpa = Calculate::GPA($gpa_enrollments);
+
+        //Setting Extra Activities
+        $extra_activities = $student['StudentsExtraActivity'];
+        $ea_value = Calculate::ExtraActivities($extra_activities);
+
+        //Setting Final Value
+        $final_value = Calculate::FinalMark($gpa,$ea_value);
+
         $this->set('student',$student);
+        $this->set('gpa',$gpa);
+        $this->set('ea_value',$ea_value);
+        $this->set('final_value',$final_value);
     }
 
     public function extra_activity_marks($id=null){

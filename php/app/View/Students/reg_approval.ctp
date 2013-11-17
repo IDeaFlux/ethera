@@ -36,7 +36,7 @@
                     </td>
                     <td class="actions">
                         <div class="btn-group">
-                            <?php echo $this->Html->link(__('View'), array('action' => 'view', $student['Student']['id']),array('class' => 'btn')); ?>
+                            <?php echo $this->Html->link(__('View'), array('action' => 'student_profile_router', $student['Student']['id']),array('class' => 'btn')); ?>
                             <?php echo $this->Form->postLink(__('Approve'), array('action' => 'reg_approval_approve', $student['Student']['id']), array('class' => 'btn'), __('Are you want to approve # %s?', $student['Student']['id'])); ?>
                             <?php echo $this->Form->postLink(__('Disapprove'), array('action' => 'reg_approval_disapprove', $student['Student']['id']), array('class' => 'btn'), __('Are you sure you want to disapprove # %s?', $student['Student']['id'])); ?>
                         </div>

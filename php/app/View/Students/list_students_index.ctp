@@ -28,7 +28,7 @@
                     <td><?php echo h($student['Student']['email']); ?>&nbsp;</td>
                     <td class="actions">
                         <div class="btn-group">
-                            <?php echo $this->Html->link(__('View'), array('action' => 'view', $student['Student']['id']),array('class' => 'btn')); ?>
+                            <?php echo $this->Html->link(__('View'), array('action' => 'student_profile_router', $student['Student']['id']),array('class' => 'btn')); ?>
                             <?php echo $this->Html->link(__('Configurations'), array('action' => 'individual_configuration', $student['Student']['id']),array('class' => 'btn')); ?>
                         </div>
                     </td>

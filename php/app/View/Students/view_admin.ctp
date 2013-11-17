@@ -62,10 +62,6 @@
                                 </tr>
                                 </tbody></table>
 
-                            <div class="alert alert-warning">
-                                <h4 class="alert-heading">Warning</h4>
-                                The phone numbers, email addresses, and Twitter handlers are fake.
-                            </div>
                         </div>
                         <div id="bio" class="tab-pane">
                             <span class="thumbnail" style="font-size: 18px">
@@ -127,6 +123,15 @@
                                     <td style="font-weight: bold">
                                         <?php
                                         echo Convention::approval_phase_stat($student['Student']['approval_phase']);
+                                        ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Processing Status:</td>
+                                    <td style="font-weight: bold">
+                                        <?php
+                                        echo Convention::processing_state($student['Student']['processing_state']);
                                         ?>
                                     </td>
                                 </tr>
