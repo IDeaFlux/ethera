@@ -56,7 +56,7 @@
         ));
         ?>
         <div class="form-actions">
-            <?php echo $this->Form->submit('Load Courses', array(
+            <?php echo $this->Form->submit('Process', array(
                 'div' => false,
                 'class' => 'btn btn-primary',
             )); ?>
