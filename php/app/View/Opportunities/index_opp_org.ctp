@@ -1,5 +1,5 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Oppotuny List'); ?>
+<?php $this->set('title', 'Opportunity List'); ?>
 
 <div class="row">
     <div class="span3">
