@@ -1665,6 +1665,47 @@ class StudentsController extends AppController {
         }
     }
 
+    public function update_interview_results($id=null){
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('controller'=>'homes','action' => 'backend_router'));
+        }
+
+        $student = $this->Student->find('first',array('conditions'=>array('Student.id'=>$id),'recursive'=>2));
+
+        $assignments = $student['Assignment'];
+        $have_interview = false;
+
+        if(!empty($assignments)){
+            foreach($assignments as $assignment){
+                if($assignment['state']==3){
+                    $have_interview = true;
+                    break;
+                }
+            }
+        }
+
+        if($have_interview==false){
+            $this->redirect(array('controller'=>'homes','action' => 'backend_router'));
+        }
+
+        $this->set('student',$student);
+
+        if($this->request->is('post')){
+            $this->loadModel('Assignment');
+            if($this->Assignment->save($this->request->data)){
+                $this->Session->setFlash('Your Preference Saved','success_flash');
+                $this->redirect(array('controller'=>'homes','action'=>'backend_router'));
+            }
+            else{
+                $this->Session->setFlash('Your Preference Could not be saved.','error_flash');
+            }
+        }
+    }
+
     public function forgot_password() {
         if($this->request->is('post')){
             if(!empty($this->request->data)){
