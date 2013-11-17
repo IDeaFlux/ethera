@@ -4,7 +4,7 @@
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-            <li><?php echo $this->Html->link(__('Student Processing'), array('controller' => 'homes','action' => 'student_processing')); ?></li>
+            <li><a onclick="goBack()">Back</a></li>
         </ul>
     </div>
     <div class="span9">
@@ -64,3 +64,9 @@
         <?php echo $this->Form->end(); ?>
     </div>
 </div>
+<script>
+    function goBack()
+    {
+        window.history.back()
+    }
+</script>
