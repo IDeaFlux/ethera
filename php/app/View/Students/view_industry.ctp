@@ -85,6 +85,7 @@
                 <th>Interested Area</th>
                 <th>Organization</th>
                 <th>State</th>
+                <th>Special Opportunity Grant</th>
             </tr>
             <?php
             $assignments = $student['Assignment'];
@@ -97,6 +98,7 @@
                         <td><?php if(!empty($assignment['InterestedArea']['name'])){echo $assignment['InterestedArea']['name'];} ?></td>
                         <td><?php if(!empty($assignment['Organization']['name'])){echo $assignment['Organization']['name'];} ?></td>
                         <td><?php if(!empty($assignment['state'])){echo Convention::assignment_state($assignment['state']);} ?></td>
+                        <td><?php echo $this->Form->postLink(__('Select'), array('controller'=>'special_opportunities','action' => 'grant',$assignment['id'], $student['Student']['id']), array('class' => 'btn'), __('Are you sure you want to grant opportunities to student # %s?', $student['Student']['id'])); ?></td>
                     </tr>
                 <?php
                 endforeach;
