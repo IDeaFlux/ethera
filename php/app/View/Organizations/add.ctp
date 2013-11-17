@@ -27,12 +27,12 @@
             <?php
                 echo $this->Form->input('name', array('class'=>'span6'));
 
-                echo $this->Form->input('SystemUser.name',array(
+                echo $this->Form->input('organization_user_id',array(
                     'type' => 'select',
                     'options' => $system_users,
                     'class' => 'span4',
                     'label' => array(
-                        'text' => 'Related System User Name'
+                        'text' => 'Related System User'
                     )
                 ));
 
