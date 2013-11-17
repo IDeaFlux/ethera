@@ -32,7 +32,7 @@
 <!--                            <iframe src="https://www.google.com/calendar/embed?src=84175rm5je1sfg2oafoufvhsjs%40group.calendar.google.com&ctz=Asia/Colombo" style="border: 0" width="360" height="360" frameborder="0" scrolling="no">  --> <!-- </iframe> -->
 
                             <!-- Final calendar for ETHERA events -->
-                            <iframe src="https://www.google.com/calendar/embed?src=15642bevcork1use0l1qokb0vs%40group.calendar.google.com&ctz=Asia/Colombo" style="border: 0" width="360" height="360" frameborder="0" scrolling="no"></iframe>
+                            <iframe src="https://www.google.com/calendar/embed?src=15642bevcork1use0l1qokb0vs%40group.calendar.google.com&ctz=Asia/Colombo" style="border: 0; max-width: 100%" width="360" height="240" frameborder="0" scrolling="yes"></iframe>
                         </div>
                     </div>
                     <div class="span4">
