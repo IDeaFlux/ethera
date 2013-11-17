@@ -33,14 +33,29 @@ CREATE TABLE IF NOT EXISTS `assignments` (
   `organization_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `priority` int(1) NOT NULL,
-  `state` varchar(255) NOT NULL,
+  `state` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 INSERT INTO `assignments` (`id`, `interested_area_id`, `organization_id`, `student_id`, `priority`, `state`) VALUES
-(9, 1, 1, 5, 1, ''),
-(10, 2, 3, 5, 2, ''),
-(12, 3, 0, 5, 3, '');
+(13, 4, 1, 8, 1, 2),
+(14, 4, 2, 8, 2, 2),
+(15, 1, 1, 8, 3, 2),
+(16, 2, 2, 13, 1, 2),
+(17, 3, 2, 13, 2, 2),
+(18, 1, 1, 13, 3, 2),
+(19, 2, 2, 10, 1, 2),
+(20, 2, 2, 10, 2, 2),
+(21, 3, 2, 10, 3, 2),
+(22, 4, 3, 9, 1, 2),
+(23, 6, 0, 9, 2, 1),
+(24, 2, 2, 9, 3, 2),
+(25, 4, 1, 12, 1, 2),
+(26, 4, 2, 12, 2, 2),
+(27, 4, 3, 12, 3, 2),
+(28, 1, 1, 11, 1, 2),
+(29, 4, 3, 11, 2, 2),
+(30, 3, 2, 11, 3, 2);
 
 DROP TABLE IF EXISTS `batches`;
 CREATE TABLE IF NOT EXISTS `batches` (
@@ -49,12 +64,12 @@ CREATE TABLE IF NOT EXISTS `batches` (
   `registration_state` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `academic_year` (`academic_year`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 INSERT INTO `batches` (`id`, `academic_year`, `registration_state`) VALUES
-(1, '2008/2009', 0),
-(2, '2009/2010', 1),
-(8, '2011/2012', 0);
+(9, '2008/2009', 1),
+(10, '2009/2010', 1),
+(11, '2010/2011', 1);
 
 DROP TABLE IF EXISTS `batches_study_programs`;
 CREATE TABLE IF NOT EXISTS `batches_study_programs` (
@@ -65,17 +80,21 @@ CREATE TABLE IF NOT EXISTS `batches_study_programs` (
   `industry_ready` int(1) NOT NULL,
   `approval_phase` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 INSERT INTO `batches_study_programs` (`id`, `batch_id`, `study_program_id`, `freeze_state`, `industry_ready`, `approval_phase`) VALUES
-(1, 1, 1, 0, 1, 2),
-(2, 1, 2, 0, 0, 1),
-(3, 2, 2, 0, 0, 0),
-(4, 2, 3, 0, 0, 0),
-(8, 8, 1, 0, 0, 0),
-(9, 8, 2, 0, 0, 0),
-(10, 8, 3, 0, 0, 0),
-(11, 8, 4, 0, 0, 0);
+(12, 9, 1, 1, 1, 2),
+(13, 9, 2, 0, 0, 0),
+(14, 9, 3, 0, 0, 0),
+(15, 9, 4, 0, 0, 0),
+(16, 10, 1, 0, 0, 0),
+(17, 10, 2, 0, 0, 0),
+(18, 10, 3, 0, 0, 0),
+(19, 10, 4, 0, 0, 0),
+(20, 11, 1, 0, 0, 0),
+(21, 11, 2, 0, 0, 0),
+(22, 11, 3, 0, 0, 0),
+(23, 11, 4, 0, 0, 0);
 
 DROP TABLE IF EXISTS `course_units`;
 CREATE TABLE IF NOT EXISTS `course_units` (
@@ -111,15 +130,15 @@ CREATE TABLE IF NOT EXISTS `cvs` (
   `file_name` varchar(255) NOT NULL,
   `file_size` int(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 INSERT INTO `cvs` (`id`, `student_id`, `current`, `upload_time`, `file_name`, `file_size`) VALUES
-(2, 5, 0, '2013-11-11 11:34:58', '5280c0e2-a1e4-49ce-afdd-1db2740d37dd.pdf', 136401),
-(3, 5, 0, '2013-11-11 11:35:07', '5280c0eb-20a4-4fc8-895a-037f740d37dd.pdf', 122157),
-(4, 5, 0, '2013-11-11 18:19:38', '52811fba-2e84-467f-9392-03ef740d37dd.pdf', 52534),
-(5, 5, 1, '2013-11-11 18:19:45', '52811fc1-ede0-4983-a006-03f0740d37dd.pdf', 112646),
-(6, 5, 0, '2013-11-11 18:19:52', '52811fc8-2264-4021-b0f5-1031740d37dd.pdf', 179471),
-(7, 5, 0, '2013-11-15 20:08:31', '52867f3f-04f4-4cc4-8529-0388740d37dd.pdf', 179471);
+(8, 8, 1, '2013-11-16 23:21:43', '5287fe07-6984-415c-ba0e-4677740d37dd.pdf', 136401),
+(9, 13, 1, '2013-11-16 23:23:28', '5287fe70-14b8-4884-965c-46e1740d37dd.pdf', 136401),
+(10, 10, 1, '2013-11-16 23:25:32', '5287feec-5c18-41ce-87f9-4675740d37dd.pdf', 136401),
+(11, 9, 1, '2013-11-16 23:26:34', '5287ff2a-d2c0-46cf-9722-46de740d37dd.pdf', 136401),
+(12, 12, 1, '2013-11-16 23:28:00', '5287ff80-b6b0-40f9-92b7-4679740d37dd.pdf', 136401),
+(13, 11, 1, '2013-11-16 23:29:44', '5287ffe8-359c-4b6d-9558-46e1740d37dd.pdf', 136401);
 
 DROP TABLE IF EXISTS `enrollments`;
 CREATE TABLE IF NOT EXISTS `enrollments` (
@@ -128,27 +147,39 @@ CREATE TABLE IF NOT EXISTS `enrollments` (
   `student_id` int(11) NOT NULL,
   `grade` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
 
 INSERT INTO `enrollments` (`id`, `course_unit_id`, `student_id`, `grade`) VALUES
-(6, 1, 1, 'A+'),
-(7, 2, 1, 'B+'),
-(8, 3, 1, 'A+'),
-(9, 4, 1, 'A+'),
-(10, 5, 1, 'A+'),
-(11, 1, 4, 'A+'),
-(12, 2, 4, 'A+'),
-(13, 1, 5, 'C'),
-(14, 2, 5, 'C+'),
-(15, 3, 5, 'B+'),
-(16, 6, 1, 'A+'),
-(17, 4, 4, 'A-'),
-(18, 4, 5, 'B'),
-(19, 3, 4, 'B-'),
-(20, 9, 4, 'A'),
-(21, 5, 5, 'A'),
-(22, 6, 5, 'B'),
-(23, 9, 5, 'C');
+(24, 1, 8, 'A+'),
+(25, 2, 8, 'A+'),
+(26, 3, 8, 'A-'),
+(27, 4, 8, 'A'),
+(28, 5, 8, 'A'),
+(29, 1, 9, 'A+'),
+(30, 2, 9, 'A'),
+(31, 3, 9, 'A'),
+(32, 4, 9, 'B+'),
+(33, 5, 9, 'A-'),
+(34, 1, 10, 'A-'),
+(35, 2, 10, 'B'),
+(36, 3, 10, 'C+'),
+(37, 4, 10, 'C'),
+(38, 5, 10, 'C'),
+(39, 1, 11, 'C+'),
+(40, 2, 11, 'B'),
+(41, 3, 11, 'B'),
+(42, 4, 11, 'B+'),
+(43, 5, 11, 'A-'),
+(44, 1, 12, 'A'),
+(45, 2, 12, 'A-'),
+(46, 3, 12, 'B+'),
+(47, 4, 12, 'B-'),
+(48, 5, 12, 'B'),
+(49, 1, 13, 'C'),
+(50, 2, 13, 'C+'),
+(51, 3, 13, 'A'),
+(52, 4, 13, 'A'),
+(53, 5, 13, 'C');
 
 DROP TABLE IF EXISTS `extra_activities`;
 CREATE TABLE IF NOT EXISTS `extra_activities` (
@@ -236,15 +267,18 @@ CREATE TABLE IF NOT EXISTS `opportunities` (
   `batch_id` int(11) NOT NULL,
   `study_program_id` int(11) NOT NULL,
   `slots` int(3) NOT NULL,
+  `consumed_slots` int(3) NOT NULL,
   `special_request` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
-INSERT INTO `opportunities` (`id`, `interested_area_id`, `organization_id`, `batch_id`, `study_program_id`, `slots`, `special_request`) VALUES
-(1, 1, 1, 1, 1, 5, ''),
-(4, 2, 2, 1, 1, 5, ''),
-(5, 2, 1, 1, 1, 2, ''),
-(6, 2, 3, 1, 1, 3, '');
+INSERT INTO `opportunities` (`id`, `interested_area_id`, `organization_id`, `batch_id`, `study_program_id`, `slots`, `consumed_slots`, `special_request`) VALUES
+(7, 4, 1, 9, 1, 2, 0, ''),
+(8, 2, 2, 9, 1, 1, 0, ''),
+(9, 4, 3, 9, 1, 2, 0, ''),
+(10, 4, 2, 9, 1, 1, 0, ''),
+(11, 3, 2, 9, 1, 1, 0, ''),
+(12, 1, 1, 9, 1, 2, 0, '');
 
 DROP TABLE IF EXISTS `organizations`;
 CREATE TABLE IF NOT EXISTS `organizations` (
@@ -309,16 +343,15 @@ CREATE TABLE IF NOT EXISTS `students` (
   `final_mark` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `first_name` (`first_name`,`last_name`,`reg_number`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `bio`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `final_mark`) VALUES
-(1, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5203c1d1-36fc-42f3-9b07-0688740d37dd', 4, '047', 'M', '1988-04-08', 'aaa', 'sss', 'sss', 0, 1, 1, 2, 'udithawijerathna', 1, 1, 1, 0),
-(2, 'Krishantha', 'Sameera', 'Zoysa', '', '', '', '', 'hksdezoysa@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520731b8-ed5c-4aa1-a8b7-2ba9740d37dd', 4, '023', 'M', '1989-08-16', '45', 'Hikkaduwa', 'Galle', 0, 0, 0, 0, '', 2, 1, 2, 0),
-(3, 'Amal', 'De', 'Silva', '', '', '', '', 'amal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '52093438-3310-44fe-9986-3169740d37dd', 4, '010', 'M', '1988-08-20', 'No31', 'Kalumodara', 'Gampaha', 0, 0, 0, 0, '', 4, 1, 3, 0),
-(4, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '', '', '', 'yohani_ysr@yahoo.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '520da09d-12e0-431f-9007-1071740d37dd', 4, '019', 'F', '1988-06-02', 'A1', 'a2', 'Kurunegala', 0, 1, 0, 2, 'yohani', 1, 1, 1, 0),
-(5, 'Sameera', 'Lakmal', 'Hokandara', '0372243234', '0772315516', 'He is an ICT Undergraduate from University of Rajarata. Also he gives his contribution to FOSS related works in Sri Lanka and Internationally. He is very much interested Python,Ruby on Rail and Linux Device Driver development. Uses Qt and GTK+ development toolkits for C++ development. Loves to collect informations & pictures related to diesel locomotives as a hobby. ', '', 'sam@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '525a8d68-d194-4537-a46b-039f740d37dd', 4, '056', 'M', '1988-04-08', 'No22', 'Aradhana Kanda', 'Avissawella', 0, 1, 4, 2, 'udithawijerathna', 1, 1, 1, 0),
-(6, 'Ishani', 'Thilanaka', 'Gunawardhana', '0417911670', '0777491374', '', 'tel:AZ110wuH3dKJk9XgAQmKS_kuxd8sLarAg2rPf', 'ishanigunawardhana@gmail.com', '5b709862e79f6bdd637ae97c2727ad5d9c645768', '', '0000-00-00 00:00:00', '5284fbf3-f0d0-4ebd-87f7-4f567f0d0601', 4, '032', 'F', '1988-02-24', 'Udahagedara', 'Vilayaya', 'Dampahala', 0, 0, 1, 2, 'igunawardhana', 1, 1, 1, 0),
-(7, 'Shayamali', 'Dulangika', 'Bamunu Achchi', '0332281932', '0716479141', '', '', 'shayamalidulz@gmail.com', '8332ec2bcaf64b646aa9a8c6d01a3305a97852eb', '', '0000-00-00 00:00:00', '5285071c-721c-44ef-a5c4-4ca67f0d0601', 4, '007', 'F', '1988-12-16', '139/A/3', 'Hospital Road ,Wathupitiwala', 'Nittambuwa', 0, 0, 1, 2, 'shayamali', 1, 1, 1, 0);
+(8, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f5fe-0bb8-4818-ac03-4675740d37dd', 4, '047', 'M', '1988-04-08', 'No21', 'Keselwathugoda', 'Dewalegama', 1, 1, 4, 2, 'udithawijerathna', 1, 9, 1, 0),
+(9, 'Yohani', 'Shayamindi', 'Ranasinghe', '0372250520', '0718371272', '', '', 'yohani.ysr@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f6cf-94d4-4240-8844-4677740d37dd', 4, '019', 'F', '1988-11-01', 'N.01', 'Dehelgamuwa', 'Ibbagamuwa', 1, 1, 4, 2, 'yohani', 1, 9, 1, 0),
+(10, 'Sameera', 'Lakmal', 'Hokandara', '0342243222', '0779951123', '', '', 'cham.lakmal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f86e-23d0-4c12-b8cb-46de740d37dd', 4, '056', 'M', '1987-11-11', 'No.23', 'Aradhana Kanda', 'Avissawella', 1, 1, 4, 2, '', 1, 9, 1, 0),
+(11, 'Shayamali', 'Dulangika', 'Bamunuarachchi', '', '', '', '', 'shayamalidulz@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f9de-0358-4932-b49b-46e0740d37dd', 4, '007', 'M', '1988-05-11', 'No. 22/5', 'Hospital Road', 'Wathupitiwala', 1, 1, 4, 2, 'shayamali', 1, 9, 1, 0),
+(12, 'Ishani', 'Thilanka', 'Gunawardhana', '', '', '', '', 'ishanigunawardhana@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287fb46-c364-4ee2-8d74-46e2740d37dd', 4, '032', 'F', '1988-05-11', 'Udahagedara', 'Vilayaya', 'Dampahala', 1, 1, 4, 2, 'igunawardhana', 1, 9, 1, 0),
+(13, 'Krishantha', 'Madhusanka', 'Jayasinghe', '', '', '', '', 'krishmadusanka1988@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287fbe1-563c-41ae-a811-4679740d37dd', 4, '029', 'M', '1988-03-16', 'No. 255/44', 'Makola North', 'Makola', 1, 1, 4, 2, '', 1, 9, 1, 0);
 
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
@@ -328,12 +361,22 @@ CREATE TABLE IF NOT EXISTS `students_extra_activities` (
   `comment` text NOT NULL,
   `mark` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 INSERT INTO `students_extra_activities` (`id`, `extra_activity_id`, `student_id`, `comment`, `mark`) VALUES
-(1, 1, 5, 'Football', 1),
-(2, 2, 5, 'Chair Person of ARICT', 1.7),
-(3, 3, 5, 'RHCE, RHCSA, RHCVA', 1.7);
+(4, 1, 8, 'Soccer', 3.3),
+(5, 2, 8, 'ARICT', 3.7),
+(6, 3, 8, 'RHCE,RHCSA', 3.7),
+(7, 1, 13, 'Cricket\r\nChess', 3.7),
+(8, 3, 13, 'OCJP', 2.3),
+(9, 1, 10, 'Badminton', 3.7),
+(10, 1, 9, 'Elle', 3),
+(11, 2, 9, 'ARICT', 3.7),
+(12, 3, 9, 'OCJP', 1.7),
+(13, 1, 12, 'Carom\r\nAthletics', 2.3),
+(14, 1, 11, 'Hocky', 2.7),
+(15, 2, 11, 'ARICT', 3.3),
+(16, 4, 11, 'All-Island Champion', 3.7);
 
 DROP TABLE IF EXISTS `study_programs`;
 CREATE TABLE IF NOT EXISTS `study_programs` (
