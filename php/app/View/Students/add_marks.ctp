@@ -74,7 +74,7 @@
             ),
             'class' => 'well form-horizontal'
         )); ?>
-        <legend><?php echo __('Enroll Students To Courses'); ?></legend>
+        <legend><?php echo __('Add Marks to Students'); ?></legend>
         <div id="profile" class="span4 pull-right" style="position: absolute; margin-left: 450px"></div>
         <?php
         echo $this->Form->input('registration_num_header_id',array(
