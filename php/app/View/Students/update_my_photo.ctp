@@ -1,8 +1,12 @@
 <?php $this->layout = 'bootstrap2'; ?>
 <?php $this->set('title', 'Student Registration'); ?>
-
 <div class="row">
-    <div class="span12">
+    <div class="span3">
+        <ul class="nav nav-tabs nav-stacked">
+            <li><?php echo $this->Html->link(__('My Profile'), array('controller' => 'students', 'action' => 'my_profile')); ?></li>
+        </ul>
+    </div>
+    <div class="span9">
         <?php echo $this->Form->create('Student',array(
             'novalidate' => true,
             'type'=>'file',
