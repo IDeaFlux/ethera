@@ -31,6 +31,16 @@ class Student extends AppModel {
 				//'on' => 'create',
 			),
 		),
+        'full_name' => array(
+            'notempty' => array(
+                'rule' => array('notempty'),
+                'message' => 'Please enter full name',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false,
+                //'on' => 'create',
+            ),
+        ),
         'gender' => array(
             'notempty' => array(
                 'rule' => array('notempty'),

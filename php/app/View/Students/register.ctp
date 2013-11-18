@@ -70,6 +70,9 @@
             echo $this->Form->input('middle_name',array(
                 'class' => 'span6'
             ));
+            echo $this->Form->input('full_name',array(
+                'class' => 'span6'
+            ));
             echo $this->Form->input('last_name',array(
                 'class' => 'span6'
             ));
@@ -104,7 +107,8 @@
             ));
             echo $this->Form->input('password_confirmation',array(
                 'class' => 'span6',
-                'value' => ''
+                'value' => '',
+                'type' => 'password'
             ));
             //echo $this->Form->input('photo',array('type'=>'file'));
             echo $this->Form->input('address1',array(
@@ -128,7 +132,7 @@
         <span class="span7" style="font-size: 11px">Example: http://www.linkedin.com/in/<span style="font-weight: bolder">john</span></span>
         <p class="span7" style="font-size: 15px; color:red">The Glowing RED fields are mandatory</p>
         <?php
-            echo $this->Recaptcha->display();
+            //echo $this->Recaptcha->display();
             ?>
 
         <div class="form-actions">
