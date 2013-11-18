@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `assignments` (
   `priority` int(1) NOT NULL,
   `state` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 INSERT INTO `assignments` (`id`, `interested_area_id`, `organization_id`, `student_id`, `priority`, `state`) VALUES
 (13, 4, 1, 8, 1, 3),
@@ -271,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `opportunities` (
   `consumed_slots` int(3) NOT NULL,
   `special_request` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 INSERT INTO `opportunities` (`id`, `interested_area_id`, `organization_id`, `batch_id`, `study_program_id`, `slots`, `consumed_slots`, `special_request`) VALUES
 (7, 4, 1, 9, 1, 2, 2, ''),
@@ -331,6 +331,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `first_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
   `phone_home` varchar(20) NOT NULL,
   `phone_mob` varchar(20) NOT NULL,
   `bio` text NOT NULL,
@@ -360,13 +361,13 @@ CREATE TABLE IF NOT EXISTS `students` (
   KEY `first_name` (`first_name`,`last_name`,`reg_number`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
-INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `phone_home`, `phone_mob`, `bio`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `processing_state`) VALUES
-(8, 'Uditha', 'Bandara', 'Wijerathna', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f5fe-0bb8-4818-ac03-4675740d37dd', 4, '047', 'M', '1988-04-08', 'No21', 'Keselwathugoda', 'Dewalegama', 1, 1, 5, 2, 'udithawijerathna', 1, 9, 1, 1),
-(9, 'Yohani', 'Shayamindi', 'Ranasinghe', '0372250520', '0718371272', '', '', 'yohani.ysr@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f6cf-94d4-4240-8844-4677740d37dd', 4, '019', 'F', '1988-11-01', 'N.01', 'Dehelgamuwa', 'Ibbagamuwa', 1, 1, 5, 2, 'yohani', 1, 9, 1, 1),
-(10, 'Sameera', 'Lakmal', 'Hokandara', '0342243222', '0779951123', '', '', 'cham.lakmal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f86e-23d0-4c12-b8cb-46de740d37dd', 4, '056', 'M', '1987-11-11', 'No.23', 'Aradhana Kanda', 'Avissawella', 1, 1, 5, 2, '', 1, 9, 1, 1),
-(11, 'Shayamali', 'Dulangika', 'Bamunuarachchi', '', '', '', '', 'shayamalidulz@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287f9de-0358-4932-b49b-46e0740d37dd', 4, '007', 'M', '1988-05-11', 'No. 22/5', 'Hospital Road', 'Wathupitiwala', 1, 1, 5, 2, 'shayamali', 1, 9, 1, 1),
-(12, 'Ishani', 'Thilanka', 'Gunawardhana', '', '', '', '', 'ishanigunawardhana@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287fb46-c364-4ee2-8d74-46e2740d37dd', 4, '032', 'F', '1988-05-11', 'Udahagedara', 'Vilayaya', 'Dampahala', 1, 1, 5, 2, 'igunawardhana', 1, 9, 1, 1),
-(13, 'Krishantha', 'Madhusanka', 'Jayasinghe', '', '', '', '', 'krishmadusanka1988@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '5287fbe1-563c-41ae-a811-4679740d37dd', 4, '029', 'M', '1988-03-16', 'No. 255/44', 'Makola North', 'Makola', 1, 1, 5, 2, '', 1, 9, 1, 1);
+INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `full_name`, `phone_home`, `phone_mob`, `bio`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `processing_state`) VALUES
+(8, 'Uditha', 'Bandara', 'Wijerathna', '', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a147f-cae0-44ef-bb6c-1756740d37dd', 4, '047', 'M', '1988-04-08', 'No21', 'Keselwathugoda', 'Dewalegama', 1, 1, 5, 2, 'udithawijerathna', 1, 9, 1, 1),
+(9, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '0372250520', '0718371272', '', '', 'yohani.ysr@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53b7-1a14-4278-bc46-0c8e740d37dd', 4, '019', 'F', '1988-11-01', 'N.01', 'Dehelgamuwa', 'Ibbagamuwa', 1, 1, 5, 2, 'yohani', 1, 9, 1, 1),
+(10, 'Sameera', 'Lakmal', 'Hokandara', '', '0342243222', '0779951123', '', '', 'cham.lakmal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a5425-3c2c-44af-9852-0391740d37dd', 4, '056', 'M', '1987-11-11', 'No.23', 'Aradhana Kanda', 'Avissawella', 1, 1, 5, 2, '', 1, 9, 1, 1),
+(11, 'Shayamali', 'Dulangika', 'Bamunuarachchi', '', '', '', '', '', 'shayamalidulz@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53f3-98a0-4989-b7b9-0c7d740d37dd', 4, '007', 'M', '1988-05-11', 'No. 22/5', 'Hospital Road', 'Wathupitiwala', 1, 1, 5, 2, 'shayamali', 1, 9, 1, 1),
+(12, 'Ishani', 'Thilanka', 'Gunawardhana', '', '', '', '', '', 'ishanigunawardhana@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53ce-d090-41e3-ada0-0c7b740d37dd', 4, '032', 'F', '1988-05-11', 'Udahagedara', 'Vilayaya', 'Dampahala', 1, 1, 5, 2, 'igunawardhana', 1, 9, 1, 1),
+(13, 'Krishantha', 'Madhusanka', 'Jayasinghe', '', '', '', '', '', 'krishmadusanka1988@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a5409-ced0-4a6a-9de3-0c8f740d37dd', 4, '029', 'M', '1988-03-16', 'No. 255/44', 'Makola North', 'Makola', 1, 1, 5, 2, '', 1, 9, 1, 1);
 
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
