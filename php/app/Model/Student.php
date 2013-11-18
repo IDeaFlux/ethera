@@ -297,9 +297,24 @@ class Student extends AppModel {
 
             $id = String::uuid();
 
-            if(move_uploaded_file($file['tmp_name'], $folderName.DS.$id)) {
-                $this->data['Student']['photo'] = $id;
+            $tmp_file = $file['tmp_name'];
+            list($width, $height) = getimagesize($tmp_file);
 
+            if ($width == null && $height == null) {
+                $this->invalidate('photo','Photo upload error');
+                return false;
+            }
+
+            if ($width >= 160 && $height >= 160) {
+                $image = new Imagick($tmp_file);
+                $image->thumbnailImage(160, 160);
+                $image->writeImage($folderName.DS.$id);
+                $this->data['Student']['photo'] = $id;
+                return true;
+            }
+            else{
+                move_uploaded_file($file['tmp_name'], $folderName.DS.$id);
+                $this->data['Student']['photo'] = $id;
                 return true;
             }
         }
@@ -340,10 +355,10 @@ class Student extends AppModel {
     public function updateData($data) {
         $this->data = $data;
 
-        $system_user = $this->data['Student']['id'];
-        $system_user = $this->findAllById($system_user);
+        $student = $this->data['Student']['id'];
+        $student = $this->findById($student);
 
-        if($this->uploadFile($system_user[0]['Student']['photo'])){
+        if($this->uploadFile($student['Student']['photo'])){
             return $this->saveAll($this->data);
         }
         else{
