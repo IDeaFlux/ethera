@@ -46,6 +46,20 @@
             );
             ?>
         </li>
+        <li class="span2">
+            <?php
+            $i = "<p class=\"text-center\"><i class=\"icon-picture icon-4x\"></i></p>
+                <p class=\"text-center\">Update My Photo</p>";
+            echo $this->Html->link(
+                $i,
+                array('controller' => 'students', 'action' => 'update_my_photo',$student),
+                array(
+                    'class' => 'thumbnail',
+                    'escape' => false
+                )
+            );
+            ?>
+        </li>
         <?php if($enable == 1): ?>
         <li class="span2">
             <?php
