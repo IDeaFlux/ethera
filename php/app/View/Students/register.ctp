@@ -49,6 +49,7 @@
         )); ?>
 
             <legend><?php echo __('Student Registration'); ?></legend>
+
             <?php
             echo $this->Form->input('registration_num_header_id',array(
                 'label' => array(
@@ -125,6 +126,7 @@
         <span class="span7" style="font-size: 11px">Use the username part of your LinkedIn public profile URL. If you don't have a public profile username, <a href="http://help.linkedin.com/app/answers/detail/a_id/87">create one</a></span>
         <br />
         <span class="span7" style="font-size: 11px">Example: http://www.linkedin.com/in/<span style="font-weight: bolder">john</span></span>
+        <p class="span7" style="font-size: 15px; color:red">The Glowing RED fields are mandatory</p>
         <?php
             echo $this->Recaptcha->display();
             ?>
