@@ -37,7 +37,7 @@
         </style>
         <?php echo $this->Form->create('Student',array(
             'novalidate' => true,
-            'type'=>'file',
+            //'type'=>'file',
             'inputDefaults' => array(
                 'div' => 'control-group',
                 'label' => array(
@@ -101,7 +101,7 @@
                 'class' => 'span6',
                 'value' => ''
             ));
-            echo $this->Form->input('photo',array('type'=>'file'));
+            //echo $this->Form->input('photo',array('type'=>'file'));
             echo $this->Form->input('address1',array(
                 'class' => 'span6'
             ));
