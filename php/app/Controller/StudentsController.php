@@ -504,6 +504,28 @@ class StudentsController extends AppController {
 
     }
 
+    public function update_my_photo($id=null){
+        $current_student = $this->Auth->user();
+        if (!$this->Student->exists($id)) {
+            throw new NotFoundException(__('Invalid student'));
+        }
+        elseif($id != $current_student['id']) {
+            $this->redirect(array('action' => 'my_profile'));
+        }
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->Student->updateData($this->request->data)) {
+                $this->Session->setFlash(__('The photo has been updated'),'success_flash');
+                $this->redirect(array('action' => 'my_profile'));
+            } else {
+                $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
+            }
+        }
+
+        $student = $this->Student->find('first',array('conditions'=>array('Student.id'=>$current_student['id']),'recursive'=>0));
+        $this->set('student',$student);
+    }
+
     public function edit_my_password($id=null){
         $current_student = $this->Auth->user();
         if (!$this->Student->exists($id)) {
