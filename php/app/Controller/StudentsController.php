@@ -7,7 +7,7 @@ App::uses('StudentManipulation','Lib');
 class StudentsController extends AppController {
 
     public $helpers = array('Js');
-    public $components = array('Recaptcha.Recaptcha' => array('actions' => array('register')),
+    public $components = array('Recaptcha.Recaptcha' => array('actions' => array(/*'register'*/)),
         'Paginator'
     );
 
@@ -1718,7 +1718,11 @@ class StudentsController extends AppController {
 
         if($this->request->is('post')){
             $this->loadModel('Assignment');
-            if($this->Assignment->save($this->request->data)){
+            if($this->request->data['Assignment']['state']==4){
+                $data['Student']['industry_ready']=0;
+                $data['Student']['id']=$current_student['id'];
+            }
+            if($this->Assignment->save($this->request->data) && $this->Student->save($data)){
                 $this->Session->setFlash('Your Preference Saved','success_flash');
                 $this->redirect(array('controller'=>'homes','action'=>'backend_router'));
             }
@@ -1726,6 +1730,11 @@ class StudentsController extends AppController {
                 $this->Session->setFlash('Your Preference Could not be saved.','error_flash');
             }
         }
+    }
+
+    public function show(){
+        $students = $this->Student->find('all',array('conditions'=>array('Student.industry_ready'=>1)));
+        $this->set('students',$students);
     }
 
     public function forgot_password() {
@@ -1868,6 +1877,6 @@ You have 24 hours to complete the request.','success_flash');
             'controller'=>'homes',
             'action'=>'main'
         );
-        $this->Auth->allow(array('forgot_password','reset_password_token','register','student_profile_router','view_public'));
+        $this->Auth->allow(array('forgot_password','reset_password_token','register','student_profile_router','view_public','show'));
     }
 }

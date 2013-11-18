@@ -58,8 +58,20 @@ class AppController extends Controller {
             'controller' => 'system_users',
             'action' => 'login'
         );
+
+        $this->loadModel('Student');
+        $students = $this->Student->find('all',array('conditions'=>array('Student.industry_ready'=>1)));
+        if(count($students)>0){
+            $student_link = true;
+        }
+        else{
+            $student_link = false;
+        }
+
+        $this->set('student_link', $student_link);
         $this->set('logged_in', $this->Auth->loggedIn());
         $this->set('current_user', $this->Auth->user());
+
     }
 }
 
