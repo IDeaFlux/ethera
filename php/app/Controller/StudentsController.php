@@ -47,11 +47,11 @@ class StudentsController extends AppController {
     public function register() {
         if ($this->request->is('post')) {
             $this->Student->create();
-            if ($this->Student->sendData($this->request->data)) {
+            if ($this->Student->save($this->request->data)) {
                 $this->Session->setFlash(__('You have been registered successfully'),'success_flash');
                 $this->redirect(array('controller'=>'homes','action' => 'main'));
             } else {
-                $this->Session->setFlash(__('The student could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
             }
         }
         $groups = $this->Student->Group->find('list');

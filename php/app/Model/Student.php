@@ -12,7 +12,7 @@ class Student extends AppModel {
 		'first_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => '',
+				'message' => 'Please enter first name',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false,
@@ -24,7 +24,7 @@ class Student extends AppModel {
 		'last_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => '',
+				'message' => 'Please enter last name',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false,
@@ -40,7 +40,7 @@ class Student extends AppModel {
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
+				'message' => 'Enter a valid email',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -50,21 +50,35 @@ class Student extends AppModel {
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter password',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'between' => array(
-				'rule' => array('between',5,10),
-				//'message' => 'Your custom message here',
+				'rule' => array('between',5,255),
+				'message' => 'Password should more than 5 characters',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+            'match_passwords' => array(
+                'rule' => 'matchPasswords',
+                'message' => 'Your password did not match'
+            ),
 		),
+        'password_confirmation' => array(
+            'notempty' => array(
+                'rule' => array('notempty'),
+                'message' => 'Please confirm your password',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
 		'group_id' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -78,17 +92,7 @@ class Student extends AppModel {
 		'reg_number' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'gender' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter Registration number as three digits',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -98,7 +102,7 @@ class Student extends AppModel {
 		'date_of_birth' => array(
 			'date' => array(
 				'rule' => array('date'),
-				//'message' => 'Your custom message here',
+				'message' => 'Enter a valid date',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -106,7 +110,7 @@ class Student extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter a birth date',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -116,7 +120,7 @@ class Student extends AppModel {
 		'address1' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter an address',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -128,7 +132,7 @@ class Student extends AppModel {
 		'city' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter a city',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -281,6 +285,14 @@ class Student extends AppModel {
         )
 	);
 
+    public function matchPasswords($data) {
+        if($data['password'] == $this->data['Student']['password_confirmation']) {
+            return true;
+        }
+        $this->invalidate('password_confirmation','Your password did not match');
+        return false;
+    }
+
     public function uploadFile($id=null) {
         $file = $this->data['Student']['photo'];
 
@@ -365,7 +377,6 @@ class Student extends AppModel {
             return false;
         }
     }
-
 
     public function savePassword($data){
 
