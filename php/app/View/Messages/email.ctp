@@ -20,21 +20,6 @@
             );
             ?>
         </li>
-
-        <li class="span2">
-            <?php
-            $i = "<p class=\"text-center\"><i class=\"icon-female icon-4x\"></i></p>
-                <p class=\"text-center\">Send Mail to Staff</p>";
-            echo $this->Html->link(
-                $i,
-                array('controller' => 'Messages', 'action' => 'staff_mail'),
-                array(
-                    'class' => 'thumbnail',
-                    'escape' => false
-                )
-            );
-            ?>
-        </li>
         <li class="span2">
             <?php
             $i = "<p class=\"text-center\"><i class=\"icon-building icon-4x\"></i></p>

@@ -11,6 +11,39 @@ class MessagesController extends AppController {
     public $components = array('RequestHandler');
 
 
+    public function send_sms($message=null,$user_id=null){
+
+        if($message!=null && $user_id!=null){
+
+            $this->loadModel('Student');
+            $student = $this->Student->findById($user_id);
+
+            if($student['Student']['sms_num']!=''){
+                $address = $student['Student']['sms_num'];
+                try{
+                    $sender = new SmsSender("http://api.dialog.lk:8080/sms/send");
+
+                    $applicationId = "APP_004150";
+                    $encoding = "0";
+                    $version =  "1.0";
+                    $password = "3ae55013184a19dcb55c137afa053d19";
+                    $sourceAddress = "ETHERA";
+                    $deliveryStatusRequest = "0";
+                    $charging_amount = "0";
+                    $destinationAddresses = $address;
+                    $binary_header = "";
+
+                    $res = $sender->sms($message, $destinationAddresses, $password, $applicationId, $sourceAddress, $deliveryStatusRequest, $charging_amount, $encoding, $version, $binary_header);
+                }
+
+                catch (SmsException $ex){
+
+                }
+            }
+        }
+    }
+
+
     public function sms() {
         $this->loadModel('BatchesStudyProgram');
         $this->loadModel('Batch');
@@ -40,41 +73,14 @@ class MessagesController extends AppController {
                     'recursive' => -1
                 )
             );
-//            debug($students);
-        }
 
-        foreach($students as $student){
-            try{
-                $responseMsg = $data['body'];
-//                debug($responseMsg);
-
-                $sender = new SmsSender("https://localhost:7443/sms/send");
-
-                $applicationId = "APP_000001";
-                $encoding = "0";
-                $version =  "1.0";
-                $password = "password";
-                $sourceAddress = "77000";
-                $deliveryStatusRequest = "1";
-                $charging_amount = ":15.75";
-                $destinationAddresses = array($student['Student']['sms_num']);
-                $binary_header = "";
-
-                $res = $sender->sms($responseMsg, $destinationAddresses, $password, $applicationId, $sourceAddress, $deliveryStatusRequest, $charging_amount, $encoding, $version, $binary_header);
-//                debug($destinationAddresses);
-
+            foreach($students as $student){
+                $this->send_sms($data['Batch']['message'],$student['Student']['id']);
             }
-
-            catch (SmsException $ex){
-
-            }
-
         }
 
         $batches = $this->Batch->find('list');
         $this->set('batches',$batches);
-
-
     }
 
 
@@ -112,20 +118,16 @@ class MessagesController extends AppController {
                     'recursive' => -1
                 )
             );
-            debug($students);
 
 
             foreach($students as $student){
 
-                EtheraEmail::mailer($student ['Student']['email'],$data['subject'],$data['body']);
-
-
+                EtheraEmail::mailer($student['Student']['email'],$data['subject'],$data['body']);
             }
 
         }
 
         $batches = $this->Batch->find('list');
-        debug($batches);
         $this->set('batches',$batches);
 
 
@@ -137,13 +139,7 @@ class MessagesController extends AppController {
     public function industry_mail(){
 
         $this->loadModel('Organization');
-        $organizations = $this->Organization->find('first',array(
-//            'fields'=>array(
-//                'Organization.id','Organization.email'
-//            )
-            //'conditions'=>array('Student.batch_id'=>'2')
-        ));
-//        debug($organizations);
+        $organizations = $this->Organization->find('list',array());
 
         $this->set('organizations',$organizations);
 
@@ -151,8 +147,8 @@ class MessagesController extends AppController {
             if($this->request->data)
             {
                 $data = $this->request->data;
-//                debug($data);
-                EtheraEmail::mailer($organizations['Organization']['email'],$data['subject'],$data['body']);
+                $organization = $this->Organization->findById($data['Organization']['to']);
+                EtheraEmail::mailer($organization['Organization']['email'],$data['Organization']['subject'],$data['Organization']['body']);
             }
 
 //                $this->redirect(array('controller'=>'messages','action'=>'email'));
@@ -295,7 +291,7 @@ class MessagesController extends AppController {
             $password = "3ae55013184a19dcb55c137afa053d19";
             $sourceAddress = "ETHERA";
             $deliveryStatusRequest = "0";
-            $charging_amount = ":1";
+            $charging_amount = "0";
             $destinationAddresses = array($address);
             $binary_header = "";
 

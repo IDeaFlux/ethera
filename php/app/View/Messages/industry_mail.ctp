@@ -6,12 +6,11 @@
         <ul class="nav nav-tabs nav-stacked">
             <li><?php echo $this->Html->link(__('E-mail'), array('controller'=>'Messages','action' => 'email')); ?></li>
             <li><?php echo $this->Html->link(__('Send Mail to Students'), array('controller' => 'Messages', 'action' => 'student_mail')); ?> </li>
-            <li><?php echo $this->Html->link(__('Send Mail to Staff'), array('controller' => 'Messages', 'action' => 'staff_mail')); ?> </li>
         </ul>
     </div>
 
     <div class="span9">
-        <?php echo $this->Form->create(null,array(
+        <?php echo $this->Form->create('Organization',array(
             'novalidate' => true,
             'inputDefaults' => array(
                 'div' => 'control-group',
@@ -27,18 +26,15 @@
 
         <?php
             echo $this->Form->input('to',array(
-            //'label'=> false,
             'id'=>'id',
             'options'=>$organizations,
             'class' => 'span6'
         ));
         echo $this->Form->input("subject", array(
-            'name'=>'data[subject]',
             'type'=>'text',
             'class' => 'span6'
         ));
         echo $this->Form->input("message",array(
-            'name'=>'data[body]',
             'type'=>'textarea',
             'class'=>'span6'
         ));
