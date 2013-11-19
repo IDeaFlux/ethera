@@ -37,7 +37,7 @@
                         ?>
                     </td>
                     <td class="actions">
-                        <?php echo $this->Form->postLink(__('Accept'), array('controller'=>'special_opportunities','action' => 'accept', $special_opportunity['SpecialOpportunity']['assignment_id'],$special_opportunity['SpecialOpportunity']['id'],$special_opportunity['SpecialOpportunity']['student_id']), array('class' => 'btn'), __('Are accept this opportunity? THIS WILL BE AN IRREVERSIBLE ACTION!!!')); ?>
+                        <?php echo $this->Form->postLink(__('Accept'), array('controller'=>'special_opportunities','action' => 'accept', $special_opportunity['SpecialOpportunity']['assignment_id'],$special_opportunity['SpecialOpportunity']['id'],$special_opportunity['SpecialOpportunity']['student_id']), array('class' => 'btn'), __('Are you accept this opportunity? THIS WILL BE AN IRREVERSIBLE ACTION!!!')); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
