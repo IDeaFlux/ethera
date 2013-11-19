@@ -65,7 +65,7 @@
 
 <body>
 
-<a id="print" class="btn btn-primary" href="javascript:window.print()">Print Report</a>
+<a id="print" class="btn btn-danger" href="javascript:window.print()"><i class="icon-print"> </i>Print Report</a>
 <div id="wrap">
 
     <center>
