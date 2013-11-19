@@ -54,7 +54,6 @@
             )
         ));
         echo $this->Form->input("message",array(
-            'name'=>'data[body]',
             'type'=>'textarea',
             'class'=>'span6'
 
