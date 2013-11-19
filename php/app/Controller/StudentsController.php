@@ -3,6 +3,7 @@ App::uses('AppController', 'Controller');
 App::uses('EtheraEmail','Lib');
 App::uses('Calculate','Lib');
 App::uses('StudentManipulation','Lib');
+App::import('Controller', 'Messages');
 
 class StudentsController extends AppController {
 
@@ -258,6 +259,7 @@ class StudentsController extends AppController {
     }
 
     public function reg_approval_approve($id=null){
+        $sms = new MessagesController;
         $this->Student->id = $id;
         if (!$this->Student->exists()) {
             throw new NotFoundException(__('Invalid student'));
@@ -268,6 +270,8 @@ class StudentsController extends AppController {
         //debug($data);
         if ($this->Student->save($data)) {
             $this->Session->setFlash(__('The student has been approved'),'success_flash');
+            $message = "You have been successfully approved from registration of ETHERA";
+            $sms->send_sms($message,$id);
             $this->redirect(array('action' => 'reg_approval'));
         } else {
             $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
