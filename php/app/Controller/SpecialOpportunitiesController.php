@@ -16,18 +16,34 @@ class SpecialOpportunitiesController extends AppController {
             $this->redirect(array('controller'=>'students','action'=>'student_profile_router',$student_id));
         }
 
+        $this->request->onlyAllow('post');
+
         $this->loadModel('Organization');
         $organization = $this->Organization->find('first',array('conditions'=>array('Organization.organization_user_id'=>$user['id'])));
 
         $this->loadModel('Assignment');
         $assignment = $this->Assignment->findById($assignment_id);
 
+        if(empty($assignment['Assignment']['organization_id']) && !empty($assignment['Assignment']['interested_area_id'])){
+
+            $special_opportunity['SpecialOpportunity']['student_id'] = $student_id;
+            $special_opportunity['SpecialOpportunity']['assignment_id'] = $assignment_id;
+            $special_opportunity['SpecialOpportunity']['organization_id'] = $organization['Organization']['id'];
+
+            if($this->SpecialOpportunity->save($special_opportunity)){
+                $this->Session->setflash('Special Grant Saved','success_flash');
+                $this->redirect(array('controller'=>'students','action'=>'student_profile_router',$student_id));
+            }
+            else{
+                $this->Session->setflash('Special Grant NOT Saved!','error_flash');
+                $this->redirect(array('controller'=>'students','action'=>'student_profile_router',$student_id));
+            }
+        }
+
         if($organization['Organization']['id'] != $assignment['Assignment']['organization_id']){
             $this->Session->setflash('Invalid Submission You cannot Grant opportunities for other Organizations','error_flash');
             $this->redirect(array('controller'=>'students','action'=>'student_profile_router',$student_id));
         }
-
-        $this->request->onlyAllow('post');
 
         $special_opportunity['SpecialOpportunity']['student_id'] = $student_id;
         $special_opportunity['SpecialOpportunity']['assignment_id'] = $assignment_id;
@@ -114,6 +130,7 @@ class SpecialOpportunitiesController extends AppController {
 
     public function accept($assignment_id=null,$special_opportunity_id=null,$student_id=null){
         $user = $this->Auth->user();
+
         if($user['group_id']!=4){
             $this->redirect(array('controller'=>'special_opportunities','action' => 'consider',$user['id']));
         }
@@ -123,6 +140,13 @@ class SpecialOpportunitiesController extends AppController {
         if(!empty($assignment_id) && !empty($special_opportunity_id) && !empty($student_id)){
             $this->loadModel('Assignment');
             $this->loadModel('Student');
+
+            $assignment_found = $this->Assignment->findById($assignment_id);
+
+            if($assignment_found['Assignment']['organization_id']==0){
+                $special_opportunity_found = $this->SpecialOpportunity->findById($special_opportunity_id);
+                $assignment['Assignment']['organization_id'] = $special_opportunity_found['SpecialOpportunity']['organization_id'];
+            }
 
             $student['Student']['id'] = $student_id;
             $student['Student']['processing_state'] = 1;
