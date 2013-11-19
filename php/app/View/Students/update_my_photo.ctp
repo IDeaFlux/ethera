@@ -1,5 +1,5 @@
 <?php $this->layout = 'bootstrap2'; ?>
-<?php $this->set('title', 'Student Registration'); ?>
+<?php $this->set('title', 'Update Photo'); ?>
 <div class="row">
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
