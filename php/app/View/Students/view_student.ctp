@@ -210,6 +210,7 @@
             ?>
             <?php if(!empty($current_cv)): ?>
                 <li><?php echo $this->Html->link(__('View CV'), '../uploads/cvs/'.$current_cv['file_name'],array('target' => '_blank')); ?></li>
+                <li><?php echo $this->Html->link(__('Result Sheet'), array('controller'=>'reports','action' => 'result_sheet', $student['Student']['id']),array('target' => '_blank')); ?></li>
             <?php endif; ?>
         </ul>
         <ul class="nav nav-list"></ul></div>
