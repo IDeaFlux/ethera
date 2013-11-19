@@ -32,6 +32,7 @@
                 <td class="actions">
                     <div class="btn-group">
                         <?php echo $this->Html->link(__('View'), array('action' => 'view', $organization['Organization']['id']),array('class' => 'btn')); ?>
+                        <?php echo $this->Html->link(__('Update Logo'), array('action' => 'update_logo', $organization['Organization']['id']),array('class' => 'btn')); ?>
                         <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $organization['Organization']['id']),array('class' => 'btn')); ?>
                         <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $organization['Organization']['id']), null, __('Are you sure you want to delete # %s?', $organization['Organization']['id']),array('class' => 'btn')); ?>
                     </div>

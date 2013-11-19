@@ -97,4 +97,22 @@ class OrganizationsController extends AppController {
 		$this->Session->setFlash(__('Organization was not deleted'),'error_flash');
 		$this->redirect(array('action' => 'index'));
 	}
+
+    public function update_logo($id=null){
+        if (!$this->Organization->exists($id)) {
+            throw new NotFoundException(__('Invalid organization'));
+        }
+
+        $organization = $this->Organization->find('first',array('conditions'=>array('Organization.id'=>$id),'recursive'=>0));
+        $this->set('organization',$organization);
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->Organization->updateData($this->request->data)) {
+                $this->Session->setFlash(__('The photo has been updated'),'success_flash');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('Cannot upload, Please, try again.'),'error_flash');
+            }
+        }
+    }
 }
