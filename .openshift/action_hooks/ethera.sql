@@ -204,7 +204,11 @@ CREATE TABLE IF NOT EXISTS `feedbacks` (
   `student_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+INSERT INTO `feedbacks` (`id`, `date`, `content`, `student_id`, `organization_id`) VALUES
+(1, '2013-11-18 23:22:21', 'We are motivated by passion for work, driven by a free, open and collaborative company culture that centers on client satisfaction and integrity. The glory and success of WSO2 invariably lie on the fact that it has been nourished by the best-of-breed experts from its humble beginnings to this day.', 8, 3),
+(2, '2013-11-19 00:10:38', 'This is cool!', 8, 3);
 
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE IF NOT EXISTS `groups` (
@@ -295,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `organizations` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 INSERT INTO `organizations` (`id`, `organization_user_id`, `name`, `address`, `email`, `logo`, `profile`) VALUES
-(1, 9, 'WSO2', 'Kollupitiya', 'info@wso2.com', '', 'Founded in August 2005, WSO2 is a global enterprise middleware corporation with offices in USA, UK and Sri Lanka. Providing the only complete open source middleware platform, WSO2 is revolutionizing the industry by putting traditional middleware on a diet and introducing lean, powerful and flexible solutions to address the 21st century enterprise challenges.'),
+(1, 9, 'WSO2', 'Kollupitiya', 'info@wso2.com', '528ab0aa-1920-48e8-8ff9-4d84740d37dd', 'Founded in August 2005, WSO2 is a global enterprise middleware corporation with offices in USA, UK and Sri Lanka. Providing the only complete open source middleware platform, WSO2 is revolutionizing the industry by putting traditional middleware on a diet and introducing lean, powerful and flexible solutions to address the 21st century enterprise challenges.'),
 (2, 10, 'Virtusa', 'Dematagoda', 'info@virtusa.com', '', 'Virtusa provides a broad range of IT consulting, systems implementation and application outsourcing services through an optimized global delivery model. Through our industry leading platforming process, Virtusa focuses on delivering business results by modernizing, rationalizing and consolidating the critical applications that support our clients'' core business processes. We employ advanced processes like Agile to insure the right system is delivered the first time. This approach enables Virtusa to serve industry leaders as they seek to improve their customers'' experience, expand market reach, improve time to market and lower costs.'),
 (3, 11, 'IFS', 'Wellawaththa', 'info@ifsworld.com', '', 'IFS AB is a global enterprise software company headquartered in Linköping, Sweden with 50 offices around the world. IFS provides a component-based extended ERP suite built on SOA technology.');
 
@@ -362,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `full_name`, `phone_home`, `phone_mob`, `bio`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `processing_state`) VALUES
-(8, 'Uditha', 'Bandara', 'Wijerathna', '', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a147f-cae0-44ef-bb6c-1756740d37dd', 4, '047', 'M', '1988-04-08', 'No21', 'Keselwathugoda', 'Dewalegama', 1, 1, 5, 2, 'udithawijerathna', 1, 9, 1, 1),
+(8, 'Uditha', 'Bandara', 'Wijerathna', 'P.W.N.P.W.B.U.B WIJERATHNA', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a147f-cae0-44ef-bb6c-1756740d37dd', 4, '047', 'M', '1988-04-08', 'No21', 'Keselwathugoda', 'Dewalegama', 1, 1, 5, 2, 'udithawijerathna', 1, 9, 1, 1),
 (9, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '0372250520', '0718371272', '', '', 'yohani.ysr@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53b7-1a14-4278-bc46-0c8e740d37dd', 4, '019', 'F', '1988-11-01', 'N.01', 'Dehelgamuwa', 'Ibbagamuwa', 1, 1, 5, 2, 'yohani', 1, 9, 1, 1),
 (10, 'Sameera', 'Lakmal', 'Hokandara', '', '0342243222', '0779951123', '', '', 'cham.lakmal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a5425-3c2c-44af-9852-0391740d37dd', 4, '056', 'M', '1987-11-11', 'No.23', 'Aradhana Kanda', 'Avissawella', 1, 1, 5, 2, '', 1, 9, 1, 1),
 (11, 'Shayamali', 'Dulangika', 'Bamunuarachchi', '', '', '', '', '', 'shayamalidulz@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53f3-98a0-4989-b7b9-0c7d740d37dd', 4, '007', 'M', '1988-05-11', 'No. 22/5', 'Hospital Road', 'Wathupitiwala', 1, 1, 5, 2, 'shayamali', 1, 9, 1, 1),
