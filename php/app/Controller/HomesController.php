@@ -7,7 +7,9 @@ class HomesController extends AppController {
     }
 
     public function main() {
-
+        $this->loadModel('Article');
+        $articles = $this->Article->find('all',array('conditions'=>array('published_state'=>1),'limit'=>3,'order' => array('Article.id' => 'desc')));
+        $this->set('articles',$articles);
     }
 
     public function student_processing() {

@@ -72,14 +72,14 @@
     </ul>
 
     <?php if(($no_sp_ops==false)&&($accepted==false)&&($user['processing_state']==0)): ?>
-        <div class="alert">
+        <div class="alert alert-danger">
             <h3 class="text-center">Alert!</h3>
             <p class="text-center">Some Organizations have offered you Special Opportunities! Please click "Special Opportunities" button (In red color) to check.<p>
         </div>
     <?php endif; ?>
 
     <?php if($have_interview==true): ?>
-        <div class="alert">
+        <div class="alert alert-danger">
             <h3 class="text-center">Alert!</h3>
             <p class="text-center">You have selected for an Interview. Please contact the Career
                 Guidance Unit for more details. If you have already faced the interview, please update the
