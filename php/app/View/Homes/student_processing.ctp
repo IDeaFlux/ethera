@@ -57,6 +57,10 @@
     </ul>
 </div>
 
+<?php
+
+if($g_id != 6):
+    ?>
 <legend><?php echo __('Approvals'); ?></legend>
 <div class="container">
     <ul class="thumbnails">
@@ -146,3 +150,4 @@
         </li>
     </ul>
 </div>
+<?php endif;?>
