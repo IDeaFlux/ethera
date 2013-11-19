@@ -112,4 +112,42 @@ class FeedbacksController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
+    public function select_organization(){
+        $this->loadModel('Organization');
+        $this->set('organizations',$this->Organization->find('list'));
+
+        if($this->request->is('post')){
+            $org_id = $this->request->data['Organization']['id'];
+
+            $this->Organization->id = $org_id;
+            if (!$this->Organization->exists()) {
+                throw new NotFoundException(__('Invalid Organization'));
+            }
+
+            $this->redirect(array('action' => 'add_or_view_feedback',$org_id));
+        }
+    }
+
+    public function add_or_view_feedback($id=null){
+
+        $this->loadModel('Organization');
+        $user = $this->Auth->user();
+        $organization = $this->Organization->findById($id);
+        $feedbacks = $this->Feedback->find('all',array('conditions'=>array('Feedback.organization_id'=>$id),'recursive'=>2));
+
+        $this->set('feedbacks',$feedbacks);
+        $this->set('id',$user['id']);
+        $this->set('organization',$organization);
+
+        if($this->request->is('post')){
+            if ($this->Feedback->save($this->request->data)) {
+                $this->Feedback->saveField('student_id',$user['id']);
+                $this->Feedback->saveField('date', date("Y-m-d H:i:s"));
+                $this->Session->setFlash(__('The feedback has been saved'), 'success_flash');
+                $this->redirect(array('controller'=>'homes','action' => 'backend_router'));
+            } else {
+                $this->Session->setFlash(__('The feedback could not be saved. Please, try again.'), 'error_flash');
+            }
+        }
+    }
 }
