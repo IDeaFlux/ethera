@@ -29,7 +29,11 @@
                     <td class="actions">
                         <div class="btn-group">
                             <?php echo $this->Html->link(__('View'), array('action' => 'student_profile_router', $student['Student']['id']),array('class' => 'btn')); ?>
-                            <?php echo $this->Html->link(__('Configurations'), array('action' => 'individual_configuration', $student['Student']['id']),array('class' => 'btn')); ?>
+                            <?php
+                            if(($current_student['group_id']==1) || ($current_student['group_id']==2)){
+                                echo $this->Html->link(__('Configurations'), array('action' => 'individual_configuration', $student['Student']['id']),array('class' => 'btn'));
+                            }
+                            ?>
                         </div>
                     </td>
                 </tr>
