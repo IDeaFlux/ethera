@@ -262,7 +262,7 @@ class OpportunitiesController extends AppController {
             $this->Opportunity->create();
             if ($this->Opportunity->save($this->request->data)) {
                 $this->Session->setFlash(__('The opportunity has been saved'),'success_flash');
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'add_opp_org'));
             } else {
                 $this->Session->setFlash(__('The opportunity could not be saved. Please, try again.'),'error_flash');
             }
