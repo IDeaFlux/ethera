@@ -7,7 +7,7 @@ App::uses('StudentManipulation','Lib');
 class StudentsController extends AppController {
 
     public $helpers = array('Js');
-    public $components = array('Recaptcha.Recaptcha' => array('actions' => array(/*'register'*/)),
+    public $components = array('Recaptcha.Recaptcha' => array('actions' => array('register')),
         'Paginator'
     );
 
@@ -1148,6 +1148,8 @@ class StudentsController extends AppController {
             $this->loadModel('Batch');
             $this->loadModel('StudyProgram');
 
+            $current_student = $this->Auth->user();
+
             $batch_id = $this->request->data['Batch']['batch_id'];
             $study_program_id = $this->request->data['Student']['study_program'];
 
@@ -1163,6 +1165,7 @@ class StudentsController extends AppController {
             $batch = $this->Batch->findById($batch_id);
             $study_program = $this->StudyProgram->findById($study_program_id);
 
+            $this->set('current_student',$current_student);
             $this->set('students',$students);
             $this->set('batch',$batch);
             $this->set('study_program',$study_program);
@@ -1295,11 +1298,14 @@ class StudentsController extends AppController {
         //setting GPA
         $enrollments = $student['Enrollment'];
         $count = 0;
+
         foreach($enrollments as $enrollment){
             $gpa_enrollments[$count]['Enrollment'] = $enrollment;
             $count++;
         }
-        $gpa = Calculate::GPA($gpa_enrollments);
+        if(!empty($gpa)){
+            $gpa = Calculate::GPA($gpa_enrollments);
+        }
 
         //Setting Extra Activities
         $extra_activities = $student['StudentsExtraActivity'];

@@ -13,7 +13,9 @@ class HomesController extends AppController {
     }
 
     public function student_processing() {
+        $user = $this->Auth->user();
 
+        $this->set('g_id',$user['group_id']);
     }
 
     public function student() {
