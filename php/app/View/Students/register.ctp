@@ -70,10 +70,10 @@
             echo $this->Form->input('middle_name',array(
                 'class' => 'span6'
             ));
-            echo $this->Form->input('full_name',array(
+            echo $this->Form->input('last_name',array(
                 'class' => 'span6'
             ));
-            echo $this->Form->input('last_name',array(
+            echo $this->Form->input('full_name',array(
                 'class' => 'span6'
             ));
             echo $this->Form->input('gender', array(
@@ -96,7 +96,10 @@
                 'class' => 'span4'
             ));
             echo $this->Form->input('phone_mob',array(
-                'class' => 'span4'
+                'class' => 'span4',
+                'label'=>array(
+                    'text'=>"Phone Mobile"
+                )
             ));
             echo $this->Form->input('email',array(
                 'class' => 'span6'
