@@ -311,6 +311,7 @@ class StudentsController extends AppController {
     }
 
     public function init_approval_approve($id=null){
+        $sms = new MessagesController;
         $this->Student->id = $id;
         if (!$this->Student->exists()) {
             throw new NotFoundException(__('Invalid student'));
@@ -321,6 +322,8 @@ class StudentsController extends AppController {
         $data['Student']['industry_ready'] = 1;
         if ($this->Student->save($data)) {
             $this->Session->setFlash(__('The student has been approved'),'success_flash');
+            $message = "Your CV & Interested areas have been successfully approved by ETHERA.";
+            $sms->send_sms($message,$id);
             $this->redirect(array('action' => 'init_approval'));
         } else {
             $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
@@ -329,6 +332,7 @@ class StudentsController extends AppController {
     }
 
     public function init_approval_disapprove($id=null){
+        $sms = new MessagesController;
         $this->Student->id = $id;
         if (!$this->Student->exists()) {
             throw new NotFoundException(__('Invalid student'));
@@ -338,6 +342,8 @@ class StudentsController extends AppController {
         $data['Student']['approved_state'] = 8;
         if ($this->Student->save($data)) {
             $this->Session->setFlash(__('The student has been disapproved'),'success_flash');
+            $message = "Your CV & Interested areas have not been approved by ETHERA. Login for more details";
+            $sms->send_sms($message,$id);
             $this->redirect(array('action' => 'init_approval'));
         } else {
             $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
@@ -360,6 +366,7 @@ class StudentsController extends AppController {
     }
 
     public function final_approval_disapprove($id=null){
+        $sms = new MessagesController;
         $this->Student->id = $id;
         if (!$this->Student->exists()) {
             throw new NotFoundException(__('Invalid student'));
@@ -369,6 +376,8 @@ class StudentsController extends AppController {
         $data['Student']['approved_state'] = 7;
         if ($this->Student->save($data)) {
             $this->Session->setFlash(__('The student has been disapproved'),'success_flash');
+            $message = "Your Organization submission have not been approved by ETHERA. Login for more details";
+            $sms->send_sms($message,$id);
             $this->redirect(array('action' => 'final_approval'));
         } else {
             $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
@@ -377,6 +386,7 @@ class StudentsController extends AppController {
     }
 
     public function final_approval_approve($id=null){
+        $sms = new MessagesController;
         $this->Student->id = $id;
         if (!$this->Student->exists()) {
             throw new NotFoundException(__('Invalid student'));
@@ -386,6 +396,8 @@ class StudentsController extends AppController {
         $data['Student']['approved_state'] = 5;
         if ($this->Student->save($data)) {
             $this->Session->setFlash(__('The student has been approved'),'success_flash');
+            $message = "Congratulations! Your organization submission have been approved by ETHERA. Login for more details";
+            $sms->send_sms($message,$id);
             $this->redirect(array('action' => 'final_approval'));
         } else {
             $this->Session->setFlash(__('The student could not be saved. Please, try again.'),'error_flash');
