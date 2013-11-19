@@ -206,7 +206,7 @@ class OpportunitiesController extends AppController {
             $this->Opportunity->create();
             if ($this->Opportunity->save($this->request->data)) {
                 $this->Session->setFlash(__('The opportunity has been saved'),'success_flash');
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'index_opp_org',$user['id']));
             } else {
                 $this->Session->setFlash(__('The opportunity could not be saved. Please, try again.'),'error_flash');
             }
@@ -260,9 +260,9 @@ class OpportunitiesController extends AppController {
             $organization = $this->Organization->find('first',array('conditions'=>array('Organization.organization_user_id'=>$id)));
             $this->request->data['Opportunity']['organization_id'] = $organization['Organization']['id'];
             $this->Opportunity->create();
-            if ($this->Opportunity->save($this->request->data)) {
+            if(($this->request->data['Opportunity']['slots']>0) && ($this->Opportunity->save($this->request->data))) {
                 $this->Session->setFlash(__('The opportunity has been saved'),'success_flash');
-                $this->redirect(array('action' => 'add_opp_org'));
+                $this->redirect(array('action' => 'add_opp_org',$id));
             } else {
                 $this->Session->setFlash(__('The opportunity could not be saved. Please, try again.'),'error_flash');
             }
