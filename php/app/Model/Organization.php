@@ -38,13 +38,62 @@ class Organization extends AppModel {
 		),
 	);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+    public function uploadFile($id=null) {
+        $file = $this->data['Organization']['logo'];
 
-/**
- * hasMany associations
- *
- * @var array
- */
+        if($file['error'] === UPLOAD_ERR_OK) {
+            $folderName = APP.'webroot'.DS.'uploads'.DS.'organizations';
+            $folder = new Folder($folderName, true, 0777);
+
+            if($id!=null){
+                if((file_exists($folderName.DS.$id))){
+                    chmod($folderName.DS.$id,0755);
+                    unlink($folderName.DS.$id);
+                }
+            }
+
+            $id = String::uuid();
+
+            $tmp_file = $file['tmp_name'];
+            list($width, $height) = getimagesize($tmp_file);
+
+            if ($width == null && $height == null) {
+                $this->invalidate('logo','Photo upload error');
+                return false;
+            }
+
+            if ($width >= 160 && $height >= 160) {
+                $image = new Imagick($tmp_file);
+                $image->thumbnailImage(160, 160);
+                $image->writeImage($folderName.DS.$id);
+                $this->data['Organization']['logo'] = $id;
+                return true;
+            }
+            else{
+                move_uploaded_file($file['tmp_name'], $folderName.DS.$id);
+                $this->data['Organization']['logo'] = $id;
+                return true;
+            }
+        }
+        $this->invalidate('logo','Photo upload error');
+        return false;
+    }
+
+
+    public function updateData($data) {
+        $this->data = $data;
+
+        $organization = $this->data['Organization']['id'];
+        $organization = $this->findById($organization);
+
+        if($this->uploadFile($organization['Organization']['logo'])){
+            return $this->saveAll($this->data);
+        }
+        else{
+            return false;
+        }
+    }
+
 	public $hasMany = array(
 		'Assignment' => array(
 			'className' => 'Assignment',
