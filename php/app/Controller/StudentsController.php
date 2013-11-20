@@ -1319,9 +1319,8 @@ class StudentsController extends AppController {
             $gpa_enrollments[$count]['Enrollment'] = $enrollment;
             $count++;
         }
-        if(!empty($gpa)){
-            $gpa = Calculate::GPA($gpa_enrollments);
-        }
+
+        $gpa = Calculate::GPA($gpa_enrollments);
 
         //Setting Extra Activities
         $extra_activities = $student['StudentsExtraActivity'];
