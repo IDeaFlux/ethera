@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `assignments` (
   `priority` int(1) NOT NULL,
   `state` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `batches`;
 CREATE TABLE IF NOT EXISTS `batches` (
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `cvs` (
   `file_name` varchar(255) NOT NULL,
   `file_size` int(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `enrollments`;
 CREATE TABLE IF NOT EXISTS `enrollments` (
@@ -121,7 +121,29 @@ CREATE TABLE IF NOT EXISTS `enrollments` (
   `student_id` int(11) NOT NULL,
   `grade` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+
+INSERT INTO `enrollments` (`id`, `course_unit_id`, `student_id`, `grade`) VALUES
+(1, 1, 9, 'A+'),
+(2, 2, 9, 'A-'),
+(3, 3, 9, 'B+'),
+(4, 4, 9, 'A-'),
+(5, 1, 10, 'B'),
+(6, 2, 10, 'B-'),
+(7, 3, 10, 'B'),
+(8, 4, 10, 'B+'),
+(9, 1, 11, 'B-'),
+(10, 2, 11, 'C+'),
+(11, 3, 11, 'C'),
+(12, 4, 11, 'C'),
+(13, 1, 12, 'B'),
+(14, 2, 12, 'B+'),
+(15, 3, 12, 'A'),
+(16, 4, 12, 'B+'),
+(17, 1, 13, 'A+'),
+(18, 2, 13, 'C'),
+(19, 3, 13, 'C'),
+(20, 4, 13, 'C');
 
 DROP TABLE IF EXISTS `extra_activities`;
 CREATE TABLE IF NOT EXISTS `extra_activities` (
@@ -146,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `feedbacks` (
   `student_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE IF NOT EXISTS `groups` (
@@ -211,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `opportunities` (
   `consumed_slots` int(3) NOT NULL,
   `special_request` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `organizations`;
 CREATE TABLE IF NOT EXISTS `organizations` (
@@ -251,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `special_opportunities` (
   `assignment_id` int(11) NOT NULL,
   `state` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
@@ -290,12 +312,12 @@ CREATE TABLE IF NOT EXISTS `students` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 INSERT INTO `students` (`id`, `first_name`, `middle_name`, `last_name`, `full_name`, `phone_home`, `phone_mob`, `bio`, `sms_num`, `email`, `password`, `reset_password_token`, `token_created_at`, `photo`, `group_id`, `reg_number`, `gender`, `date_of_birth`, `address1`, `address2`, `city`, `freeze_state`, `industry_ready`, `approved_state`, `approval_phase`, `linkedin_ref`, `study_program_id`, `batch_id`, `registration_num_header_id`, `processing_state`) VALUES
-(8, 'Uditha', 'Bandara', 'Wijerathna', 'P.W.N.P.W.B.U.B WIJERATHNA', '0372243234', '0772315516', '', 'tel:AZ110wuH3dKJk9XiiQgRfErwiYJocfO9wi8AZ', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a147f-cae0-44ef-bb6c-1756740d37dd', 4, '047', 'M', '1988-04-08', 'No21', 'Keselwathugoda', 'Dewalegama', 0, 0, 0, 0, 'udithawijerathna', 1, 9, 1, 0),
-(9, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '0372250520', '0718371272', '', '', 'yohani.ysr@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53b7-1a14-4278-bc46-0c8e740d37dd', 4, '019', 'F', '1988-11-01', 'N.01', 'Dehelgamuwa', 'Ibbagamuwa', 0, 0, 0, 0, 'yohani', 1, 9, 1, 0),
-(10, 'Sameera', 'Lakmal', 'Hokandara', '', '0342243222', '0779951123', '', 'tel:AZ110wuH3dKJk9Xjx7w93dJCCeXGtVdHYUfOt', 'cham.lakmal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a5425-3c2c-44af-9852-0391740d37dd', 4, '056', 'M', '1987-11-11', 'No.23', 'Aradhana Kanda', 'Avissawella', 0, 0, 0, 0, '', 1, 9, 1, 0),
-(11, 'Shayamali', 'Dulangika', 'Bamunuarachchi', '', '', '', '', '', 'shayamalidulz@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53f3-98a0-4989-b7b9-0c7d740d37dd', 4, '007', 'M', '1988-05-11', 'No. 22/5', 'Hospital Road', 'Wathupitiwala', 0, 0, 0, 0, 'shayamali', 1, 9, 1, 0),
-(12, 'Ishani', 'Thilanka', 'Gunawardhana', '', '', '', '', '', 'ishanigunawardhana@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53ce-d090-41e3-ada0-0c7b740d37dd', 4, '032', 'F', '1988-05-11', 'Udahagedara', 'Vilayaya', 'Dampahala', 0, 0, 0, 0, 'igunawardhana', 1, 9, 1, 0),
-(13, 'Krishantha', 'Madhusanka', 'Jayasinghe', '', '', '', '', '', 'krishmadusanka1988@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a5409-ced0-4a6a-9de3-0c8f740d37dd', 4, '029', 'M', '1988-03-16', 'No. 255/44', 'Makola North', 'Makola', 0, 0, 0, 0, '', 1, 9, 1, 0);
+(8, 'Uditha', 'Bandara', 'Wijerathna', 'P.W.N.P.W.B.U.B WIJERATHNA', '0372243234', '0772315516', '', '', 'udinnet@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a147f-cae0-44ef-bb6c-1756740d37dd', 4, '047', 'M', '1988-04-08', 'No21', 'Keselwathugoda', 'Dewalegama', 0, 0, 0, 0, 'udithawijerathna', 1, 9, 1, 0),
+(9, 'Yohani', 'Shayamindi', 'Ranasinghe', '', '0372250520', '0718371272', '', '', 'yohani.ysr@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53b7-1a14-4278-bc46-0c8e740d37dd', 4, '019', 'F', '1988-11-01', 'N.01', 'Dehelgamuwa', 'Ibbagamuwa', 0, 0, 1, 0, 'yohani', 1, 9, 1, 0),
+(10, 'Sameera', 'Lakmal', 'Hokandara', '', '0342243222', '0779951123', '', 'tel:AZ110wuH3dKJk9Xjx7w93dJCCeXGtVdHYUfOt', 'cham.lakmal@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a5425-3c2c-44af-9852-0391740d37dd', 4, '056', 'M', '1987-11-11', 'No.23', 'Aradhana Kanda', 'Avissawella', 0, 0, 1, 0, '', 1, 9, 1, 0),
+(11, 'Shayamali', 'Dulangika', 'Bamunuarachchi', '', '', '', '', '', 'shayamalidulz@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53f3-98a0-4989-b7b9-0c7d740d37dd', 4, '007', 'M', '1988-05-11', 'No. 22/5', 'Hospital Road', 'Wathupitiwala', 0, 0, 1, 0, 'shayamali', 1, 9, 1, 0),
+(12, 'Ishani', 'Thilanka', 'Gunawardhana', '', '', '', '', '', 'ishanigunawardhana@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a53ce-d090-41e3-ada0-0c7b740d37dd', 4, '032', 'F', '1988-05-11', 'Udahagedara', 'Vilayaya', 'Dampahala', 0, 0, 1, 0, 'igunawardhana', 1, 9, 1, 0),
+(13, 'Krishantha', 'Madhusanka', 'Jayasinghe', '', '', '', '', '', 'krishmadusanka1988@gmail.com', '371e1512a0435aed69de4619805784f47970d2c9', '', '0000-00-00 00:00:00', '528a5409-ced0-4a6a-9de3-0c8f740d37dd', 4, '029', 'M', '1988-03-16', 'No. 255/44', 'Makola North', 'Makola', 0, 0, 1, 0, '', 1, 9, 1, 0);
 
 DROP TABLE IF EXISTS `students_extra_activities`;
 CREATE TABLE IF NOT EXISTS `students_extra_activities` (
@@ -305,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `students_extra_activities` (
   `comment` text NOT NULL,
   `mark` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `study_programs`;
 CREATE TABLE IF NOT EXISTS `study_programs` (
